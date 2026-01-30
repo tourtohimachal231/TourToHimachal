@@ -265,7 +265,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                         </span>
                       )}
                     </div>
-                    <p className="text-muted-foreground text-xs">per person</p>
+                    <p className="text-muted-foreground text-xs">for whole journey</p>
                     {pkg.original_price && pkg.original_price > pkg.price && (
                       <Badge className="from-forest-green to-mountain-blue mt-2 border-0 bg-linear-to-r px-2 py-0.5 text-xs text-white shadow-md">
                         🎉 Save ₹{(pkg.original_price - pkg.price).toLocaleString()}
