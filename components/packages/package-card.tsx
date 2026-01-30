@@ -1,9 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Clock, MapPin, Star } from "lucide-react"
+import { Clock, MapPin, Star, Image as ImageIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { cardHover, fadeInUp } from "@/lib/animation-variants"
@@ -36,12 +37,18 @@ interface PackageCardProps {
 export function PackageCard({ pkg }: PackageCardProps) {
   const { settings } = useSettings()
   const whatsappLink = generateWhatsAppLink({ packageName: pkg.title }, settings.whatsapp_number)
+  const [imageError, setImageError] = useState(false)
 
   // Calculate discount percentage
   const discountPercent =
     pkg.original_price && pkg.original_price > pkg.price
       ? Math.round(((pkg.original_price - pkg.price) / pkg.original_price) * 100)
       : 0
+
+  // Get image source with fallback
+  const imageSrc = imageError || !pkg.images?.[0]
+    ? `/placeholder.svg?height=400&width=600&query=${encodeURIComponent(pkg.title)}`
+    : pkg.images[0]
 
   return (
     <motion.div
@@ -57,12 +64,20 @@ export function PackageCard({ pkg }: PackageCardProps) {
         <motion.div variants={cardHover} className="flex h-full flex-col">
           {/* Image */}
           <div className="bg-muted/30 relative aspect-[4/3] overflow-hidden">
-            <Image
-              src={pkg.images?.[0] || `/placeholder.svg?height=400&width=600&query=${pkg.title}`}
-              alt={pkg.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
+            {imageError || !pkg.images?.[0] ? (
+              <div className="flex h-full w-full items-center justify-center bg-muted">
+                <ImageIcon className="text-muted-foreground h-16 w-16" />
+              </div>
+            ) : (
+              <Image
+                src={imageSrc}
+                alt={pkg.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                onError={() => setImageError(true)}
+                unoptimized={imageSrc.includes("cloudinary.com") ? false : undefined}
+              />
+            )}
 
             
 

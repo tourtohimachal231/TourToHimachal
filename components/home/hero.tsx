@@ -1,10 +1,5 @@
-import { Suspense } from "react"
-import { HeroServer, HERO_CONTAINER_ID } from "./hero-server"
-
-interface HeroImage {
-  url: string
-  alt: string
-}
+import { HeroClient } from "./hero-client"
+import type { HeroImage } from "./hero-client"
 
 interface HeroProps {
   images?: HeroImage[]
@@ -13,10 +8,5 @@ interface HeroProps {
 export function Hero({ images }: HeroProps) {
   const heroImages = images && images.length > 0 ? images : undefined
 
-  return (
-    <>
-      {/* Server component renders static content immediately */}
-      <HeroServer images={heroImages} />
-    </>
-  )
+  return <HeroClient images={heroImages} />
 }

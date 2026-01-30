@@ -27,7 +27,7 @@ interface PopularDestinationsClientProps {
   packages: Package[]
 }
 
-// Fallback data if no packages from database
+// Fallback data if no packages from database (using valid Cloudinary images)
 const fallbackDestinations: Package[] = [
   {
     id: "fallback-manali",
@@ -37,7 +37,7 @@ const fallbackDestinations: Package[] = [
     duration: "3 Days / 2 Nights",
     price: 8999,
     original_price: 9999,
-    images: ["/manali-snow-mountains.jpg"],
+    images: ["https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795277/v7svtjhbjhj6cyadgfhz.webp"],
     is_active: true,
     is_featured: true,
   },
@@ -49,7 +49,7 @@ const fallbackDestinations: Package[] = [
     duration: "2 Days / 1 Night",
     price: 5499,
     original_price: 5999,
-    images: ["/shimla-hills-colonial.jpg"],
+    images: ["https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795901/y1plr2wekvbv7g7yjyk0.webp"],
     is_active: true,
     is_featured: true,
   },
@@ -61,7 +61,7 @@ const fallbackDestinations: Package[] = [
     duration: "3 Days / 2 Nights",
     price: 7999,
     original_price: 8999,
-    images: ["/dharamshala-monastery.jpg"],
+    images: ["https://res.cloudinary.com/daqp8c5fa/image/upload/v1767794969/himachal-yatra/packages/jbngdslx5ivqucojuvx3.webp"],
     is_active: true,
     is_featured: true,
   },

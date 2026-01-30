@@ -1,7 +1,20 @@
 import { Suspense } from "react"
 import Script from "next/script"
 import dynamic from "next/dynamic"
-import { Hero } from "@/components/home/hero"
+
+export const revalidate = 0 // Always fetch fresh data
+
+// Dynamic import for Hero component (client component with animation)
+const Hero = dynamic(
+  () => import("@/components/home/hero").then((mod) => ({ default: mod.Hero })),
+  {
+    loading: () => (
+      <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-black/70 via-black/40 to-black/80">
+        <div className="text-white text-center">Loading...</div>
+      </div>
+    )
+  }
+)
 
 // Dynamic imports for non-critical components
 const Header = dynamic(

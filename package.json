@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build --webpack",
-    "dev": "next dev",
+    "dev": "next dev -p 3008",
     "lint": "eslint .",
     "start": "next start",
     "format": "prettier --write .",
