@@ -12,6 +12,7 @@ import { PackageHeroSlider } from "@/components/packages/package-hero-slider"
 import { RelatedPackagesCarousel } from "@/components/packages/related-packages-carousel"
 import { ItineraryAccordion } from "@/components/packages/itinerary-accordion"
 import { PackageBookingForm } from "@/components/packages/package-booking-form"
+import { MarkdownRenderer } from "@/lib/markdown-renderer"
 import { useSettings } from "@/lib/settings-context"
 import { generateWhatsAppLink } from "@/lib/whatsapp"
 import { fadeInUp, slideInLeft, slideInRight } from "@/lib/animation-variants"
@@ -129,9 +130,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                   <h3 className="text-foreground mb-3 font-serif text-lg font-bold sm:mb-4 sm:text-xl md:text-2xl">
                     Overview
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed sm:text-base md:text-lg">
-                    {pkg.description}
-                  </p>
+                  <MarkdownRenderer content={pkg.description} />
                 </div>
               </motion.div>
 
@@ -302,7 +301,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                       <div className="min-w-0">
                         <p className="text-muted-foreground text-xs">Group Size</p>
                         <p className="text-foreground text-sm font-semibold">
-                          Min {pkg.min_persons ?? 2} persons
+                          Max {pkg.min_persons ?? 2} persons
                         </p>
                       </div>
                     </div>

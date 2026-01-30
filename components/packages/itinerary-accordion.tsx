@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown, MapPin } from "lucide-react"
+import { MarkdownRenderer } from "@/lib/markdown-renderer"
 import { accordionContent } from "@/lib/animation-variants"
 
 interface ItineraryDay {
@@ -82,9 +83,7 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
                               </span>
                             </div>
                           )}
-                          <div className="text-muted-foreground mb-3 text-xs leading-relaxed whitespace-pre-line sm:text-xs">
-                            {subtitle.description}
-                          </div>
+                          <MarkdownRenderer content={subtitle.description} className="mb-3 text-xs sm:text-xs" />
                           {subtitle.activities && subtitle.activities.length > 0 && (
                             <div className="flex flex-wrap gap-2">
                               {subtitle.activities.map((activity, actIndex) => (

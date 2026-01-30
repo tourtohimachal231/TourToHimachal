@@ -61,7 +61,7 @@ export function RouteCard({ route }: RouteCardProps) {
       <div className="flex items-center justify-between">
         <div>
           <span className="text-muted-foreground text-sm">Starting from</span>
-          <p className="text-primary text-xl font-bold">₹{route.base_fare?.toLocaleString()}</p>
+          <p className="text-primary text-xl font-bold">₹{route.base_fare?.toLocaleString()} <span className="text-sm font-normal text-muted-foreground">per Trip</span></p>
         </div>
         <Button asChild className="bg-forest-green hover:bg-forest-green/90 text-white">
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
