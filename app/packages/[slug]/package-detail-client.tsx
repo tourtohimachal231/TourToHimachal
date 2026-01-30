@@ -376,7 +376,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
             <span className="from-saffron to-sunset-orange bg-linear-to-r bg-clip-text text-2xl font-bold text-transparent">
               ₹{pkg.price?.toLocaleString()}
             </span>
-            <p className="text-muted-foreground text-xs font-medium">per person</p>
+            <p className="text-muted-foreground text-xs font-medium">for whole journey</p>
           </div>
           <Button
             onClick={() => setIsBookingOpen(true)}
