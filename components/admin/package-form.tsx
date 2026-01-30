@@ -18,6 +18,7 @@ import {
   UploadedImagePreview,
   type CloudinaryUploadResult,
 } from "./cloudinary-upload-widget"
+import { MarkdownEditor } from "./markdown-editor"
 import { registerMedia } from "@/lib/admin/media-client"
 
 interface PackageFormProps {
@@ -321,34 +322,24 @@ export function PackageForm({ initialData }: PackageFormProps) {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="short_description" className="text-xs sm:text-sm">
-              Short Description
-            </Label>
-            <Textarea
-              id="short_description"
-              value={formData.short_description}
-              onChange={(e) => setFormData((prev) => ({ ...prev, short_description: e.target.value }))}
-              placeholder="Brief description for cards and previews..."
-              rows={2}
-              className="text-base sm:text-sm"
-            />
-          </div>
+          <MarkdownEditor
+            id="short_description"
+            label="Short Description"
+            value={formData.short_description}
+            onChange={(value) => setFormData((prev) => ({ ...prev, short_description: value }))}
+            placeholder="Brief description for cards and previews..."
+            rows={2}
+          />
 
-          <div className="space-y-2">
-            <Label htmlFor="description" className="text-xs sm:text-sm">
-              Full Description *
-            </Label>
-            <Textarea
-              id="description"
-              value={formData.description}
-              onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
-              placeholder="Detailed package description..."
-              rows={5}
-              className="text-base sm:text-sm"
-              required
-            />
-          </div>
+          <MarkdownEditor
+            id="description"
+            label="Full Description"
+            value={formData.description}
+            onChange={(value) => setFormData((prev) => ({ ...prev, description: value }))}
+            placeholder="Detailed package description..."
+            rows={5}
+            required
+          />
         </CardContent>
       </Card>
 
@@ -607,15 +598,16 @@ export function PackageForm({ initialData }: PackageFormProps) {
                     </Button>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor={`day-${dayIndex}-title`}>Day Title *</Label>
-                    <Input
-                      id={`day-${dayIndex}-title`}
-                      value={day.title}
-                      onChange={(e) => updateItineraryDay(dayIndex, "title", e.target.value)}
-                      placeholder="e.g., Arrival in Manali"
-                    />
-                  </div>
+                  <MarkdownEditor
+                    id={`day-${dayIndex}-title`}
+                    label="Day Title"
+                    value={day.title}
+                    onChange={(value) => updateItineraryDay(dayIndex, "title", value)}
+                    placeholder="e.g., Arrival in Manali"
+                    rows={1}
+                    compact
+                    required
+                  />
 
                   {/* Subtitles Section */}
                   <div className="border-border mt-4 space-y-3 border-t pt-4">
@@ -645,46 +637,42 @@ export function PackageForm({ initialData }: PackageFormProps) {
                                 </Button>
                               </div>
 
-                              <div className="space-y-2">
-                                <Label htmlFor={`sub-${dayIndex}-${subtitleIndex}-title`}>
-                                  Sub-section Title *
-                                </Label>
-                                <Input
-                                  id={`sub-${dayIndex}-${subtitleIndex}-title`}
-                                  value={subtitle.title}
-                                  onChange={(e) =>
-                                    updateSubtitle(dayIndex, subtitleIndex, "title", e.target.value)
-                                  }
-                                  placeholder="e.g., Morning Trek to Hadimba Temple"
-                                />
-                              </div>
+                              <MarkdownEditor
+                                id={`sub-${dayIndex}-${subtitleIndex}-title`}
+                                label="Sub-section Title"
+                                value={subtitle.title}
+                                onChange={(value) =>
+                                  updateSubtitle(dayIndex, subtitleIndex, "title", value)
+                                }
+                                placeholder="e.g., Morning Trek to Hadimba Temple"
+                                rows={1}
+                                compact
+                                required
+                              />
 
-                              <div className="space-y-2">
-                                <Label htmlFor={`sub-${dayIndex}-${subtitleIndex}-highlight`}>
-                                  Highlight / Caution (Optional)
-                                </Label>
-                                <Input
-                                  id={`sub-${dayIndex}-${subtitleIndex}-highlight`}
-                                  value={subtitle.highlight || ""}
-                                  onChange={(e) =>
-                                    updateSubtitle(dayIndex, subtitleIndex, "highlight", e.target.value)
-                                  }
-                                  placeholder="e.g., Bring sun protection, altitude may affect some travelers"
-                                />
-                              </div>
+                              <MarkdownEditor
+                                id={`sub-${dayIndex}-${subtitleIndex}-highlight`}
+                                label="Highlight / Caution"
+                                value={subtitle.highlight || ""}
+                                onChange={(value) =>
+                                  updateSubtitle(dayIndex, subtitleIndex, "highlight", value)
+                                }
+                                placeholder="e.g., Bring sun protection, altitude may affect some travelers"
+                                rows={1}
+                                compact
+                              />
 
-                              <div className="space-y-2">
-                                <Label htmlFor={`sub-${dayIndex}-${subtitleIndex}-desc`}>Description *</Label>
-                                <Textarea
-                                  id={`sub-${dayIndex}-${subtitleIndex}-desc`}
-                                  value={subtitle.description}
-                                  onChange={(e) =>
-                                    updateSubtitle(dayIndex, subtitleIndex, "description", e.target.value)
-                                  }
-                                  placeholder="Enter each point on a new line..."
-                                  rows={3}
-                                />
-                              </div>
+                              <MarkdownEditor
+                                id={`sub-${dayIndex}-${subtitleIndex}-desc`}
+                                label="Description"
+                                value={subtitle.description}
+                                onChange={(value) =>
+                                  updateSubtitle(dayIndex, subtitleIndex, "description", value)
+                                }
+                                placeholder="Enter each point on a new line..."
+                                rows={3}
+                                required
+                              />
 
                               <div className="space-y-2">
                                 <Label>Activities/Places</Label>

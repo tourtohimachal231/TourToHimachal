@@ -2,7 +2,6 @@
 
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import type { Components } from "react-markdown"
 import { cn } from "@/lib/utils"
 
 interface MarkdownRendererProps {
@@ -11,7 +10,7 @@ interface MarkdownRendererProps {
 }
 
 export function MarkdownRenderer({ content, className }: MarkdownRendererProps) {
-  const components: Components = {
+  const components: any = {
     h2: ({ children }) => (
       <h2 className="text-foreground mt-12 mb-6 scroll-mt-24 font-serif text-2xl font-bold md:text-3xl">
         {children}
