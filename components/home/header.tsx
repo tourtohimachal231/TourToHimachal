@@ -22,12 +22,21 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
   const { settings, loading } = useSettings()
   const scrollYRef = useRef(0)
   const pathname = usePathname()
 
   const whatsappNumber = settings.whatsapp_number || ""
   const contactPhone = settings.contact_phone || ""
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -118,7 +127,7 @@ export function Header() {
               </div>
             )}
 
-            {whatsappNumber && (
+            {whatsappNumber && windowWidth >= 1140 && (
               <Button asChild variant="gradient" size="lg" className="gap-1 px-3 py-2 text-xs md:gap-2 md:px-4 md:py-2 md:text-sm">
                 <a
                   href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}`}

@@ -2,8 +2,8 @@
 
 import type React from "react"
 
-import { useRef } from "react"
-import { motion, useAnimationFrame } from "framer-motion"
+import { useEffect, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { optimizeCloudinaryDeliveryUrl } from "@/lib/cloudinary"
 
 interface HeroImage {
@@ -11,61 +11,83 @@ interface HeroImage {
   alt: string
 }
 
-interface InfiniteScrollHeroProps {
+interface ClockwiseSlideHeroProps {
   images: HeroImage[]
   title: string
   subtitle: string
   badge?: string
   children?: React.ReactNode
+  autoPlayInterval?: number // Time between transitions in milliseconds (default: 4000)
+}
+
+// Clockwise slide directions: top → right → bottom → left → top...
+const getSlideDirection = (index: number) => {
+  const directions = [
+    { initial: { y: "-100%", x: 0 } }, // Top
+    { initial: { y: 0, x: "100%" } }, // Right
+    { initial: { y: "100%", x: 0 } }, // Bottom
+    { initial: { y: 0, x: "-100%" } }, // Left
+  ]
+  return directions[index % directions.length]
 }
 
 // Helper function to ensure Cloudinary images work directly
 function getImageUrl(url: string): string {
   // If it's already a Cloudinary URL, use it directly
   if (url.includes("cloudinary.com") || url.includes("res.cloudinary.com")) {
-    return optimizeCloudinaryDeliveryUrl(url, { width: 800, quality: "auto", format: "auto", crop: "limit" })
+    return optimizeCloudinaryDeliveryUrl(url, { width: 1920, quality: "auto", format: "auto", crop: "fill" })
   }
   // Otherwise return as-is (for local images or placeholders)
   return url || "/placeholder.svg"
 }
 
-export function InfiniteScrollHero({ images, title, subtitle, badge, children }: InfiniteScrollHeroProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const xRef = useRef(0)
+export function ClockwiseSlideHero({
+  images,
+  title,
+  subtitle,
+  badge,
+  children,
+  autoPlayInterval = 4000,
+}: ClockwiseSlideHeroProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  // Duplicate images for seamless loop
-  const allImages = [...images, ...images]
+  // Auto-advance the slider
+  useEffect(() => {
+    if (images.length <= 1) return
 
-  useAnimationFrame((time, delta) => {
-    if (!containerRef.current) return
-    const speed = 0.06
-    xRef.current -= delta * speed
-    const totalWidth = images.length * 400
-    if (Math.abs(xRef.current) >= totalWidth) {
-      xRef.current = 0
-    }
-    containerRef.current.style.transform = `translateX(${xRef.current}px)`
-  })
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length)
+    }, autoPlayInterval)
+
+    return () => clearInterval(interval)
+  }, [images.length, autoPlayInterval])
+
+  const direction = getSlideDirection(currentIndex)
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
-      {/* Infinite Scrolling Background */}
+      {/* Full-width Clockwise Slide Background */}
       <div className="absolute inset-0">
-        <div ref={containerRef} className="flex h-full" style={{ width: `${allImages.length * 400}px` }}>
-          {allImages.map((image, index) => (
-            <div key={index} className="relative h-full w-[300px] shrink-0 md:w-[400px]">
-              <img
-                src={getImageUrl(image.url) || "/placeholder.svg"}
-                alt={image.alt}
-                className="h-full w-full object-cover"
-                crossOrigin="anonymous"
-                loading={index === 0 ? "eager" : "lazy"}
-                decoding="async"
-                fetchPriority={index === 0 ? "high" : "low"}
-              />
-            </div>
-          ))}
-        </div>
+        <AnimatePresence mode="sync">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, ...direction.initial }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <img
+              src={getImageUrl(images[currentIndex]?.url) || "/placeholder.svg"}
+              alt={images[currentIndex]?.alt || "Hero image"}
+              className="h-full w-full object-cover"
+              crossOrigin="anonymous"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Dark Gradient Overlay */}
@@ -122,8 +144,6 @@ export function InfiniteScrollHero({ images, title, subtitle, badge, children }:
           </motion.div>
         </div>
       </div>
-
-      {/** Scroll indicator removed for cleaner hero UI across pages */}
     </section>
   )
 }

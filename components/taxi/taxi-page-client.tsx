@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Phone, Car, Calendar, Shield, Zap, Users, Gauge } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp"
 import { Header } from "@/components/home/header"
 import { Footer } from "@/components/home/footer"
-import { InfiniteScrollHero } from "@/components/ui/infinite-scroll-hero"
+import { ClockwiseSlideHero } from "@/components/ui/clockwise-slide-hero"
 import { Button } from "@/components/ui/button"
 import { VehicleCard } from "@/components/taxi/vehicle-card"
 import { RouteCard } from "@/components/taxi/route-card"
@@ -71,12 +71,27 @@ const taxiFaqs = [
 export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
   const [selectedVehicle, setSelectedVehicle] = useState<string>("")
   const { settings } = useSettings()
+  const chooseVehicleRef = useRef<HTMLElement>(null)
+
+  // Auto-scroll to "Choose Your Vehicle" section after hero renders
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (chooseVehicleRef.current) {
+        chooseVehicleRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    }, 1800) // Wait for hero section to render
+
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <main className="bg-background min-h-screen overflow-x-hidden">
       <Header />
 
-      <InfiniteScrollHero
+      <ClockwiseSlideHero
         images={[
           {
             url: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767794694/hiktlwjkvx7nfb57hnfz.webp",
@@ -121,7 +136,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
             </a>
           </Button>
         </div>
-      </InfiniteScrollHero>
+      </ClockwiseSlideHero>
 
       {/* Stats Section - Enhanced Design */}
       <section className="from-forest-green/5 via-mountain-blue/5 to-saffron/5 relative overflow-hidden bg-linear-to-br py-8 md:py-12">
@@ -193,16 +208,6 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
                     <p className="text-foreground mb-1 text-[10px] font-semibold sm:text-xs md:text-sm">
                       {stat.label}
                     </p>
-
-                    {/* Decorative dots */}
-                    <div className="mt-2 flex justify-center gap-0.5">
-                      {[0, 1, 2].map((dot) => (
-                        <div
-                          key={dot}
-                          className={`h-1 w-1 rounded-full bg-linear-to-r sm:h-1.5 sm:w-1.5 ${stat.gradient} opacity-60`}
-                        />
-                      ))}
-                    </div>
                   </div>
                 </motion.div>
               )
@@ -213,7 +218,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
 
       {/* Vehicle Types */}
       {vehicles.length > 0 && (
-        <section className="bg-muted/30 py-8">
+        <section id="choose-vehicle" ref={chooseVehicleRef} className="bg-muted/30 py-8">
           <div className="container mx-auto px-4">
             <motion.div
               variants={slideInLeft}

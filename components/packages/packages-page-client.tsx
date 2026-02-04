@@ -1,10 +1,10 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { Header } from "@/components/home/header"
 import { Footer } from "@/components/home/footer"
-import { InfiniteScrollHero } from "@/components/ui/infinite-scroll-hero"
+import { ClockwiseSlideHero } from "@/components/ui/clockwise-slide-hero"
 import { PackageCard } from "@/components/packages/package-card"
 import { PackageFilter } from "@/components/packages/package-filter"
 import { Button } from "@/components/ui/button"
@@ -42,6 +42,7 @@ function extractDurationDays(duration: string): number {
 }
 
 export function PackagesPageClient({ packages }: PackagesPageClientProps) {
+  const packagesGridRef = useRef<HTMLElement>(null)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedRegion, setSelectedRegion] = useState("All")
   const [selectedDuration, setSelectedDuration] = useState("All")
@@ -134,11 +135,25 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
     selectedTheme !== "All" ||
     selectedPrice !== "All"
 
+  // Auto-scroll to "Packages Grid" section after hero renders
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (packagesGridRef.current) {
+        packagesGridRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    }, 1800) // Wait for hero section to render
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <main className="bg-background min-h-screen">
       <Header />
 
-      <InfiniteScrollHero
+      <ClockwiseSlideHero
         images={[
           {
             url: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795277/v7svtjhbjhj6cyadgfhz.webp",
@@ -167,7 +182,7 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
       />
 
       {/* Packages Grid */}
-      <section className="from-background to-background bg-linear-to-b via-[oklch(0.97_0.02_85)] py-6 sm:py-8 md:py-12 lg:py-16">
+      <section id="packages-grid" ref={packagesGridRef} className="from-background to-background bg-linear-to-b via-[oklch(0.97_0.02_85)] py-6 sm:py-8 md:py-12 lg:py-16">
         <div className="container mx-auto px-4">
           {/* Unified Filter Bar with Summary */}
           <div className="mb-4 flex flex-col gap-3 sm:mb-6 md:mb-8 lg:flex-row lg:items-center lg:justify-between">

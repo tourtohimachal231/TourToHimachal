@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronRight, Car, MapPin } from "lucide-react"
-import { InfiniteScrollHero } from "@/components/ui/infinite-scroll-hero"
+import { ClockwiseSlideHero } from "@/components/ui/clockwise-slide-hero"
 
 export interface HeroImage {
   url: string
@@ -37,7 +37,7 @@ export function HeroClient({ images }: HeroClientProps) {
   const heroImages = images && images.length > 0 ? images : defaultHeroImages
 
   return (
-    <InfiniteScrollHero
+    <ClockwiseSlideHero
       images={heroImages}
       badge="Discover Magic of Himachal"
       title="Your Gateway to Himalayan Adventures"
@@ -88,6 +88,6 @@ export function HeroClient({ images }: HeroClientProps) {
           </div>
         ))}
       </div>
-    </InfiniteScrollHero>
+    </ClockwiseSlideHero>
   )
 }

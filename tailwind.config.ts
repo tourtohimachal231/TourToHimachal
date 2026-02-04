@@ -6,6 +6,9 @@ const config: Config = {
   content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
+      screens: {
+        "max-1140": { max: "1140px" },
+      },
       fontFamily: {
         sans: ["var(--font-montserrat)", ...defaultTheme.fontFamily.sans],
         serif: ["var(--font-montserrat)", ...defaultTheme.fontFamily.serif],
