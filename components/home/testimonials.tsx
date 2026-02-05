@@ -79,7 +79,7 @@ export function Testimonials() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-white py-8 md:py-8 lg:py-12">
+    <section className="relative overflow-hidden bg-white py-6 md:py-8 lg:py-10">
       {/* Decorative elements */}
       <div className="from-golden-yellow/30 to-saffron/30 absolute top-10 right-10 h-32 w-32 rounded-full bg-gradient-to-br blur-3xl md:h-40 md:w-40" />
       <div className="from-saffron/20 to-saffron/20 absolute bottom-10 left-10 h-48 w-48 rounded-full bg-gradient-to-tr blur-3xl md:h-60 md:w-60" />
@@ -90,7 +90,7 @@ export function Testimonials() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="mb-8 flex flex-col md:mb-12 md:flex-row md:items-end md:justify-between"
+          className="mb-6 flex flex-col md:mb-8 lg:mb-10 md:flex-row md:items-end md:justify-between"
         >
           <div>
             <motion.div
@@ -149,7 +149,7 @@ export function Testimonials() {
         <div
           ref={scrollRef}
           onScroll={checkScroll}
-          className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:gap-6"
+          className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:gap-5"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {reviews.length === 0 && !isLoading ? (

@@ -9,7 +9,7 @@ import { fadeInUp } from "@/lib/animation-variants"
 export function MapSection() {
   const { settings } = useSettings()
   return (
-    <section className="py-12 sm:py-16 md:py-24 overflow-x-hidden">
+    <section className="py-6 md:py-8 lg:py-10 overflow-x-hidden">
       <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="mx-auto w-full">
           <motion.div
@@ -17,7 +17,7 @@ export function MapSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mb-8 text-center sm:mb-12"
+            className="mb-6 text-center md:mb-8 lg:mb-10"
           >
             <h2 className="text-foreground mb-3 font-serif text-2xl font-bold sm:mb-4 sm:text-3xl md:text-4xl">
               Visit Our Office

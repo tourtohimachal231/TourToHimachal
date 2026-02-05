@@ -52,7 +52,7 @@ const features = [
 
 export function WhyChooseUs() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[oklch(0.97_0.035_85)] via-[oklch(0.98_0.02_75)] to-[oklch(0.96_0.03_65)] py-8 md:py-8 lg:py-12">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[oklch(0.97_0.035_85)] via-[oklch(0.98_0.02_75)] to-[oklch(0.96_0.03_65)] py-6 md:py-8 lg:py-10">
       {/* Decorative patterns */}
       <div className="pattern-dots absolute inset-0 opacity-20" />
       <div className="via-saffron absolute top-0 left-1/2 h-1 w-full -translate-x-1/2 bg-gradient-to-r from-transparent to-transparent" />
@@ -97,7 +97,7 @@ export function WhyChooseUs() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-6"
         >
           {features.map((feature, index) => (
             <motion.div

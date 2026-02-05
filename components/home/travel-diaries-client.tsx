@@ -145,7 +145,7 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
       : [...fallbackBlogs, ...fallbackDiaries].slice(0, 3)
 
   return (
-    <section className="from-background to-background relative overflow-hidden bg-linear-to-br via-[oklch(0.97_0.02_85)] py-8 md:py-8 lg:py-12">
+    <section className="from-background to-background relative overflow-hidden bg-linear-to-br via-[oklch(0.97_0.02_85)] py-6 md:py-8 lg:py-10">
       {/* Background decorations */}
       <div className="from-golden-yellow/20 to-saffron/20 absolute top-20 right-10 h-48 w-48 rounded-full bg-linear-to-br blur-3xl md:right-20 md:h-64 md:w-64" />
       <div className="from-saffron/15 to-saffron/15 absolute bottom-20 left-10 h-36 w-36 rounded-full bg-linear-to-tr blur-3xl md:left-20 md:h-48 md:w-48" />
@@ -156,7 +156,7 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="mb-8 flex flex-col md:mb-12 md:flex-row md:items-end md:justify-between"
+          className="mb-6 flex flex-col md:mb-8 lg:mb-10 md:flex-row md:items-end md:justify-between"
         >
           <div>
             <motion.div
@@ -195,7 +195,7 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-8 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3"
         >
           {finalItems.map((item, index) => (
             <motion.article key={`${item.type}-${item.slug}`} variants={fadeInUp} className="group">

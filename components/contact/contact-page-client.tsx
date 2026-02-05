@@ -35,13 +35,13 @@ export function ContactPageClient() {
         <ContactHero />
 
         {/* Contact Form & Info Section */}
-        <section id="get-in-touch" ref={getInTouchRef} className="py-12 sm:py-16 md:py-24 overflow-x-hidden">
+        <section id="get-in-touch" ref={getInTouchRef} className="py-6 md:py-8 lg:py-10 overflow-x-hidden">
           <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
-            <div className="mx-auto w-full min-w-0 grid gap-4 sm:gap-6 md:gap-8 lg:gap-12 lg:grid-cols-5 lg:items-start">
+            <div className="mx-auto w-full min-w-0 grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 lg:grid-cols-5 lg:items-start">
               {/* Contact Info Sidebar */}
               <div className="order-1 flex flex-col lg:order-1 lg:col-span-2 w-full min-w-0">
-                <div className="bg-card border-border flex flex-col w-full min-w-0 rounded-2xl border p-3 sm:p-4 md:p-6 lg:p-8 box-border">
-                  <div className="mb-5 sm:mb-6">
+                <div className="bg-card border-border flex flex-col w-full min-w-0 rounded-2xl border p-4 sm:p-5 md:p-6 box-border">
+                  <div className="mb-4 sm:mb-5 md:mb-6">
                     <h2 className="text-foreground font-serif text-xl font-bold sm:text-2xl">Get in Touch</h2>
                     <p className="text-muted-foreground mt-2 text-sm sm:text-base">
                       Call, WhatsApp, or email us — we typically respond within 12 hours.
@@ -55,8 +55,8 @@ export function ContactPageClient() {
 
               {/* Contact Form */}
               <div className="order-2 flex flex-col lg:order-2 lg:col-span-3 w-full min-w-0">
-                <div className="bg-card border-border flex flex-col w-full min-w-0 rounded-2xl border p-3 sm:p-4 md:p-6 lg:p-8 box-border">
-                  <div className="mb-5 sm:mb-6">
+                <div className="bg-card border-border flex flex-col w-full min-w-0 rounded-2xl border p-4 sm:p-5 md:p-6 box-border">
+                  <div className="mb-4 sm:mb-5 md:mb-6">
                     <h2 className="text-foreground font-serif text-xl font-bold sm:text-2xl">
                       Send Us a Message
                     </h2>

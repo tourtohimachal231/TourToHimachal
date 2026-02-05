@@ -34,7 +34,7 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="bg-muted/30 py-12 sm:py-16 md:py-24 overflow-x-hidden">
+    <section className="bg-muted/30 py-6 md:py-8 lg:py-10 overflow-x-hidden">
       <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           variants={staggerContainer}
@@ -43,7 +43,7 @@ export function FAQSection() {
           viewport={{ once: true }}
           className="mx-auto w-full"
         >
-          <motion.div variants={fadeInUp} className="mb-12 text-center">
+          <motion.div variants={fadeInUp} className="mb-6 md:mb-8 lg:mb-10 text-center">
             <h2 className="text-foreground mb-4 font-serif text-3xl font-bold md:text-4xl">
               Frequently Asked Questions
             </h2>

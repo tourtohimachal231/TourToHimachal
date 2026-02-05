@@ -133,7 +133,7 @@ export function DiariesPageClient({ diaries }: DiariesPageClientProps) {
         />
 
         {/* Mobile Filter Bar - Visible only on mobile/tablet */}
-        <section className=" py-3 sm:py-4 lg:hidden">
+        <section className="py-3 sm:py-4 lg:hidden">
           <div className="container mx-auto px-4">
             <DiaryFilter
               selectedRegion={selectedRegion}
@@ -150,14 +150,14 @@ export function DiariesPageClient({ diaries }: DiariesPageClientProps) {
         </section>
 
         {/* Main Content with Desktop Sidebar */}
-        <section className="py-12 md:py-16">
+        <section className="py-6 md:py-8 lg:py-10">
           <div className="container mx-auto px-4">
             <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-8 xl:grid-cols-[1fr_380px]">
               {/* Main Column */}
               <div>
                 {/* Diaries Grid */}
                 {filteredDiaries.length === 0 ? (
-                  <div className="bg-muted/30 rounded-3xl py-16 text-center">
+                  <div className="bg-muted/30 rounded-3xl py-8 text-center md:py-10 lg:py-12">
                     <p className="text-muted-foreground mb-4">No diaries found matching your filters.</p>
                     <Button variant="outline" onClick={clearFilters}>
                       Clear Filters
@@ -168,7 +168,7 @@ export function DiariesPageClient({ diaries }: DiariesPageClientProps) {
                     variants={staggerContainer}
                     initial="hidden"
                     animate="visible"
-                    className="flex flex-col gap-6"
+                    className="flex flex-col gap-4 md:gap-5 lg:gap-6"
                   >
                     {visibleDiaries.map((diary) => (
                       <DiaryCard key={diary.slug} diary={diary} />
@@ -183,7 +183,7 @@ export function DiariesPageClient({ diaries }: DiariesPageClientProps) {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="mt-12 text-center"
+                    className="mt-6 text-center md:mt-8 lg:mt-10"
                   >
                     <Button variant="outline" size="lg" onClick={loadMore}>
                       Load More Stories
@@ -194,7 +194,7 @@ export function DiariesPageClient({ diaries }: DiariesPageClientProps) {
 
               {/* Desktop Sidebar - Visible only on desktop */}
               <aside className="hidden lg:block ">
-                <div className="sticky top-20 space-y-6">
+                <div className="sticky top-20 space-y-4 md:space-y-6">
                   {/* Filter Section */}
                   <DiaryFilter
                     selectedRegion={selectedRegion}

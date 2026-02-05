@@ -90,11 +90,11 @@ export function Footer() {
 
       {/* Main footer content */}
       <div className="bg-slate-900 text-white">
-        <div className="mx-auto px-4 py-12 md:py-16">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4">
+        <div className="mx-auto px-4 py-8 md:py-10 lg:py-12">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1">
-              <Link href="/" className="group mb-4 flex items-center gap-2 sm:mb-6 sm:gap-3">
+              <Link href="/" className="group mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3">
                 <div className="relative h-16 w-56 rounded-xl p-0 transition-transform group-hover:scale-105 sm:h-20 sm:w-72">
                   <Image
                     src="/Images/logow.webp"
@@ -105,7 +105,7 @@ export function Footer() {
                 </div>
                
               </Link>
-              <p className="mb-4 text-xs leading-relaxed text-slate-400 sm:mb-6 sm:text-sm md:text-base">
+              <p className="mb-3 text-xs leading-relaxed text-slate-400 sm:mb-4 sm:text-sm md:text-base">
                 {settings.about_text ||
                   "Your trusted partner for exploring the majestic Himachal Pradesh. From spiritual journeys to adventure trips, we make your travel dreams come true."}
               </p>
@@ -148,11 +148,11 @@ export function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h3 className="mb-4 flex items-center gap-2 text-base font-bold sm:mb-6 sm:text-lg">
+              <h3 className="mb-3 flex items-center gap-2 text-base font-bold sm:mb-4 sm:text-lg">
                 <span className="from-saffron to-golden-yellow h-1 w-6 rounded-full bg-gradient-to-r sm:w-8" />
                 Quick Links
               </h3>
-              <ul className="space-y-2 sm:space-y-3">
+              <ul className="space-y-2">
                 {quickLinks.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -169,11 +169,11 @@ export function Footer() {
 
             {/* Destinations */}
             <div>
-              <h3 className="mb-4 flex items-center gap-2 text-base font-bold sm:mb-6 sm:text-lg">
+              <h3 className="mb-3 flex items-center gap-2 text-base font-bold sm:mb-4 sm:text-lg">
                 <span className="from-saffron to-sunset-orange h-1 w-6 rounded-full bg-gradient-to-r sm:w-8" />
                 Top Destinations
               </h3>
-              <ul className="space-y-2 sm:space-y-3">
+              <ul className="space-y-2">
                 {destinations.map((destination) => (
                   <li key={destination.slug}>
                     <Link
@@ -190,13 +190,13 @@ export function Footer() {
 
             {/* Contact */}
             <div>
-              <h3 className="mb-4 flex items-center gap-2 text-base font-bold sm:mb-6 sm:text-lg">
+              <h3 className="mb-3 flex items-center gap-2 text-base font-bold sm:mb-4 sm:text-lg">
                 <span className="from-sunset-orange to-temple-red h-1 w-6 rounded-full bg-gradient-to-r sm:w-8" />
                 Contact Us
               </h3>
               <ClientOnly
                 fallback={
-                  <ul className="space-y-3 sm:space-y-4">
+                  <ul className="space-y-3">
                     <li className="group flex items-start gap-2 sm:gap-3">
                       <div className="bg-saffron/10 group-hover:bg-saffron/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
                         <MapPin className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />

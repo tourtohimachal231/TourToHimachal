@@ -37,7 +37,7 @@ export function TaxiService() {
   ]
 
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-[oklch(0.97_0.03_145)] via-[oklch(0.98_0.02_160)] to-[oklch(0.96_0.025_180)] py-8 md:py-12 lg:py-16">
+    <section className="relative overflow-hidden bg-linear-to-br from-[oklch(0.97_0.03_145)] via-[oklch(0.98_0.02_160)] to-[oklch(0.96_0.025_180)] py-6 md:py-8 lg:py-10">
       {/* Background decorations */}
       <div className="from-saffron/10 absolute top-0 right-0 h-full w-1/3 bg-linear-to-l to-transparent md:w-1/2" />
 

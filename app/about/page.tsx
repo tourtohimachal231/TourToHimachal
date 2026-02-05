@@ -28,7 +28,7 @@ export default function AboutPage() {
       <Header />
       <main className="min-h-screen">
         {/* Hero */}
-        <section className="relative overflow-hidden pt-16 md:pt-24 lg:pt-28">
+        <section className="relative overflow-hidden pt-16 md:pt-20 lg:pt-24">
           <div className="absolute inset-0">
             <Image
               src="/Images/diary.png"
@@ -43,7 +43,7 @@ export default function AboutPage() {
           <div className="from-saffron/20 to-saffron/20 absolute inset-0 bg-linear-to-r via-transparent" />
 
           <div className="relative z-10">
-            <div className="container mx-auto px-4 py-12 sm:py-14 md:py-18 lg:py-20">
+            <div className="container mx-auto px-4 py-8 sm:py-10 md:py-12 lg:py-16">
               <div className="mx-auto max-w-4xl text-center">
                 <div className="from-saffron/35 to-saffron/35 inline-flex items-center gap-2 rounded-full border border-white/20 bg-linear-to-r px-4 py-2 text-xs font-semibold text-white backdrop-blur-md sm:text-sm">
                   <Sparkles className="h-4 w-4" />
@@ -75,9 +75,9 @@ export default function AboutPage() {
         </section>
 
         {/* Who we are */}
-        <section className="py-12 sm:py-16 md:py-20">
+        <section className="py-6 md:py-8 lg:py-10">
           <div className="container mx-auto px-4">
-            <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 md:gap-10">
+            <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
               <div>
                 <h2 className="text-foreground font-serif text-2xl font-bold sm:text-3xl">Who we are</h2>
                 <p className="text-muted-foreground mt-3 text-sm leading-relaxed sm:text-base">
@@ -193,7 +193,7 @@ export default function AboutPage() {
         </section>
 
         {/* Values */}
-        <section className="bg-section-warm py-12 sm:py-16 md:py-20">
+        <section className="bg-section-warm py-6 md:py-8 lg:py-10">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-6xl">
               <div className="mx-auto max-w-3xl text-center">
@@ -251,7 +251,7 @@ export default function AboutPage() {
         </section>
 
         {/* How it works */}
-        <section className="py-12 sm:py-16 md:py-20">
+        <section className="py-6 md:py-8 lg:py-10">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-6xl">
               <div className="mx-auto max-w-3xl text-center">
@@ -261,7 +261,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="mt-8 grid gap-6 md:grid-cols-3">
+              <div className="mt-6 grid gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
                 <Card>
                   <CardHeader>
                     <CardTitle className="font-serif">1) Tell us your dates</CardTitle>
@@ -290,7 +290,7 @@ export default function AboutPage() {
                 </Card>
               </div>
 
-              <div className="mt-8 flex justify-center">
+              <div className="mt-6 flex justify-center">
                 <Button asChild variant="gradient" size="lg">
                   <Link href="/contact">Plan your Himachal trip</Link>
                 </Button>

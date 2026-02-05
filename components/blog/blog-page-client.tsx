@@ -101,13 +101,13 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
         {/* Featured section removed as requested */}
 
         {/* Main Content */}
-        <section className="from-background to-background relative z-10 bg-linear-to-b via-[oklch(0.97_0.02_85)] py-10 pb-20 md:py-16 md:pb-24">
+        <section className="from-background to-background relative z-10 bg-linear-to-b via-[oklch(0.97_0.02_85)] py-6 md:py-8 lg:py-10">
           <div className="container mx-auto px-4">
             <div className="grid min-w-0 gap-6 md:gap-8 lg:grid-cols-3">
               {/* Main Column */}
               <div className="min-w-0 lg:col-span-2">
                 {/* Search */}
-                <div className="mb-4 md:mb-8">
+                <div className="mb-4 md:mb-6 lg:mb-8">
                   <div className="relative">
                     <Search className="text-saffron absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 md:h-4 md:w-4" />
                     <Input
@@ -121,7 +121,7 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
                 </div>
 
                 {/* Category Filter - Horizontal scroll on mobile (non-sticky for small screens) */}
-                <div className="scrollbar-hide mb-4 flex gap-2 overflow-x-auto py-2 pb-2 md:mb-8 md:overflow-visible md:py-0 md:pb-0">
+                <div className="scrollbar-hide mb-4 flex gap-2 overflow-x-auto py-2 pb-2 md:mb-6 lg:mb-8 md:overflow-visible md:py-0 md:pb-0">
                   <Badge
                     variant={selectedCategory === null ? "default" : "outline"}
                     className={`shrink-0 cursor-pointer rounded-full px-3 py-1.5 text-xs transition-all md:px-4 md:py-2 md:text-sm ${
@@ -155,7 +155,7 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
                   variants={staggerContainer}
                   initial="hidden"
                   animate="visible"
-                  className="relative z-10 flex min-w-0 flex-col gap-4 md:gap-6"
+                  className="relative z-10 flex min-w-0 flex-col gap-4 md:gap-5 lg:gap-6"
                 >
                   {/* Status helper */}
                   {filteredPosts.length > 0 && (
@@ -171,7 +171,7 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
 
                 {/* No Results */}
                 {filteredPosts.length === 0 && (
-                  <div className="from-muted/50 to-muted/30 rounded-3xl bg-linear-to-br py-12 text-center md:py-16">
+                  <div className="from-muted/50 to-muted/30 rounded-3xl bg-linear-to-br py-8 text-center md:py-10 lg:py-12">
                     <p className="text-muted-foreground mb-4">No posts found matching your search.</p>
                     <Button
                       variant="outline"
@@ -193,7 +193,7 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="mt-8 text-center md:mt-12"
+                    className="mt-6 text-center md:mt-8 lg:mt-10"
                   >
                     <Button
                       variant="outline"

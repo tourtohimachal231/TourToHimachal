@@ -43,7 +43,7 @@ const themes = [
 
 export function TravelThemes() {
   return (
-    <section className="from-muted/50 to-background relative overflow-hidden bg-linear-to-b pt-4 pb-8 md:pt-8 md:pb-12">
+    <section className="from-muted/50 to-background relative overflow-hidden bg-linear-to-b py-6 md:py-8 lg:py-10">
       {/* Decorative elements */}
       <div className="border-saffron/20 absolute top-20 left-10 h-20 w-20 rounded-full border-4" />
       <div className="border-saffron/20 absolute right-10 bottom-20 h-32 w-32 rounded-full border-4" />
@@ -54,7 +54,7 @@ export function TravelThemes() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="mb-8 text-center md:mb-10"
+          className="mb-6 text-center md:mb-8 lg:mb-10"
         >
           <motion.div
             variants={fadeInUp}
@@ -82,7 +82,7 @@ export function TravelThemes() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
         >
           {themes.map((theme, index) => (
             <motion.div

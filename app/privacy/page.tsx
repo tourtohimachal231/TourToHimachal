@@ -31,11 +31,11 @@ export default function PrivacyPage() {
 
 
         {/* Main Content */}
-        <section className="py-12 sm:py-16 md:py-20">
+        <section className="py-6 md:py-8 lg:py-10">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl">
               {/* Introduction */}
-              <div className="mb-12">
+              <div className="mb-8 md:mb-10 lg:mb-12">
                 <h2 className="text-foreground font-serif text-2xl font-bold sm:text-3xl mb-4">Introduction</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   TourToHimachal ("we," "our," or "us") is a Himachal Pradesh-based travel company providing tour packages,
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
               </div>
 
               {/* Information We Collect */}
-              <div className="mb-12">
+              <div className="mb-8 md:mb-10 lg:mb-12">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                     <Database className="h-6 w-6" />
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
               </div>
 
               {/* How We Use Your Information */}
-              <div className="mb-12">
+              <div className="mb-8 md:mb-10 lg:mb-12">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                     <Globe className="h-6 w-6" />
@@ -127,7 +127,7 @@ export default function PrivacyPage() {
               </div>
 
               {/* Data Sharing */}
-              <div className="mb-12">
+              <div className="mb-8 md:mb-10 lg:mb-12">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                     <Eye className="h-6 w-6" />
@@ -164,7 +164,7 @@ export default function PrivacyPage() {
               </div>
 
               {/* Data Security */}
-              <div className="mb-12">
+              <div className="mb-8 md:mb-10 lg:mb-12">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                     <Lock className="h-6 w-6" />

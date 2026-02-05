@@ -139,7 +139,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
       </ClockwiseSlideHero>
 
       {/* Stats Section - Enhanced Design */}
-      <section className="from-saffron/5 via-saffron/5 to-saffron/5 relative overflow-hidden bg-linear-to-br py-8 md:py-12">
+      <section className="from-saffron/5 via-saffron/5 to-saffron/5 relative overflow-hidden bg-linear-to-br py-6 md:py-8 lg:py-10">
         {/* Decorative background elements */}
         <div className="from-saffron/10 absolute top-0 right-0 h-96 w-96 rounded-full bg-linear-to-bl to-transparent blur-3xl" />
         <div className="from-saffron/10 absolute bottom-0 left-0 h-96 w-96 rounded-full bg-linear-to-tr to-transparent blur-3xl" />
@@ -150,7 +150,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-3 md:gap-12"
+            className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-3 md:gap-5 lg:gap-6"
           >
             {[
               {

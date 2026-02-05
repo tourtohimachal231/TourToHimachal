@@ -77,7 +77,7 @@ export function PopularDestinationsClient({ packages }: PopularDestinationsClien
   const displayedPackages = dataSource.filter(pkg => pkg.is_featured === true && pkg.is_active === true)
 
   return (
-    <section className="relative overflow-hidden py-8 md:py-8 lg:py-12">
+    <section className="relative overflow-hidden py-6 md:py-8 lg:py-10">
       {/* Background decorations */}
       <div className="from-saffron/10 absolute top-0 right-0 h-96 w-96 rounded-full bg-gradient-to-bl to-transparent blur-3xl" />
       <div className="from-saffron/10 absolute bottom-0 left-0 h-96 w-96 rounded-full bg-gradient-to-tr to-transparent blur-3xl" />
@@ -88,7 +88,7 @@ export function PopularDestinationsClient({ packages }: PopularDestinationsClien
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="mb-8 text-center md:mb-10"
+          className="mb-6 text-center md:mb-8 lg:mb-10"
         >
           <motion.div
             variants={fadeInUp}
@@ -129,7 +129,7 @@ export function PopularDestinationsClient({ packages }: PopularDestinationsClien
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-8 text-center md:mt-10"
+          className="mt-6 text-center md:mt-8 lg:mt-10"
         >
           <Button
             asChild

@@ -31,11 +31,11 @@ export default function TermsPage() {
 
 
         {/* Main Content */}
-        <section className="py-12 sm:py-16 md:py-20">
+        <section className="py-6 md:py-8 lg:py-10">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl">
               {/* Introduction */}
-              <div className="mb-12">
+              <div className="mb-8 md:mb-10 lg:mb-12">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                     <FileText className="h-6 w-6" />
@@ -55,7 +55,7 @@ export default function TermsPage() {
               </div>
 
               {/* Booking & Reservations */}
-              <div className="mb-12">
+              <div className="mb-8 md:mb-10 lg:mb-12">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                     <Calendar className="h-6 w-6" />
@@ -103,7 +103,7 @@ export default function TermsPage() {
               </div>
 
               {/* Payment Terms */}
-              <div className="mb-12">
+              <div className="mb-8 md:mb-10 lg:mb-12">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                     <CreditCard className="h-6 w-6" />
@@ -153,7 +153,7 @@ export default function TermsPage() {
               </div>
 
               {/* Cancellation & Refund Policy */}
-              <div className="mb-12">
+              <div className="mb-8 md:mb-10 lg:mb-12">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                     <XCircle className="h-6 w-6" />

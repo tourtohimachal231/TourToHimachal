@@ -182,10 +182,10 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
       />
 
       {/* Packages Grid */}
-      <section id="packages-grid" ref={packagesGridRef} className="from-background to-background bg-linear-to-b via-[oklch(0.97_0.02_85)] py-6 sm:py-8 md:py-12 lg:py-16">
+      <section id="packages-grid" ref={packagesGridRef} className="from-background to-background bg-linear-to-b via-[oklch(0.97_0.02_85)] py-6 md:py-8 lg:py-10">
         <div className="container mx-auto px-4">
           {/* Unified Filter Bar with Summary */}
-          <div className="mb-4 flex flex-col gap-3 sm:mb-6 md:mb-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mb-4 flex flex-col gap-3 sm:mb-6 lg:mb-8 lg:flex-row lg:items-center lg:justify-between">
             <PackageFilter
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}

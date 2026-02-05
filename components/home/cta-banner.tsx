@@ -27,7 +27,7 @@ export function CTABanner() {
 
   const ctaImage = ""
   return (
-    <section className="relative overflow-hidden py-12 md:py-16">
+    <section className="relative overflow-hidden py-6 md:py-8 lg:py-10">
       {/* Background image layer */}
       <Image
         src={getImageUrl(
@@ -72,7 +72,7 @@ export function CTABanner() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full bg-white/20 px-5 py-2 backdrop-blur-sm"
+            className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-5 py-2 backdrop-blur-sm"
           >
             <Sparkles className="text-golden-yellow h-4 w-4" />
             <span className="font-medium text-white">Start Your Journey Today</span>
@@ -83,7 +83,7 @@ export function CTABanner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mb-6 font-serif text-3xl font-bold text-balance text-white md:text-5xl lg:text-6xl"
+            className="mb-5 font-serif text-3xl font-bold text-balance text-white md:text-5xl lg:text-6xl"
           >
             Plan Your Dream <span className="text-golden-yellow">Himachal Trip</span>
           </motion.h2>
@@ -93,7 +93,7 @@ export function CTABanner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-white/90"
+            className="mx-auto mb-8 max-w-2xl text-xl leading-relaxed text-white/90"
           >
             Get personalized travel packages and instant taxi booking. Connect with us on WhatsApp for quick
             assistance.
