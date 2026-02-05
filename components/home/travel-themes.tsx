@@ -36,7 +36,7 @@ const themes = [
     image: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795753/fyb0h48pexsudvki5cp6.webp",
     description: "Take a step back and relax",
     icon: Heart,
-    color: "from-sunset-orange to-golden-yellow",
+    color: "from-saffron to-sunset-orange",
     href: "/packages?theme=family",
   },
 ]

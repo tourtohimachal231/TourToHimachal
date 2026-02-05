@@ -1,21 +1,91 @@
 {
-  "name": "TourToHimachal",
+  "name": "TourToHimachal - Tours, Travel Packages & Taxi Services",
   "short_name": "TourToHimachal",
+  "description": "Discover the magic of Himachal Pradesh with our curated tour packages, reliable taxi services, and personalized travel experiences.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     },
     {
       "src": "/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "start_url": "/",
+  "categories": ["travel", "tourism", "transportation"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Book Taxi",
+      "short_name": "Taxi",
+      "description": "Book a taxi for your journey",
+      "url": "/taxi",
+      "icons": [
+        {
+          "src": "/icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "View Packages",
+      "short_name": "Packages",
+      "description": "Browse our tour packages",
+      "url": "/packages",
+      "icons": [
+        {
+          "src": "/icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Travel Diaries",
+      "short_name": "Diaries",
+      "description": "Read travel stories and experiences",
+      "url": "/diaries",
+      "icons": [
+        {
+          "src": "/icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with us",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }

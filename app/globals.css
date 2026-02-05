@@ -174,6 +174,118 @@ html {
   opacity: 0;
 }
 
+/* Fallback colors for browsers that don't support OKLCH */
+@supports not (color: oklch(1 0 0)) {
+  :root {
+    /* Base colors - white background */
+    --background: #ffffff;
+    --foreground: #2d2d2d;
+
+    /* Card with warm cream tint */
+    --card: #faf8f5;
+    --card-foreground: #2d2d2d;
+
+    --popover: #ffffff;
+    --popover-foreground: #2d2d2d;
+
+    /* Primary - Vibrant Saffron */
+    --primary: #e67e22;
+    --primary-foreground: #ffffff;
+
+    /* Secondary - Soft cream/off-white */
+    --secondary: #f5f0e8;
+    --secondary-foreground: #3d3d3d;
+
+    /* Muted - Warm gray */
+    --muted: #e8e4de;
+    --muted-foreground: #7a7a7a;
+
+    /* Accent - Light saffron tint */
+    --accent: #f0e6d8;
+    --accent-foreground: #3d3d3d;
+
+    --destructive: #dc2626;
+    --destructive-foreground: #ffffff;
+
+    /* Borders */
+    --border: #d4d0c8;
+    --input: #e8e4de;
+    --ring: #e67e22;
+
+    /* Charts */
+    --chart-1: #f59e0b;
+    --chart-2: #e67e22;
+    --chart-3: #e67e22;
+    --chart-4: #10b981;
+    --chart-5: #f97316;
+
+    /* Sidebar */
+    --sidebar: #f9f7f4;
+    --sidebar-foreground: #2d2d2d;
+    --sidebar-primary: #e67e22;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #f5f0e8;
+    --sidebar-accent-foreground: #3d3d3d;
+    --sidebar-border: #e0dcd4;
+    --sidebar-ring: #e67e22;
+
+    /* Custom Himachal Tourism Colors */
+    --mountain-blue: #e67e22;
+    --forest-green: #e67e22;
+    --saffron: #e67e22;
+    --golden-yellow: #fbbf24;
+    --sunset-orange: #f97316;
+    --temple-red: #dc2626;
+
+    /* Section background colors */
+    --section-warm: #fdf8f0;
+    --section-cool: #f8f4f0;
+    --section-green: #f4f8f0;
+    --section-golden: #fef8f0;
+  }
+
+  .dark {
+    --background: #1a1a2e;
+    --foreground: #f8f9fa;
+    --card: #252540;
+    --card-foreground: #f8f9fa;
+    --popover: #252540;
+    --popover-foreground: #f8f9fa;
+    --primary: #f39c12;
+    --primary-foreground: #1a1a2e;
+    --secondary: #3d3d5c;
+    --secondary-foreground: #f8f9fa;
+    --muted: #3d3d5c;
+    --muted-foreground: #a0a0b0;
+    --accent: #4a4a6a;
+    --accent-foreground: #f8f9fa;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #4a4a6a;
+    --input: #4a4a6a;
+    --ring: #f39c12;
+    --chart-1: #fbbf24;
+    --chart-2: #f39c12;
+    --chart-3: #f39c12;
+    --chart-4: #34d399;
+    --chart-5: #fb923c;
+    --sidebar: #202035;
+    --sidebar-foreground: #f8f9fa;
+    --sidebar-primary: #f39c12;
+    --sidebar-primary-foreground: #f8f9fa;
+    --sidebar-accent: #3d3d5c;
+    --sidebar-accent-foreground: #f8f9fa;
+    --sidebar-border: #4a4a6a;
+    --sidebar-ring: #f39c12;
+    --mountain-blue: #f39c12;
+    --forest-green: #f39c12;
+    --saffron: #f39c12;
+    --golden-yellow: #fcd34d;
+    --sunset-orange: #f97316;
+    --temple-red: #ef4444;
+  }
+}
+
 /* Enhanced color system with more vibrant backgrounds */
 :root {
   /* Base colors - white background */
@@ -465,6 +577,248 @@ body.menu-open {
 @media (min-width: 375px) {
   .xs\:inline {
     display: inline;
+  }
+  
+  /* ============================================
+     Cross-Browser Compatibility Fixes
+     ============================================ */
+  
+  /* Safari-specific fixes */
+  @supports (-webkit-touch-callout: none) {
+    /* Fix for Safari's 100vh issue on iOS */
+    .h-screen,
+    .min-h-screen {
+      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
+    }
+  
+    /* Fix for Safari input focus ring */
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      -webkit-appearance: none;
+    }
+  
+    /* Fix for Safari button styling */
+    button,
+    [type="button"],
+    [type="submit"],
+    [type="reset"] {
+      -webkit-appearance: none;
+    }
+  
+    /* Fix for Safari select dropdown */
+    select {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+  
+    /* Fix for Safari scroll bounce */
+    body {
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    /* Fix for Safari backdrop-filter */
+    .backdrop-blur-md,
+    .backdrop-blur-lg {
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+  }
+  
+  /* Firefox-specific fixes */
+  @supports (-moz-appearance: none) {
+    /* Fix for Firefox scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+  
+    /* Fix for Firefox focus ring */
+    *:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+  }
+  
+  /* Chrome-specific fixes */
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    /* Fix for Chrome input autofill background */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+      -webkit-text-fill-color: var(--foreground);
+      -webkit-box-shadow: 0 0 0px 1000px var(--background) inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+  
+  /* ============================================
+     Mobile Device Compatibility Fixes
+     ============================================ */
+  
+  /* Fix for iOS Safari 100vh issue */
+  @supports (-webkit-touch-callout: none) {
+    .hero-section,
+    .full-screen-section {
+      min-height: 100dvh;
+      min-height: -webkit-fill-available;
+    }
+  }
+  
+  /* Fix for mobile tap highlight color */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  
+  /* Fix for mobile text size adjustment */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Fix for mobile font smoothing */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Fix for mobile safe area insets (notch devices) */
+  @supports (padding: max(0px)) {
+    .safe-area-top {
+      padding-top: max(0px, env(safe-area-inset-top));
+    }
+  
+    .safe-area-bottom {
+      padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
+  
+    .safe-area-left {
+      padding-left: max(0px, env(safe-area-inset-left));
+    }
+  
+    .safe-area-right {
+      padding-right: max(0px, env(safe-area-inset-right));
+    }
+  
+    .safe-area-all {
+      padding: max(0px, env(safe-area-inset-top)) max(0px, env(safe-area-inset-right)) max(0px, env(safe-area-inset-bottom)) max(0px, env(safe-area-inset-left));
+    }
+  }
+  
+  /* Fix for mobile landscape orientation */
+  @media screen and (orientation: landscape) and (max-height: 500px) {
+    .hide-on-mobile-landscape {
+      display: none !important;
+    }
+  
+    .adjust-on-mobile-landscape {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+  }
+  
+  /* Fix for high DPI displays */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Ensure images render crisply on retina displays */
+    img,
+    svg {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
+  
+  /* Fix for Android Chrome */
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    /* Fix for Android Chrome select dropdown */
+    select {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.7rem top 50%;
+      background-size: 0.65rem auto;
+      padding-right: 2rem;
+    }
+  }
+  
+  /* Fix for Samsung Internet */
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* Fix for Samsung Internet flexbox issues */
+    .flex,
+    .inline-flex {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+    }
+  
+    .grid {
+      display: -ms-grid;
+      display: grid;
+    }
+  }
+  
+  /* ============================================
+     Performance Optimizations
+     ============================================ */
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  
+    html {
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* GPU acceleration for smooth animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  /* Prevent layout thrashing */
+  .no-layout-shift {
+    contain: layout;
+  }
+  
+  /* ============================================
+     Accessibility Enhancements
+     ============================================ */
+  
+  /* Focus visible for keyboard navigation */
+  *:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  
+  /* Hide focus outline for mouse users */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    :root {
+      --border: #000000;
+      --input: #000000;
+      --ring: #000000;
+    }
   }
   .xs\:hidden {
     display: none;

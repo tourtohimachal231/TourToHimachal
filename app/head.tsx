@@ -12,6 +12,17 @@ export default function Head() {
 
   return (
     <>
+      {/* Cross-browser and mobile compatibility meta tags */}
+      <meta name="format-detection" content="telephone=no" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <meta name="apple-mobile-web-app-title" content="TourToHimachal" />
+      <meta name="application-name" content="TourToHimachal" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="theme-color" content="#ffffff" />
+      <meta name="color-scheme" content="light dark" />
+
       {/* DNS / Connection hints */}
       <link rel="dns-prefetch" href="//res.cloudinary.com" />
       <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />

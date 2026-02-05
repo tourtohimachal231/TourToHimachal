@@ -91,13 +91,21 @@
     "production": [
       "defaults",
       "not IE 11",
-      "not op_mini all"
+      "not op_mini all",
+      "iOS >= 14",
+      "Android >= 8",
+      "Safari >= 14",
+      "Chrome >= 90",
+      "Firefox >= 88",
+      "Edge >= 90"
     ],
     "development": [
-      "last 1 Chrome version",
-      "last 1 Edge version",
-      "last 1 Firefox version",
-      "last 1 Safari version"
+      "last 2 Chrome version",
+      "last 2 Edge version",
+      "last 2 Firefox version",
+      "last 2 Safari version",
+      "iOS >= 14",
+      "Android >= 8"
     ]
   }
 }
