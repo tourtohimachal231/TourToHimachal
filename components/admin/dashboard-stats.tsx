@@ -23,15 +23,15 @@ const statCards = [
     key: "totalLeads",
     label: "Total Leads",
     icon: Users,
-    color: "text-blue-600",
-    bgColor: "bg-blue-100",
+    color: "text-saffron",
+    bgColor: "bg-saffron/10",
   },
   {
     key: "newToday",
     label: "New Today",
     icon: UserPlus,
-    color: "text-green-600",
-    bgColor: "bg-green-100",
+    color: "text-saffron",
+    bgColor: "bg-saffron/10",
   },
   {
     key: "packageEnquiries",
@@ -113,7 +113,7 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
                 </div>
               </div>
               {stat.key === "newToday" && stats.newToday > 0 && (
-                <div className="mt-1 flex items-center gap-1 text-xs text-green-600 sm:mt-2">
+                <div className="mt-1 flex items-center gap-1 text-xs text-saffron sm:mt-2">
                   <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span>Active inquiries</span>
                 </div>

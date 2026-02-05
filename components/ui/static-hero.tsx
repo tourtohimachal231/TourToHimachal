@@ -36,7 +36,7 @@ export function StaticHero({ image, title, subtitle, badge, children }: StaticHe
 
       {/* Dark Gradient Overlay */}
       <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-black/70" />
-      <div className="from-mountain-blue/20 to-saffron/20 absolute inset-0 bg-linear-to-r via-transparent" />
+      <div className="from-saffron/20 to-saffron/20 absolute inset-0 bg-linear-to-r via-transparent" />
 
       {/* Content */}
       <div className="relative z-10 w-full overflow-x-hidden">

@@ -296,7 +296,7 @@ export function MediaLibrary({ media }: MediaLibraryProps) {
                         className="h-8 w-8 p-0"
                       >
                         {copiedId === item.id ? (
-                          <Check className="h-4 w-4 text-green-500" />
+                          <Check className="h-4 w-4 text-saffron" />
                         ) : (
                           <Copy className="h-4 w-4" />
                         )}

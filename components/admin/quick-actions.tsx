@@ -21,14 +21,14 @@ const actions = [
     href: "/admin/packages/new",
     label: "Add Package",
     icon: Package,
-    color: "bg-blue-100 text-blue-600",
+    color: "bg-saffron/10 text-saffron",
   },
   {
     id: "blog",
     href: "/admin/blogs/new",
     label: "Write Blog",
     icon: FileText,
-    color: "bg-green-100 text-green-600",
+    color: "bg-saffron/10 text-saffron",
   },
   {
     id: "diary",

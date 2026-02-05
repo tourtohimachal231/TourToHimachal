@@ -230,7 +230,7 @@ export function AdminReviewForm({ initialData, isEditing = false }: ReviewFormPr
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-mountain-blue hover:bg-mountain-blue/90 text-white"
+                  className="bg-saffron hover:bg-saffron/90 text-white"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

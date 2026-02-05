@@ -553,7 +553,7 @@ export function PackageForm({ initialData }: PackageFormProps) {
                       alt={`Package image ${index + 1}`}
                     />
                     {index === 0 && (
-                      <div className="absolute top-2 left-2 rounded bg-blue-500 px-2 py-1 text-xs text-white">
+                      <div className="absolute top-2 left-2 rounded bg-saffron px-2 py-1 text-xs text-white">
                         Cover
                       </div>
                     )}

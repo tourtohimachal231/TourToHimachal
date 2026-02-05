@@ -112,8 +112,8 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
         animate={{ opacity: 1, scale: 1 }}
         className="py-8 text-center"
       >
-        <div className="bg-forest-green/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
-          <CheckCircle2 className="text-forest-green h-8 w-8" />
+        <div className="bg-saffron/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+          <CheckCircle2 className="text-saffron h-8 w-8" />
         </div>
         <h3 className="text-foreground mb-2 text-xl font-semibold">Booking Request Sent!</h3>
         {referenceNumber && (
@@ -257,7 +257,7 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="bg-forest-green hover:bg-forest-green/90 w-full gap-2 text-white"
+        className="bg-saffron hover:bg-saffron/90 w-full gap-2 text-white"
         size="lg"
       >
         {isSubmitting ? (

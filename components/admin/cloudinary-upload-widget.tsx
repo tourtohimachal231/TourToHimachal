@@ -75,16 +75,16 @@ export function CloudinaryUploadWidget({
           palette: {
             window: "#FFFFFF",
             windowBorder: "#90A0B3",
-            tabIcon: "#0078FF",
+            tabIcon: "#f59e0b",
             menuIcons: "#5A616A",
             textDark: "#000000",
             textLight: "#FFFFFF",
-            link: "#0078FF",
+            link: "#f59e0b",
             action: "#FF620C",
-            inactiveTabIcon: "#0E2F5A",
+            inactiveTabIcon: "#f59e0b",
             error: "#F44235",
-            inProgress: "#0078FF",
-            complete: "#20B832",
+            inProgress: "#f59e0b",
+            complete: "#f59e0b",
             sourceBg: "#E4EBF1",
           },
         },
@@ -235,7 +235,7 @@ export function UploadedImagePreview({
 
         <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity group-hover:opacity-100">
           <Button type="button" size="sm" variant="secondary" onClick={copyUrl} className="h-8 w-8 p-0">
-            {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+            {copied ? <Check className="h-4 w-4 text-saffron" /> : <Copy className="h-4 w-4" />}
           </Button>
         </div>
       </div>

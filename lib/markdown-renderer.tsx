@@ -42,7 +42,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-mountain-blue hover:text-mountain-blue/80 underline underline-offset-4"
+        className="text-saffron hover:text-saffron/80 underline underline-offset-4"
       >
         {children as any}
       </a>

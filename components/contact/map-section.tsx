@@ -68,11 +68,11 @@ export function MapSection() {
 
                 <div className="mb-3 grid grid-cols-2 gap-2 sm:mb-4 sm:gap-3">
                   <div className="text-muted-foreground bg-muted/50 flex items-center gap-2 rounded-lg p-2 text-xs sm:text-sm">
-                    <Clock className="text-forest-green h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
+                    <Clock className="text-saffron h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
                     <span className="truncate">9 AM - 7 PM</span>
                   </div>
                   <div className="text-muted-foreground bg-muted/50 flex items-center gap-2 rounded-lg p-2 text-xs sm:text-sm">
-                    <Phone className="text-mountain-blue h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
+                    <Phone className="text-saffron h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
                     <a
                       href={`tel:${(settings.contact_phone || "").replace(/\s/g, "")}`}
                       className="hover:text-primary truncate"

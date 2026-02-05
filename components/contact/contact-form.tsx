@@ -173,15 +173,15 @@ export function ContactForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-forest-green/10 border-forest-green/30 rounded-2xl border p-8 text-center"
+        className="bg-saffron/10 border-saffron/30 rounded-2xl border p-8 text-center"
       >
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-          className="bg-forest-green/20 mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full"
+          className="bg-saffron/20 mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full"
         >
-          <CheckCircle2 className="text-forest-green h-10 w-10" />
+          <CheckCircle2 className="text-saffron h-10 w-10" />
         </motion.div>
         <h3 className="text-foreground mb-2 font-serif text-2xl font-bold">Thank You!</h3>
         <p className="text-muted-foreground mb-4">Your inquiry has been submitted successfully.</p>
@@ -194,7 +194,7 @@ export function ContactForm() {
           We typically respond within 12 hours. For urgent inquiries, chat with us directly.
         </p>
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <Button asChild className="bg-[#25D366] text-white hover:bg-[#25D366]/90">
+          <Button asChild className="bg-saffron text-white hover:bg-saffron/90">
             <a
               href={`https://wa.me/${(settings.whatsapp_number || "").replace(/[^0-9]/g, "")}?text=Hi!%20I%20just%20submitted%20an%20inquiry%20and%20would%20like%20to%20chat.`}
               target="_blank"

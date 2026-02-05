@@ -44,7 +44,7 @@ export function BlogSidebar({ blogs = [] }: BlogSidebarProps) {
                 <li key={category}>
                   <Link
                     href={`/blog?category=${encodeURIComponent(category || "")}`}
-                    className="text-muted-foreground hover:text-mountain-blue flex items-center justify-between py-2 transition-colors"
+                    className="text-muted-foreground hover:text-saffron flex items-center justify-between py-2 transition-colors"
                   >
                     <span>{category}</span>
                     <span className="bg-muted rounded px-2 py-0.5 text-sm">{count}</span>
@@ -73,7 +73,7 @@ export function BlogSidebar({ blogs = [] }: BlogSidebarProps) {
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <p className="text-foreground group-hover:text-mountain-blue line-clamp-2 text-sm font-medium transition-colors">
+                  <p className="text-foreground group-hover:text-saffron line-clamp-2 text-sm font-medium transition-colors">
                     {post.title}
                   </p>
                 </div>

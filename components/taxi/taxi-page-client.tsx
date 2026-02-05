@@ -139,10 +139,10 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
       </ClockwiseSlideHero>
 
       {/* Stats Section - Enhanced Design */}
-      <section className="from-forest-green/5 via-mountain-blue/5 to-saffron/5 relative overflow-hidden bg-linear-to-br py-8 md:py-12">
+      <section className="from-saffron/5 via-saffron/5 to-saffron/5 relative overflow-hidden bg-linear-to-br py-8 md:py-12">
         {/* Decorative background elements */}
-        <div className="from-forest-green/10 absolute top-0 right-0 h-96 w-96 rounded-full bg-linear-to-bl to-transparent blur-3xl" />
-        <div className="from-mountain-blue/10 absolute bottom-0 left-0 h-96 w-96 rounded-full bg-linear-to-tr to-transparent blur-3xl" />
+        <div className="from-saffron/10 absolute top-0 right-0 h-96 w-96 rounded-full bg-linear-to-bl to-transparent blur-3xl" />
+        <div className="from-saffron/10 absolute bottom-0 left-0 h-96 w-96 rounded-full bg-linear-to-tr to-transparent blur-3xl" />
 
         <div className="relative container mx-auto px-4">
           <motion.div
@@ -157,15 +157,15 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
                 value: "12+",
                 label: "Years of Service",
                 icon: Calendar,
-                gradient: "from-forest-green to-emerald-600",
-                bgGradient: "from-forest-green/10 to-emerald-600/10",
+                gradient: "from-saffron to-sunset-orange",
+                bgGradient: "from-saffron/10 to-sunset-orange/10",
               },
               {
                 value: "50+",
                 label: "Expert Drivers",
                 icon: Users,
-                gradient: "from-mountain-blue to-blue-600",
-                bgGradient: "from-mountain-blue/10 to-blue-600/10",
+                gradient: "from-saffron to-sunset-orange",
+                bgGradient: "from-saffron/10 to-sunset-orange/10",
               },
               {
                 value: "10K+",
@@ -305,7 +305,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   priority
                 />
-                <div className="from-forest-green/25 to-saffron/20 absolute inset-0 bg-linear-to-tr via-transparent" />
+                <div className="from-saffron/25 to-saffron/20 absolute inset-0 bg-linear-to-tr via-transparent" />
               </div>
 
               <div className="lg:mt-auto">
@@ -379,7 +379,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
       {/* Sticky Mobile CTA */}
       <div className="bg-background border-border fixed right-0 bottom-0 left-0 z-40 border-t p-4 lg:hidden">
         <div className="flex gap-3">
-          <Button asChild className="bg-forest-green hover:bg-forest-green/90 flex-1 gap-2 text-white">
+          <Button asChild className="bg-saffron hover:bg-saffron/90 flex-1 gap-2 text-white">
             <a href="#book">
               <Car className="h-5 w-5" />
               Book a Ride

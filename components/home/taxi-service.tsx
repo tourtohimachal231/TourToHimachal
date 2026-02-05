@@ -30,16 +30,16 @@ export function TaxiService() {
   ]
 
   const features = [
-    { icon: Car, text: "AC & Non-AC Vehicles", color: "from-mountain-blue to-forest-green" },
+    { icon: Car, text: "AC & Non-AC Vehicles", color: "from-saffron to-sunset-orange" },
     { icon: MapPin, text: "Flexible Routes", color: "from-saffron to-sunset-orange" },
-    { icon: Shield, text: "Verified Drivers", color: "from-forest-green to-golden-yellow" },
+    { icon: Shield, text: "Verified Drivers", color: "from-saffron to-golden-yellow" },
     { icon: Clock, text: "24/7 Availability", color: "from-sunset-orange to-temple-red" },
   ]
 
   return (
     <section className="relative overflow-hidden bg-linear-to-br from-[oklch(0.97_0.03_145)] via-[oklch(0.98_0.02_160)] to-[oklch(0.96_0.025_180)] py-8 md:py-12 lg:py-16">
       {/* Background decorations */}
-      <div className="from-forest-green/10 absolute top-0 right-0 h-full w-1/3 bg-linear-to-l to-transparent md:w-1/2" />
+      <div className="from-saffron/10 absolute top-0 right-0 h-full w-1/3 bg-linear-to-l to-transparent md:w-1/2" />
 
       <div className="relative container mx-auto px-4">
         <div className="mx-auto grid max-w-7xl items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-10 xl:gap-12">
@@ -61,7 +61,7 @@ export function TaxiService() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
               {/* Gradient overlay */}
-              <div className="from-forest-green/40 to-saffron/20 absolute inset-0 bg-linear-to-tr via-transparent" />
+              <div className="from-saffron/40 to-saffron/20 absolute inset-0 bg-linear-to-tr via-transparent" />
 
               {/* Decorative frame */}
               <div className="absolute inset-2 rounded-xl border-2 border-white/30 md:inset-4 md:rounded-2xl" />
@@ -75,7 +75,7 @@ export function TaxiService() {
               className="from-card border-forest-green/20 absolute -right-4 -bottom-4 rounded-xl border-2 bg-linear-to-br to-[oklch(0.98_0.02_145)] p-3 shadow-2xl sm:-right-6 sm:-bottom-6 sm:rounded-2xl sm:p-4 md:-right-8 md:-bottom-8 md:rounded-3xl md:p-6"
             >
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-                <div className="from-forest-green to-mountain-blue flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br shadow-lg sm:h-12 sm:w-12 sm:rounded-xl md:h-16 md:w-16 md:rounded-2xl">
+                <div className="from-saffron to-sunset-orange flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br shadow-lg sm:h-12 sm:w-12 sm:rounded-xl md:h-16 md:w-16 md:rounded-2xl">
                   <Shield className="h-5 w-5 text-white sm:h-6 sm:w-6 md:h-8 md:w-8" />
                 </div>
                 <div>
@@ -131,7 +131,7 @@ export function TaxiService() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 + index * 0.1 }}
-                  className="group border-forest-green/10 flex items-center gap-1.5 rounded-lg border bg-white/60 p-1.5 transition-colors hover:bg-white sm:gap-2 sm:rounded-xl sm:p-2 md:gap-3 md:rounded-2xl md:p-2.5"
+                  className="group border-saffron/10 flex items-center gap-1.5 rounded-lg border bg-white/60 p-1.5 transition-colors hover:bg-white sm:gap-2 sm:rounded-xl sm:p-2 md:gap-3 md:rounded-2xl md:p-2.5"
                 >
                   <div
                     className={`h-7 w-7 bg-linear-to-br sm:h-9 sm:w-9 md:h-12 md:w-12 ${item.color} flex shrink-0 items-center justify-center rounded-md shadow-md transition-transform group-hover:scale-110 sm:rounded-lg md:rounded-xl`}
@@ -147,14 +147,14 @@ export function TaxiService() {
 
             <div className="mb-3 sm:mb-4 md:mb-5">
               <h3 className="text-foreground mb-1.5 flex items-center gap-1.5 text-xs font-bold sm:mb-2 sm:gap-2 sm:text-sm md:mb-3 md:text-base">
-                <MapPin className="text-forest-green h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+                <MapPin className="text-saffron h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                 Popular Routes
               </h3>
               <div className="flex flex-wrap gap-1 sm:gap-1.5">
                 {routes.map((route) => (
                   <span
                     key={route}
-                    className="text-foreground border-border hover:border-forest-green/50 hover:bg-forest-green/5 cursor-pointer rounded-full border bg-white/80 px-2 py-1 text-[10px] font-medium transition-all sm:px-3 sm:py-1.5 sm:text-xs md:px-4 md:py-2 md:text-sm"
+                    className="text-foreground border-border hover:border-saffron/50 hover:bg-saffron/5 cursor-pointer rounded-full border bg-white/80 px-2 py-1 text-[10px] font-medium transition-all sm:px-3 sm:py-1.5 sm:text-xs md:px-4 md:py-2 md:text-sm"
                   >
                     {route}
                   </span>

@@ -88,7 +88,7 @@ export function DiaryDetailClient({ diary, popularDiaries, url }: DiaryDetailCli
               {/* Destination + Tags */}
               <div className="mb-4 flex flex-wrap items-center gap-2">
                 {diary.destination && (
-                  <span className="bg-mountain-blue/10 text-mountain-blue ring-mountain-blue/20 rounded-full px-2.5 py-1 text-xs ring-1">
+                  <span className="bg-saffron/10 text-saffron ring-saffron/20 rounded-full px-2.5 py-1 text-xs ring-1">
                     {diary.destination}
                   </span>
                 )}
@@ -225,7 +225,7 @@ export function DiaryDetailClient({ diary, popularDiaries, url }: DiaryDetailCli
                             {String(idx + 1).padStart(2, "0")}
                           </span>
                           <div>
-                            <h4 className="text-foreground group-hover:text-mountain-blue line-clamp-2 text-sm font-medium transition-colors">
+                            <h4 className="text-foreground group-hover:text-saffron line-clamp-2 text-sm font-medium transition-colors">
                               {d.title}
                             </h4>
                             <span className="text-muted-foreground text-xs">{d.destination}</span>

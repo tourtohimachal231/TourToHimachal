@@ -21,8 +21,8 @@ const buttonVariants = cva(
         saffron:
           "bg-saffron text-white hover:bg-saffron/90 shadow-lg shadow-saffron/30 hover:shadow-xl hover:shadow-saffron/40",
         green:
-          "bg-forest-green text-white hover:bg-forest-green/90 shadow-lg shadow-forest-green/30 hover:shadow-xl hover:shadow-forest-green/40",
-        blue: "bg-mountain-blue text-white hover:bg-mountain-blue/90 shadow-lg shadow-mountain-blue/30 hover:shadow-xl hover:shadow-mountain-blue/40",
+          "bg-saffron text-white hover:bg-saffron/90 shadow-lg shadow-saffron/30 hover:shadow-xl hover:shadow-saffron/40",
+        blue: "bg-saffron text-white hover:bg-saffron/90 shadow-lg shadow-saffron/30 hover:shadow-xl hover:shadow-saffron/40",
         golden:
           "bg-golden-yellow text-foreground hover:bg-golden-yellow/90 shadow-lg shadow-golden-yellow/30",
         gradient:

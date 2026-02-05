@@ -25,9 +25,9 @@ interface RecentLeadsProps {
 }
 
 const statusColors: Record<string, string> = {
-  new: "bg-blue-100 text-blue-800",
+  new: "bg-saffron/10 text-saffron",
   contacted: "bg-yellow-100 text-yellow-800",
-  booked: "bg-green-100 text-green-800",
+  booked: "bg-saffron/10 text-saffron",
   closed: "bg-gray-100 text-gray-800",
 }
 
@@ -89,7 +89,7 @@ export function RecentLeads({ leads }: RecentLeadsProps) {
                   href={`https://wa.me/${lead.phone.replace(/\D/g, "")}?text=Hi ${lead.name}, thank you for contacting TourToHimachal!`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0 rounded-lg bg-[#25D366] p-1.5 text-white transition-colors hover:bg-[#25D366]/90 sm:p-2"
+                  className="shrink-0 rounded-lg bg-saffron p-1.5 text-white transition-colors hover:bg-saffron/90 sm:p-2"
                 >
                   <WhatsAppIcon className="h-3 w-3 sm:h-4 sm:w-4" />
                 </a>

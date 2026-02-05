@@ -69,10 +69,10 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
                       {item.subtitles.map((subtitle, subtitleIndex) => (
                         <div
                           key={subtitleIndex}
-                          className="to-mountain-blue/5 border-mountain-blue/20 rounded-xl border bg-linear-to-br from-white p-3 transition-all duration-300 hover:shadow-md sm:p-4 md:p-5"
+                          className="to-saffron/5 border-saffron/20 rounded-xl border bg-linear-to-br from-white p-3 transition-all duration-300 hover:shadow-md sm:p-4 md:p-5"
                         >
                           <h5 className="text-foreground mb-2.5 flex items-center gap-2 text-xs font-bold sm:text-sm">
-                            <div className="from-mountain-blue to-forest-green h-2 w-2 rounded-full bg-linear-to-br" />
+                            <div className="from-saffron to-sunset-orange h-2 w-2 rounded-full bg-linear-to-br" />
                             {subtitle.title}
                           </h5>
                           {subtitle.highlight && (
@@ -89,7 +89,7 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
                               {subtitle.activities.map((activity, actIndex) => (
                                 <span
                                   key={actIndex}
-                                  className="border-forest-green/30 text-forest-green hover:bg-forest-green/5 hover:border-forest-green/50 inline-flex items-center gap-1 rounded-full border bg-white px-2.5 py-1 text-[10px] font-medium transition-all sm:text-[11px]"
+                                  className="border-saffron/30 text-saffron hover:bg-saffron/5 hover:border-saffron/50 inline-flex items-center gap-1 rounded-full border bg-white px-2.5 py-1 text-[10px] font-medium transition-all sm:text-[11px]"
                                 >
                                   <MapPin className="h-3 w-3" />
                                   {activity}

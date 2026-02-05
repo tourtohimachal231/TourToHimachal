@@ -25,7 +25,7 @@ export default async function ReviewsPage() {
 
       <div className="space-y-6 p-6">
         <div className="flex justify-end">
-          <Button asChild className="bg-mountain-blue hover:bg-mountain-blue/90 text-white">
+          <Button asChild className="bg-saffron hover:bg-saffron/90 text-white">
             <Link href="/admin/reviews/new">
               <Plus className="mr-2 h-4 w-4" />
               Add Review

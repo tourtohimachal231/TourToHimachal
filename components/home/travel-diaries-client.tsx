@@ -148,7 +148,7 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
     <section className="from-background to-background relative overflow-hidden bg-linear-to-br via-[oklch(0.97_0.02_85)] py-8 md:py-8 lg:py-12">
       {/* Background decorations */}
       <div className="from-golden-yellow/20 to-saffron/20 absolute top-20 right-10 h-48 w-48 rounded-full bg-linear-to-br blur-3xl md:right-20 md:h-64 md:w-64" />
-      <div className="from-mountain-blue/15 to-forest-green/15 absolute bottom-20 left-10 h-36 w-36 rounded-full bg-linear-to-tr blur-3xl md:left-20 md:h-48 md:w-48" />
+      <div className="from-saffron/15 to-saffron/15 absolute bottom-20 left-10 h-36 w-36 rounded-full bg-linear-to-tr blur-3xl md:left-20 md:h-48 md:w-48" />
 
       <div className="relative container mx-auto px-4">
         <motion.div
@@ -161,10 +161,10 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
           <div>
             <motion.div
               variants={fadeInUp}
-              className="bg-forest-green/15 mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 md:mb-4 md:px-4 md:py-2"
+              className="bg-saffron/15 mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 md:mb-4 md:px-4 md:py-2"
             >
-              <BookOpen className="text-forest-green h-3 w-3 md:h-4 md:w-4" />
-              <span className="text-forest-green text-xs font-semibold tracking-wider uppercase md:text-sm">
+              <BookOpen className="text-saffron h-3 w-3 md:h-4 md:w-4" />
+              <span className="text-saffron text-xs font-semibold tracking-wider uppercase md:text-sm">
                 Stories & Inspiration
               </span>
             </motion.div>
@@ -172,7 +172,7 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
               variants={fadeInUp}
               className="text-foreground mt-2 font-serif text-2xl font-bold sm:text-3xl md:mt-3 md:text-4xl lg:text-5xl"
             >
-              Travel <span className="text-forest-green">Diaries</span>
+              Travel <span className="text-saffron">Diaries</span>
             </motion.h2>
           </div>
           <motion.div variants={fadeInUp}>
@@ -180,7 +180,7 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
               asChild
               variant="outline"
               size="lg"
-              className="border-forest-green text-forest-green hover:bg-forest-green mt-4 rounded-full border-2 bg-transparent text-sm hover:text-white md:mt-0 md:text-base"
+              className="border-saffron text-saffron hover:bg-saffron mt-4 rounded-full border-2 bg-transparent text-sm hover:text-white md:mt-0 md:text-base"
             >
               <Link href="/blog" className="gap-2">
                 View All Stories
@@ -200,7 +200,7 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
           {finalItems.map((item, index) => (
             <motion.article key={`${item.type}-${item.slug}`} variants={fadeInUp} className="group">
               <Link href={`/${item.type === "blog" ? "blog" : "diaries"}/${item.slug}`} className="block">
-                <div className="border-forest-green/10 hover:border-forest-green/30 overflow-hidden rounded-2xl border bg-linear-to-br from-[oklch(0.99_0.015_145)] to-[oklch(0.97_0.02_130)] shadow-lg transition-all duration-500 hover:shadow-xl md:rounded-3xl">
+                <div className="border-saffron/10 hover:border-saffron/30 overflow-hidden rounded-2xl border bg-linear-to-br from-[oklch(0.99_0.015_55)] to-[oklch(0.97_0.02_70)] shadow-lg transition-all duration-500 hover:shadow-xl md:rounded-3xl">
                   {/* Image container with hover effect */}
                   <div className="relative h-48 overflow-hidden sm:h-56 md:h-64">
                     <Image
@@ -212,7 +212,7 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
 
                     {/* Category badge */}
                     <div className={`absolute top-3 left-3 rounded-full bg-linear-to-r px-2.5 py-1 text-xs font-bold text-white md:top-4 md:left-4 md:px-3 ${
-                      item.type === "blog" ? "from-forest-green to-mountain-blue" : "from-saffron to-golden-yellow"
+                      item.type === "blog" ? "from-saffron to-sunset-orange" : "from-saffron to-golden-yellow"
                     }`}>
                       {item.type === "blog" ? "BLOG" : "DIARY"}
                     </div>
@@ -228,7 +228,7 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
                         <span>{item.date}</span>
                       </div>
                     )}
-                    <h3 className="text-foreground group-hover:text-forest-green mb-2 line-clamp-2 text-base font-bold transition-colors md:mb-3 md:text-xl">
+                    <h3 className="text-foreground group-hover:text-saffron mb-2 line-clamp-2 text-base font-bold transition-colors md:mb-3 md:text-xl">
                       {item.title}
                     </h3>
                     <p className="text-muted-foreground line-clamp-2 text-sm leading-relaxed md:text-base">

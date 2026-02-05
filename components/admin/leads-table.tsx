@@ -41,9 +41,9 @@ interface LeadsTableProps {
 }
 
 const statusColors: Record<string, string> = {
-  new: "bg-blue-100 text-blue-800 border-blue-200",
+  new: "bg-saffron/10 text-saffron border-saffron/20",
   contacted: "bg-yellow-100 text-yellow-800 border-yellow-200",
-  booked: "bg-green-100 text-green-800 border-green-200",
+  booked: "bg-saffron/10 text-saffron border-saffron/20",
   closed: "bg-gray-100 text-gray-800 border-gray-200",
 }
 
@@ -163,10 +163,10 @@ export function LeadsTable({ leads }: LeadsTableProps) {
                       href={`https://wa.me/${lead.phone.replace(/\D/g, "")}?text=Hi ${lead.name}, thank you for contacting TourToHimachal!`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-md bg-[#25D366]/10 p-1.5 transition-colors hover:bg-[#25D366]/20"
+                      className="rounded-md bg-saffron/10 p-1.5 transition-colors hover:bg-saffron/20"
                       title="WhatsApp"
                     >
-                      <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                      <WhatsAppIcon className="h-4 w-4 text-saffron" />
                     </a>
                   </div>
 
@@ -258,10 +258,10 @@ export function LeadsTable({ leads }: LeadsTableProps) {
                       href={`https://wa.me/${lead.phone.replace(/\D/g, "")}?text=Hi ${lead.name}, thank you for contacting TourToHimachal!`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="shrink-0 rounded-md bg-[#25D366]/10 p-1 transition-colors hover:bg-[#25D366]/20 sm:p-1.5"
+                      className="shrink-0 rounded-md bg-saffron/10 p-1 transition-colors hover:bg-saffron/20 sm:p-1.5"
                       title="WhatsApp"
                     >
-                      <WhatsAppIcon className="h-3 w-3 text-[#25D366] sm:h-4 sm:w-4" />
+                      <WhatsAppIcon className="h-3 w-3 text-saffron sm:h-4 sm:w-4" />
                     </a>
                   </div>
                 </TableCell>
@@ -356,7 +356,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
                 </p>
               </div>
               <div className="flex flex-col gap-2 pt-4 sm:flex-row">
-                <Button asChild className="flex-1 bg-[#25D366] text-sm hover:bg-[#25D366]/90">
+                <Button asChild className="flex-1 bg-saffron text-sm hover:bg-saffron/90">
                   <a
                     href={`https://wa.me/${selectedLead.phone.replace(/\D/g, "")}?text=Hi ${selectedLead.name}, thank you for contacting TourToHimachal regarding your ${selectedLead.service_type} inquiry!`}
                     target="_blank"

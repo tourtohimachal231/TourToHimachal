@@ -30,7 +30,7 @@ export function Footer() {
       icon: Facebook,
       href: settings.facebook_url || "https://facebook.com",
       label: "Facebook",
-      color: "hover:bg-blue-600",
+      color: "hover:bg-saffron",
     },
     {
       icon: Instagram,
@@ -57,7 +57,7 @@ export function Footer() {
       icon: Facebook,
       href: "https://facebook.com",
       label: "Facebook",
-      color: "hover:bg-blue-600",
+      color: "hover:bg-saffron",
     },
     {
       icon: Instagram,
@@ -86,7 +86,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden">
       {/* Top gradient border */}
-      <div className="from-saffron via-golden-yellow to-forest-green h-1 bg-gradient-to-r" />
+      <div className="from-saffron via-golden-yellow to-saffron h-1 bg-gradient-to-r" />
 
       {/* Main footer content */}
       <div className="bg-slate-900 text-white">
@@ -170,7 +170,7 @@ export function Footer() {
             {/* Destinations */}
             <div>
               <h3 className="mb-4 flex items-center gap-2 text-base font-bold sm:mb-6 sm:text-lg">
-                <span className="from-forest-green to-mountain-blue h-1 w-6 rounded-full bg-gradient-to-r sm:w-8" />
+                <span className="from-saffron to-sunset-orange h-1 w-6 rounded-full bg-gradient-to-r sm:w-8" />
                 Top Destinations
               </h3>
               <ul className="space-y-2 sm:space-y-3">
@@ -178,9 +178,9 @@ export function Footer() {
                   <li key={destination.slug}>
                     <Link
                       href={`/packages/${destination.slug}`}
-                      className="hover:text-forest-green group flex items-center gap-2 text-xs text-slate-400 transition-colors sm:text-sm md:text-base"
+                      className="hover:text-saffron group flex items-center gap-2 text-xs text-slate-400 transition-colors sm:text-sm md:text-base"
                     >
-                      <MapPin className="text-forest-green h-3 w-3" />
+                      <MapPin className="text-saffron h-3 w-3" />
                       {destination.name}
                     </Link>
                   </li>
@@ -206,12 +206,12 @@ export function Footer() {
                       </span>
                     </li>
                     <li className="group flex items-center gap-2 sm:gap-3">
-                      <div className="bg-mountain-blue/10 group-hover:bg-mountain-blue/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
-                        <Mail className="text-mountain-blue h-4 w-4 sm:h-5 sm:w-5" />
+                      <div className="bg-saffron/10 group-hover:bg-saffron/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
+                        <Mail className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                       </div>
                       <a
                         href="mailto:info@tourtohimachal.com"
-                        className="hover:text-mountain-blue text-xs break-all text-slate-400 transition-colors sm:text-sm md:text-base"
+                        className="hover:text-saffron text-xs break-all text-slate-400 transition-colors sm:text-sm md:text-base"
                       >
                         info@tourtohimachal.com
                       </a>
@@ -228,24 +228,24 @@ export function Footer() {
                   </li>
                   {contactPhone && (
                     <li className="group flex items-center gap-2 sm:gap-3">
-                      <div className="bg-forest-green/10 group-hover:bg-forest-green/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
-                        <Phone className="text-forest-green h-4 w-4 sm:h-5 sm:w-5" />
+                      <div className="bg-saffron/10 group-hover:bg-saffron/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
+                        <Phone className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                       </div>
                       <a
                         href={`tel:${contactPhone.replace(/\s/g, "")}`}
-                        className="hover:text-forest-green text-xs text-slate-400 transition-colors sm:text-sm md:text-base"
+                        className="hover:text-saffron text-xs text-slate-400 transition-colors sm:text-sm md:text-base"
                       >
                         {contactPhone}
                       </a>
                     </li>
                   )}
                   <li className="group flex items-center gap-2 sm:gap-3">
-                    <div className="bg-mountain-blue/10 group-hover:bg-mountain-blue/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
-                      <Mail className="text-mountain-blue h-4 w-4 sm:h-5 sm:w-5" />
+                    <div className="bg-saffron/10 group-hover:bg-saffron/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
+                      <Mail className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                     </div>
                     <a
                       href={`mailto:${contactEmail}`}
-                      className="hover:text-mountain-blue text-xs break-all text-slate-400 transition-colors sm:text-sm md:text-base"
+                      className="hover:text-saffron text-xs break-all text-slate-400 transition-colors sm:text-sm md:text-base"
                     >
                       {contactEmail}
                     </a>

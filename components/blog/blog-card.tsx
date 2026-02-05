@@ -99,7 +99,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
     <motion.article variants={fadeInUp} initial="hidden" animate="visible" className="min-w-0">
       <Link href={post.slug ? `/blog/${post.slug}` : "#"} className="block min-w-0">
         <motion.div
-          className="group bg-card border-border hover:border-mountain-blue/40 flex h-full min-w-0 flex-col overflow-hidden rounded:xl md:rounded-xl transition-all duration-300 md:flex-row "
+          className="group bg-card border-border hover:border-saffron/40 flex h-full min-w-0 flex-col overflow-hidden rounded:xl md:rounded-xl transition-all duration-300 md:flex-row "
         >
           {/* Left: Image */}
           <div className="relative aspect-[16/9] overflow-hidden md:w-2/5">
@@ -114,7 +114,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
               <div className="absolute top-2 left-2 md:top-3 md:left-3">
                 <Badge
                   variant="secondary"
-                  className="text-mountain-blue bg-white/90 px-2 py-0.5 text-[10px] font-semibold shadow-sm md:px-2.5 md:py-0.5 md:text-xs"
+                  className="text-saffron bg-white/90 px-2 py-0.5 text-[10px] font-semibold shadow-sm md:px-2.5 md:py-0.5 md:text-xs"
                 >
                   {post.category}
                 </Badge>
@@ -123,7 +123,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           </div>
           {/* Right: Content */}
           <div className="flex flex-1 flex-col justify-center bg-gradient-to-b from-transparent to-white/60 p-4 md:p-6 lg:p-8">
-            <h3 className="text-foreground group-hover:text-mountain-blue mb-2 line-clamp-2 font-serif text-lg leading-tight font-bold transition-colors md:text-2xl">
+            <h3 className="text-foreground group-hover:text-saffron mb-2 line-clamp-2 font-serif text-lg leading-tight font-bold transition-colors md:text-2xl">
               {post.title}
             </h3>
             {post.excerpt && (
@@ -134,14 +134,14 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
             <div className="mt-auto flex items-center justify-between pt-2">
               <div className="text-muted-foreground flex items-center gap-3 text-xs md:text-sm">
                 {post.readTime && (
-                  <span className="bg-mountain-blue/10 flex items-center gap-1 rounded-full px-2 py-1">
+                  <span className="bg-saffron/10 flex items-center gap-1 rounded-full px-2 py-1">
                     <Clock className="h-3 w-3" />
                     {post.readTime} min
                   </span>
                 )}
                 {formattedDate && <span>{formattedDate}</span>}
               </div>
-              <span className="text-mountain-blue flex items-center text-xs font-medium transition-all group-hover:gap-1 md:text-sm">
+              <span className="text-saffron flex items-center text-xs font-medium transition-all group-hover:gap-1 md:text-sm">
                 Read <ArrowRight className="ml-1 h-3 w-3 md:h-4 md:w-4" />
               </span>
             </div>

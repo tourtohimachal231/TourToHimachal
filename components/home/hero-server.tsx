@@ -76,7 +76,7 @@ export function HeroServer({ images }: HeroServerProps) {
       </div>
 
       <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/40 to-black/80" />
-      <div className="from-mountain-blue/30 to-saffron/20 absolute inset-0 bg-linear-to-r via-transparent" />
+      <div className="from-saffron/30 to-saffron/20 absolute inset-0 bg-linear-to-r via-transparent" />
 
       <div className="relative z-10 flex min-h-screen items-center justify-center pt-24 pb-8 sm:pt-28 md:pt-24">
         <div className="container mx-auto px-4 text-center">
@@ -113,7 +113,7 @@ export function HeroServer({ images }: HeroServerProps) {
               <Button
                 asChild
                 size="lg"
-                className="text-mountain-blue h-10 w-full bg-white/95 px-4 text-xs shadow-xl hover:bg-white sm:h-11 sm:w-auto sm:px-6 sm:text-sm md:h-12 md:px-10 md:text-lg"
+                className="text-saffron h-10 w-full bg-white/95 px-4 text-xs shadow-xl hover:bg-white sm:h-11 sm:w-auto sm:px-6 sm:text-sm md:h-12 md:px-10 md:text-lg"
               >
                 <Link href="/taxi">
                   <Car className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4 md:h-5 md:w-5" />

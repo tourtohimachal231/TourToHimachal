@@ -93,14 +93,14 @@ export function PackageCard({ pkg }: PackageCardProps) {
 
             {/* Region Badge - Bottom Right */}
             {pkg.region && (
-              <Badge className="text-forest-green absolute right-3 bottom-3 flex items-center gap-1 border-0 bg-white/90 text-xs shadow-md">
+              <Badge className="text-saffron absolute right-3 bottom-3 flex items-center gap-1 border-0 bg-white/90 text-xs shadow-md">
                 <MapPin className="h-3 w-3" />
                 {pkg.region}
               </Badge>
             )}
 
             {pkg.category && (
-              <Badge className="text-mountain-blue absolute top-3 right-3 border-0 bg-white/90 text-xs shadow-md">
+              <Badge className="text-saffron absolute top-3 right-3 border-0 bg-white/90 text-xs shadow-md">
                 {pkg.category}
               </Badge>
             )}
@@ -108,7 +108,7 @@ export function PackageCard({ pkg }: PackageCardProps) {
             {/* Price and Discount Section at bottom */}
             <div className="absolute bottom-3 left-3 flex flex-col gap-2">
               {discountPercent > 0 && (
-                <Badge className="from-forest-green to-mountain-blue w-fit border-0 bg-gradient-to-r text-xs text-white shadow-lg">
+                <Badge className="from-saffron to-sunset-orange w-fit border-0 bg-gradient-to-r text-xs text-white shadow-lg">
                   {discountPercent}% OFF
                 </Badge>
               )}
@@ -137,12 +137,12 @@ export function PackageCard({ pkg }: PackageCardProps) {
 
             <div className="text-muted-foreground mt-auto flex items-center justify-between gap-3 text-xs md:text-sm">
               <div className="flex items-center gap-3">
-                <span className="bg-mountain-blue/10 flex items-center gap-1 rounded-full px-2 py-1">
-                  <Clock className="text-mountain-blue h-3 w-3 md:h-4 md:w-4" />
+                <span className="bg-saffron/10 flex items-center gap-1 rounded-full px-2 py-1">
+                  <Clock className="text-saffron h-3 w-3 md:h-4 md:w-4" />
                   {pkg.duration}
                 </span>
               </div>
-              <span className="from-forest-green to-mountain-blue inline-flex h-9 items-center gap-1 rounded-full border-0 bg-gradient-to-r px-3 text-xs text-white shadow-md md:h-10 md:px-4 md:text-sm">
+              <span className="from-saffron to-sunset-orange inline-flex h-9 items-center gap-1 rounded-full border-0 bg-gradient-to-r px-3 text-xs text-white shadow-md md:h-10 md:px-4 md:text-sm">
                 View Details
               </span>
             </div>

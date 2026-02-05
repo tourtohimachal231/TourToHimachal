@@ -19,7 +19,7 @@ function MarkdownPreview({ content }: { content: string }) {
       .replace(/\*\*(.*)\*\*/gim, '<strong class="font-semibold">$1</strong>')
       .replace(/\*(.*)\*/gim, '<em class="italic">$1</em>')
       // Links
-      .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">$1</a>')
+      .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-saffron hover:underline">$1</a>')
       // Lists
       .replace(/^\- (.*$)/gim, '<li class="ml-4 list-disc">$1</li>')
       // Line breaks and paragraphs

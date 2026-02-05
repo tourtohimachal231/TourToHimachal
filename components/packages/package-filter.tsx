@@ -173,7 +173,7 @@ export function PackageFilter({
                     Region
                   </label>
                   <Select value={localRegion} onValueChange={setLocalRegion}>
-                    <SelectTrigger className="border-mountain-blue/20 h-9 rounded-lg border-2 bg-white text-xs sm:h-10 sm:rounded-xl sm:text-sm md:h-11">
+                    <SelectTrigger className="border-saffron/20 h-9 rounded-lg border-2 bg-white text-xs sm:h-10 sm:rounded-xl sm:text-sm md:h-11">
                       <SelectValue placeholder="All Regions" />
                     </SelectTrigger>
                     <SelectContent>
@@ -191,7 +191,7 @@ export function PackageFilter({
                     Duration
                   </label>
                   <Select value={localDuration} onValueChange={setLocalDuration}>
-                    <SelectTrigger className="border-forest-green/20 h-9 rounded-lg border-2 bg-white text-xs sm:h-10 sm:rounded-xl sm:text-sm md:h-11">
+                    <SelectTrigger className="border-saffron/20 h-9 rounded-lg border-2 bg-white text-xs sm:h-10 sm:rounded-xl sm:text-sm md:h-11">
                       <SelectValue placeholder="Any Duration" />
                     </SelectTrigger>
                     <SelectContent>

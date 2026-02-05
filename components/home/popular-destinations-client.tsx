@@ -80,7 +80,7 @@ export function PopularDestinationsClient({ packages }: PopularDestinationsClien
     <section className="relative overflow-hidden py-8 md:py-8 lg:py-12">
       {/* Background decorations */}
       <div className="from-saffron/10 absolute top-0 right-0 h-96 w-96 rounded-full bg-gradient-to-bl to-transparent blur-3xl" />
-      <div className="from-forest-green/10 absolute bottom-0 left-0 h-96 w-96 rounded-full bg-gradient-to-tr to-transparent blur-3xl" />
+      <div className="from-saffron/10 absolute bottom-0 left-0 h-96 w-96 rounded-full bg-gradient-to-tr to-transparent blur-3xl" />
 
       <div className="relative container mx-auto px-4">
         <motion.div
@@ -92,10 +92,10 @@ export function PopularDestinationsClient({ packages }: PopularDestinationsClien
         >
           <motion.div
             variants={fadeInUp}
-            className="bg-mountain-blue/10 mb-2 inline-flex items-center gap-2 rounded-full px-4 py-2 md:mb-3"
+            className="bg-saffron/10 mb-2 inline-flex items-center gap-2 rounded-full px-4 py-2 md:mb-3"
           >
-            <MapPin className="text-mountain-blue h-4 w-4" />
-            <span className="text-mountain-blue text-sm font-semibold tracking-wider uppercase">
+            <MapPin className="text-saffron h-4 w-4" />
+            <span className="text-saffron text-sm font-semibold tracking-wider uppercase">
               Explore Himachal
             </span>
           </motion.div>
@@ -103,7 +103,7 @@ export function PopularDestinationsClient({ packages }: PopularDestinationsClien
             variants={fadeInUp}
             className="text-foreground mt-2 mb-2 font-serif text-3xl font-bold md:mt-3 md:mb-3 md:text-5xl"
           >
-            Popular <span className="text-mountain-blue">Destinations</span>
+            Popular <span className="text-saffron">Destinations</span>
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-muted-foreground mx-auto mb-2 max-w-2xl text-lg">
             Discover the most sought-after destinations in Himachal Pradesh, from snow-capped mountains to
@@ -135,7 +135,7 @@ export function PopularDestinationsClient({ packages }: PopularDestinationsClien
             asChild
             variant="outline"
             size="lg"
-            className="border-mountain-blue text-mountain-blue hover:bg-mountain-blue border-2 bg-transparent hover:text-white"
+            className="border-saffron text-saffron hover:bg-saffron border-2 bg-transparent hover:text-white"
           >
             <Link href="/packages">
               View All Packages

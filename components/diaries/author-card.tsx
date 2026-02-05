@@ -44,7 +44,7 @@ export function AuthorCard({ author }: AuthorCardProps) {
                 href={author.social.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-mountain-blue transition-colors"
+                className="text-muted-foreground hover:text-saffron transition-colors"
               >
                 <Twitter className="h-5 w-5" />
               </a>
@@ -54,7 +54,7 @@ export function AuthorCard({ author }: AuthorCardProps) {
                 href={author.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-mountain-blue transition-colors"
+                className="text-muted-foreground hover:text-saffron transition-colors"
               >
                 <Instagram className="h-5 w-5" />
               </a>

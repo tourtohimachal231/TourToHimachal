@@ -283,7 +283,7 @@ export function ReviewForm({ onSuccess }: ReviewFormProps) {
 
           <Button
             type="submit"
-            className="bg-mountain-blue hover:bg-mountain-blue/90 w-full"
+            className="bg-saffron hover:bg-saffron/90 w-full"
             disabled={isSubmitting}
           >
             {isSubmitting ? (

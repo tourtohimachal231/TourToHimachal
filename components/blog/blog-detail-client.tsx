@@ -205,23 +205,23 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
               <div className="flex flex-wrap items-center gap-4">
                 <span className="text-foreground font-semibold">Share:</span>
                 <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="outline" className="gap-2 hover:bg-[#25D366]/10">
+                  <Button size="sm" variant="outline" className="gap-2 hover:bg-saffron/10">
                     <Share2 className="h-4 w-4" />
                     WhatsApp
                   </Button>
                 </a>
                 <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(post.slug)}`} target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="outline" className="gap-2 hover:bg-[#4267B2]/10">
+                  <Button size="sm" variant="outline" className="gap-2 hover:bg-saffron/10">
                     Facebook
                   </Button>
                 </a>
                 <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(post.slug)}`} target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="outline" className="gap-2 hover:bg-[#1DA1F2]/10">
+                  <Button size="sm" variant="outline" className="gap-2 hover:bg-saffron/10">
                     Twitter
                   </Button>
                 </a>
                 <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(post.slug)}`} target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="outline" className="gap-2 hover:bg-[#0077B5]/10">
+                  <Button size="sm" variant="outline" className="gap-2 hover:bg-saffron/10">
                     LinkedIn
                   </Button>
                 </a>
@@ -284,10 +284,10 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
         }
         @keyframes glow {
           0%, 100% {
-            box-shadow: 0 0 10px rgba(var(--primary), 0.5);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
           }
           50% {
-            box-shadow: 0 0 20px rgba(var(--primary), 0.8);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.8);
           }
         }
       `}</style>

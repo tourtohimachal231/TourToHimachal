@@ -82,7 +82,7 @@ export function Testimonials() {
     <section className="relative overflow-hidden bg-white py-8 md:py-8 lg:py-12">
       {/* Decorative elements */}
       <div className="from-golden-yellow/30 to-saffron/30 absolute top-10 right-10 h-32 w-32 rounded-full bg-gradient-to-br blur-3xl md:h-40 md:w-40" />
-      <div className="from-mountain-blue/20 to-forest-green/20 absolute bottom-10 left-10 h-48 w-48 rounded-full bg-gradient-to-tr blur-3xl md:h-60 md:w-60" />
+      <div className="from-saffron/20 to-saffron/20 absolute bottom-10 left-10 h-48 w-48 rounded-full bg-gradient-to-tr blur-3xl md:h-60 md:w-60" />
 
       <div className="relative container mx-auto px-4">
         <motion.div
@@ -95,10 +95,10 @@ export function Testimonials() {
           <div>
             <motion.div
               variants={fadeInUp}
-              className="bg-mountain-blue/10 mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 md:mb-4 md:px-4 md:py-2"
+              className="bg-saffron/10 mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 md:mb-4 md:px-4 md:py-2"
             >
-              <MessageSquare className="text-mountain-blue h-3 w-3 md:h-4 md:w-4" />
-              <span className="text-mountain-blue text-xs font-semibold tracking-wider uppercase md:text-sm">
+              <MessageSquare className="text-saffron h-3 w-3 md:h-4 md:w-4" />
+              <span className="text-saffron text-xs font-semibold tracking-wider uppercase md:text-sm">
                 What Our Travelers Say
               </span>
             </motion.div>
@@ -106,7 +106,7 @@ export function Testimonials() {
               variants={fadeInUp}
               className="text-foreground mt-2 font-serif text-2xl font-bold sm:text-3xl md:mt-3 md:text-4xl lg:text-5xl"
             >
-              Happy <span className="text-mountain-blue">Travelers</span>
+              Happy <span className="text-saffron">Travelers</span>
             </motion.h2>
           </div>
 
@@ -116,7 +116,7 @@ export function Testimonials() {
               size="icon"
               onClick={() => scroll("left")}
               disabled={!canScrollLeft}
-              className="hover:bg-mountain-blue hover:border-mountain-blue h-10 w-10 rounded-full border-2 hover:text-white disabled:opacity-30 md:h-12 md:w-12"
+              className="hover:bg-saffron hover:border-saffron h-10 w-10 rounded-full border-2 hover:text-white disabled:opacity-30 md:h-12 md:w-12"
               aria-label="Scroll left"
             >
               <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
@@ -126,7 +126,7 @@ export function Testimonials() {
               size="icon"
               onClick={() => scroll("right")}
               disabled={!canScrollRight}
-              className="hover:bg-mountain-blue hover:border-mountain-blue h-10 w-10 rounded-full border-2 hover:text-white disabled:opacity-30 md:h-12 md:w-12"
+              className="hover:bg-saffron hover:border-saffron h-10 w-10 rounded-full border-2 hover:text-white disabled:opacity-30 md:h-12 md:w-12"
               aria-label="Scroll right"
             >
               <ChevronRight className="h-4 w-4 md:h-5 md:w-5" />
@@ -134,7 +134,7 @@ export function Testimonials() {
             <div className="ml-4">
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
-                  <Button className="bg-mountain-blue hover:bg-mountain-blue/90 text-white">
+                  <Button className="bg-saffron hover:bg-saffron/90 text-white">
                     Write a Review
                   </Button>
                 </DialogTrigger>
@@ -178,7 +178,7 @@ export function Testimonials() {
                           className="object-cover"
                         />
                       ) : (
-                        <div className="bg-mountain-blue flex h-full w-full items-center justify-center text-lg font-bold text-white">
+                        <div className="bg-saffron flex h-full w-full items-center justify-center text-lg font-bold text-white">
                           {testimonial.name.charAt(0)}
                         </div>
                       )}
@@ -206,11 +206,11 @@ export function Testimonials() {
                   <svg className="h-6 w-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                      fill="#4285F4"
+                      fill="#f59e0b"
                     />
                     <path
                       d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                      fill="#34A853"
+                      fill="#f59e0b"
                     />
                     <path
                       d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"

@@ -41,7 +41,7 @@ export function ScrollToTop() {
           <Button
             size="icon"
             onClick={scrollToTop}
-            className="bg-mountain-blue hover:bg-mountain-blue/90 h-12 w-12 rounded-full border-2 border-white/20 text-white shadow-lg transition-all duration-300 hover:scale-110"
+            className="bg-saffron hover:bg-saffron/90 h-12 w-12 rounded-full border-2 border-white/20 text-white shadow-lg transition-all duration-300 hover:scale-110"
             aria-label="Back to top"
           >
             <ArrowUp className="h-6 w-6" />

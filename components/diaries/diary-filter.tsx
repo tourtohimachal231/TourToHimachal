@@ -138,8 +138,8 @@ export function DiaryFilter({
                 <div className="flex flex-wrap gap-2">
                   <Badge
                     variant={localRegion === "All" ? "default" : "outline"}
-                    className={`hover:bg-mountain-blue/10 cursor-pointer text-xs ${
-                      localRegion === "All" ? "bg-mountain-blue hover:bg-mountain-blue text-white" : ""
+                    className={`hover:bg-saffron/10 cursor-pointer text-xs ${
+                      localRegion === "All" ? "bg-saffron hover:bg-saffron text-white" : ""
                     }`}
                     onClick={() => setLocalRegion("All")}
                   >
@@ -149,8 +149,8 @@ export function DiaryFilter({
                     <Badge
                       key={region}
                       variant={localRegion === region ? "default" : "outline"}
-                      className={`hover:bg-mountain-blue/10 cursor-pointer text-xs ${
-                        localRegion === region ? "bg-mountain-blue hover:bg-mountain-blue text-white" : ""
+                      className={`hover:bg-saffron/10 cursor-pointer text-xs ${
+                        localRegion === region ? "bg-saffron hover:bg-saffron text-white" : ""
                       }`}
                       onClick={() => setLocalRegion(localRegion === region ? "All" : region)}
                     >
@@ -166,8 +166,8 @@ export function DiaryFilter({
                 <div className="flex flex-wrap gap-2">
                   <Badge
                     variant={localTags.length === 0 ? "default" : "outline"}
-                    className={`hover:bg-mountain-blue/10 cursor-pointer text-xs ${
-                      localTags.length === 0 ? "bg-mountain-blue hover:bg-mountain-blue text-white" : ""
+                    className={`hover:bg-saffron/10 cursor-pointer text-xs ${
+                      localTags.length === 0 ? "bg-saffron hover:bg-saffron text-white" : ""
                     }`}
                     onClick={() => handleTagToggle("All")}
                   >
@@ -194,9 +194,9 @@ export function DiaryFilter({
                 <div className="flex flex-wrap gap-2">
                   <Badge
                     variant={!localMonth || localMonth === "All" ? "default" : "outline"}
-                    className={`hover:bg-mountain-blue/10 cursor-pointer text-xs ${
+                    className={`hover:bg-saffron/10 cursor-pointer text-xs ${
                       !localMonth || localMonth === "All"
-                        ? "bg-mountain-blue hover:bg-mountain-blue text-white"
+                        ? "bg-saffron hover:bg-saffron text-white"
                         : ""
                     }`}
                     onClick={() => setLocalMonth(null)}
@@ -207,8 +207,8 @@ export function DiaryFilter({
                     <Badge
                       key={month}
                       variant={localMonth === month ? "default" : "outline"}
-                      className={`hover:bg-mountain-blue/10 cursor-pointer text-xs ${
-                        localMonth === month ? "bg-mountain-blue hover:bg-mountain-blue text-white" : ""
+                      className={`hover:bg-saffron/10 cursor-pointer text-xs ${
+                        localMonth === month ? "bg-saffron hover:bg-saffron text-white" : ""
                       }`}
                       onClick={() => setLocalMonth(localMonth === month ? null : month)}
                     >

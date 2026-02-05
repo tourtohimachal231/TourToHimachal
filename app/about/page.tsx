@@ -40,12 +40,12 @@ export default function AboutPage() {
             />
           </div>
           <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/45 to-black/75" />
-          <div className="from-mountain-blue/20 to-saffron/20 absolute inset-0 bg-linear-to-r via-transparent" />
+          <div className="from-saffron/20 to-saffron/20 absolute inset-0 bg-linear-to-r via-transparent" />
 
           <div className="relative z-10">
             <div className="container mx-auto px-4 py-12 sm:py-14 md:py-18 lg:py-20">
               <div className="mx-auto max-w-4xl text-center">
-                <div className="from-saffron/35 to-mountain-blue/35 inline-flex items-center gap-2 rounded-full border border-white/20 bg-linear-to-r px-4 py-2 text-xs font-semibold text-white backdrop-blur-md sm:text-sm">
+                <div className="from-saffron/35 to-saffron/35 inline-flex items-center gap-2 rounded-full border border-white/20 bg-linear-to-r px-4 py-2 text-xs font-semibold text-white backdrop-blur-md sm:text-sm">
                   <Sparkles className="h-4 w-4" />
                   Local travel experts • On-ground support
                 </div>
@@ -101,7 +101,7 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="bg-forest-green/10 text-forest-green rounded-xl p-2">
+                    <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                       <ShieldCheck className="h-5 w-5" />
                     </div>
                     <div>
@@ -110,7 +110,7 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="bg-mountain-blue/10 text-mountain-blue rounded-xl p-2">
+                    <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                       <Car className="h-5 w-5" />
                     </div>
                     <div>
@@ -152,7 +152,7 @@ export default function AboutPage() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="bg-mountain-blue/10 text-mountain-blue rounded-xl p-2">
+                      <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                         <Users className="h-5 w-5" />
                       </div>
                       <div>
@@ -164,7 +164,7 @@ export default function AboutPage() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="bg-forest-green/10 text-forest-green rounded-xl p-2">
+                      <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                         <Car className="h-5 w-5" />
                       </div>
                       <div>
@@ -221,7 +221,7 @@ export default function AboutPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <span className="bg-forest-green/10 text-forest-green rounded-xl p-2">
+                      <span className="bg-saffron/10 text-saffron rounded-xl p-2">
                         <HeartHandshake className="h-5 w-5" />
                       </span>
                       Honest guidance
@@ -235,7 +235,7 @@ export default function AboutPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <span className="bg-mountain-blue/10 text-mountain-blue rounded-xl p-2">
+                      <span className="bg-saffron/10 text-saffron rounded-xl p-2">
                         <BadgeCheck className="h-5 w-5" />
                       </span>
                       Service quality

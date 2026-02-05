@@ -39,7 +39,7 @@ export function CTABanner() {
         sizes="100vw"
       />
       {/* Background overlay gradient (semi-transparent so image shows) */}
-      <div className="from-mountain-blue/70 via-forest-green/50 to-mountain-blue/70 absolute inset-0 bg-linear-to-br" />
+      <div className="from-saffron/20 via-saffron/10 to-saffron/20 absolute inset-0 bg-linear-to-br" />
 
       {/* Decorative patterns */}
       <div className="absolute inset-0 opacity-10">
@@ -121,7 +121,7 @@ export function CTABanner() {
             <Button
               size="xl"
               variant="outline"
-              className="hover:text-mountain-blue border-2 border-white bg-transparent px-10 text-lg text-white hover:bg-white"
+              className="hover:text-saffron border-2 border-white bg-transparent px-10 text-lg text-white hover:bg-white"
               asChild
             >
               <a href={`tel:${settings.contact_phone || ""}`}>

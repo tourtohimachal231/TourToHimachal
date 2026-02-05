@@ -51,7 +51,7 @@ const config: Config = {
         "primary-foreground": "hsl(var(--primary-foreground))",
         secondary: "hsl(var(--secondary))",
         "secondary-foreground": "hsl(var(--secondary-foreground))",
-        "mountain-blue": "#1e40af",
+        "mountain-blue": "#f59e0b",
         saffron: "#f59e0b",
       },
       borderRadius: {

@@ -108,7 +108,7 @@ export function BlogTOC({ content }: BlogTOCProps) {
                 className={cn(
                   "block rounded-md px-2 py-1.5 text-sm transition-all",
                   activeId === item.id
-                    ? "text-mountain-blue bg-mountain-blue/10 ring-mountain-blue/30 font-medium ring-1 drop-shadow-[0_0_8px_rgba(59,130,246,0.45)]"
+                    ? "text-saffron bg-saffron/10 ring-saffron/30 font-medium ring-1 drop-shadow-[0_0_8px_rgba(245,158,11,0.45)]"
                     : "text-muted-foreground hover:text-foreground",
                 )}
               >

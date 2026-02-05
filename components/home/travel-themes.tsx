@@ -28,7 +28,7 @@ const themes = [
     image: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795291/bacq5glu6429fkmwvv6b.webp",
     description: "Thrilling experiences await",
     icon: Mountain,
-    color: "from-forest-green to-mountain-blue",
+    color: "from-saffron to-sunset-orange",
     href: "/packages?theme=adventure",
   },
   {
@@ -46,7 +46,7 @@ export function TravelThemes() {
     <section className="from-muted/50 to-background relative overflow-hidden bg-linear-to-b pt-4 pb-8 md:pt-8 md:pb-12">
       {/* Decorative elements */}
       <div className="border-saffron/20 absolute top-20 left-10 h-20 w-20 rounded-full border-4" />
-      <div className="border-forest-green/20 absolute right-10 bottom-20 h-32 w-32 rounded-full border-4" />
+      <div className="border-saffron/20 absolute right-10 bottom-20 h-32 w-32 rounded-full border-4" />
 
       <div className="relative container mx-auto px-4">
         <motion.div
@@ -58,10 +58,10 @@ export function TravelThemes() {
         >
           <motion.div
             variants={fadeInUp}
-            className="bg-forest-green/10 mb-4 inline-flex items-center gap-2 rounded-full px-4 py-2"
+            className="bg-saffron/10 mb-4 inline-flex items-center gap-2 rounded-full px-4 py-2"
           >
-            <Compass className="text-forest-green h-4 w-4" />
-            <span className="text-forest-green text-sm font-semibold tracking-wider uppercase">
+            <Compass className="text-saffron h-4 w-4" />
+            <span className="text-saffron text-sm font-semibold tracking-wider uppercase">
               Choose Your Experience
             </span>
           </motion.div>
@@ -69,7 +69,7 @@ export function TravelThemes() {
             variants={fadeInUp}
             className="text-foreground mt-3 mb-4 font-serif text-3xl font-bold md:text-5xl"
           >
-            Travel <span className="text-forest-green">Themes</span>
+            Travel <span className="text-saffron">Themes</span>
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-muted-foreground mx-auto max-w-2xl text-lg">
             Whether you seek spiritual enlightenment, romantic getaways, or adrenaline-pumping adventures, we

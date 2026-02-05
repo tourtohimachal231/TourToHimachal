@@ -187,8 +187,8 @@ html {
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.02 260);
 
-  /* Primary - Vibrant Deep Blue (like Indian indigo) */
-  --primary: oklch(0.48 0.18 250);
+  /* Primary - Vibrant Saffron */
+  --primary: oklch(0.72 0.19 55);
   --primary-foreground: oklch(0.99 0 0);
 
   /* Secondary - Soft cream/off-white with more warmth */
@@ -209,12 +209,12 @@ html {
   /* Borders - warm subtle */
   --border: oklch(0.86 0.025 80);
   --input: oklch(0.92 0.015 85);
-  --ring: oklch(0.48 0.18 250);
+  --ring: oklch(0.72 0.19 55);
 
   /* Charts - vibrant colors */
   --chart-1: oklch(0.65 0.2 45);
-  --chart-2: oklch(0.55 0.2 155);
-  --chart-3: oklch(0.48 0.18 250);
+  --chart-2: oklch(0.72 0.19 55);
+  --chart-3: oklch(0.72 0.19 55);
   --chart-4: oklch(0.78 0.18 95);
   --chart-5: oklch(0.6 0.22 30);
 
@@ -223,16 +223,16 @@ html {
   /* Sidebar */
   --sidebar: oklch(0.985 0.01 85);
   --sidebar-foreground: oklch(0.18 0 0);
-  --sidebar-primary: oklch(0.48 0.18 250);
+  --sidebar-primary: oklch(0.72 0.19 55);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.94 0.02 85);
   --sidebar-accent-foreground: oklch(0.25 0 0);
   --sidebar-border: oklch(0.88 0.02 85);
-  --sidebar-ring: oklch(0.48 0.18 250);
+  --sidebar-ring: oklch(0.72 0.19 55);
 
   /* Custom Himachal Tourism Colors - More Vibrant */
-  --mountain-blue: oklch(0.48 0.18 250);
-  --forest-green: oklch(0.52 0.18 155);
+  --mountain-blue: oklch(0.72 0.19 55);
+  --forest-green: oklch(0.72 0.19 55);
   --saffron: oklch(0.72 0.19 55);
   --golden-yellow: oklch(0.85 0.17 90);
   --sunset-orange: oklch(0.68 0.2 40);
@@ -240,8 +240,8 @@ html {
 
   /* New section background colors */
   --section-warm: oklch(0.96 0.03 70);
-  --section-cool: oklch(0.96 0.025 220);
-  --section-green: oklch(0.96 0.03 145);
+  --section-cool: oklch(0.96 0.03 55);
+  --section-green: oklch(0.96 0.03 55);
   --section-golden: oklch(0.96 0.035 85);
 }
 
@@ -252,7 +252,7 @@ html {
   --card-foreground: oklch(0.98 0 0);
   --popover: oklch(0.16 0.02 260);
   --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.65 0.18 250);
+  --primary: oklch(0.78 0.19 55);
   --primary-foreground: oklch(0.13 0 0);
   --secondary: oklch(0.25 0.02 260);
   --secondary-foreground: oklch(0.98 0 0);
@@ -264,23 +264,23 @@ html {
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(0.28 0.02 260);
   --input: oklch(0.28 0.02 260);
-  --ring: oklch(0.65 0.18 250);
+  --ring: oklch(0.78 0.19 55);
   --chart-1: oklch(0.7 0.2 45);
-  --chart-2: oklch(0.65 0.2 155);
-  --chart-3: oklch(0.65 0.18 250);
+  --chart-2: oklch(0.78 0.19 55);
+  --chart-3: oklch(0.78 0.19 55);
   --chart-4: oklch(0.8 0.16 95);
   --chart-5: oklch(0.65 0.22 30);
   --sidebar: oklch(0.18 0.02 260);
   --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.65 0.18 250);
+  --sidebar-primary: oklch(0.78 0.19 55);
   --sidebar-primary-foreground: oklch(0.98 0 0);
   --sidebar-accent: oklch(0.28 0.02 260);
   --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(0.28 0.02 260);
-  --sidebar-ring: oklch(0.65 0.18 250);
+  --sidebar-ring: oklch(0.78 0.19 55);
 
-  --mountain-blue: oklch(0.6 0.18 250);
-  --forest-green: oklch(0.6 0.18 155);
+  --mountain-blue: oklch(0.78 0.19 55);
+  --forest-green: oklch(0.78 0.19 55);
   --saffron: oklch(0.78 0.19 55);
   --golden-yellow: oklch(0.88 0.16 90);
   --sunset-orange: oklch(0.72 0.2 40);
@@ -381,7 +381,7 @@ body.menu-open {
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, var(--mountain-blue) 0%, var(--forest-green) 100%);
+  background: linear-gradient(135deg, var(--saffron) 0%, var(--sunset-orange) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -410,7 +410,7 @@ body.menu-open {
   width: 100%;
   height: 6px;
   border-radius: 3px;
-  background: linear-gradient(to right, var(--saffron), var(--forest-green));
+  background: linear-gradient(to right, var(--saffron), var(--sunset-orange));
   outline: none;
 }
 
@@ -431,7 +431,7 @@ body.menu-open {
 
 .price-slider::-webkit-slider-thumb:hover {
   transform: scale(1.1);
-  border-color: var(--forest-green);
+  border-color: var(--sunset-orange);
 }
 
 .price-slider::-moz-range-thumb {
@@ -450,11 +450,11 @@ body.menu-open {
 }
 
 .card-gradient-cool {
-  background: linear-gradient(135deg, oklch(0.97 0.025 220) 0%, oklch(0.995 0.01 200) 100%);
+  background: linear-gradient(135deg, oklch(0.97 0.03 55) 0%, oklch(0.995 0.02 70) 100%);
 }
 
 .card-gradient-green {
-  background: linear-gradient(135deg, oklch(0.97 0.03 145) 0%, oklch(0.995 0.015 130) 100%);
+  background: linear-gradient(135deg, oklch(0.97 0.03 55) 0%, oklch(0.995 0.02 70) 100%);
 }
 
 .card-gradient-golden {

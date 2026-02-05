@@ -61,20 +61,20 @@ export function CloudinaryDiagnostics() {
             <h3 className="font-semibold">Environment Variables</h3>
             <div className="space-y-2 rounded-lg bg-slate-100 p-4 font-mono text-sm dark:bg-slate-900">
               <div>
-                <span className="text-green-600">CLOUD_NAME:</span>{" "}
-                <span className={envVars.cloudName ? "text-green-600" : "text-red-600"}>
+                <span className="text-saffron">CLOUD_NAME:</span>{" "}
+                <span className={envVars.cloudName ? "text-saffron" : "text-red-600"}>
                   {envVars.cloudName || "❌ NOT SET"}
                 </span>
               </div>
               <div>
-                <span className="text-green-600">UPLOAD_PRESET:</span>{" "}
-                <span className={envVars.uploadPreset ? "text-green-600" : "text-red-600"}>
+                <span className="text-saffron">UPLOAD_PRESET:</span>{" "}
+                <span className={envVars.uploadPreset ? "text-saffron" : "text-red-600"}>
                   {envVars.uploadPreset || "❌ NOT SET"}
                 </span>
               </div>
               <div>
-                <span className="text-green-600">API_KEY:</span>{" "}
-                <span className={envVars.apiKey?.includes("...") ? "text-green-600" : "text-red-600"}>
+                <span className="text-saffron">API_KEY:</span>{" "}
+                <span className={envVars.apiKey?.includes("...") ? "text-saffron" : "text-red-600"}>
                   {envVars.apiKey || "❌ NOT SET"}
                 </span>
               </div>
@@ -127,7 +127,7 @@ export function CloudinaryDiagnostics() {
                   }
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 underline"
+                  className="text-saffron underline"
                 >
                   Upload Presets
                 </a>
@@ -146,7 +146,7 @@ export function CloudinaryDiagnostics() {
           </Button>
 
           {/* Console Instructions */}
-          <div className="rounded-lg bg-blue-100 p-4 text-sm text-blue-800 dark:bg-blue-900 dark:text-blue-100">
+          <div className="rounded-lg bg-saffron/10 p-4 text-sm text-saffron dark:bg-saffron/20 dark:text-saffron">
             <p className="font-semibold">💡 Open Browser Console (F12):</p>
             <p className="mt-1">You should see the diagnostics logged there</p>
           </div>

@@ -63,7 +63,7 @@ export function BlogDetailClient({ post, popularPosts, url }: BlogDetailClientPr
               {/* Category + Tags Row */}
               <div className="mb-4 flex flex-wrap items-center gap-2">
                 {post.category && (
-                  <span className="bg-mountain-blue/10 text-mountain-blue ring-mountain-blue/20 rounded-full px-2.5 py-1 text-xs ring-1">
+                  <span className="bg-saffron/10 text-saffron ring-saffron/20 rounded-full px-2.5 py-1 text-xs ring-1">
                     {post.category}
                   </span>
                 )}
@@ -159,7 +159,7 @@ export function BlogDetailClient({ post, popularPosts, url }: BlogDetailClientPr
                             {String(index + 1).padStart(2, "0")}
                           </span>
                           <div>
-                            <p className="text-foreground group-hover:text-mountain-blue line-clamp-2 text-sm font-medium transition-colors">
+                            <p className="text-foreground group-hover:text-saffron line-clamp-2 text-sm font-medium transition-colors">
                               {post.title}
                             </p>
                           </div>

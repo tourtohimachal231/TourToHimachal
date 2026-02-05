@@ -109,13 +109,13 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
                 {/* Search */}
                 <div className="mb-4 md:mb-8">
                   <div className="relative">
-                    <Search className="text-mountain-blue absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 md:h-4 md:w-4" />
+                    <Search className="text-saffron absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 md:h-4 md:w-4" />
                     <Input
                       type="text"
                       placeholder="Search articles..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="border-mountain-blue/20 focus:border-mountain-blue h-10 rounded-full border-2 pl-9 text-sm md:h-12 md:pl-10 md:text-base"
+                      className="border-saffron/20 focus:border-saffron h-10 rounded-full border-2 pl-9 text-sm md:h-12 md:pl-10 md:text-base"
                     />
                   </div>
                 </div>
@@ -126,8 +126,8 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
                     variant={selectedCategory === null ? "default" : "outline"}
                     className={`shrink-0 cursor-pointer rounded-full px-3 py-1.5 text-xs transition-all md:px-4 md:py-2 md:text-sm ${
                       selectedCategory === null
-                        ? "from-mountain-blue to-forest-green bg-linear-to-r text-white shadow-md"
-                        : "hover:bg-mountain-blue/10 border-2"
+                        ? "from-saffron to-sunset-orange bg-linear-to-r text-white shadow-md"
+                        : "hover:bg-saffron/10 border-2"
                     }`}
                     onClick={() => handleCategoryClick(null)}
                   >
@@ -139,8 +139,8 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
                       variant={selectedCategory === category ? "default" : "outline"}
                       className={`shrink-0 cursor-pointer rounded-full px-3 py-1.5 text-xs transition-all md:px-4 md:py-2 md:text-sm ${
                         selectedCategory === category
-                          ? "from-mountain-blue to-forest-green bg-linear-to-r text-white shadow-md"
-                          : "hover:bg-mountain-blue/10 border-2"
+                          ? "from-saffron to-sunset-orange bg-linear-to-r text-white shadow-md"
+                          : "hover:bg-saffron/10 border-2"
                       }`}
                       onClick={() => handleCategoryClick(category)}
                     >
@@ -199,7 +199,7 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
                       variant="outline"
                       size="lg"
                       onClick={() => setVisibleCount((prev) => prev + ITEMS_PER_PAGE)}
-                      className="border-mountain-blue text-mountain-blue hover:bg-mountain-blue rounded-full border-2 hover:text-white"
+                      className="border-saffron text-saffron hover:bg-saffron rounded-full border-2 hover:text-white"
                     >
                       Load More Posts
                     </Button>

@@ -32,8 +32,8 @@ export function ContactInfo() {
       value: whatsappNumber.replace(/(\d{2})(\d{5})(\d{5})/, "$1 $2 $3"),
       href: `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}`,
       description: "Instant response",
-      color: "from-forest-green to-mountain-blue",
-      bgColor: "bg-forest-green/10",
+      color: "from-saffron to-sunset-orange",
+      bgColor: "bg-saffron/10",
     },
     {
       icon: Mail,
@@ -41,8 +41,8 @@ export function ContactInfo() {
       value: contactEmail,
       href: `mailto:${contactEmail}`,
       description: "For detailed inquiries",
-      color: "from-mountain-blue to-forest-green",
-      bgColor: "bg-mountain-blue/10",
+      color: "from-saffron to-sunset-orange",
+      bgColor: "bg-saffron/10",
     },
     {
       icon: MapPin,
@@ -110,11 +110,11 @@ export function ContactInfo() {
       {/* Office Hours */}
       <motion.div
         variants={fadeInUp}
-        className="from-mountain-blue/10 to-forest-green/5 border-mountain-blue/20 rounded-xl border bg-linear-to-br p-2.5 sm:rounded-2xl sm:p-3"
+        className="from-saffron/10 to-saffron/5 border-saffron/20 rounded-xl border bg-linear-to-br p-2.5 sm:rounded-2xl sm:p-3"
       >
         <div className="flex items-start gap-3 sm:gap-4">
-          <div className="bg-mountain-blue/20 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg sm:h-10 sm:w-10 sm:rounded-xl">
-            <Clock className="text-mountain-blue h-4 w-4 sm:h-5 sm:w-5" />
+          <div className="bg-saffron/20 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg sm:h-10 sm:w-10 sm:rounded-xl">
+            <Clock className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
           </div>
           <div className="min-w-0 flex-1">
             <h3 className="text-foreground text-sm leading-tight font-semibold sm:text-base">Office Hours</h3>
@@ -128,18 +128,18 @@ export function ContactInfo() {
       {/* Response Time SLA */}
       <motion.div
         variants={fadeInUp}
-        className="from-forest-green/10 to-golden-yellow/5 border-forest-green/20 rounded-xl border bg-linear-to-br p-2.5 sm:rounded-2xl sm:p-3"
+        className="from-saffron/10 to-golden-yellow/5 border-saffron/20 rounded-xl border bg-linear-to-br p-2.5 sm:rounded-2xl sm:p-3"
       >
         <div className="flex items-start gap-3 sm:gap-4">
-          <div className="bg-forest-green/20 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg sm:h-10 sm:w-10 sm:rounded-xl">
-            <Shield className="text-forest-green h-4 w-4 sm:h-5 sm:w-5" />
+          <div className="bg-saffron/20 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg sm:h-10 sm:w-10 sm:rounded-xl">
+            <Shield className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
           </div>
           <div className="min-w-0 flex-1">
             <h3 className="text-foreground text-sm leading-tight font-semibold sm:text-base">
               Response Guarantee
             </h3>
             <p className="text-muted-foreground mt-1.5 text-xs leading-snug sm:text-sm">
-              We respond within <span className="text-forest-green font-semibold">12 hours</span>. For urgent
+              We respond within <span className="text-saffron font-semibold">12 hours</span>. For urgent
               bookings, use WhatsApp.
             </p>
           </div>
@@ -151,7 +151,7 @@ export function ContactInfo() {
         <Button
           asChild
           size="lg"
-          className="h-11 w-full rounded-full bg-[#25D366] text-sm text-white hover:bg-[#25D366]/90 sm:h-12 sm:text-base"
+          className="h-11 w-full rounded-full bg-saffron text-sm text-white hover:bg-saffron/90 sm:h-12 sm:text-base"
         >
           <a
             href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}?text=Hi!%20I%20want%20to%20plan%20a%20trip%20to%20Himachal.`}

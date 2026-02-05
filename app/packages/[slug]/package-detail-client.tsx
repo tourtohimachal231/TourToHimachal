@@ -98,7 +98,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                   {pkg.category && (
                     <Badge
                       variant="outline"
-                      className="border-mountain-blue/30 text-mountain-blue border-2 px-2 py-0.5 text-xs font-semibold capitalize sm:px-3 sm:py-1 sm:text-sm"
+                      className="border-saffron/30 text-saffron border-2 px-2 py-0.5 text-xs font-semibold capitalize sm:px-3 sm:py-1 sm:text-sm"
                     >
                       {pkg.category}
                     </Badge>
@@ -106,7 +106,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                   {pkg.region && (
                     <Badge
                       variant="outline"
-                      className="border-forest-green/30 text-forest-green flex items-center gap-1 border-2 px-3 py-1 font-semibold"
+                      className="border-saffron/30 text-saffron flex items-center gap-1 border-2 px-3 py-1 font-semibold"
                     >
                       <MapPin className="h-3 w-3" />
                       {pkg.region}
@@ -144,7 +144,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                   className="py-2"
                 >
                   <div className="mb-4 flex items-center gap-2 sm:mb-6 sm:gap-3">
-                    <div className="from-forest-green to-mountain-blue flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br sm:h-10 sm:w-10">
+                    <div className="from-saffron to-sunset-orange flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br sm:h-10 sm:w-10">
                       <Check className="h-4 w-4 text-white sm:h-6 sm:w-6" />
                     </div>
                     <h2 className="text-foreground font-serif text-lg font-bold sm:text-2xl md:text-3xl">
@@ -155,9 +155,9 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                     {pkg.highlights.map((highlight, index) => (
                       <div
                         key={index}
-                        className="border-forest-green/20 hover:border-forest-green/40 flex items-start gap-2 rounded-lg border bg-white/80 p-3 backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:rounded-xl sm:p-4"
+                        className="border-saffron/20 hover:border-saffron/40 flex items-start gap-2 rounded-lg border bg-white/80 p-3 backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:rounded-xl sm:p-4"
                       >
-                        <div className="from-forest-green to-mountain-blue mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br sm:h-6 sm:w-6">
+                        <div className="from-saffron to-sunset-orange mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br sm:h-6 sm:w-6">
                           <Check className="h-3 w-3 text-white sm:h-4 sm:w-4" />
                         </div>
                         <span className="text-foreground text-xs font-medium sm:text-sm">{highlight}</span>
@@ -199,7 +199,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                   className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2"
                 >
                   {pkg.inclusions && pkg.inclusions.length > 0 && (
-                    <div className="from-forest-green/5 to-forest-green/10 border-forest-green/20 rounded-2xl border-2 bg-linear-to-br p-4 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-6">
+                    <div className="from-saffron/5 to-saffron/10 border-saffron/20 rounded-2xl border-2 bg-linear-to-br p-4 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-6">
                       <div className="mb-3 flex items-center gap-2 sm:mb-5 sm:gap-3">
                         <div className="bg-forest-green flex h-8 w-8 items-center justify-center rounded-full sm:h-10 sm:w-10">
                           <Check className="h-4 w-4 text-white sm:h-6 sm:w-6" />
@@ -211,7 +211,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                       <ul className="space-y-2 sm:space-y-3">
                         {pkg.inclusions.map((item, index) => (
                           <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
-                            <Check className="text-forest-green mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
+                            <Check className="text-saffron mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
                             <span className="text-xs font-medium sm:text-sm">{item}</span>
                           </li>
                         ))}
@@ -276,7 +276,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                   <div className="border-saffron/20 mb-4 space-y-2 border-b pb-4">
                     <div className="flex items-center gap-2 rounded-lg bg-white/60 p-2">
                       <div className="bg-mountain-blue/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full">
-                        <Clock className="text-mountain-blue h-4 w-4" />
+                        <Clock className="text-saffron h-4 w-4" />
                       </div>
                       <div className="min-w-0">
                         <p className="text-muted-foreground text-xs">Duration</p>
@@ -285,7 +285,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                     </div>
                     <div className="flex items-center gap-2 rounded-lg bg-white/60 p-2">
                       <div className="bg-forest-green/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full">
-                        <MapPin className="text-forest-green h-4 w-4" />
+                        <MapPin className="text-saffron h-4 w-4" />
                       </div>
                       <div className="min-w-0">
                         <p className="text-muted-foreground text-xs">Destination</p>
@@ -331,7 +331,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
 
                     <Button
                       asChild
-                      className="from-forest-green to-mountain-blue hover:from-forest-green/90 hover:to-mountain-blue/90 h-10 w-full gap-2 bg-linear-to-r text-sm text-white shadow-md transition-all hover:shadow-lg"
+                      className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 h-10 w-full gap-2 bg-linear-to-r text-sm text-white shadow-md transition-all hover:shadow-lg"
                     >
                       <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                         <WhatsAppIcon className="h-4 w-4" />
