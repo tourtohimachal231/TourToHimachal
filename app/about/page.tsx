@@ -119,7 +119,7 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="bg-temple-red/10 text-temple-red rounded-xl p-2">
+                    <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                       <HeartHandshake className="h-5 w-5" />
                     </div>
                     <div>
@@ -177,7 +177,7 @@ export default function AboutPage() {
                   </div>
 
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                    <Button asChild variant="green" className="w-full sm:w-auto">
+                    <Button asChild variant="saffron" className="w-full sm:w-auto">
                       <Link href="/taxi">
                         View Taxi Service <ArrowRight className="h-4 w-4" />
                       </Link>

@@ -82,9 +82,8 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
         const whatsappLink = generateWhatsAppLink(
           {
             packageName: packageName,
-            packagePrice: packagePrice,
             date: formData.date,
-            travelers: Number.parseInt(formData.travelers) || undefined,
+            passengers: Number.parseInt(formData.travelers) || undefined,
             name: formData.name,
             phone: formData.phone,
             message: formData.message,
@@ -247,7 +246,7 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
             placeholder="Any special requirements or questions..."
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            className="min-h-[80px] pl-10"
+            className="min-h-20 pl-10"
           />
         </div>
       </div>

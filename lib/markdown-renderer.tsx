@@ -9,8 +9,26 @@ interface MarkdownRendererProps {
   className?: string
 }
 
+interface MarkdownComponents {
+  h2: React.ComponentType<{ children?: React.ReactNode }>
+  h3: React.ComponentType<{ children?: React.ReactNode }>
+  p: React.ComponentType<{ children?: React.ReactNode }>
+  ul: React.ComponentType<{ children?: React.ReactNode }>
+  ol: React.ComponentType<{ children?: React.ReactNode }>
+  li: React.ComponentType<{ children?: React.ReactNode }>
+  blockquote: React.ComponentType<{ children?: React.ReactNode }>
+  strong: React.ComponentType<{ children?: React.ReactNode }>
+  a: React.ComponentType<{ href?: string; children?: React.ReactNode }>
+  img: React.ComponentType<{ src?: string | Blob; alt?: string }>
+  table: React.ComponentType<{ children?: React.ReactNode }>
+  th: React.ComponentType<{ children?: React.ReactNode }>
+  td: React.ComponentType<{ children?: React.ReactNode }>
+  code: React.ComponentType<{ children?: React.ReactNode }>
+  hr: React.ComponentType
+}
+
 export function MarkdownRenderer({ content, className }: MarkdownRendererProps) {
-  const components: any = {
+  const components: MarkdownComponents = {
     h2: ({ children }) => (
       <h2 className="text-foreground mt-12 mb-6 scroll-mt-24 font-serif text-2xl font-bold md:text-3xl">
         {children}
@@ -25,18 +43,18 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
       <p className="text-muted-foreground mb-6 leading-relaxed">{children}</p>
     ),
     ul: ({ children }) => (
-      <ul className="text-muted-foreground mb-6 list-inside list-disc space-y-2">{children as any}</ul>
+      <ul className="text-muted-foreground mb-6 list-inside list-disc space-y-2">{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="text-muted-foreground mb-6 list-inside list-decimal space-y-2">{children as any}</ol>
+      <ol className="text-muted-foreground mb-6 list-inside list-decimal space-y-2">{children}</ol>
     ),
-    li: ({ children }) => <li className="leading-relaxed">{children as any}</li>,
+    li: ({ children }) => <li className="leading-relaxed">{children}</li>,
     blockquote: ({ children }) => (
       <blockquote className="border-saffron bg-muted/50 text-foreground my-8 rounded-r-lg border-l-4 py-2 pl-6 italic">
-        {children as any}
+        {children}
       </blockquote>
     ),
-    strong: ({ children }) => <strong className="font-semibold text-orange-500">{children as any}</strong>,
+    strong: ({ children }) => <strong className="font-semibold text-orange-500">{children}</strong>,
     a: ({ href, children }) => (
       <a
         href={href}
@@ -44,12 +62,12 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
         rel="noopener noreferrer"
         className="text-saffron hover:text-saffron/80 underline underline-offset-4"
       >
-        {children as any}
+        {children}
       </a>
     ),
     img: ({ src, alt }) => (
       <figure className="my-8">
-        <img src={src as string} alt={alt || ""} className="w-full rounded-lg" />
+        <img src={src} alt={alt || ""} className="w-full rounded-lg" />
         {alt && (
           <figcaption className="text-muted-foreground mt-3 text-center text-sm italic">
             {alt}
@@ -59,19 +77,19 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     ),
     table: ({ children }) => (
       <div className="my-8 overflow-x-auto">
-        <table className="border-border w-full border-collapse rounded-lg border">{children as any}</table>
+        <table className="border-border w-full border-collapse rounded-lg border">{children}</table>
       </div>
     ),
     th: ({ children }) => (
       <th className="border-border bg-muted text-foreground border px-4 py-2 text-left font-semibold">
-        {children as any}
+        {children}
       </th>
     ),
     td: ({ children }) => (
-      <td className="border-border text-muted-foreground border px-4 py-2">{children as any}</td>
+      <td className="border-border text-muted-foreground border px-4 py-2">{children}</td>
     ),
     code: ({ children }) => (
-      <code className="bg-muted text-foreground rounded px-2 py-1 font-mono text-sm">{children as any}</code>
+      <code className="bg-muted text-foreground rounded px-2 py-1 font-mono text-sm">{children}</code>
     ),
     hr: () => <hr className="border-border my-12" />,
   }
