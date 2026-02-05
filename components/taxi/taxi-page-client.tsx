@@ -377,7 +377,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
       </section>
 
       {/* Sticky Mobile CTA */}
-      <div className="bg-background border-border fixed right-0 bottom-0 left-0 z-50 border-t p-4 lg:hidden">
+      <div className="bg-background border-border fixed right-0 bottom-0 left-0 z-40 border-t p-4 lg:hidden">
         <div className="flex gap-3">
           <Button asChild className="bg-forest-green hover:bg-forest-green/90 flex-1 gap-2 text-white">
             <a href="#book">

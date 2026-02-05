@@ -234,7 +234,7 @@ export function ContactForm() {
       initial="hidden"
       animate="visible"
       onSubmit={handleSubmit}
-      className="space-y-6"
+      className="space-y-6 min-w-0 w-full"
     >
       {/* Honeypot field - hidden from users */}
       <input
@@ -248,8 +248,8 @@ export function ContactForm() {
         aria-hidden="true"
       />
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="space-y-2">
+      <div className="grid gap-6 md:grid-cols-2 min-w-0">
+        <div className="space-y-2 min-w-0">
           <Label htmlFor="name">Full Name *</Label>
           <Input
             id="name"
@@ -280,7 +280,7 @@ export function ContactForm() {
             )}
           </AnimatePresence>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-2 min-w-0">
           <Label htmlFor="email">Email Address *</Label>
           <Input
             id="email"
@@ -314,8 +314,8 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="space-y-2">
+      <div className="grid gap-6 md:grid-cols-2 min-w-0">
+        <div className="space-y-2 min-w-0">
           <Label htmlFor="phone">Phone / WhatsApp *</Label>
           <Input
             id="phone"
@@ -347,7 +347,7 @@ export function ContactForm() {
             )}
           </AnimatePresence>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-2 min-w-0">
           <Label htmlFor="serviceType">Service Type *</Label>
           <Select
             value={formData.serviceType}
@@ -387,7 +387,7 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2 min-w-0">
         <Label htmlFor="subject">Subject</Label>
         <Input
           id="subject"
@@ -399,7 +399,7 @@ export function ContactForm() {
         />
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2 min-w-0">
         <Label htmlFor="message">Your Message *</Label>
         <Textarea
           id="message"

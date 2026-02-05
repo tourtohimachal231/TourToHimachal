@@ -30,32 +30,32 @@ export function ContactPageClient() {
   return (
     <>
       <Header />
-      <main className="min-h-screen pb-20 md:pb-0">
+      <main className="min-h-screen pb-20 md:pb-0 overflow-x-hidden">
         {/* Hero Section with Infinite Scroll */}
         <ContactHero />
 
         {/* Contact Form & Info Section */}
-        <section id="get-in-touch" ref={getInTouchRef} className="py-12 sm:py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto grid max-w-4xl gap-8 md:gap-12 lg:max-w-none lg:grid-cols-5 lg:items-start">
+        <section id="get-in-touch" ref={getInTouchRef} className="py-12 sm:py-16 md:py-24 overflow-x-hidden">
+          <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
+            <div className="mx-auto w-full min-w-0 grid gap-4 sm:gap-6 md:gap-8 lg:gap-12 lg:grid-cols-5 lg:items-start">
               {/* Contact Info Sidebar */}
-              <div className="order-1 flex flex-col lg:order-1 lg:col-span-2">
-                <div className="bg-card border-border flex flex-col rounded-2xl border p-4 sm:p-6 md:p-8">
+              <div className="order-1 flex flex-col lg:order-1 lg:col-span-2 w-full min-w-0">
+                <div className="bg-card border-border flex flex-col w-full min-w-0 rounded-2xl border p-3 sm:p-4 md:p-6 lg:p-8 box-border">
                   <div className="mb-5 sm:mb-6">
                     <h2 className="text-foreground font-serif text-xl font-bold sm:text-2xl">Get in Touch</h2>
                     <p className="text-muted-foreground mt-2 text-sm sm:text-base">
                       Call, WhatsApp, or email us — we typically respond within 12 hours.
                     </p>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <ContactInfo />
                   </div>
                 </div>
               </div>
 
               {/* Contact Form */}
-              <div className="order-2 flex flex-col lg:order-2 lg:col-span-3">
-                <div className="bg-card border-border flex flex-col rounded-2xl border p-4 sm:p-6 md:p-8">
+              <div className="order-2 flex flex-col lg:order-2 lg:col-span-3 w-full min-w-0">
+                <div className="bg-card border-border flex flex-col w-full min-w-0 rounded-2xl border p-3 sm:p-4 md:p-6 lg:p-8 box-border">
                   <div className="mb-5 sm:mb-6">
                     <h2 className="text-foreground font-serif text-xl font-bold sm:text-2xl">
                       Send Us a Message
@@ -64,7 +64,7 @@ export function ContactPageClient() {
                       Fill out the form below and we'll get back to you within 12 hours.
                     </p>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <ContactForm />
                   </div>
                 </div>

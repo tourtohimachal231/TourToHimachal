@@ -74,10 +74,10 @@ export function ContactInfo() {
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
-      className="space-y-4 sm:space-y-6"
+      className="space-y-4 sm:space-y-6 min-w-0"
     >
       {/* Contact Cards */}
-      <div className="space-y-6">
+      <div className="space-y-6 min-w-0">
         {contactInfo.map((item) => (
           <motion.a
             key={item.label}
@@ -85,7 +85,7 @@ export function ContactInfo() {
             target={item.href.startsWith("http") ? "_blank" : undefined}
             rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
             variants={fadeInUp}
-            className={`flex items-start gap-3 rounded-xl bg-linear-to-br p-3 sm:gap-4 sm:rounded-2xl sm:p-4 ${item.bgColor} border-border hover:border-saffron/30 group border transition-all hover:shadow-lg`}
+            className={`flex items-start gap-3 rounded-xl bg-linear-to-br p-3 sm:gap-4 sm:rounded-2xl sm:p-4 ${item.bgColor} border-border hover:border-saffron/30 group border transition-all hover:shadow-lg min-w-0 w-full`}
           >
             <div
               className={`h-10 w-10 rounded-lg bg-linear-to-br sm:h-12 sm:w-12 sm:rounded-xl ${item.color} flex shrink-0 items-center justify-center shadow-md transition-transform group-hover:scale-110`}

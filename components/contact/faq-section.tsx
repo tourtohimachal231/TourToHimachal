@@ -34,14 +34,14 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="bg-muted/30 py-16 md:py-24">
-      <div className="container mx-auto px-4">
+    <section className="bg-muted/30 py-12 sm:py-16 md:py-24 overflow-x-hidden">
+      <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mx-auto max-w-3xl"
+          className="mx-auto w-full"
         >
           <motion.div variants={fadeInUp} className="mb-12 text-center">
             <h2 className="text-foreground mb-4 font-serif text-3xl font-bold md:text-4xl">
@@ -51,12 +51,12 @@ export function FAQSection() {
           </motion.div>
 
           <motion.div variants={fadeInUp}>
-            <Accordion type="single" collapsible className="space-y-4">
+            <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
               {faqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`faq-${index}`}
-                  className="bg-background border-border rounded-xl border px-6 transition-shadow data-[state=open]:shadow-md"
+                  className="bg-background border-border w-full rounded-xl border px-4 sm:px-6 transition-shadow data-[state=open]:shadow-md box-border"
                 >
                   <AccordionTrigger className="py-5 text-left font-semibold hover:no-underline">
                     {faq.question}
