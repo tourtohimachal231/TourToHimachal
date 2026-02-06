@@ -331,8 +331,8 @@ export function VehiclesSection({ vehicles }: VehiclesSectionProps) {
               >
                 <div className="mb-2 flex items-start justify-between sm:mb-3">
                   <div>
-                    <h4 className="text-foreground text-xs font-medium sm:text-sm">{vehicle.name}</h4>
-                    <Badge variant="outline" className="mt-1 text-[10px] sm:text-xs">
+                    <h4 className="text-foreground text-sm font-medium md:text-base">{vehicle.name}</h4>
+                    <Badge variant="outline" className="mt-1 text-xs md:text-sm">
                       {vehicle.type}
                     </Badge>
                   </div>
@@ -342,7 +342,7 @@ export function VehiclesSection({ vehicles }: VehiclesSectionProps) {
                     className="scale-90 sm:scale-100"
                   />
                 </div>
-                <div className="text-muted-foreground space-y-1 text-xs sm:text-sm">
+                <div className="text-muted-foreground space-y-1 text-sm md:text-base">
                   <p>
                     {vehicle.capacity} passengers • {vehicle.luggage_capacity || 0} bags
                   </p>

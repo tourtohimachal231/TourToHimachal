@@ -105,7 +105,7 @@ export function Footer() {
                 </div>
                
               </Link>
-              <p className="mb-3 text-xs leading-relaxed text-slate-400 sm:mb-4 sm:text-sm md:text-base">
+              <p className="mb-3 text-sm leading-relaxed text-slate-400 sm:mb-4 md:text-base">
                 {settings.about_text ||
                   "Your trusted partner for exploring the majestic Himachal Pradesh. From spiritual journeys to adventure trips, we make your travel dreams come true."}
               </p>
@@ -148,7 +148,7 @@ export function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h3 className="mb-3 flex items-center gap-2 text-base font-bold sm:mb-4 sm:text-lg">
+              <h3 className="mb-3 flex items-center gap-2 text-lg font-bold sm:mb-4 md:text-xl">
                 <span className="from-saffron to-golden-yellow h-1 w-6 rounded-full bg-gradient-to-r sm:w-8" />
                 Quick Links
               </h3>
@@ -157,7 +157,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="hover:text-saffron group flex items-center gap-2 text-xs text-slate-400 transition-colors sm:text-sm md:text-base"
+                      className="hover:text-saffron group flex items-center gap-2 text-sm text-slate-400 transition-colors md:text-base"
                     >
                       <ArrowRight className="-ml-5 h-3 w-3 opacity-0 transition-all group-hover:ml-0 group-hover:opacity-100" />
                       {link.label}
@@ -169,7 +169,7 @@ export function Footer() {
 
             {/* Destinations */}
             <div>
-              <h3 className="mb-3 flex items-center gap-2 text-base font-bold sm:mb-4 sm:text-lg">
+              <h3 className="mb-3 flex items-center gap-2 text-lg font-bold sm:mb-4 md:text-xl">
                 <span className="from-saffron to-sunset-orange h-1 w-6 rounded-full bg-gradient-to-r sm:w-8" />
                 Top Destinations
               </h3>
@@ -178,7 +178,7 @@ export function Footer() {
                   <li key={destination.slug}>
                     <Link
                       href={`/packages/${destination.slug}`}
-                      className="hover:text-saffron group flex items-center gap-2 text-xs text-slate-400 transition-colors sm:text-sm md:text-base"
+                      className="hover:text-saffron group flex items-center gap-2 text-sm text-slate-400 transition-colors md:text-base"
                     >
                       <MapPin className="text-saffron h-3 w-3" />
                       {destination.name}
@@ -190,7 +190,7 @@ export function Footer() {
 
             {/* Contact */}
             <div>
-              <h3 className="mb-3 flex items-center gap-2 text-base font-bold sm:mb-4 sm:text-lg">
+              <h3 className="mb-3 flex items-center gap-2 text-lg font-bold sm:mb-4 md:text-xl">
                 <span className="from-sunset-orange to-temple-red h-1 w-6 rounded-full bg-gradient-to-r sm:w-8" />
                 Contact Us
               </h3>
@@ -201,7 +201,7 @@ export function Footer() {
                       <div className="bg-saffron/10 group-hover:bg-saffron/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
                         <MapPin className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                       </div>
-                      <span className="text-xs text-slate-400 sm:text-sm md:text-base">
+                      <span className="text-sm text-slate-400 md:text-base">
                         Near Temple Complex, Chintpurni, HP 177106
                       </span>
                     </li>
@@ -211,7 +211,7 @@ export function Footer() {
                       </div>
                       <a
                         href="mailto:info@tourtohimachal.com"
-                        className="hover:text-saffron text-xs break-all text-slate-400 transition-colors sm:text-sm md:text-base"
+                        className="hover:text-saffron text-sm break-all text-slate-400 transition-colors md:text-base"
                       >
                         info@tourtohimachal.com
                       </a>
@@ -224,7 +224,7 @@ export function Footer() {
                     <div className="bg-saffron/10 group-hover:bg-saffron/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
                       <MapPin className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                     </div>
-                    <span className="text-xs text-slate-400 sm:text-sm md:text-base">{address}</span>
+                    <span className="text-sm text-slate-400 md:text-base">{address}</span>
                   </li>
                   {contactPhone && (
                     <li className="group flex items-center gap-2 sm:gap-3">
@@ -233,7 +233,7 @@ export function Footer() {
                       </div>
                       <a
                         href={`tel:${contactPhone.replace(/\s/g, "")}`}
-                        className="hover:text-saffron text-xs text-slate-400 transition-colors sm:text-sm md:text-base"
+                        className="hover:text-saffron text-sm text-slate-400 transition-colors md:text-base"
                       >
                         {contactPhone}
                       </a>
@@ -245,7 +245,7 @@ export function Footer() {
                     </div>
                     <a
                       href={`mailto:${contactEmail}`}
-                      className="hover:text-saffron text-xs break-all text-slate-400 transition-colors sm:text-sm md:text-base"
+                      className="hover:text-saffron text-sm break-all text-slate-400 transition-colors md:text-base"
                     >
                       {contactEmail}
                     </a>
@@ -260,19 +260,19 @@ export function Footer() {
         <div className="border-t border-slate-800">
           <div className="container mx-auto px-4 py-4 sm:py-6">
             <div className="flex flex-col items-center justify-between gap-3 sm:gap-4 md:flex-row">
-              <p className="flex items-center gap-1 text-xs text-slate-300 sm:text-sm">
+              <p className="flex items-center gap-1 text-sm text-slate-300 md:text-base">
                 © 2026 TourToHimachal. All rights reserved.
                 </p>
               <div className="flex gap-4 sm:gap-6">
                 <Link
                   href="/privacy"
-                  className="hover:text-saffron text-xs text-slate-300 transition-colors sm:text-sm"
+                  className="hover:text-saffron text-sm text-slate-300 transition-colors md:text-base"
                 >
                   Privacy Policy
                 </Link>
                 <Link
                   href="/terms"
-                  className="hover:text-saffron text-xs text-slate-300 transition-colors sm:text-sm"
+                  className="hover:text-saffron text-sm text-slate-300 transition-colors md:text-base"
                 >
                   Terms of Service
                 </Link>

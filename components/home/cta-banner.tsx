@@ -83,7 +83,7 @@ export function CTABanner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mb-5 font-serif text-3xl font-bold text-balance text-white md:text-5xl lg:text-6xl"
+            className="mb-5 font-serif text-3xl font-bold text-balance text-white sm:text-5xl md:text-6xl lg:text-7xl"
           >
             Plan Your Dream <span className="text-golden-yellow">Himachal Trip</span>
           </motion.h2>
@@ -93,7 +93,7 @@ export function CTABanner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mx-auto mb-8 max-w-2xl text-xl leading-relaxed text-white/90"
+            className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-white/90 md:text-xl"
           >
             Get personalized travel packages and instant taxi booking. Connect with us on WhatsApp for quick
             assistance.
@@ -106,7 +106,7 @@ export function CTABanner() {
             transition={{ delay: 0.4 }}
             className="flex flex-col justify-center gap-4 sm:flex-row"
           >
-            <Button size="xl" variant="gradient" className="group px-10 text-lg shadow-2xl" asChild>
+            <Button size="xl" variant="gradient" className="group px-10 text-base font-semibold shadow-2xl" asChild>
               <a
                 href={`https://wa.me/${(settings.whatsapp_number || "").replace(/[^0-9]/g, "")}?text=Hi, I want to plan my Himachal trip`}
                 target="_blank"
@@ -121,7 +121,7 @@ export function CTABanner() {
             <Button
               size="xl"
               variant="outline"
-              className="hover:text-saffron border-2 border-white bg-transparent px-10 text-lg text-white hover:bg-white"
+              className="hover:text-saffron border-2 border-white bg-transparent px-10 text-base font-semibold text-white hover:bg-white"
               asChild
             >
               <a href={`tel:${settings.contact_phone || ""}`}>

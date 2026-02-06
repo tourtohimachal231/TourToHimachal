@@ -85,7 +85,7 @@ export function WhyChooseUs() {
           </motion.h2>
           <motion.p
             variants={fadeInUp}
-            className="text-muted-foreground mx-auto max-w-2xl px-4 text-sm md:text-lg"
+            className="text-muted-foreground mx-auto max-w-2xl px-4 text-base md:text-lg"
           >
             We combine local expertise, quality service, and customer-first approach to make your Himachal
             journey memorable.
@@ -113,7 +113,7 @@ export function WhyChooseUs() {
                 <feature.icon className="h-6 w-6 text-white md:h-8 md:w-8" />
               </div>
 
-              <h3 className="text-foreground mb-2 text-base font-bold md:mb-3 md:text-xl">{feature.title}</h3>
+              <h3 className="text-foreground mb-2 text-lg font-bold md:mb-3 md:text-xl">{feature.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed md:text-base">
                 {feature.description}
               </p>

@@ -101,11 +101,11 @@ export function PopularDestinationsClient({ packages }: PopularDestinationsClien
           </motion.div>
           <motion.h2
             variants={fadeInUp}
-            className="text-foreground mt-2 mb-2 font-serif text-3xl font-bold md:mt-3 md:mb-3 md:text-5xl"
+            className="text-foreground mt-2 mb-2 font-serif text-3xl font-bold sm:text-4xl md:mt-3 md:mb-3 md:text-5xl"
           >
             Popular <span className="text-saffron">Destinations</span>
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-muted-foreground mx-auto mb-2 max-w-2xl text-lg">
+          <motion.p variants={fadeInUp} className="text-muted-foreground mx-auto mb-2 max-w-2xl text-base md:text-lg">
             Discover the most sought-after destinations in Himachal Pradesh, from snow-capped mountains to
             serene valleys.
           </motion.p>

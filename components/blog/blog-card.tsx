@@ -66,7 +66,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
                   {post.category}
                 </Badge>
               )}
-              <h3 className="group-hover:text-saffron mb-2 line-clamp-2 font-serif text-lg font-bold text-white transition-colors sm:text-xl md:text-2xl lg:text-3xl">
+              <h3 className="group-hover:text-saffron mb-2 line-clamp-2 font-serif text-2xl font-bold text-white transition-colors sm:text-3xl md:text-4xl">
                 {post.title}
               </h3>
               {post.excerpt && (
@@ -123,7 +123,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           </div>
           {/* Right: Content */}
           <div className="flex flex-1 flex-col justify-center bg-gradient-to-b from-transparent to-white/60 p-4 md:p-6 lg:p-8">
-            <h3 className="text-foreground group-hover:text-saffron mb-2 line-clamp-2 font-serif text-lg leading-tight font-bold transition-colors md:text-2xl">
+            <h3 className="text-foreground group-hover:text-saffron mb-2 line-clamp-2 font-serif text-xl leading-tight font-bold transition-colors md:text-2xl">
               {post.title}
             </h3>
             {post.excerpt && (

@@ -45,11 +45,11 @@ export function BlogHero({ post }: BlogHeroProps) {
     <section className="bg-background border-b">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <motion.div variants={fadeInUp} initial="hidden" animate="visible" className="max-w-4xl">
-          <Badge className="bg-saffron mb-4 text-white">{post.category || "Travel"}</Badge>
-          <h1 className="mb-4 font-serif text-3xl font-bold text-balance text-[#fc9700] md:text-4xl lg:text-5xl">
+          <Badge className="bg-saffron mb-4 text-white text-xs font-semibold">{post.category || "Travel"}</Badge>
+          <h1 className="mb-4 font-serif text-4xl font-bold text-balance text-[#fc9700] sm:text-5xl md:text-6xl">
             {post.title}
           </h1>
-          {post.excerpt && <p className="text-muted-foreground mb-6 text-lg">{post.excerpt}</p>}
+          {post.excerpt && <p className="text-muted-foreground mb-6 text-lg md:text-xl">{post.excerpt}</p>}
           <div className="text-muted-foreground flex flex-wrap items-center gap-4 text-sm">
             {displayAuthor && (
               <span className="flex items-center gap-1">

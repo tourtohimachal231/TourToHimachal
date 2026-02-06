@@ -38,7 +38,7 @@ export function DiaryGallery({ images, title }: DiaryGalleryProps) {
         viewport={{ once: true }}
         className="py-12"
       >
-        <h2 className="text-foreground mb-6 font-serif text-2xl font-bold md:text-3xl">Photo Gallery</h2>
+        <h2 className="text-foreground mb-6 font-serif text-2xl font-bold sm:text-3xl md:text-4xl">Photo Gallery</h2>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {images.map((image, index) => (
             <motion.button

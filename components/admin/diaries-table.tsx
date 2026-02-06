@@ -185,8 +185,8 @@ export function DiariesTable({ diaries }: DiariesTableProps) {
               >
                 <TableCell>
                   <div>
-                    <p className="text-foreground font-medium">{diary.title}</p>
-                    <p className="text-muted-foreground text-sm">/{diary.slug}</p>
+                    <p className="text-foreground font-medium text-base md:text-lg">{diary.title}</p>
+                    <p className="text-muted-foreground text-sm md:text-base">/{diary.slug}</p>
                   </div>
                 </TableCell>
                 <TableCell>{diary.author_name}</TableCell>
@@ -199,12 +199,12 @@ export function DiariesTable({ diaries }: DiariesTableProps) {
                       checked={diary.is_published}
                       onCheckedChange={() => togglePublished(diary.id, diary.is_published)}
                     />
-                    <span className="text-muted-foreground text-sm">
+                    <span className="text-muted-foreground text-sm md:text-base">
                       {diary.is_published ? "Published" : "Draft"}
                     </span>
                   </div>
                 </TableCell>
-                <TableCell className="text-muted-foreground text-sm">
+                <TableCell className="text-muted-foreground text-sm md:text-base">
                   {format(new Date(diary.created_at), "MMM d, yyyy")}
                 </TableCell>
                 <TableCell className="text-right">

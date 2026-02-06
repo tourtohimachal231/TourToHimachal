@@ -241,12 +241,12 @@ export function RoutesSection({ routes }: RoutesSectionProps) {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="text-xs sm:text-sm">Route</TableHead>
-                  <TableHead className="hidden text-xs sm:text-sm md:table-cell">Distance</TableHead>
-                  <TableHead className="hidden text-xs sm:table-cell sm:text-sm">Time</TableHead>
-                  <TableHead className="text-xs sm:text-sm">Fare</TableHead>
-                  <TableHead className="xs:table-cell hidden text-xs sm:text-sm">Active</TableHead>
-                  <TableHead className="text-right text-xs sm:text-sm">Actions</TableHead>
+                  <TableHead className="text-xs font-semibold md:text-sm">Route</TableHead>
+                  <TableHead className="hidden text-xs font-semibold md:text-sm md:table-cell">Distance</TableHead>
+                  <TableHead className="hidden text-xs font-semibold md:text-sm md:table-cell">Time</TableHead>
+                  <TableHead className="text-xs font-semibold md:text-sm">Fare</TableHead>
+                  <TableHead className="xs:table-cell hidden text-xs font-semibold md:text-sm">Active</TableHead>
+                  <TableHead className="text-right text-xs font-semibold md:text-sm">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -258,16 +258,16 @@ export function RoutesSection({ routes }: RoutesSectionProps) {
                     transition={{ delay: index * 0.03 }}
                     className="border-border border-b"
                   >
-                    <TableCell className="text-xs font-medium sm:text-sm">
+                    <TableCell className="text-sm font-medium md:text-base">
                       {route.from_location} → {route.to_location}
                     </TableCell>
-                    <TableCell className="hidden text-xs sm:text-sm md:table-cell">
+                    <TableCell className="hidden text-sm md:text-base md:table-cell">
                       {route.distance_km} km
                     </TableCell>
-                    <TableCell className="hidden text-xs sm:table-cell sm:text-sm">
+                    <TableCell className="hidden text-sm md:text-base md:table-cell">
                       {route.estimated_time}
                     </TableCell>
-                    <TableCell className="text-xs sm:text-sm">₹{route.base_fare?.toLocaleString()}</TableCell>
+                    <TableCell className="text-sm md:text-base">₹{route.base_fare?.toLocaleString()}</TableCell>
                     <TableCell className="xs:table-cell hidden">
                       <Switch
                         checked={route.is_active}

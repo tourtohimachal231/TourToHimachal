@@ -185,7 +185,7 @@ export function Testimonials() {
                     </div>
 
                     <div>
-                      <p className="text-sm font-bold text-gray-900">{testimonial.name}</p>
+                      <p className="text-base font-bold text-gray-900 md:text-lg">{testimonial.name}</p>
                       <div className="flex gap-2 text-xs text-gray-500">
                         {testimonial.city && (
                           <>
@@ -234,7 +234,7 @@ export function Testimonials() {
                 </div>
 
                 {/* Review Text */}
-                <p className="line-clamp-4 text-sm leading-relaxed text-gray-600">
+                <p className="line-clamp-4 text-base leading-relaxed text-gray-600 md:text-lg">
                   {testimonial.review_text}
                 </p>
               </motion.div>

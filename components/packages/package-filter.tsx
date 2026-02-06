@@ -146,7 +146,7 @@ export function PackageFilter({
               {/* Price Range Slider */}
               <div className="border-golden-yellow/20 flex-1 rounded-xl border bg-white p-4 sm:rounded-2xl sm:p-6 lg:w-2/5 lg:flex-none">
                 <div className="mb-2 flex items-center justify-between sm:mb-3">
-                  <label className="text-foreground text-xs font-semibold sm:text-sm">Price Range</label>
+                  <label className="text-foreground text-sm font-semibold md:text-base">Price Range</label>
                   <span className="text-saffron text-xs font-bold sm:text-sm">
                     ₹{priceRange.toLocaleString()}
                   </span>
@@ -169,7 +169,7 @@ export function PackageFilter({
               {/* Filter Grid */}
               <div className="flex-1 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-2 xl:grid-cols-4">
                 <div className="space-y-1 sm:space-y-2">
-                  <label className="text-muted-foreground text-[10px] font-semibold tracking-wider uppercase sm:text-xs">
+                  <label className="text-muted-foreground text-xs font-semibold tracking-wider uppercase md:text-sm">
                     Region
                   </label>
                   <Select value={localRegion} onValueChange={setLocalRegion}>
@@ -187,7 +187,7 @@ export function PackageFilter({
                 </div>
 
                 <div className="space-y-1 sm:space-y-2">
-                  <label className="text-muted-foreground text-[10px] font-semibold tracking-wider uppercase sm:text-xs">
+                  <label className="text-muted-foreground text-xs font-semibold tracking-wider uppercase md:text-sm">
                     Duration
                   </label>
                   <Select value={localDuration} onValueChange={setLocalDuration}>
@@ -205,7 +205,7 @@ export function PackageFilter({
                 </div>
 
                 <div className="space-y-1 sm:space-y-2">
-                  <label className="text-muted-foreground text-[10px] font-semibold tracking-wider uppercase sm:text-xs">
+                  <label className="text-muted-foreground text-xs font-semibold tracking-wider uppercase md:text-sm">
                     Theme
                   </label>
                   <Select value={localTheme} onValueChange={setLocalTheme}>
@@ -223,7 +223,7 @@ export function PackageFilter({
                 </div>
 
                 <div className="space-y-1 sm:space-y-2">
-                  <label className="text-muted-foreground text-[10px] font-semibold tracking-wider uppercase sm:text-xs">
+                  <label className="text-muted-foreground text-xs font-semibold tracking-wider uppercase md:text-sm">
                     Sort By
                   </label>
                   <Select value={localSortBy} onValueChange={setLocalSortBy}>

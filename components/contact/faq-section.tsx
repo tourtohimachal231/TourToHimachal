@@ -44,7 +44,7 @@ export function FAQSection() {
           className="mx-auto w-full"
         >
           <motion.div variants={fadeInUp} className="mb-6 md:mb-8 lg:mb-10 text-center">
-            <h2 className="text-foreground mb-4 font-serif text-3xl font-bold md:text-4xl">
+            <h2 className="text-foreground mb-4 font-serif text-3xl font-bold sm:text-4xl md:text-5xl">
               Frequently Asked Questions
             </h2>
             <p className="text-muted-foreground">Quick answers to common queries about our services</p>

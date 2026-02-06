@@ -113,7 +113,7 @@ export function ProfileSettingsClient({ userEmail, initialFullName }: ProfileSet
             <CardContent className="space-y-5">
               <div className="flex items-center gap-4">
                 <Avatar className="h-16 w-16 sm:h-20 sm:w-20">
-                  <AvatarFallback className="text-lg sm:text-xl">{initials}</AvatarFallback>
+                  <AvatarFallback className="text-xl sm:text-2xl">{initials}</AvatarFallback>
                 </Avatar>
                 <div className="min-w-0 space-y-1">
                   <p className="truncate font-medium">{fullName || "Admin User"}</p>
@@ -131,8 +131,8 @@ export function ProfileSettingsClient({ userEmail, initialFullName }: ProfileSet
               <Separator />
 
               <div className="space-y-2">
-                <p className="text-sm font-medium">Tips</p>
-                <p className="text-muted-foreground text-xs">
+                <p className="text-base font-medium md:text-lg">Tips</p>
+                <p className="text-muted-foreground text-sm md:text-base">
                   Keep your full name updated for a cleaner admin experience.
                 </p>
               </div>

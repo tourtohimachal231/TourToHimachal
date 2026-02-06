@@ -34,8 +34,8 @@ export function SafetyFeatures() {
           <div className="bg-primary/10 text-primary mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full">
             {iconMap[feature.icon]}
           </div>
-          <h3 className="text-foreground mb-1 text-sm font-medium">{feature.title}</h3>
-          <p className="text-muted-foreground text-xs">{feature.description}</p>
+          <h3 className="text-foreground mb-1 text-sm font-medium md:text-base">{feature.title}</h3>
+          <p className="text-muted-foreground text-sm md:text-base">{feature.description}</p>
         </motion.div>
       ))}
     </motion.div>

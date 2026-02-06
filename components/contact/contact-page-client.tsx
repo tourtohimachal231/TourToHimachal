@@ -42,7 +42,7 @@ export function ContactPageClient() {
               <div className="order-1 flex flex-col lg:order-1 lg:col-span-2 w-full min-w-0">
                 <div className="bg-card border-border flex flex-col w-full min-w-0 rounded-2xl border p-4 sm:p-5 md:p-6 box-border">
                   <div className="mb-4 sm:mb-5 md:mb-6">
-                    <h2 className="text-foreground font-serif text-xl font-bold sm:text-2xl">Get in Touch</h2>
+                    <h2 className="text-foreground font-serif text-2xl font-bold sm:text-3xl">Get in Touch</h2>
                     <p className="text-muted-foreground mt-2 text-sm sm:text-base">
                       Call, WhatsApp, or email us — we typically respond within 12 hours.
                     </p>
@@ -57,7 +57,7 @@ export function ContactPageClient() {
               <div className="order-2 flex flex-col lg:order-2 lg:col-span-3 w-full min-w-0">
                 <div className="bg-card border-border flex flex-col w-full min-w-0 rounded-2xl border p-4 sm:p-5 md:p-6 box-border">
                   <div className="mb-4 sm:mb-5 md:mb-6">
-                    <h2 className="text-foreground font-serif text-xl font-bold sm:text-2xl">
+                    <h2 className="text-foreground font-serif text-2xl font-bold sm:text-3xl">
                       Send Us a Message
                     </h2>
                     <p className="text-muted-foreground mt-2 text-sm sm:text-base">

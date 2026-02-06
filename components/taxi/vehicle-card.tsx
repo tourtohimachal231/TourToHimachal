@@ -49,18 +49,18 @@ export function VehicleCard({ vehicle, isSelected, onSelect }: VehicleCardProps)
           )}
         </div>
         <div className="p-5">
-          <h3 className="text-foreground mb-1 text-xl font-semibold">{vehicle.name}</h3>
-          <p className="text-muted-foreground mb-4 text-sm">{vehicle.type}</p>
+          <h3 className="text-foreground mb-1 text-xl font-semibold md:text-2xl">{vehicle.name}</h3>
+          <p className="text-muted-foreground mb-4 text-base md:text-lg">{vehicle.type}</p>
 
           <div className="mb-4 flex items-center gap-4">
             <div className="text-muted-foreground flex items-center gap-1">
               <Users className="h-4 w-4" />
-              <span className="text-sm">{vehicle.capacity} pax</span>
+              <span className="text-base md:text-lg">{vehicle.capacity} pax</span>
             </div>
             {vehicle.luggage_capacity && (
               <div className="text-muted-foreground flex items-center gap-1">
                 <Briefcase className="h-4 w-4" />
-                <span className="text-sm">{vehicle.luggage_capacity} bags</span>
+                <span className="text-base md:text-lg">{vehicle.luggage_capacity} bags</span>
               </div>
             )}
           </div>

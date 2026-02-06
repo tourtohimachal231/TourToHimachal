@@ -199,7 +199,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
 
                     {/* Value */}
                     <p
-                      className={`bg-linear-to-r text-2xl font-bold sm:text-3xl md:text-4xl ${stat.gradient} mb-1 bg-clip-text text-transparent`}
+                      className={`bg-linear-to-r text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl ${stat.gradient} mb-1 bg-clip-text text-transparent`}
                     >
                       {stat.value}
                     </p>
@@ -227,7 +227,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
               viewport={{ once: true }}
               className="mb-8 text-center md:mb-10"
             >
-              <h2 className="text-foreground mb-4 font-serif text-3xl font-bold">Choose Your Vehicle</h2>
+              <h2 className="text-foreground mb-4 font-serif text-3xl font-bold sm:text-4xl md:text-5xl">Choose Your Vehicle</h2>
               <p className="text-muted-foreground mx-auto max-w-2xl">
                 Select from our fleet of well-maintained vehicles suited for every group size and budget
               </p>
@@ -264,7 +264,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
               viewport={{ once: true }}
               className="mb-12 text-center"
             >
-              <h2 className="text-foreground mb-4 font-serif text-3xl font-bold">Popular Routes & Fares</h2>
+              <h2 className="text-foreground mb-4 font-serif text-3xl font-bold sm:text-4xl md:text-5xl">Popular Routes & Fares</h2>
               <p className="text-muted-foreground mx-auto max-w-2xl">
                 Check out our most booked routes with transparent pricing
               </p>
@@ -309,7 +309,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
               </div>
 
               <div className="lg:mt-auto">
-                <h2 className="mb-3 text-3xl font-bold tracking-tight text-black lg:mb-4">Get Your Quote</h2>
+                <h2 className="mb-3 text-3xl font-bold tracking-tight text-black sm:text-4xl lg:mb-4">Get Your Quote</h2>
                 <p className="text-muted-foreground mb-5 lg:mb-6">
                   Fill in your travel details and we will get back to you with the best options. No advance
                   payment required - pay after your trip!
@@ -346,7 +346,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
             viewport={{ once: true }}
             className="mb-12 text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-black">Safety & Features</h2>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-black sm:text-4xl">Safety & Features</h2>
             <p className="text-muted-foreground mx-auto max-w-2xl">
               Your safety is our priority. Here is what we offer with every ride.
             </p>
@@ -368,7 +368,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
             viewport={{ once: true }}
             className="mx-auto max-w-3xl"
           >
-            <h2 className="text-foreground mb-8 text-center font-serif text-3xl font-bold">
+            <h2 className="text-foreground mb-8 text-center font-serif text-3xl font-bold sm:text-4xl">
               Frequently Asked Questions
             </h2>
             <PackageFAQ faqs={taxiFaqs} />

@@ -19,10 +19,10 @@ export function MapSection() {
             viewport={{ once: true }}
             className="mb-6 text-center md:mb-8 lg:mb-10"
           >
-            <h2 className="text-foreground mb-3 font-serif text-2xl font-bold sm:mb-4 sm:text-3xl md:text-4xl">
+            <h2 className="text-foreground mb-3 font-serif text-3xl font-bold sm:mb-4 sm:text-4xl md:text-5xl">
               Visit Our Office
             </h2>
-            <p className="text-muted-foreground mx-auto max-w-3xl px-4 text-sm sm:text-base">
+            <p className="text-muted-foreground mx-auto max-w-3xl px-4 text-base md:text-lg">
               Located near the sacred Chintpurni Temple, we're easily accessible for travelers seeking
               spiritual and adventure tours
             </p>
@@ -57,17 +57,17 @@ export function MapSection() {
                     <MapPin className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-foreground text-sm font-semibold sm:text-base">
+                    <h3 className="text-foreground text-base font-semibold md:text-lg">
                       TourToHimachal Office
                     </h3>
-                    <p className="text-muted-foreground text-xs sm:text-sm">
+                    <p className="text-muted-foreground text-sm md:text-base">
                       Near Temple Complex, Chintpurni, HP 177106
                     </p>
                   </div>
                 </div>
 
                 <div className="mb-3 grid grid-cols-2 gap-2 sm:mb-4 sm:gap-3">
-                  <div className="text-muted-foreground bg-muted/50 flex items-center gap-2 rounded-lg p-2 text-xs sm:text-sm">
+                  <div className="text-muted-foreground bg-muted/50 flex items-center gap-2 rounded-lg p-2 text-sm md:text-base">
                     <Clock className="text-saffron h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
                     <span className="truncate">9 AM - 7 PM</span>
                   </div>
@@ -85,7 +85,7 @@ export function MapSection() {
                 <Button
                   asChild
                   size="sm"
-                  className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 h-9 w-full rounded-full bg-gradient-to-r text-xs text-white sm:h-10 sm:text-sm"
+                  className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 h-9 w-full rounded-full bg-gradient-to-r text-sm text-white sm:h-10 md:text-base"
                 >
                   <a
                     href="https://maps.google.com/?q=Chintpurni+Himachal+Pradesh"

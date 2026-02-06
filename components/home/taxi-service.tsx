@@ -79,7 +79,7 @@ export function TaxiService() {
                   <Shield className="h-5 w-5 text-white sm:h-6 sm:w-6 md:h-8 md:w-8" />
                 </div>
                 <div>
-                  <p className="text-foreground text-xl font-bold sm:text-2xl md:text-3xl">20+</p>
+                  <p className="text-foreground text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl">20+</p>
                   <p className="text-muted-foreground text-[10px] sm:text-xs md:text-sm">Verified Drivers</p>
                 </div>
               </div>
@@ -115,7 +115,7 @@ export function TaxiService() {
               </span>
             </div>
 
-            <h2 className="xs:text-2xl text-foreground mt-1 mb-1.5 font-serif text-xl leading-tight font-bold sm:mt-2 sm:mb-2 sm:text-3xl md:mt-3 md:mb-3 md:text-3xl lg:text-4xl">
+            <h2 className="xs:text-2xl text-foreground mt-1 mb-1.5 font-serif text-xl leading-tight font-bold sm:mt-2 sm:mb-2 sm:text-3xl md:mt-3 md:mb-3 md:text-4xl lg:text-5xl">
               Premium <span className="text-saffron">Taxi Services</span>
             </h2>
             <p className="text-muted-foreground mb-3 text-xs leading-snug sm:mb-4 sm:text-sm md:mb-5 md:text-base lg:text-lg">
@@ -146,7 +146,7 @@ export function TaxiService() {
             </div>
 
             <div className="mb-3 sm:mb-4 md:mb-5">
-              <h3 className="text-foreground mb-1.5 flex items-center gap-1.5 text-xs font-bold sm:mb-2 sm:gap-2 sm:text-sm md:mb-3 md:text-base">
+              <h3 className="text-foreground mb-1.5 flex items-center gap-1.5 text-sm font-bold sm:mb-2 sm:gap-2 md:text-base md:mb-3 md:text-lg">
                 <MapPin className="text-saffron h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                 Popular Routes
               </h3>

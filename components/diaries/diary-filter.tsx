@@ -79,8 +79,8 @@ export function DiaryFilter({
   return (
     <div className=" rounded-lg p-3 border border-saffron/20 sm:rounded-2xl sm:p-4 lg:rounded-3xl lg:p-6">
       <div className="mb-4 hidden lg:block">
-        <h3 className="text-foreground font-serif text-xl font-bold">Filter & Search</h3>
-        <p className="text-muted-foreground text-sm">Find your perfect story</p>
+        <h3 className="text-foreground font-serif text-xl font-bold md:text-2xl">Filter & Search</h3>
+        <p className="text-muted-foreground text-base md:text-lg">Find your perfect story</p>
       </div>
 
       {/* Unified Search + Filter Toggle */}
@@ -134,7 +134,7 @@ export function DiaryFilter({
             <div className="border-saffron/20 mt-3 space-y-4 border-t pt-3 sm:mt-4 sm:pt-4">
               {/* Region */}
               <div className="border-golden-yellow/20 rounded-xl border bg-white p-3 sm:rounded-2xl sm:p-4">
-                <p className="text-foreground mb-3 text-xs font-semibold sm:text-sm">Region</p>
+                <p className="text-foreground mb-3 text-sm font-semibold md:text-base">Region</p>
                 <div className="flex flex-wrap gap-2">
                   <Badge
                     variant={localRegion === "All" ? "default" : "outline"}
@@ -162,7 +162,7 @@ export function DiaryFilter({
 
               {/* Tags */}
               <div className="border-golden-yellow/20 rounded-xl border bg-white p-3 sm:rounded-2xl sm:p-4">
-                <p className="text-foreground mb-3 text-xs font-semibold sm:text-sm">Tags</p>
+                <p className="text-foreground mb-3 text-sm font-semibold md:text-base">Tags</p>
                 <div className="flex flex-wrap gap-2">
                   <Badge
                     variant={localTags.length === 0 ? "default" : "outline"}
@@ -190,7 +190,7 @@ export function DiaryFilter({
 
               {/* Season */}
               <div className="border-golden-yellow/20 rounded-xl border bg-white p-3 sm:rounded-2xl sm:p-4">
-                <p className="text-foreground mb-3 text-xs font-semibold sm:text-sm">Season</p>
+                <p className="text-foreground mb-3 text-sm font-semibold md:text-base">Season</p>
                 <div className="flex flex-wrap gap-2">
                   <Badge
                     variant={!localMonth || localMonth === "All" ? "default" : "outline"}

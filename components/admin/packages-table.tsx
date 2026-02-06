@@ -195,13 +195,13 @@ export function PackagesTable({ packages }: PackagesTableProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="text-xs sm:text-sm">Package</TableHead>
-              <TableHead className="text-xs sm:text-sm">Price</TableHead>
-              <TableHead className="text-xs sm:text-sm">Duration</TableHead>
-              <TableHead className="text-xs sm:text-sm">Categories</TableHead>
-              <TableHead className="text-center text-xs sm:text-sm">Active</TableHead>
-              <TableHead className="text-center text-xs sm:text-sm">Featured</TableHead>
-              <TableHead className="text-right text-xs sm:text-sm">Actions</TableHead>
+              <TableHead className="text-xs font-semibold md:text-sm">Package</TableHead>
+              <TableHead className="text-xs font-semibold md:text-sm">Price</TableHead>
+              <TableHead className="text-xs font-semibold md:text-sm">Duration</TableHead>
+              <TableHead className="text-xs font-semibold md:text-sm">Categories</TableHead>
+              <TableHead className="text-center text-xs font-semibold md:text-sm">Active</TableHead>
+              <TableHead className="text-center text-xs font-semibold md:text-sm">Featured</TableHead>
+              <TableHead className="text-right text-xs font-semibold md:text-sm">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -213,25 +213,25 @@ export function PackagesTable({ packages }: PackagesTableProps) {
                 transition={{ delay: index * 0.03 }}
                 className="border-border hover:bg-muted/50 border-b transition-colors"
               >
-                <TableCell className="text-xs sm:text-sm">
+                <TableCell className="text-sm md:text-base">
                   <div>
                     <p className="text-foreground truncate font-medium">{pkg.title}</p>
-                    <p className="text-muted-foreground truncate text-[10px] sm:text-xs">/{pkg.slug}</p>
+                    <p className="text-muted-foreground truncate text-xs md:text-sm">/{pkg.slug}</p>
                   </div>
                 </TableCell>
-                <TableCell className="text-xs sm:text-sm">
+                <TableCell className="text-sm md:text-base">
                   <div>
                     <p className="font-medium">₹{pkg.price.toLocaleString()}</p>
                     {pkg.original_price && (
-                      <p className="text-muted-foreground text-[10px] line-through sm:text-xs">
+                      <p className="text-muted-foreground text-xs line-through md:text-sm">
                         ₹{pkg.original_price.toLocaleString()}
                       </p>
                     )}
                   </div>
                 </TableCell>
-                <TableCell className="text-xs whitespace-nowrap sm:text-sm">{pkg.duration}</TableCell>
-                <TableCell className="text-xs sm:text-sm">
-                  <Badge variant="outline" className="text-[10px] sm:text-xs">
+                <TableCell className="text-sm whitespace-nowrap md:text-base">{pkg.duration}</TableCell>
+                <TableCell className="text-sm md:text-base">
+                  <Badge variant="outline" className="text-xs">
                     {pkg.category || "General"}
                   </Badge>
                 </TableCell>

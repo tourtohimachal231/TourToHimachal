@@ -42,8 +42,8 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
                 <span className="text-base font-bold text-white">D{item.day}</span>
               </div>
               <div>
-                <p className="text-foreground text-sm font-bold md:text-base">{item.title}</p>
-                <p className="text-muted-foreground text-xs font-medium">Day {item.day} of your journey</p>
+                <p className="text-foreground text-base font-bold md:text-lg">{item.title}</p>
+                <p className="text-muted-foreground text-sm font-medium md:text-base">Day {item.day} of your journey</p>
               </div>
             </div>
             <ChevronDown
@@ -71,7 +71,7 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
                           key={subtitleIndex}
                           className="to-saffron/5 border-saffron/20 rounded-xl border bg-linear-to-br from-white p-3 transition-all duration-300 hover:shadow-md sm:p-4 md:p-5"
                         >
-                          <h5 className="text-foreground mb-2.5 flex items-center gap-2 text-xs font-bold sm:text-sm">
+                          <h5 className="text-foreground mb-2.5 flex items-center gap-2 text-sm font-bold md:text-base">
                             <div className="from-saffron to-sunset-orange h-2 w-2 rounded-full bg-linear-to-br" />
                             {subtitle.title}
                           </h5>
@@ -83,7 +83,7 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
                               </span>
                             </div>
                           )}
-                          <MarkdownRenderer content={subtitle.description} className="mb-3 text-xs sm:text-xs" />
+                          <MarkdownRenderer content={subtitle.description} className="mb-3 text-sm md:text-base" />
                           {subtitle.activities && subtitle.activities.length > 0 && (
                             <div className="flex flex-wrap gap-2">
                               {subtitle.activities.map((activity, actIndex) => (
@@ -101,7 +101,7 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
                       ))}
                     </div>
                   ) : (
-                    <div className="text-muted-foreground py-3 pl-0 text-xs italic md:pl-16">
+                    <div className="text-muted-foreground py-3 pl-0 text-sm italic md:pl-16 md:text-base">
                       No sub-sections added.
                     </div>
                   )}

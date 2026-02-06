@@ -113,7 +113,7 @@ export function PackageCard({ pkg }: PackageCardProps) {
                 </Badge>
               )}
               <div className="rounded-full bg-white/95 px-3 py-1.5 shadow-lg backdrop-blur-sm">
-                <span className="text-saffron text-lg font-bold md:text-xl">
+                <span className="text-saffron text-base font-bold md:text-lg">
                   ₹{pkg.price?.toLocaleString()}
                 </span>
                 {pkg.original_price && pkg.original_price > pkg.price && (
@@ -127,11 +127,11 @@ export function PackageCard({ pkg }: PackageCardProps) {
 
           {/* Content */}
           <div className="p-4 md:p-5">
-            <h3 className="text-foreground group-hover:text-saffron mb-2 line-clamp-1 font-serif text-base font-semibold transition-colors md:text-lg">
+            <h3 className="text-foreground group-hover:text-saffron mb-2 line-clamp-1 font-serif text-xl font-semibold transition-colors md:text-2xl">
               {pkg.title}
             </h3>
 
-            <p className="text-muted-foreground mb-4 line-clamp-2 text-xs md:text-sm">
+            <p className="text-muted-foreground mb-4 line-clamp-2 text-sm leading-relaxed md:text-base">
               {pkg.short_description || pkg.description}
             </p>
 

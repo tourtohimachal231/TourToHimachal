@@ -81,18 +81,18 @@ export function HeroServer({ images }: HeroServerProps) {
       <div className="relative z-10 flex min-h-screen items-center justify-center pt-24 pb-8 sm:pt-28 md:pt-24">
         <div className="container mx-auto px-4 text-center">
           <div className="mx-auto max-w-5xl hero-animate-in-delay-1">
-            <div className="from-saffron/30 to-sunset-orange/30 mb-4 inline-flex max-w-[90vw] items-center gap-1 rounded-full border border-white/20 bg-linear-to-r px-2 py-1.5 text-[10px] font-medium text-white backdrop-blur-md sm:gap-2 sm:px-3 sm:py-2 sm:text-xs md:mb-8 md:px-5 md:text-sm hero-animate-in-delay-2">
+            <div className="from-saffron/30 to-sunset-orange/30 mb-4 inline-flex max-w-[90vw] items-center gap-1 rounded-full border border-white/20 bg-linear-to-r px-2 py-1.5 text-xs font-medium text-white backdrop-blur-md sm:gap-2 sm:px-3 sm:py-2 md:mb-8 md:px-5 md:text-sm hero-animate-in-delay-2">
               <span className="text-center whitespace-nowrap sm:whitespace-normal">
                 Discover Magic of Himachal
               </span>
             </div>
 
-            <h1 className="xs:text-4xl mb-5 px-2 font-serif text-3xl leading-[1.05] font-bold tracking-tight text-white sm:text-5xl md:mb-9 md:text-6xl lg:text-7xl hero-animate-in-delay-3">
+            <h1 className="xs:text-4xl mb-5 px-2 font-serif text-4xl leading-[1.05] font-bold tracking-tight text-white sm:text-5xl md:mb-9 md:text-6xl lg:text-7xl hero-animate-in-delay-3">
               <span className="block whitespace-nowrap">Your Gateway to</span>
               <span className="block whitespace-nowrap text-[#fc9700]">Himalayan Adventures</span>
             </h1>
 
-            <p className="mx-auto mb-6 max-w-3xl px-4 text-xs leading-relaxed text-white/90 sm:mb-8 sm:text-sm md:mb-12 md:text-base lg:text-lg xl:text-xl hero-animate-in-delay-4">
+            <p className="mx-auto mb-6 max-w-3xl px-4 text-sm leading-relaxed text-white/90 sm:mb-8 md:mb-12 md:text-base lg:text-lg hero-animate-in-delay-4">
               Experience breathtaking mountains, sacred temples, thrilling adventures, and seamless travel
               with our curated tour packages and reliable taxi services.
             </p>
@@ -102,7 +102,7 @@ export function HeroServer({ images }: HeroServerProps) {
                 asChild
                 variant="gradient"
                 size="lg"
-                className="h-10 w-full px-4 text-xs sm:h-11 sm:w-auto sm:px-6 sm:text-sm md:h-12 md:px-10 md:text-lg"
+                className="h-10 w-full px-4 text-sm sm:h-11 sm:w-auto sm:px-6 md:h-12 md:px-10 md:text-base"
               >
                 <Link href="/packages">
                   <MapPin className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4 md:h-5 md:w-5" />
@@ -113,7 +113,7 @@ export function HeroServer({ images }: HeroServerProps) {
               <Button
                 asChild
                 size="lg"
-                className="text-saffron h-10 w-full bg-white/95 px-4 text-xs shadow-xl hover:bg-white sm:h-11 sm:w-auto sm:px-6 sm:text-sm md:h-12 md:px-10 md:text-lg"
+                className="text-saffron h-10 w-full bg-white/95 px-4 text-sm shadow-xl hover:bg-white sm:h-11 sm:w-auto sm:px-6 md:h-12 md:px-10 md:text-base"
               >
                 <Link href="/taxi">
                   <Car className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4 md:h-5 md:w-5" />
@@ -133,10 +133,10 @@ export function HeroServer({ images }: HeroServerProps) {
                   key={index}
                   className="rounded-xl bg-white/5 p-2 text-center backdrop-blur-sm sm:p-3 md:bg-transparent md:p-0 md:backdrop-blur-none"
                 >
-                  <div className="xs:text-xl text-golden-yellow text-lg font-bold sm:text-2xl md:text-3xl lg:text-4xl">
+                  <div className="xs:text-xl text-golden-yellow text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl">
                     {stat.value}
                   </div>
-                  <div className="mt-0.5 text-[10px] text-white/70 sm:mt-1 sm:text-xs md:text-sm">
+                  <div className="mt-0.5 text-xs text-white/70 sm:mt-1 md:text-sm">
                     {stat.label}
                   </div>
                 </div>

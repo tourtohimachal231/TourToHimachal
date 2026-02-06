@@ -92,8 +92,8 @@ export function ReviewsTable({ reviews }: ReviewsTableProps) {
               <CardContent className="space-y-3 p-3">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-foreground truncate font-medium">{review.name}</p>
-                    <div className="text-muted-foreground flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                    <p className="text-foreground truncate text-base font-medium md:text-lg">{review.name}</p>
+                    <div className="text-muted-foreground flex flex-wrap items-center gap-x-2 gap-y-1 text-sm md:text-base">
                       {review.city && <span className="truncate">{review.city}</span>}
                       {review.phone && <span className="truncate">{review.phone}</span>}
                     </div>
@@ -130,12 +130,12 @@ export function ReviewsTable({ reviews }: ReviewsTableProps) {
                       />
                     ))}
                   </div>
-                  <p className="text-muted-foreground text-xs whitespace-nowrap">
+                  <p className="text-muted-foreground text-sm whitespace-nowrap md:text-base">
                     {format(new Date(review.created_at), "MMM d, yyyy")}
                   </p>
                 </div>
 
-                <p className="text-muted-foreground line-clamp-3 text-sm" title={review.review_text}>
+                <p className="text-muted-foreground line-clamp-3 text-base md:text-lg" title={review.review_text}>
                   {review.review_text}
                 </p>
 
@@ -178,9 +178,9 @@ export function ReviewsTable({ reviews }: ReviewsTableProps) {
               >
                 <TableCell>
                   <div>
-                    <p className="text-foreground font-medium">{review.name}</p>
-                    {review.city && <p className="text-muted-foreground text-sm">{review.city}</p>}
-                    {review.phone && <p className="text-muted-foreground text-xs">{review.phone}</p>}
+                    <p className="text-foreground font-medium md:text-lg">{review.name}</p>
+                    {review.city && <p className="text-muted-foreground text-base md:text-lg">{review.city}</p>}
+                    {review.phone && <p className="text-muted-foreground text-sm md:text-base">{review.phone}</p>}
                   </div>
                 </TableCell>
                 <TableCell>
@@ -194,7 +194,7 @@ export function ReviewsTable({ reviews }: ReviewsTableProps) {
                   </div>
                 </TableCell>
                 <TableCell>
-                  <p className="text-muted-foreground line-clamp-2 text-sm" title={review.review_text}>
+                  <p className="text-muted-foreground line-clamp-2 text-base md:text-lg" title={review.review_text}>
                     {review.review_text}
                   </p>
                 </TableCell>
@@ -209,7 +209,7 @@ export function ReviewsTable({ reviews }: ReviewsTableProps) {
                     </Badge>
                   </div>
                 </TableCell>
-                <TableCell className="text-muted-foreground text-sm">
+                <TableCell className="text-muted-foreground text-base md:text-lg">
                   {format(new Date(review.created_at), "MMM d, yyyy")}
                 </TableCell>
                 <TableCell className="text-right">

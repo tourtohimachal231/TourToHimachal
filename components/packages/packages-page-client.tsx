@@ -202,7 +202,7 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
               onClearFilters={clearFilters}
               hasActiveFilters={hasActiveFilters}
             />
-            <p className="text-muted-foreground text-xs sm:text-sm md:text-base">
+            <p className="text-muted-foreground text-sm md:text-base lg:text-lg">
               Showing <span className="text-saffron font-semibold">{displayedPackages.length}</span> of{" "}
               <span className="font-semibold">{filteredPackages.length}</span> packages
             </p>
@@ -213,13 +213,13 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
                   <div className="bg-saffron/10 mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full sm:mb-4 sm:h-20 sm:w-20">
                     <MapPin className="text-saffron h-8 w-8 sm:h-10 sm:w-10" />
                   </div>
-                  <h3 className="text-foreground mb-2 text-base font-semibold sm:text-lg md:text-xl">
+                  <h3 className="text-foreground mb-2 text-lg font-semibold sm:text-xl md:text-2xl">
                     No packages found
                   </h3>
-                  <p className="text-muted-foreground mb-4 text-xs sm:text-sm md:text-base">
+                  <p className="text-muted-foreground mb-4 text-sm md:text-base lg:text-lg">
                     Try adjusting your filters or search query
                   </p>
-                  <Button onClick={clearFilters} variant="gradient" className="rounded-full text-sm">
+                  <Button onClick={clearFilters} variant="gradient" className="rounded-full text-sm md:text-base">
                     Clear All Filters
                   </Button>
                 </div>

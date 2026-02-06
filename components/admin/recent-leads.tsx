@@ -41,8 +41,8 @@ export function RecentLeads({ leads }: RecentLeadsProps) {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between p-2">
-        <CardTitle className="truncate text-sm sm:text-base lg:text-lg">Recent Leads</CardTitle>
-        <Button variant="ghost" size="sm" asChild className="shrink-0 text-xs sm:text-sm">
+        <CardTitle className="truncate text-base sm:text-lg lg:text-xl">Recent Leads</CardTitle>
+        <Button variant="ghost" size="sm" asChild className="shrink-0 text-sm md:text-base">
           <Link href="/admin/leads" className="gap-1">
             <span className="xs:inline hidden">View All</span>
             <span className="xs:hidden">View</span>
@@ -54,8 +54,8 @@ export function RecentLeads({ leads }: RecentLeadsProps) {
         {leads.length === 0 ? (
           <div className="py-6 text-center sm:py-8">
             <Inbox className="text-muted-foreground mx-auto mb-2 h-10 w-10 sm:mb-3 sm:h-12 sm:w-12" />
-            <p className="text-muted-foreground text-xs sm:text-sm">No leads yet</p>
-            <p className="text-muted-foreground text-xs">New inquiries will appear here</p>
+            <p className="text-muted-foreground text-sm md:text-base">No leads yet</p>
+            <p className="text-muted-foreground text-sm md:text-base">New inquiries will appear here</p>
           </div>
         ) : (
           <div className="space-y-2 sm:space-y-3">
@@ -69,7 +69,7 @@ export function RecentLeads({ leads }: RecentLeadsProps) {
               >
                 <div className="min-w-0 flex-1">
                   <div className="mb-1 flex flex-wrap items-center gap-2">
-                    <p className="text-foreground truncate text-xs font-medium sm:text-sm">{lead.name}</p>
+                    <p className="text-foreground truncate text-sm font-medium md:text-base">{lead.name}</p>
                     <Badge
                       variant="outline"
                       className={`${statusColors[lead.status]} text-[10px] sm:text-xs`}
@@ -77,7 +77,7 @@ export function RecentLeads({ leads }: RecentLeadsProps) {
                       {lead.status}
                     </Badge>
                   </div>
-                  <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-[10px] sm:text-xs">
+                  <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-xs md:text-sm">
                     <span>{serviceLabels[lead.service_type] || lead.service_type}</span>
                     <span>•</span>
                     <span suppressHydrationWarning>

@@ -101,7 +101,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`rounded-full px-3 py-2 text-sm font-semibold transition-all duration-300 md:px-4 ${
+                  className={`rounded-full px-3 py-2 text-sm font-medium transition-all duration-300 md:px-4 ${
                     isActive ? "bg-saffron text-white" : "text-foreground hover:bg-saffron hover:text-white"
                   }`}
                 >
@@ -115,7 +115,7 @@ export function Header() {
             {/* Contact Phone */}
             {contactPhone && (
               <div className="text-right">
-                <p className="text-muted-foreground text-[10px] md:text-xs">Need help?</p>
+                <p className="text-muted-foreground text-xs md:text-sm">Need help?</p>
                 <a
                   href={`tel:${contactPhone.replace(/\s/g, "")}`}
                   className="text-foreground hover:text-saffron flex items-center justify-end gap-1 text-xs font-semibold transition-colors md:text-sm"
@@ -128,7 +128,7 @@ export function Header() {
             )}
 
             {whatsappNumber && windowWidth >= 1140 && (
-              <Button asChild variant="gradient" size="lg" className="gap-1 px-3 py-2 text-xs md:gap-2 md:px-4 md:py-2 md:text-sm">
+              <Button asChild variant="gradient" size="lg" className="gap-1 px-3 py-2 text-xs font-medium md:gap-2 md:px-4 md:py-2 md:text-sm">
                 <a
                   href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}`}
                   target="_blank"
@@ -213,7 +213,7 @@ export function Header() {
                       >
                         <Link
                           href={link.href}
-                          className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-semibold transition-all sm:px-4 sm:py-3 sm:text-base ${
+                          className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition-all sm:px-4 sm:py-3 sm:text-base ${
                             isActive
                               ? "bg-saffron text-white"
                               : "text-foreground hover:bg-saffron hover:text-white"
@@ -231,7 +231,7 @@ export function Header() {
                 </nav>
 
                 <div className="mt-auto space-y-3 sm:space-y-4">
-                  <Button asChild variant="gradient" size="lg" className="w-full text-sm sm:text-base">
+                  <Button asChild variant="gradient" size="lg" className="w-full text-sm font-medium sm:text-base">
                     <a
                       href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}`}
                       target="_blank"
@@ -244,11 +244,11 @@ export function Header() {
                   </Button>
 
                   {/* Contact info */}
-                  <div className="text-muted-foreground bg-muted/50 rounded-2xl p-3 text-center text-xs sm:p-4 sm:text-sm">
+                  <div className="text-muted-foreground bg-muted/50 rounded-2xl p-3 text-center text-sm sm:p-4 sm:text-base">
                     <p>Need help? Call us at</p>
                     <a
                       href={`tel:${contactPhone.replace(/\s/g, "")}`}
-                      className="text-saffron mt-1 flex items-center justify-center gap-2 text-sm font-semibold sm:text-base"
+                      className="text-saffron mt-1 flex items-center justify-center gap-2 text-sm font-medium sm:text-base"
                     >
                       <Phone className="h-4 w-4" />
                       {contactPhone}

@@ -35,8 +35,8 @@ export function AuthorCard({ author }: AuthorCardProps) {
           className="rounded-full"
         />
         <div className="text-center sm:text-left">
-          <h3 className="text-foreground mb-2 font-serif text-xl font-bold">About the Author</h3>
-          <p className="text-foreground mb-2 text-lg font-medium">{author.name}</p>
+          <h3 className="text-foreground mb-2 font-serif text-xl font-bold md:text-2xl">About the Author</h3>
+          <p className="text-foreground mb-2 text-lg font-medium md:text-xl">{author.name}</p>
           {author.bio && <p className="text-muted-foreground mb-4">{author.bio}</p>}
           <div className="flex justify-center gap-4 sm:justify-start">
             {author.social?.twitter && (

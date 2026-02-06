@@ -67,7 +67,7 @@ export function TravelThemes() {
           </motion.div>
           <motion.h2
             variants={fadeInUp}
-            className="text-foreground mt-3 mb-4 font-serif text-3xl font-bold md:text-5xl"
+            className="text-foreground mt-3 mb-4 font-serif text-3xl font-bold sm:text-4xl md:text-5xl"
           >
             Travel <span className="text-saffron">Themes</span>
           </motion.h2>
@@ -114,8 +114,8 @@ export function TravelThemes() {
                     <theme.icon className="h-7 w-7 text-white" />
                   </div>
 
-                  <h3 className="mb-2 font-serif text-2xl font-bold text-white">{theme.title}</h3>
-                  <p className="mb-4 text-sm text-white/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <h3 className="mb-2 font-serif text-2xl font-bold text-white sm:text-3xl">{theme.title}</h3>
+                  <p className="mb-4 text-sm text-white/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:text-base">
                     {theme.description}
                   </p>
 

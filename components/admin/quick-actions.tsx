@@ -72,7 +72,7 @@ export function QuickActions() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-base sm:text-lg">Quick Actions</CardTitle>
+        <CardTitle className="text-lg sm:text-xl">Quick Actions</CardTitle>
       </CardHeader>
       <CardContent>
         {actions.map((action, index) => (
@@ -91,7 +91,7 @@ export function QuickActions() {
               >
                 <action.icon className="h-4 w-4 sm:h-5 sm:w-5" />
               </div>
-              <span className="text-foreground group-hover:text-primary truncate text-xs font-medium transition-colors sm:text-sm">
+              <span className="text-foreground group-hover:text-primary truncate text-sm font-medium transition-colors md:text-base">
                 {action.label}
               </span>
               <Plus className="text-muted-foreground group-hover:text-primary ml-auto h-3 w-3 shrink-0 transition-colors sm:h-4 sm:w-4" />

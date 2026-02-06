@@ -159,7 +159,7 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
                 >
                   {/* Status helper */}
                   {filteredPosts.length > 0 && (
-                    <div className="text-muted-foreground text-xs sm:col-span-2 md:text-sm">
+                    <div className="text-muted-foreground text-sm sm:col-span-2 md:text-base">
                       Showing <span className="text-saffron font-semibold">{visiblePosts.length}</span> of{" "}
                       {filteredPosts.length}
                     </div>

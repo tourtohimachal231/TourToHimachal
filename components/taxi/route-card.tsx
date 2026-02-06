@@ -49,7 +49,7 @@ export function RouteCard({ route }: RouteCardProps) {
         </div>
       </div>
 
-      <div className="text-muted-foreground mb-4 flex items-center gap-4 text-sm">
+      <div className="text-muted-foreground mb-4 flex items-center gap-4 text-base md:text-lg">
         <span>{route.distance_km} km</span>
         <span className="text-border">|</span>
         <div className="flex items-center gap-1">
@@ -60,8 +60,8 @@ export function RouteCard({ route }: RouteCardProps) {
 
       <div className="flex items-center justify-between">
         <div>
-          <span className="text-muted-foreground text-sm">Starting from</span>
-          <p className="text-primary text-xl font-bold">₹{route.base_fare?.toLocaleString()} <span className="text-sm font-normal text-muted-foreground">per Trip</span></p>
+          <span className="text-muted-foreground text-base md:text-lg">Starting from</span>
+          <p className="text-primary text-xl font-bold md:text-2xl">₹{route.base_fare?.toLocaleString()} <span className="text-base font-normal text-muted-foreground md:text-lg">per Trip</span></p>
         </div>
         <Button asChild className="bg-saffron hover:bg-saffron/90 text-white">
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer">

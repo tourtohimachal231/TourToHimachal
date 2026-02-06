@@ -180,7 +180,7 @@ export function TravelDiariesClient({ blogs, diaries }: TravelDiariesClientProps
               asChild
               variant="outline"
               size="lg"
-              className="border-saffron text-saffron hover:bg-saffron mt-4 rounded-full border-2 bg-transparent text-sm hover:text-white md:mt-0 md:text-base"
+              className="border-saffron text-saffron hover:bg-saffron mt-4 rounded-full border-2 bg-transparent text-sm font-medium hover:text-white md:mt-0 md:text-base"
             >
               <Link href="/blog" className="gap-2">
                 View All Stories
