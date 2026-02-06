@@ -160,7 +160,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                         <div className="from-saffron to-sunset-orange mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br sm:h-6 sm:w-6">
                           <Check className="h-3 w-3 text-white sm:h-4 sm:w-4" />
                         </div>
-                        <span className="text-foreground text-xs font-medium sm:text-sm">{highlight}</span>
+                        <span className="text-foreground text-sm font-medium sm:text-base">{highlight}</span>
                       </div>
                     ))}
                   </div>
@@ -212,7 +212,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                         {pkg.inclusions.map((item, index) => (
                           <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
                             <Check className="text-saffron mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
-                            <span className="text-xs font-medium sm:text-sm">{item}</span>
+                            <span className="text-sm font-medium sm:text-base">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -232,7 +232,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                         {pkg.exclusions.map((item, index) => (
                           <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
                             <X className="text-destructive mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
-                            <span className="text-xs font-medium sm:text-sm">{item}</span>
+                            <span className="text-sm font-medium sm:text-base">{item}</span>
                           </li>
                         ))}
                       </ul>
