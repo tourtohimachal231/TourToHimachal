@@ -65,9 +65,9 @@ export function ClockwiseSlideHero({
   const direction = getSlideDirection(currentIndex)
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden">
+    <section className="relative flex min-h-screen items-center overflow-hidden safe-area-top">
       {/* Full-width Clockwise Slide Background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 z-0">
         <AnimatePresence mode="sync">
           <motion.div
             key={currentIndex}
@@ -91,11 +91,11 @@ export function ClockwiseSlideHero({
       </div>
 
       {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-      <div className="from-saffron/20 to-saffron/20 absolute inset-0 bg-gradient-to-r via-transparent" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+      <div className="from-saffron/20 to-saffron/20 absolute inset-0 z-10 bg-gradient-to-r via-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 w-full">
+      <div className="relative z-20 w-full">
         <div className="container mx-auto px-4 py-32">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

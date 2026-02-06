@@ -84,13 +84,13 @@ export function Footer() {
   const address = settings.address || "123 Mall Road, Shimla, Himachal Pradesh 171001"
 
   return (
-    <footer className="relative overflow-hidden">
+    <footer className="relative overflow-hidden safe-area-bottom">
       {/* Top gradient border */}
-      <div className="from-saffron via-golden-yellow to-saffron h-1 bg-gradient-to-r" />
+      <div className="from-saffron via-golden-yellow to-saffron h-1 bg-gradient-to-r" style={{ WebkitBackgroundClip: 'border-box' }} />
 
       {/* Main footer content */}
       <div className="bg-slate-900 text-white">
-        <div className="mx-auto px-4 py-8 md:py-10 lg:py-12">
+        <div className="mx-auto px-4 py-8 md:py-10 lg:py-12 safe-area-bottom">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1">
@@ -257,8 +257,8 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-800">
-          <div className="container mx-auto px-4 py-4 sm:py-6">
+        <div className="border-t border-slate-800 safe-area-bottom">
+          <div className="container mx-auto px-4 py-4 sm:py-6 safe-area-bottom">
             <div className="flex flex-col items-center justify-between gap-3 sm:gap-4 md:flex-row">
               <p className="flex items-center gap-1 text-sm text-slate-300 md:text-base">
                 © 2026 TourToHimachal. All rights reserved.

@@ -18,10 +18,12 @@ export default function Head() {
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta name="apple-mobile-web-app-title" content="TourToHimachal" />
+      <meta name="apple-touch-fullscreen" content="yes" />
       <meta name="application-name" content="TourToHimachal" />
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="theme-color" content="#ffffff" />
       <meta name="color-scheme" content="light dark" />
+      <meta name="x-ua-compatible" content="ie=edge" />
 
       {/* DNS / Connection hints */}
       <link rel="dns-prefetch" href="//res.cloudinary.com" />

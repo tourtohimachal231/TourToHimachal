@@ -88,7 +88,7 @@ export function Header() {
   }, [isMobileMenuOpen])
 
   return (
-    <header className="bg-background/95 border-border fixed top-0 right-0 left-0 z-50 border-b shadow-sm backdrop-blur-md transition-all duration-500">
+    <header className="bg-background/95 border-border fixed top-0 right-0 left-0 z-[1000] border-b shadow-sm backdrop-blur-md transition-all duration-500 safe-area-top">
       <div className="mx-auto px-4">
         <div className="flex h-16 items-center justify-between md:h-20">
           <Logo size="lg" className="origin-left translate-y-1.5 scale-x-[1.5] scale-y-[1.3]" />
@@ -162,7 +162,7 @@ export function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-100 bg-black/50 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[1001] bg-black/50 backdrop-blur-sm lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
@@ -171,7 +171,7 @@ export function Header() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 1 }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 z-101 flex h-dvh w-[80%] max-w-sm flex-col bg-white shadow-2xl lg:hidden"
+              className="fixed top-0 right-0 bottom-0 z-[1002] flex h-dvh w-[80%] max-w-sm flex-col bg-white shadow-2xl lg:hidden safe-area-top safe-area-bottom"
             >
               {/* Decorative gradient top */}
               <div className="from-saffron via-golden-yellow to-forest-green absolute top-0 right-0 left-0 h-1 bg-linear-to-r" />
