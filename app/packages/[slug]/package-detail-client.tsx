@@ -117,13 +117,6 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                   {pkg.title}
                 </h1>
 
-                {/* Short Description */}
-                {pkg.short_description && (
-                  <div className="mb-6 text-sm text-muted-foreground sm:text-base">
-                    <MarkdownRenderer content={pkg.short_description} />
-                  </div>
-                )}
-
                 {/* Hero Slider placed between Title and Description */}
                 <div className="border-saffron/20 mb-8 overflow-hidden rounded-lg border shadow-lg">
                   <PackageHeroSlider
@@ -162,7 +155,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                     {pkg.highlights.map((highlight, index) => (
                       <div
                         key={index}
-                        className="border-saffron/20 hover:border-saffron/40 flex items-start gap-2 rounded-lg border bg-white/80 p-3 backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:rounded-xl sm:p-4"
+                        className="border-saffron/20 hover:border-saffron/40 flex items-start gap-2 rounded-lg border bg-white/80 p-2 backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:rounded-xl"
                       >
                         <div className="from-saffron to-sunset-orange mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br sm:h-6 sm:w-6">
                           <Check className="h-3 w-3 text-white sm:h-4 sm:w-4" />
@@ -205,7 +198,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2"
+                  className="grid grid-cols-1 gap-2 sm:gap-3 md:grid-cols-2"
                 >
                   {pkg.inclusions && pkg.inclusions.length > 0 && (
                     <div className="from-saffron/5 to-saffron/10 border-saffron/20 rounded-2xl border-2 bg-linear-to-br p-4 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-6">
@@ -217,7 +210,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                           What's Included
                         </h3>
                       </div>
-                      <ul className="space-y-2 sm:space-y-3">
+                      <ul >
                         {pkg.inclusions.map((item, index) => (
                           <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
                             <Check className="text-saffron mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
@@ -239,7 +232,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                           What's Not Included
                         </h3>
                       </div>
-                      <ul className="space-y-2 sm:space-y-3">
+                      <ul>
                         {pkg.exclusions.map((item, index) => (
                           <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
                             <X className="text-destructive mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
