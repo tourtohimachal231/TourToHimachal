@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 interface MarkdownRendererProps {
   content: string
   className?: string
+  textColor?: string
 }
 
 interface MarkdownComponents {
@@ -27,7 +28,7 @@ interface MarkdownComponents {
   hr: React.ComponentType
 }
 
-export function MarkdownRenderer({ content, className }: MarkdownRendererProps) {
+export function MarkdownRenderer({ content, className, textColor = "text-muted-foreground" }: MarkdownRendererProps) {
   const components: MarkdownComponents = {
     h2: ({ children }) => (
       <h2 className="text-foreground mt-12 mb-6 scroll-mt-24 font-serif text-2xl font-bold md:text-3xl">
@@ -40,13 +41,13 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
       </h3>
     ),
     p: ({ children }) => (
-      <p className="text-muted-foreground mb-6 leading-relaxed">{children}</p>
+      <p className={`${textColor} mb-6 leading-relaxed`}>{children}</p>
     ),
     ul: ({ children }) => (
-      <ul className="text-muted-foreground mb-6 list-inside list-disc space-y-2">{children}</ul>
+      <ul className={`${textColor} mb-6 list-inside list-disc space-y-2`}>{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="text-muted-foreground mb-6 list-inside list-decimal space-y-2">{children}</ol>
+      <ol className={`${textColor} mb-6 list-inside list-decimal space-y-2`}>{children}</ol>
     ),
     li: ({ children }) => <li className="leading-relaxed">{children}</li>,
     blockquote: ({ children }) => (
@@ -86,7 +87,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
       </th>
     ),
     td: ({ children }) => (
-      <td className="border-border text-muted-foreground border px-4 py-2">{children}</td>
+      <td className={`border-border ${textColor} border px-4 py-2`}>{children}</td>
     ),
     code: ({ children }) => (
       <code className="bg-muted text-foreground rounded px-2 py-1 font-mono text-sm">{children}</code>
