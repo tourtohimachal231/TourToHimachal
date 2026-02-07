@@ -1,8 +1,19 @@
+import type { Metadata } from "next"
 import { Suspense } from "react"
 import Script from "next/script"
 import dynamic from "next/dynamic"
 
 export const revalidate = 0 // Always fetch fresh data
+
+export const metadata: Metadata = {
+  title: "TourToHimachal | Best Himachal Tours & Taxi Services",
+  description: "Explore Himachal with expert tours, taxi services & custom packages. Spiritual journeys, honeymoon trips & adventure getaways. Book your dream trip today!",
+  openGraph: {
+    title: "TourToHimachal | Best Himachal Tours & Taxi Services",
+    description: "Explore Himachal with expert tours, taxi services & custom packages. Spiritual journeys, honeymoon trips & adventure getaways. Book your dream trip today!",
+    type: "website",
+  },
+}
 
 // Dynamic import for Hero component (client component with animation)
 const Hero = dynamic(

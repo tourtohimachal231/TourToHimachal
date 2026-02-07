@@ -9,15 +9,15 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export const metadata: Metadata = {
-  title: "About Us | TourToHimachal - Tours, Packages & Taxi Services",
+  title: "About TourToHimachal | Your Trusted Himachal Travel Partner",
   description:
-    "Meet TourToHimachal — your local travel partner in Himachal Pradesh. We craft tour packages, spiritual journeys, honeymoon trips, and reliable taxi services with honest pricing and on-ground support.",
+    "Discover TourToHimachal - your local Himachal travel experts. Honest pricing, on-ground support & curated packages. Experience authentic Himalayan journeys!",
   keywords:
     "about tourtohimachal, himachal travel agency, himachal tour packages, chintpurni taxi service, spiritual tour himachal",
   openGraph: {
-    title: "About Us | TourToHimachal",
+    title: "About TourToHimachal | Your Trusted Himachal Travel Partner",
     description:
-      "Local expertise, transparent planning, and dependable service — discover how TourToHimachal helps you explore Himachal with comfort and confidence.",
+      "Discover TourToHimachal - your local Himachal travel experts. Honest pricing, on-ground support & curated packages. Experience authentic Himalayan journeys!",
     type: "website",
   },
 }

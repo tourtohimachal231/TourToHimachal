@@ -3,13 +3,13 @@ import { createPublicClient } from "@/lib/supabase/public"
 import { PackagesPageClient } from "@/components/packages/packages-page-client"
 
 export const metadata: Metadata = {
-  title: "Himachal Tour Packages | TourToHimachal — Spiritual, Family, Adventure",
+  title: "Himachal Tour Packages | Spiritual, Family & Adventure Trips",
   description:
-    "Browse curated Himachal tour packages: Chintpurni yatra, temple circuits, family trips, honeymoon tours, and adventure getaways. Custom itineraries on request.",
+    "Explore curated Himachal packages: Chintpurni yatra, temple circuits, family trips & honeymoon tours. Custom itineraries available. Book your adventure!",
   openGraph: {
-    title: "Himachal Tour Packages | TourToHimachal",
+    title: "Himachal Tour Packages | Spiritual, Family & Adventure Trips",
     description:
-      "Handpicked packages with local expertise and honest pricing.",
+      "Explore curated Himachal packages: Chintpurni yatra, temple circuits, family trips & honeymoon tours. Custom itineraries available. Book your adventure!",
     type: "website",
   },
 }

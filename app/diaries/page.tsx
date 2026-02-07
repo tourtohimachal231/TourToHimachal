@@ -3,13 +3,13 @@ import { createPublicClient } from "@/lib/supabase/public"
 import { DiariesPageClient } from "@/components/diaries/diaries-page-client"
 
 export const metadata: Metadata = {
-  title: "Travel Diaries | TourToHimachal — Real Trips & Experiences",
+  title: "Travel Diaries | Real Himachal Trips & Travel Stories",
   description:
-    "Browse real travel diaries from Himachal: itineraries, photos, and tips from recent journeys.",
+    "Explore real travel diaries from Himachal: itineraries, photos & tips from recent journeys. Get authentic insights to plan your perfect trip!",
   openGraph: {
-    title: "Travel Diaries | TourToHimachal",
+    title: "Travel Diaries | Real Himachal Trips & Travel Stories",
     description:
-      "Authentic travel experiences to help you plan better.",
+      "Explore real travel diaries from Himachal: itineraries, photos & tips from recent journeys. Get authentic insights to plan your perfect trip!",
     type: "website",
   },
 }

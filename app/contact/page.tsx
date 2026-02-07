@@ -2,14 +2,14 @@ import type { Metadata } from "next"
 import { ContactPageClient } from "@/components/contact/contact-page-client"
 
 export const metadata: Metadata = {
-  title: "Contact Us | TourToHimachal - Tours, Packages & Taxi Services",
+  title: "Contact TourToHimachal | Plan Your Himachal Trip Today",
   description:
-    "Get in touch with TourToHimachal for tour packages, taxi bookings, and custom itineraries. Located in Chintpurni, Himachal Pradesh. We respond within 12 hours.",
+    "Get in touch for tour packages, taxi bookings & custom itineraries. Located in Chintpurni, Himachal. Quick response within 12 hours. Start planning now!",
   keywords: "contact tourtohimachal, chintpurni travel agency, himachal tour booking, taxi service contact",
   openGraph: {
-    title: "Contact Us | TourToHimachal",
+    title: "Contact TourToHimachal | Plan Your Himachal Trip Today",
     description:
-      "Plan your perfect Himachal trip with us. Contact our travel experts for personalized assistance.",
+      "Get in touch for tour packages, taxi bookings & custom itineraries. Located in Chintpurni, Himachal. Quick response within 12 hours. Start planning now!",
     type: "website",
   },
 }
