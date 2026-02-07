@@ -20,7 +20,7 @@ const Hero = dynamic(
   () => import("@/components/home/hero").then((mod) => ({ default: mod.Hero })),
   {
     loading: () => (
-      <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-black/70 via-black/40 to-black/80">
+      <div className="relative min-h-screen flex items-center justify-center bg-linear-to-b from-black/70 via-black/40 to-black/80">
         <div className="text-white text-center">Loading...</div>
       </div>
     )
@@ -65,7 +65,7 @@ const Footer = dynamic(
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="bg-background flex-grow pb-8">
+      <main className="bg-background grow">
       <Script
         id="org-jsonld"
         type="application/ld+json"

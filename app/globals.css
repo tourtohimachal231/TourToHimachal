@@ -23,7 +23,7 @@ html {
 
 /* Safari/iOS touch action fixes */
 * {
-  touch-action: manipulation;
+ touch-action: manipulation;
   -webkit-touch-action: manipulation;
   touch-action-delay: none;
   -webkit-touch-callout: none;
