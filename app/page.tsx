@@ -53,7 +53,7 @@ const Footer = dynamic(
 )
 export default function HomePage() {
   return (
-    <main className="bg-background min-h-screen">
+    <main className="bg-background min-h-screen pb-8">
       <Script
         id="org-jsonld"
         type="application/ld+json"

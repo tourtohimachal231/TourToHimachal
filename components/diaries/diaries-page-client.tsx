@@ -124,7 +124,7 @@ export function DiariesPageClient({ diaries }: DiariesPageClientProps) {
   return (
     <>
       <Header />
-      <main className="bg-background min-h-screen">
+      <main className="bg-background min-h-screen pb-8">
         <StaticHero
           image="/Images/diary.png"
           badge="Real Stories, Real Adventures"

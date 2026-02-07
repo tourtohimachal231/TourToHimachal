@@ -88,7 +88,7 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
   return (
     <>
       <Header />
-      <main className="bg-background min-h-screen ">
+      <main className="bg-background min-h-screen pb-8">
         <div className="mt-16">
           <StaticHero
             image="/Images/blog.png"

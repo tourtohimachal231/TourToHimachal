@@ -26,7 +26,7 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen">
+      <main className="min-h-screen pb-8">
         {/* Hero */}
         <section className="relative overflow-hidden pt-16 md:pt-20 lg:pt-24">
           <div className="absolute inset-0">

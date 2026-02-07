@@ -20,7 +20,7 @@ export default function TermsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen pb-20 md:pb-0 overflow-x-hidden">
+      <main className="min-h-screen pb-8 overflow-x-hidden">
         {/* Hero Section */}
         <StaticHero
           image="Images/diary.png"

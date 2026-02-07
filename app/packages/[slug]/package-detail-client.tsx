@@ -72,7 +72,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
   }, [pkg.slug])
 
   return (
-    <main className="bg-background min-h-screen">
+    <main className="bg-background min-h-screen pb-8">
       <Header />
 
       {/* Main Content */}

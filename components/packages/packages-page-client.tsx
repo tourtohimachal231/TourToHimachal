@@ -150,7 +150,7 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
   }, [])
 
   return (
-    <main className="bg-background min-h-screen">
+    <main className="bg-background min-h-screen pb-8">
       <Header />
 
       <ClockwiseSlideHero

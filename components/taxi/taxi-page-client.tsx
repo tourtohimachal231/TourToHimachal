@@ -88,7 +88,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
   }, [])
 
   return (
-    <main className="bg-background min-h-screen overflow-x-hidden">
+    <main className="bg-background min-h-screen pb-8 overflow-x-hidden">
       <Header />
 
       <ClockwiseSlideHero
