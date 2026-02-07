@@ -88,7 +88,8 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
   }, [])
 
   return (
-    <main className="bg-background min-h-screen pb-8 overflow-x-hidden">
+    <div className="flex min-h-screen flex-col">
+      <main className="bg-background flex-grow pb-8 overflow-x-hidden">
       <Header />
 
       <ClockwiseSlideHero
@@ -403,5 +404,6 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
         <Footer />
       </div>
     </main>
+    </div>
   )
 }

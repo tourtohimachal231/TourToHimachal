@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="min-h-screen pb-8 overflow-x-hidden">
+      <main className="flex-grow pb-8 overflow-x-hidden">
         {/* Hero Section */}
         <StaticHero
           image="Images/diary.png"
@@ -320,6 +320,6 @@ export default function PrivacyPage() {
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   )
 }

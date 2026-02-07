@@ -28,9 +28,9 @@ export function ContactPageClient() {
   }, [])
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="min-h-screen pb-24 md:pb-0 overflow-x-hidden">
+      <main className="flex-grow pb-24 md:pb-0 overflow-x-hidden">
         {/* Hero Section with Infinite Scroll */}
         <ContactHero />
 
@@ -83,6 +83,6 @@ export function ContactPageClient() {
 
       {/* Mobile Sticky Contact Bar */}
       <MobileContactBar />
-    </>
+    </div>
   )
 }

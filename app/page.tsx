@@ -64,7 +64,8 @@ const Footer = dynamic(
 )
 export default function HomePage() {
   return (
-    <main className="bg-background min-h-screen pb-8">
+    <div className="flex min-h-screen flex-col">
+      <main className="bg-background flex-grow pb-8">
       <Script
         id="org-jsonld"
         type="application/ld+json"
@@ -108,5 +109,6 @@ export default function HomePage() {
       <DeferredCTABanner />
       <Footer />
     </main>
+    </div>
   )
 }

@@ -109,7 +109,8 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
   }
 
   return (
-    <main className="bg-background min-h-screen">
+    <div className="flex min-h-screen flex-col">
+      <main className="bg-background flex-grow">
       {/* Back Button and Navigation */}
       <div className="mx-auto max-w-6xl px-4 py-4 sm:py-6">
         <Link href="/blog">
@@ -292,5 +293,6 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
         }
       `}</style>
     </main>
+    </div>
   )
 }

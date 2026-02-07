@@ -24,9 +24,9 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="min-h-screen pb-8">
+      <main className="flex-grow pb-8">
         {/* Hero */}
         <section className="relative overflow-hidden pt-16 md:pt-20 lg:pt-24">
           <div className="absolute inset-0">
@@ -300,6 +300,6 @@ export default function AboutPage() {
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   )
 }

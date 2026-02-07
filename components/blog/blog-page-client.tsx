@@ -86,9 +86,9 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
   }, [selectedCategory, searchQuery])
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="bg-background min-h-screen pb-8">
+      <main className="bg-background flex-grow pb-8">
         <div className="mt-16">
           <StaticHero
             image="/Images/blog.png"
@@ -218,7 +218,7 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
 

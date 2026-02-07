@@ -72,7 +72,8 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
   }, [pkg.slug])
 
   return (
-    <main className="bg-background min-h-screen pb-8">
+    <div className="flex min-h-screen flex-col">
+      <main className="bg-background flex-grow pb-8">
       <Header />
 
       {/* Main Content */}
@@ -397,5 +398,6 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
         <Footer />
       </div>
     </main>
+    </div>
   )
 }

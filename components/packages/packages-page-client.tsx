@@ -150,7 +150,8 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
   }, [])
 
   return (
-    <main className="bg-background min-h-screen pb-8">
+    <div className="flex min-h-screen flex-col">
+      <main className="bg-background flex-grow pb-8">
       <Header />
 
       <ClockwiseSlideHero
@@ -253,5 +254,6 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
 
       <Footer />
     </main>
+    </div>
   )
 }
