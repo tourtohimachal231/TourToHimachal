@@ -20,15 +20,9 @@ interface ClockwiseSlideHeroProps {
   autoPlayInterval?: number // Time between transitions in milliseconds (default: 4000)
 }
 
-// Clockwise slide directions: top → right → bottom → left → top...
+// Always slide from right to left
 const getSlideDirection = (index: number) => {
-  const directions = [
-    { initial: { y: "-100%", x: 0 } }, // Top
-    { initial: { y: 0, x: "100%" } }, // Right
-    { initial: { y: "100%", x: 0 } }, // Bottom
-    { initial: { y: 0, x: "-100%" } }, // Left
-  ]
-  return directions[index % directions.length]
+  return { initial: { y: 0, x: "100%" } } // Right to left
 }
 
 // Helper function to ensure Cloudinary images work directly

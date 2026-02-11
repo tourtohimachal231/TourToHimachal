@@ -29,6 +29,15 @@ interface FormErrors {
   serviceType?: string[]
 }
 
+// Get today's date in YYYY-MM-DD format for min date attribute
+const getTodayDate = () => {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const day = String(today.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
 export function ContactForm() {
   const { settings } = useSettings()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -38,6 +47,7 @@ export function ContactForm() {
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const todayDate = getTodayDate()
 
   const [formData, setFormData] = useState({
     name: "",
@@ -49,6 +59,36 @@ export function ContactForm() {
     honeypot: "", // Spam protection field
   })
 
+  // Real-time validation for name field
+  const validateName = (value: string): string[] | undefined => {
+    if (!value) return undefined
+    // Check for alphabetical characters only (allowing spaces)
+    if (!/^[A-Za-z\s]*$/.test(value)) {
+      return ["Name must contain only letters and spaces"]
+    }
+    // Check maximum length
+    if (value.length > 30) {
+      return ["Name must not exceed 30 characters"]
+    }
+    return undefined
+  }
+
+  // Real-time validation for phone field
+  const validatePhone = (value: string): string[] | undefined => {
+    if (!value) return undefined
+    // Remove non-numeric characters for validation
+    const numericValue = value.replace(/\D/g, '')
+    // Check if input contains only numeric characters
+    if (value !== numericValue) {
+      return ["Phone number must contain only digits"]
+    }
+    // Check for exactly 10 digits
+    if (numericValue.length > 0 && numericValue.length !== 10) {
+      return [`Phone number must be exactly 10 digits (current: ${numericValue.length})`]
+    }
+    return undefined
+  }
+
   const validateField = (name: string, value: string) => {
     const newErrors = { ...errors }
 
@@ -57,7 +97,12 @@ export function ContactForm() {
         if (value.length < 2) {
           newErrors.name = ["Name must be at least 2 characters"]
         } else {
-          delete newErrors.name
+          const nameError = validateName(value)
+          if (nameError) {
+            newErrors.name = nameError
+          } else {
+            delete newErrors.name
+          }
         }
         break
       case "email":
@@ -68,10 +113,15 @@ export function ContactForm() {
         }
         break
       case "phone":
-        if (value.length < 10) {
-          newErrors.phone = ["Please enter a valid phone number"]
+        if (value.length === 0) {
+          newErrors.phone = ["Phone number is required"]
         } else {
-          delete newErrors.phone
+          const phoneError = validatePhone(value)
+          if (phoneError) {
+            newErrors.phone = phoneError
+          } else {
+            delete newErrors.phone
+          }
         }
         break
       case "message":
@@ -88,11 +138,32 @@ export function ContactForm() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-
-    // Real-time validation on blur
-    if (errors[name as keyof FormErrors]) {
-      validateField(name, value)
+    
+    // For phone field, only allow numeric input
+    if (name === 'phone') {
+      const numericValue = value.replace(/\D/g, '')
+      setFormData((prev) => ({ ...prev, [name]: numericValue }))
+      
+      // Real-time validation
+      if (errors[name as keyof FormErrors]) {
+        validateField(name, numericValue)
+      }
+    } else if (name === 'name') {
+      // For name field, allow only letters and spaces
+      const sanitizedValue = value.replace(/[^A-Za-z\s]/g, '')
+      setFormData((prev) => ({ ...prev, [name]: sanitizedValue }))
+      
+      // Real-time validation
+      if (errors[name as keyof FormErrors]) {
+        validateField(name, sanitizedValue)
+      }
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }))
+      
+      // Real-time validation on blur
+      if (errors[name as keyof FormErrors]) {
+        validateField(name, value)
+      }
     }
   }
 
@@ -133,10 +204,20 @@ export function ContactForm() {
 
     // Validate all fields
     const newErrors: FormErrors = {}
-    if (formData.name.length < 2) newErrors.name = ["Name must be at least 2 characters"]
+    if (formData.name.length < 2) {
+      newErrors.name = ["Name must be at least 2 characters"]
+    } else {
+      const nameError = validateName(formData.name)
+      if (nameError) newErrors.name = nameError
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
       newErrors.email = ["Please enter a valid email address"]
-    if (formData.phone.length < 10) newErrors.phone = ["Please enter a valid phone number"]
+    if (formData.phone.length === 0) {
+      newErrors.phone = ["Phone number is required"]
+    } else {
+      const phoneError = validatePhone(formData.phone)
+      if (phoneError) newErrors.phone = phoneError
+    }
     if (formData.message.length < 10) newErrors.message = ["Message must be at least 10 characters"]
     if (!formData.serviceType) newErrors.serviceType = ["Please select a service type"]
 
@@ -250,21 +331,40 @@ export function ContactForm() {
 
       <div className="grid gap-6 md:grid-cols-2 min-w-0">
         <div className="space-y-2 min-w-0">
-          <Label htmlFor="name">Full Name *</Label>
-          <Input
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-            placeholder="Your full name"
-            required
-            aria-invalid={!!errors.name}
-            aria-describedby={errors.name ? "name-error" : undefined}
-            className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 ${
-              errors.name ? "border-destructive" : ""
-            }`}
-          />
+          <Label htmlFor="name" className="flex items-center justify-between">
+            Full Name *
+            <span className="text-muted-foreground text-xs">{formData.name.length}/30</span>
+          </Label>
+          <div className="relative">
+            <Input
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              placeholder="Your full name"
+              required
+              maxLength={30}
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "name-error" : undefined}
+              className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 pr-12 ${
+                errors.name ? "border-destructive" : ""
+              }`}
+            />
+            {/* Character count indicator */}
+            <AnimatePresence>
+              {formData.name.length > 25 && formData.name.length <= 30 && !errors.name && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                >
+                  <span className="text-muted-foreground text-xs">{30 - formData.name.length} left</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           <AnimatePresence>
             {errors.name && (
               <motion.p
@@ -316,22 +416,43 @@ export function ContactForm() {
 
       <div className="grid gap-6 md:grid-cols-2 min-w-0">
         <div className="space-y-2 min-w-0">
-          <Label htmlFor="phone">Phone / WhatsApp *</Label>
-          <Input
-            id="phone"
-            name="phone"
-            type="tel"
-            value={formData.phone}
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-            placeholder="+91 98765 43210"
-            required
-            aria-invalid={!!errors.phone}
-            aria-describedby={errors.phone ? "phone-error" : undefined}
-            className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 ${
-              errors.phone ? "border-destructive" : ""
-            }`}
-          />
+          <Label htmlFor="phone" className="flex items-center justify-between">
+            Phone / WhatsApp *
+            <span className="text-muted-foreground text-xs">{formData.phone.length}/10</span>
+          </Label>
+          <div className="relative">
+            <Input
+              id="phone"
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              placeholder="10-digit number"
+              required
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={10}
+              aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
+              className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 pr-12 ${
+                errors.phone ? "border-destructive" : ""
+              }`}
+            />
+            {/* Phone validation indicator */}
+            <AnimatePresence>
+              {formData.phone.length === 10 && !errors.phone && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                >
+                  <CheckCircle2 className="text-green-500 h-4 w-4" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           <AnimatePresence>
             {errors.phone && (
               <motion.p

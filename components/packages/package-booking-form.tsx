@@ -3,8 +3,8 @@
 import type React from "react"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
-import { Calendar, Users, User, Phone, Mail, MessageSquare, Send, Loader2, CheckCircle2 } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Calendar, Users, User, Phone, Mail, MessageSquare, Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -19,6 +19,15 @@ interface PackageBookingFormProps {
   onSuccess?: () => void
 }
 
+// Get today's date in YYYY-MM-DD format for min date attribute
+const getTodayDate = () => {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const day = String(today.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
 export function PackageBookingForm({ packageName, packagePrice, onSuccess }: PackageBookingFormProps) {
   const { settings } = useSettings()
   const [formData, setFormData] = useState({
@@ -30,20 +39,166 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
     message: "",
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [referenceNumber, setReferenceNumber] = useState<string | null>(null)
+  const todayDate = getTodayDate()
+
+  // Real-time validation for name field
+  const validateName = (value: string): string | null => {
+    if (!value) return null
+    // Check for alphabetical characters only (allowing spaces)
+    if (!/^[A-Za-z\s]*$/.test(value)) {
+      return "Name must contain only letters and spaces"
+    }
+    // Check maximum length
+    if (value.length > 30) {
+      return "Name must not exceed 30 characters"
+    }
+    return null
+  }
+
+  // Real-time validation for phone field
+  const validatePhone = (value: string): string | null => {
+    if (!value) return null
+    // Remove non-numeric characters for validation
+    const numericValue = value.replace(/\D/g, '')
+    // Check if input contains only numeric characters
+    if (value !== numericValue) {
+      return "Phone number must contain only digits"
+    }
+    // Check for exactly 10 digits
+    if (numericValue.length > 0 && numericValue.length !== 10) {
+      return `Phone number must be exactly 10 digits (current: ${numericValue.length})`
+    }
+    return null
+  }
+
+  // Validate date - ensure it's not in the past
+  const validateDate = (value: string): string | null => {
+    if (!value) return null
+    const selectedDate = new Date(value)
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    selectedDate.setHours(0, 0, 0, 0)
+    
+    if (selectedDate < today) {
+      return "Please select a date from today onwards"
+    }
+    return null
+  }
+
+  // Handle input change with real-time validation
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    
+    // For phone field, only allow numeric input
+    if (name === 'phone') {
+      const numericValue = value.replace(/\D/g, '')
+      setFormData(prev => ({ ...prev, [name]: numericValue }))
+      
+      // Real-time validation if field has been touched
+      if (touched[name]) {
+        const error = validatePhone(numericValue)
+        setErrors(prev => {
+          const newErrors = { ...prev }
+          if (error) {
+            newErrors[name] = error
+          } else {
+            delete newErrors[name]
+          }
+          return newErrors
+        })
+      }
+    } else if (name === 'name') {
+      // For name field, allow only letters and spaces
+      const sanitizedValue = value.replace(/[^A-Za-z\s]/g, '')
+      setFormData(prev => ({ ...prev, [name]: sanitizedValue }))
+      
+      // Real-time validation if field has been touched
+      if (touched[name]) {
+        const error = validateName(sanitizedValue)
+        setErrors(prev => {
+          const newErrors = { ...prev }
+          if (error) {
+            newErrors[name] = error
+          } else {
+            delete newErrors[name]
+          }
+          return newErrors
+        })
+      }
+    } else if (name === 'date') {
+      setFormData(prev => ({ ...prev, [name]: value }))
+      
+      // Real-time validation if field has been touched
+      if (touched[name]) {
+        const error = validateDate(value)
+        setErrors(prev => {
+          const newErrors = { ...prev }
+          if (error) {
+            newErrors[name] = error
+          } else {
+            delete newErrors[name]
+          }
+          return newErrors
+        })
+      }
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }))
+    }
+  }
+
+  // Handle blur event for validation
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setTouched(prev => ({ ...prev, [name]: true }))
+    
+    let error: string | null = null
+    if (name === 'name') {
+      error = validateName(value)
+    } else if (name === 'phone') {
+      error = validatePhone(value)
+    } else if (name === 'date') {
+      error = validateDate(value)
+    }
+    
+    setErrors(prev => {
+      const newErrors = { ...prev }
+      if (error) {
+        newErrors[name] = error
+      } else {
+        delete newErrors[name]
+      }
+      return newErrors
+    })
+  }
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
-    if (!formData.name || formData.name.length < 2) newErrors.name = "Name is required"
-    if (!formData.phone || !/^\d{10}$/.test(formData.phone.replace(/\D/g, ""))) {
-      newErrors.phone = "Valid 10-digit phone is required"
+    if (!formData.name) {
+      newErrors.name = "Name is required"
+    } else {
+      const nameError = validateName(formData.name)
+      if (nameError) newErrors.name = nameError
+      else if (formData.name.length < 2) newErrors.name = "Name must be at least 2 characters"
+    }
+    if (!formData.phone) {
+      newErrors.phone = "Phone number is required"
+    } else {
+      const phoneError = validatePhone(formData.phone)
+      if (phoneError) newErrors.phone = phoneError
     }
     if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Valid email is required"
     }
-    if (!formData.date) newErrors.date = "Preferred date is required"
+    if (!formData.date) {
+      newErrors.date = "Preferred date is required"
+    } else {
+      const dateError = validateDate(formData.date)
+      if (dateError) newErrors.date = dateError
+    }
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -152,36 +307,104 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
     >
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="name">Full Name *</Label>
+          <Label htmlFor="name" className="flex items-center justify-between">
+            Full Name *
+            <span className="text-muted-foreground text-xs">{formData.name.length}/30</span>
+          </Label>
           <div className="relative">
             <User className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
             <Input
               id="name"
+              name="name"
               placeholder="Your name"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="pl-10"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              maxLength={30}
+              className={`pl-10 transition-all duration-200 ${errors.name ? 'border-destructive focus:ring-destructive/20' : 'focus:ring-primary/20'}`}
               aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "name-error" : undefined}
             />
+            {/* Character count indicator */}
+            <AnimatePresence>
+              {formData.name.length > 25 && formData.name.length <= 30 && !errors.name && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                >
+                  <span className="text-muted-foreground text-xs">{30 - formData.name.length} left</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          {errors.name && <p className="text-destructive text-sm">{errors.name}</p>}
+          <AnimatePresence>
+            {errors.name && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                id="name-error"
+                className="text-destructive flex items-center gap-1 text-sm"
+              >
+                <AlertCircle className="h-3 w-3" />
+                {errors.name}
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="phone">Phone *</Label>
+          <Label htmlFor="phone" className="flex items-center justify-between">
+            Phone *
+            <span className="text-muted-foreground text-xs">{formData.phone.length}/10</span>
+          </Label>
           <div className="relative">
             <Phone className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
             <Input
               id="phone"
+              name="phone"
               type="tel"
               placeholder="10-digit number"
               value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="pl-10"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={10}
+              className={`pl-10 transition-all duration-200 ${errors.phone ? 'border-destructive focus:ring-destructive/20' : 'focus:ring-primary/20'}`}
               aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
             />
+            {/* Phone validation indicator */}
+            <AnimatePresence>
+              {formData.phone.length === 10 && !errors.phone && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                >
+                  <CheckCircle2 className="text-green-500 h-4 w-4" />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          {errors.phone && <p className="text-destructive text-sm">{errors.phone}</p>}
+          <AnimatePresence>
+            {errors.phone && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                id="phone-error"
+                className="text-destructive flex items-center gap-1 text-sm"
+              >
+                <AlertCircle className="h-3 w-3" />
+                {errors.phone}
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 
@@ -209,14 +432,31 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
             <Calendar className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
             <Input
               id="date"
+              name="date"
               type="date"
+              min={todayDate}
               value={formData.date}
-              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-              className="pl-10"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              className={`pl-10 transition-all duration-200 ${errors.date ? 'border-destructive focus:ring-destructive/20' : 'focus:ring-primary/20'}`}
               aria-invalid={!!errors.date}
+              aria-describedby={errors.date ? "date-error" : undefined}
             />
           </div>
-          {errors.date && <p className="text-destructive text-sm">{errors.date}</p>}
+          <AnimatePresence>
+            {errors.date && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                id="date-error"
+                className="text-destructive flex items-center gap-1 text-sm"
+              >
+                <AlertCircle className="h-3 w-3" />
+                {errors.date}
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
 
         <div className="space-y-2">
