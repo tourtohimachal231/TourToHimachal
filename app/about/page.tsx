@@ -28,7 +28,7 @@ export default function AboutPage() {
       <Header />
       <main className="flex-grow pb-8">
         {/* Hero */}
-        <section className="relative overflow-hidden pt-16 md:pt-20 lg:pt-24">
+        <section className="relative flex min-h-screen items-center overflow-hidden safe-area-top">
           <div className="absolute inset-0">
             <Image
               src="/Images/diary.png"
@@ -42,7 +42,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/45 to-black/75" />
           <div className="from-saffron/20 to-saffron/20 absolute inset-0 bg-linear-to-r via-transparent" />
 
-          <div className="relative z-10">
+          <div className="relative z-10 w-full">
             <div className="container mx-auto px-4 py-8 sm:py-10 md:py-12 lg:py-16">
               <div className="mx-auto max-w-4xl text-center">
                 <div className="from-saffron/35 to-saffron/35 inline-flex items-center gap-2 rounded-full border border-white/20 bg-linear-to-r px-4 py-2 text-xs font-semibold text-white backdrop-blur-md sm:text-sm">

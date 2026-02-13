@@ -89,14 +89,12 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="bg-background flex-grow pb-8">
-        <div className="mt-16">
-          <StaticHero
-            image="/Images/blog.png"
-            badge="Expert Insights & Local Secrets"
-            title="Your Ultimate Himachal Guide"
-            subtitle="Go beyond the tourist trail with our comprehensive travel guides. From budget itineraries to luxury escapes, from monsoon trekking tips to winter road safety — we've got the insider knowledge to make your trip extraordinary."
-          />
-        </div>
+        <StaticHero
+          image="/Images/blog.png"
+          badge="Expert Insights & Local Secrets"
+          title="Your Ultimate Himachal Guide"
+          subtitle="Go beyond the tourist trail with our comprehensive travel guides. From budget itineraries to luxury escapes, from monsoon trekking tips to winter road safety — we've got the insider knowledge to make your trip extraordinary."
+        />
 
         {/* Featured section removed as requested */}
 

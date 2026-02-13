@@ -23,19 +23,22 @@ function getImageUrl(url: string): string {
 
 export function StaticHero({ image, title, subtitle, badge, children }: StaticHeroProps) {
   return (
-    <section className="relative flex min-h-[40svh] min-h-[40vh] items-center overflow-hidden pt-16 md:pt-24 lg:pt-28">
+    <section className="relative flex min-h-screen items-center overflow-hidden safe-area-top">
       {/* Static Background Image */}
       <div className="absolute inset-0">
-        <img
+        <motion.img
           src={getImageUrl(image) || "/placeholder.svg"}
           alt={title}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover blur-[1px]"
           crossOrigin="anonymous"
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
         />
       </div>
 
       {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-black/70" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/75 via-black/55 to-black/80" />
       <div className="from-saffron/20 to-saffron/20 absolute inset-0 bg-linear-to-r via-transparent" />
 
       {/* Content */}
