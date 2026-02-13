@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useRef, useEffect } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Header } from "@/components/home/header"
@@ -51,6 +51,7 @@ interface DiariesPageClientProps {
 const ITEMS_PER_PAGE = 6
 
 export function DiariesPageClient({ diaries }: DiariesPageClientProps) {
+  const diariesGridRef = useRef<HTMLElement>(null)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedRegion, setSelectedRegion] = useState("All")
   const [selectedTags, setSelectedTags] = useState<string[]>([])
@@ -121,6 +122,20 @@ export function DiariesPageClient({ diaries }: DiariesPageClientProps) {
     setVisibleCount((prev) => prev + ITEMS_PER_PAGE)
   }
 
+  // Auto-scroll to "Diaries Grid" section after hero renders
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (diariesGridRef.current) {
+        diariesGridRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    }, 1800) // Wait for hero section to render
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -150,7 +165,7 @@ export function DiariesPageClient({ diaries }: DiariesPageClientProps) {
         </section>
 
         {/* Main Content with Desktop Sidebar */}
-        <section className="py-6 md:py-8 lg:py-10">
+        <section id="diaries-grid" ref={diariesGridRef} className="py-6 md:py-8 lg:py-10">
           <div className="container mx-auto px-4">
             <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-8 xl:grid-cols-[1fr_380px]">
               {/* Main Column */}

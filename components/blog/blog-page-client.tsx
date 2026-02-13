@@ -35,6 +35,7 @@ interface BlogPageClientProps {
 const ITEMS_PER_PAGE = 6
 
 export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
+  const blogsGridRef = useRef<HTMLElement>(null)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState("")
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE)
@@ -85,6 +86,20 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
     setVisibleCount(ITEMS_PER_PAGE)
   }, [selectedCategory, searchQuery])
 
+  // Auto-scroll to "Blogs Grid" section after hero renders
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (blogsGridRef.current) {
+        blogsGridRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    }, 1800) // Wait for hero section to render
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -99,7 +114,7 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
         {/* Featured section removed as requested */}
 
         {/* Main Content */}
-        <section className="from-background to-background relative z-10 bg-linear-to-b via-[oklch(0.97_0.02_85)] py-6 md:py-8 lg:py-10">
+        <section id="blogs-grid" ref={blogsGridRef} className="from-background to-background relative z-10 bg-linear-to-b via-[oklch(0.97_0.02_85)] py-6 md:py-8 lg:py-10">
           <div className="container mx-auto px-4">
             <div className="grid min-w-0 gap-6 md:gap-8 lg:grid-cols-3">
               {/* Main Column */}
