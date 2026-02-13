@@ -20,10 +20,6 @@ const defaultHeroImages: HeroImage[] = [
     alt: "Majestic Himalayan Mountains",
   },
   {
-    url: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767794969/himachal-yatra/packages/jbngdslx5ivqucojuvx3.webp",
-    alt: "Chintpurni Temple",
-  },
-  {
     url: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795334/cp0egvkhziyen6h57ffg.webp",
     alt: "Himalayan Rivers and Waterfalls",
   },

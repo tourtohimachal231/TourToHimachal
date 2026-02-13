@@ -99,7 +99,7 @@ export function ContactInfo() {
                   {item.description}
                 </span>
               </div>
-              <p className="text-foreground group-hover:text-saffron truncate text-sm font-semibold transition-colors sm:text-base">
+              <p className="text-foreground group-hover:text-saffron break-words text-sm font-semibold transition-colors sm:text-base">
                 {item.value}
               </p>
             </div>

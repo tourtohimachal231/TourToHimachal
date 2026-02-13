@@ -30,6 +30,11 @@ const faqs = [
     answer:
       "We can arrange comprehensive travel insurance through our partner providers. This covers trip cancellation, medical emergencies, and baggage loss. Let us know your requirements when booking.",
   },
+  {
+    question: "What is the best time to visit Himachal Pradesh?",
+    answer:
+      "The best time depends on your interests. Summer (April-June) is ideal for trekking and sightseeing with pleasant weather. Winter (December-February) is perfect for snow activities in Manali, Shimla, and Dalhousie. Monsoon (July-September) offers lush greenery but some roads may be affected.",
+  },
 ]
 
 export function FAQSection() {
@@ -50,12 +55,26 @@ export function FAQSection() {
             <p className="text-muted-foreground">Quick answers to common queries about our services</p>
           </motion.div>
 
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={fadeInUp} className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
             <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
-              {faqs.map((faq, index) => (
+              {faqs.slice(0, Math.ceil(faqs.length / 2)).map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`faq-${index}`}
+                  className="bg-background border-border w-full rounded-xl border px-4 sm:px-6 transition-shadow data-[state=open]:shadow-md box-border"
+                >
+                  <AccordionTrigger className="py-5 text-left font-semibold hover:no-underline">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-5">{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
+              {faqs.slice(Math.ceil(faqs.length / 2)).map((faq, index) => (
+                <AccordionItem
+                  key={index + Math.ceil(faqs.length / 2)}
+                  value={`faq-${index + Math.ceil(faqs.length / 2)}`}
                   className="bg-background border-border w-full rounded-xl border px-4 sm:px-6 transition-shadow data-[state=open]:shadow-md box-border"
                 >
                   <AccordionTrigger className="py-5 text-left font-semibold hover:no-underline">

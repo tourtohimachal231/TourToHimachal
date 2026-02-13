@@ -15,7 +15,7 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/packages", label: "Packages" },
   { href: "/diaries", label: "Travel Diaries" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blog", label: "Our Blogs" },
   { href: "/contact", label: "Contact" },
 ]
 
