@@ -23,7 +23,7 @@ function getImageUrl(url: string): string {
 
 export function StaticHero({ image, title, subtitle, badge, children }: StaticHeroProps) {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden safe-area-top">
+    <section className="relative flex min-h-[100dvh] items-center overflow-hidden safe-area-top">
       {/* Static Background Image */}
       <div className="absolute inset-0">
         <motion.img

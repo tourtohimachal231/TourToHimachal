@@ -28,9 +28,9 @@ export function ContactPageClient() {
   }, [])
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-[100dvh] flex-col">
       <Header />
-      <main className="flex-grow overflow-x-hidden safe-area-bottom">
+      <main className="flex-grow overflow-x-hidden safe-area-bottom pb-20 md:pb-0">
         {/* Hero Section with Infinite Scroll */}
         <ContactHero />
 
