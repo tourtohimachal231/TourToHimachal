@@ -197,7 +197,7 @@ export function Footer() {
               <ClientOnly
                 fallback={
                   <ul className="space-y-3">
-                    <li className="group flex items-start gap-2 sm:gap-3">
+                    <li className="group flex items-center gap-2 sm:gap-3 sm:items-start">
                       <div className="bg-saffron/10 group-hover:bg-saffron/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
                         <MapPin className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                       </div>
@@ -220,7 +220,7 @@ export function Footer() {
                 }
               >
                 <ul className="space-y-3 sm:space-y-4">
-                  <li className="group flex items-start gap-2 sm:gap-3">
+                  <li className="group flex items-center gap-2 sm:gap-3 sm:items-start">
                     <div className="bg-saffron/10 group-hover:bg-saffron/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
                       <MapPin className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                     </div>
