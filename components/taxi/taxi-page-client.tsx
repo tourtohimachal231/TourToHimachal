@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Phone, Car, Calendar, Shield, Zap, Users, Gauge } from "lucide-react"
@@ -71,10 +71,25 @@ const taxiFaqs = [
 export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
   const [selectedVehicle, setSelectedVehicle] = useState<string>("")
   const { settings } = useSettings()
+  const chooseVehicleRef = useRef<HTMLElement>(null)
+
+  // Auto-scroll to "Choose Your Vehicle" section after hero renders
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (chooseVehicleRef.current) {
+        chooseVehicleRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    }, 1800) // Wait for hero section to render
+
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="bg-background flex-grow pb-8 overflow-x-hidden">
+      <main className="bg-background flex-grow pb-8 overflow-x-hidden safe-area-bottom">
       <Header />
 
       <ClockwiseSlideHero
@@ -204,7 +219,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
 
       {/* Vehicle Types */}
       {vehicles.length > 0 && (
-        <section id="choose-vehicle" className="bg-muted/30 py-8 overflow-x-hidden">
+        <section id="choose-vehicle" ref={chooseVehicleRef} className="bg-muted/30 py-8">
           <div className="container mx-auto px-4">
             <motion.div
               variants={slideInLeft}
