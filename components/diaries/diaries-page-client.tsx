@@ -139,7 +139,7 @@ export function DiariesPageClient({ diaries }: DiariesPageClientProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="bg-background flex-grow pb-8">
+      <main className="bg-background flex-grow pb-8 safe-area-bottom">
         <StaticHero
           image="/Images/diary.png"
           badge="Real Stories, Real Adventures"

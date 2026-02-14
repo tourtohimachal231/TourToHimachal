@@ -73,7 +73,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
 
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="bg-background flex-grow pb-8">
+      <main className="bg-background flex-grow pb-8 safe-area-bottom">
       <Header />
 
       {/* Main Content */}

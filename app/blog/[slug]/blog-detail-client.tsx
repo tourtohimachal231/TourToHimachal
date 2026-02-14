@@ -45,7 +45,7 @@ export function BlogDetailClient({ post, popularPosts, url }: BlogDetailClientPr
   return (
     <>
       <Header />
-      <main className="pb-8">
+      <main className="pb-8 safe-area-bottom">
         {/* Back Button */}
         <div className="container mx-auto px-4 pt-6">
           <Link

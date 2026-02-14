@@ -103,7 +103,7 @@ export function BlogPageClient({ blogs, categories }: BlogPageClientProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="bg-background flex-grow pb-8">
+      <main className="bg-background flex-grow pb-8 safe-area-bottom">
         <StaticHero
           image="/Images/blog.png"
           badge="Expert Insights & Local Secrets"

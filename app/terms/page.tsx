@@ -20,7 +20,7 @@ export default function TermsPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-grow pb-8 overflow-x-hidden">
+      <main className="flex-grow pb-8 overflow-x-hidden safe-area-bottom">
         {/* Hero Section */}
         <StaticHero
           image="Images/diary.png"

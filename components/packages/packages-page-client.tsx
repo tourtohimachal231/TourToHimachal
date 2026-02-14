@@ -151,7 +151,7 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="bg-background flex-grow pb-8">
+      <main className="bg-background flex-grow pb-8 safe-area-bottom">
       <Header />
 
       <ClockwiseSlideHero

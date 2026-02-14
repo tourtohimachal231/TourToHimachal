@@ -69,7 +69,7 @@ export function DiaryDetailClient({ diary, popularDiaries, url }: DiaryDetailCli
   return (
     <>
       <Header />
-      <main className="pb-8">
+      <main className="pb-8 safe-area-bottom">
         {/* Back Button */}
         <div className="container mx-auto px-4 pt-6">
           <Link

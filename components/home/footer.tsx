@@ -84,7 +84,7 @@ export function Footer() {
   const address = settings.address || "123 Mall Road, Shimla, Himachal Pradesh 171001"
 
   return (
-    <footer className="relative overflow-hidden">
+    <footer className="relative safe-area-bottom">
       {/* Top gradient border */}
       <div className="from-saffron via-golden-yellow to-saffron h-1 bg-gradient-to-r" style={{ WebkitBackgroundClip: 'border-box' }} />
 

@@ -89,7 +89,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="bg-background flex-grow pb-8 overflow-x-hidden">
+      <main className="bg-background flex-grow pb-8 overflow-x-hidden safe-area-bottom">
       <Header />
 
       <ClockwiseSlideHero

@@ -65,7 +65,7 @@ const Footer = dynamic(
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="bg-background grow">
+      <main className="bg-background grow safe-area-bottom">
       <Script
         id="org-jsonld"
         type="application/ld+json"

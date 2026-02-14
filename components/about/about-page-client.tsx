@@ -30,7 +30,7 @@ export function AboutPageClient() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-grow pb-8">
+      <main className="flex-grow pb-8 safe-area-bottom">
         {/* Hero */}
         <section className="relative flex min-h-screen items-center overflow-hidden safe-area-top">
           <div className="absolute inset-0">

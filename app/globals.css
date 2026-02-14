@@ -1137,3 +1137,20 @@ body.menu-open {
       backface-visibility: hidden;
     }
   }
+
+  /* iOS Safari footer visibility fix */
+  @supports (-webkit-touch-callout: none) {
+    footer {
+      position: relative;
+      z-index: 1;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+  }
+
+  /* iOS Safari viewport height fix for footer visibility */
+  @supports (-webkit-touch-callout: none) {
+    body {
+      min-height: -webkit-fill-available;
+    }
+  }
