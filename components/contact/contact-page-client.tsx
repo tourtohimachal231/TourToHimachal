@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import { Header } from "@/components/home/header"
 import { Footer } from "@/components/home/footer"
 import { ContactHero } from "@/components/contact/contact-hero"
@@ -11,31 +10,15 @@ import { MapSection } from "@/components/contact/map-section"
 import { MobileContactBar } from "@/components/contact/mobile-contact-bar"
 
 export function ContactPageClient() {
-  const getInTouchRef = useRef<HTMLElement>(null)
-
-  // Auto-scroll to "Get In Touch" section after hero renders
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (getInTouchRef.current) {
-        getInTouchRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
-      }
-    }, 1800) // Wait for hero section to render
-
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-grow overflow-x-hidden safe-area-bottom">
+      <main className="flex-grow overflow-x-hidden">
         {/* Hero Section with Infinite Scroll */}
         <ContactHero />
 
         {/* Contact Form & Info Section */}
-        <section id="get-in-touch" ref={getInTouchRef} className="py-6 md:py-8 lg:py-10 overflow-x-hidden">
+        <section id="get-in-touch" className="py-6 md:py-8 lg:py-10 overflow-x-hidden">
           <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
             <div className="mx-auto w-full min-w-0 grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 lg:grid-cols-5 lg:items-start">
               {/* Contact Info Sidebar */}

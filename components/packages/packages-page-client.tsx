@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo, useEffect, useRef } from "react"
+import { useState, useMemo } from "react"
 import { motion } from "framer-motion"
 import { Header } from "@/components/home/header"
 import { Footer } from "@/components/home/footer"
@@ -42,7 +42,6 @@ function extractDurationDays(duration: string): number {
 }
 
 export function PackagesPageClient({ packages }: PackagesPageClientProps) {
-  const packagesGridRef = useRef<HTMLElement>(null)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedRegion, setSelectedRegion] = useState("All")
   const [selectedDuration, setSelectedDuration] = useState("All")
@@ -135,23 +134,9 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
     selectedTheme !== "All" ||
     selectedPrice !== "All"
 
-  // Auto-scroll to "Packages Grid" section after hero renders
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (packagesGridRef.current) {
-        packagesGridRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
-      }
-    }, 1800) // Wait for hero section to render
-
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="bg-background flex-grow pb-8 safe-area-bottom">
+      <main className="bg-background flex-grow pb-8 overflow-x-hidden">
       <Header />
 
       <ClockwiseSlideHero
@@ -183,7 +168,7 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
       />
 
       {/* Packages Grid */}
-      <section id="packages-grid" ref={packagesGridRef} className="from-background to-background bg-linear-to-b via-[oklch(0.97_0.02_85)] py-6 md:py-8 lg:py-10">
+      <section id="packages-grid" className="from-background to-background bg-linear-to-b via-[oklch(0.97_0.02_85)] py-6 md:py-8 lg:py-10 overflow-x-hidden">
         <div className="container mx-auto px-4">
           {/* Unified Filter Bar with Summary */}
           <div className="mb-4 flex flex-col gap-3 sm:mb-6 lg:mb-8 lg:flex-row lg:items-center lg:justify-between">

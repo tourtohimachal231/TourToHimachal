@@ -59,7 +59,7 @@ export function ClockwiseSlideHero({
   const direction = getSlideDirection(currentIndex)
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden safe-area-top">
+    <section className="relative flex h-[60vh] min-h-[400px] max-h-[700px] items-center overflow-hidden safe-area-top">
       {/* Full-width Clockwise Slide Background */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="sync">

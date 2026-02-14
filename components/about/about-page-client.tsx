@@ -1,6 +1,5 @@
 "use client"
 
-import { useRef, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, BadgeCheck, Car, HeartHandshake, MapPin, ShieldCheck, Sparkles, Users } from "lucide-react"
@@ -11,28 +10,12 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export function AboutPageClient() {
-  const aboutContentRef = useRef<HTMLElement>(null)
-
-  // Auto-scroll to "About Content" section after hero renders
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (aboutContentRef.current) {
-        aboutContentRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
-      }
-    }, 1800) // Wait for hero section to render
-
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-grow pb-8 safe-area-bottom">
+      <main className="flex-grow pb-8">
         {/* Hero */}
-        <section className="relative flex min-h-screen items-center overflow-hidden safe-area-top">
+        <section className="relative flex h-[60vh] min-h-[400px] max-h-[700px] items-center overflow-hidden safe-area-top">
           <div className="absolute inset-0">
             <Image
               src="/Images/diary.png"
@@ -79,7 +62,7 @@ export function AboutPageClient() {
         </section>
 
         {/* Who we are */}
-        <section id="about-content" ref={aboutContentRef} className="py-6 md:py-8 lg:py-10">
+        <section id="about-content" className="py-6 md:py-8 lg:py-10 overflow-x-hidden">
           <div className="container mx-auto px-4">
             <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
               <div>
