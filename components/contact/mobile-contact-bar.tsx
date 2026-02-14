@@ -12,7 +12,7 @@ export function MobileContactBar() {
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ delay: 1, type: "spring", stiffness: 100 }}
-      className="bg-background/95 border-border fixed right-0 bottom-0 left-0 z-40 border-t p-3 backdrop-blur-lg md:hidden"
+      className="bg-background/95 border-border fixed right-0 bottom-0 left-0 z-40 border-t p-3 backdrop-blur-lg md:hidden safe-area-bottom"
     >
       <div className="flex gap-3">
         <a

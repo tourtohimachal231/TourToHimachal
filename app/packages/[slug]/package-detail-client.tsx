@@ -377,7 +377,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
       )}
 
       {/* Sticky Mobile Booking Bar */}
-      <div className="to-saffron/10 border-saffron/30 fixed right-0 bottom-0 left-0 z-40 border-t-2 bg-linear-to-r from-white p-4 shadow-2xl backdrop-blur-md lg:hidden">
+      <div className="to-saffron/10 border-saffron/30 fixed right-0 bottom-0 left-0 z-40 border-t-2 bg-linear-to-r from-white p-4 shadow-2xl backdrop-blur-md lg:hidden safe-area-bottom">
         <div className="flex items-center justify-between gap-4">
           <div>
             <span className="from-saffron to-sunset-orange bg-linear-to-r bg-clip-text text-2xl font-bold text-transparent">
