@@ -30,16 +30,30 @@ interface MarkdownComponents {
 
 export function MarkdownRenderer({ content, className, textColor = "text-muted-foreground" }: MarkdownRendererProps) {
   const components: MarkdownComponents = {
-    h2: ({ children }) => (
-      <h2 className="text-foreground mt-12 mb-6 scroll-mt-24 font-serif text-2xl font-bold md:text-3xl">
-        {children}
-      </h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="text-foreground mt-8 mb-4 font-serif text-xl font-semibold md:text-2xl">
-        {children}
-      </h3>
-    ),
+    h2: ({ children }) => {
+      const text = String(children).trim()
+      const id = text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "")
+      return (
+        <h2 id={id} className="text-foreground mt-12 mb-6 scroll-mt-24 font-serif text-2xl font-bold md:text-3xl">
+          {children}
+        </h2>
+      )
+    },
+    h3: ({ children }) => {
+      const text = String(children).trim()
+      const id = text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "")
+      return (
+        <h3 id={id} className="text-foreground mt-8 mb-4 font-serif text-xl font-semibold md:text-2xl">
+          {children}
+        </h3>
+      )
+    },
     p: ({ children }) => (
       <p className={`${textColor} mb-6 leading-relaxed`}>{children}</p>
     ),
