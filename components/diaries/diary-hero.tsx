@@ -87,7 +87,7 @@ export function DiaryHero({ diary, images }: DiaryHeroProps) {
           )}
 
           {/* Title */}
-          <h1 className="mb-4 font-serif text-4xl font-bold text-balance text-[#fc9700] sm:text-5xl md:text-6xl">
+          <h1 className="mb-4 font-serif text-3xl font-bold text-balance text-[#fc9700] sm:text-5xl md:text-6xl">
             {diary.title}
           </h1>
 

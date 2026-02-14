@@ -49,16 +49,16 @@ export function AboutPageClient() {
           <div className="relative z-10 w-full">
             <div className="container mx-auto px-4 py-8 sm:py-10 md:py-12 lg:py-16">
               <div className="mx-auto max-w-4xl text-center">
-                <div className="from-saffron/35 to-saffron/35 inline-flex items-center gap-2 rounded-full border border-white/20 bg-linear-to-r px-4 py-2 text-xs font-semibold text-white backdrop-blur-md sm:text-sm">
+                <div className="from-saffron/35 to-saffron/35 inline-flex items-center gap-2 rounded-full border border-white/20 bg-linear-to-r px-4 py-2 text-sm font-semibold text-white backdrop-blur-md">
                   <Sparkles className="h-4 w-4" />
                   Local travel experts • On-ground support
                 </div>
 
-                <h1 className="mt-4 font-serif text-2xl font-bold tracking-tight text-balance text-white sm:text-3xl md:mt-5 md:text-5xl">
+                <h1 className="mt-4 font-serif text-3xl font-bold tracking-tight text-balance text-white md:mt-5 md:text-5xl">
                   <span className="text-saffron">About</span> TourToHimachal
                 </h1>
 
-                <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-white/90 sm:text-base md:text-lg">
+                <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-white/90 md:text-xl">
                   We help you explore Himachal Pradesh with thoughtfully planned tours, reliable taxi services, and a
                   friendly team that stays with you from the first call to the last drop.
                 </p>

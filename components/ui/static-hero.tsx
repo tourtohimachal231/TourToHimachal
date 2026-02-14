@@ -57,7 +57,7 @@ export function StaticHero({ image, title, subtitle, badge, children }: StaticHe
                 transition={{ delay: 0.3 }}
                 className="from-saffron/40 to-sunset-orange/40 mt-6 mb-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-linear-to-r px-4 py-2 text-sm font-medium text-white backdrop-blur-md sm:mt-0"
               >
-                <span className="text-xs font-semibold text-white md:text-sm">{badge}</span>
+                <span className="text-sm font-semibold text-white">{badge}</span>
               </motion.div>
             )}
 
@@ -65,7 +65,7 @@ export function StaticHero({ image, title, subtitle, badge, children }: StaticHe
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="mb-3 font-serif text-xl leading-tight font-bold tracking-tight [text-wrap:balance] break-words text-white sm:text-2xl md:mb-4 md:text-4xl lg:text-5xl xl:text-6xl"
+              className="mb-3 font-serif text-3xl leading-tight font-bold tracking-tight [text-wrap:balance] break-words text-white md:mb-4 md:text-5xl lg:text-6xl"
             >
               <span className="text-[#fc9700]">{title}</span>
             </motion.h1>
@@ -74,7 +74,7 @@ export function StaticHero({ image, title, subtitle, badge, children }: StaticHe
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="mx-auto mt-2 max-w-3xl text-xs leading-relaxed text-pretty text-white/90 sm:mt-0 sm:text-sm md:text-base lg:text-lg"
+              className="mx-auto mt-2 max-w-3xl text-base leading-relaxed text-pretty text-white/90 md:text-xl"
             >
               {subtitle}
             </motion.p>
