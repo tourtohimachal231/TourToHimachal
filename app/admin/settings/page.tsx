@@ -19,8 +19,6 @@ import {
   Globe,
   Facebook,
   Instagram,
-  Twitter,
-  Youtube,
   MessageCircle,
   Clock,
   Shield,
@@ -38,8 +36,7 @@ interface Settings {
   google_maps_embed: string
   facebook_url: string
   instagram_url: string
-  twitter_url: string
-  youtube_url: string
+
   business_hours: string
   about_text: string
   meta_title: string
@@ -56,8 +53,7 @@ const defaultSettings: Settings = {
   google_maps_embed: "",
   facebook_url: "",
   instagram_url: "",
-  twitter_url: "",
-  youtube_url: "",
+
   business_hours: "Mon-Sat: 9:00 AM - 7:00 PM, Sun: 10:00 AM - 5:00 PM",
   about_text:
     "Your trusted partner for exploring the majestic Himachal Pradesh. From spiritual journeys to adventure trips, we make your travel dreams come true.",
@@ -100,7 +96,7 @@ export default function SettingsPage() {
           if (row.key in settingsObj) {
             // Handle JSON values
             const value = typeof row.value === "string" ? row.value : row.value
-            ;(settingsObj as any)[row.key] = value
+              ; (settingsObj as any)[row.key] = value
           }
         })
         setSettings(settingsObj)
@@ -377,30 +373,7 @@ export default function SettingsPage() {
                     placeholder="https://instagram.com/yourhandle"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="twitter_url" className="flex items-center gap-2">
-                    <Twitter className="h-4 w-4" />
-                    Twitter / X
-                  </Label>
-                  <Input
-                    id="twitter_url"
-                    value={settings.twitter_url}
-                    onChange={(e) => updateSetting("twitter_url", e.target.value)}
-                    placeholder="https://twitter.com/yourhandle"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="youtube_url" className="flex items-center gap-2">
-                    <Youtube className="h-4 w-4" />
-                    YouTube
-                  </Label>
-                  <Input
-                    id="youtube_url"
-                    value={settings.youtube_url}
-                    onChange={(e) => updateSetting("youtube_url", e.target.value)}
-                    placeholder="https://youtube.com/@yourchannel"
-                  />
-                </div>
+
               </div>
             </CardContent>
           </Card>

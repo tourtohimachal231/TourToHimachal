@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ClientOnly } from "@/components/ui/client-only"
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube, Heart, ArrowRight } from "lucide-react"
+import { Phone, Mail, MapPin, Facebook, Instagram, Heart, ArrowRight } from "lucide-react"
 import { useSettings } from "@/lib/settings-context"
 
 const quickLinks = [
@@ -38,18 +38,7 @@ export function Footer() {
       label: "Instagram",
       color: "hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-500",
     },
-    {
-      icon: Twitter,
-      href: settings.twitter_url || "https://twitter.com",
-      label: "Twitter",
-      color: "hover:bg-sky-500",
-    },
-    {
-      icon: Youtube,
-      href: settings.youtube_url || "https://youtube.com",
-      label: "YouTube",
-      color: "hover:bg-red-600",
-    },
+
   ]
 
   const defaultSocialLinks = [
@@ -65,18 +54,7 @@ export function Footer() {
       label: "Instagram",
       color: "hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-500",
     },
-    {
-      icon: Twitter,
-      href: "https://twitter.com",
-      label: "Twitter",
-      color: "hover:bg-sky-500",
-    },
-    {
-      icon: Youtube,
-      href: "https://youtube.com",
-      label: "YouTube",
-      color: "hover:bg-red-600",
-    },
+
   ]
 
   const contactPhone = settings.contact_phone || ""
@@ -103,7 +81,7 @@ export function Footer() {
                     className="object-contain object-left translate-x-16 lg:translate-x-24 scale-x-[1.5] scale-y-[1.2]"
                   />
                 </div>
-               
+
               </Link>
               <p className="mb-3 text-sm leading-relaxed text-slate-400 sm:mb-4 md:text-base">
                 {settings.about_text ||
@@ -262,7 +240,7 @@ export function Footer() {
             <div className="flex flex-col items-center justify-between gap-3 sm:gap-4 md:flex-row">
               <p className="flex items-center gap-1 text-sm text-slate-300 md:text-base">
                 © 2026 TourToHimachal. All rights reserved.
-                </p>
+              </p>
               <div className="flex gap-4 sm:gap-6">
                 <Link
                   href="/privacy"

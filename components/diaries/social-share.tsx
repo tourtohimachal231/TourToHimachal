@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Twitter, Facebook, Linkedin, Link2 } from "lucide-react"
+import { Facebook, Link2 } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp"
 import { Button } from "@/components/ui/button"
 import { fadeInUp } from "@/lib/animation-variants"
@@ -29,16 +29,7 @@ export function SocialShare({ title, url }: SocialShareProps) {
       icon: Facebook,
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
     },
-    {
-      name: "Twitter",
-      icon: Twitter,
-      href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
-    },
-    {
-      name: "LinkedIn",
-      icon: Linkedin,
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-    },
+
   ]
 
   const copyToClipboard = async () => {
