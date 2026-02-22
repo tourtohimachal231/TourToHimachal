@@ -321,7 +321,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                             📅 Book This Tour
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="w-[95vw] max-w-lg rounded-2xl p-4 sm:max-w-xl sm:p-6 md:max-w-2xl">
+                        <DialogContent className="w-[95vw] max-w-lg rounded-2xl p-4 !top-4 !translate-y-0 max-h-[calc(100dvh-1.5rem)] overflow-y-auto sm:!top-[50%] sm:!-translate-y-1/2 sm:max-h-[90dvh] sm:max-w-xl sm:p-6 md:max-w-2xl">
                           <DialogHeader>
                             <DialogTitle className="text-lg sm:text-xl">Book {pkg.title}</DialogTitle>
                             <DialogDescription className="text-sm">
