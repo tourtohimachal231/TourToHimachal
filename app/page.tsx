@@ -66,49 +66,49 @@ export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="bg-background grow safe-area-bottom">
-      <Script
-        id="org-jsonld"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "TourToHimachal",
-            url: "https://www.tourtohimachal.com/",
-            logo: "https://www.tourtohimachal.com/icon.png",
-          }),
-        }}
-      />
-      <Script
-        id="website-jsonld"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "TourToHimachal",
-            url: "https://www.tourtohimachal.com/",
-          }),
-        }}
-      />
-      <Header />
-      <Hero />
-      <TaxiService />
-      <Suspense fallback={null}>
-        <PopularDestinations />
-      </Suspense>
+        <Script
+          id="org-jsonld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "TourToHimachal",
+              url: "https://www.tourtohimachal.in/",
+              logo: "https://www.tourtohimachal.in/icon.png",
+            }),
+          }}
+        />
+        <Script
+          id="website-jsonld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "TourToHimachal",
+              url: "https://www.tourtohimachal.in/",
+            }),
+          }}
+        />
+        <Header />
+        <Hero />
+        <TaxiService />
+        <Suspense fallback={null}>
+          <PopularDestinations />
+        </Suspense>
 
-      <DeferredHomeSections />
+        <DeferredHomeSections />
 
-      <Suspense fallback={null}>
-        <TravelDiaries />
-      </Suspense>
+        <Suspense fallback={null}>
+          <TravelDiaries />
+        </Suspense>
 
-      <DeferredCTABanner />
-      <Footer />
-    </main>
+        <DeferredCTABanner />
+        <Footer />
+      </main>
     </div>
   )
 }
