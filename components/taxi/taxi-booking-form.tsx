@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Calendar, Clock, Users, MapPin, User, Phone, MessageSquare, Send, Loader2, AlertCircle, CheckCircle2 } from "lucide-react"
+import { Calendar, Clock, Users, MapPin, User, Phone, MessageSquare, Send, Loader2, AlertCircle, CheckCircle2, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -14,6 +14,15 @@ import { generateWhatsAppLink } from "@/lib/whatsapp"
 import { useSettings } from "@/lib/settings-context"
 import { vehicles } from "@/data/taxis"
 import { fadeInUp } from "@/lib/animation-variants"
+
+const HOW_FOUND_OPTIONS = [
+  "Google Search",
+  "Instagram",
+  "Facebook",
+  "Friends/Family",
+  "Online Ads",
+  "Previous Customer",
+]
 
 // Get today's date in YYYY-MM-DD format for min date attribute
 const getTodayDate = () => {
@@ -37,6 +46,8 @@ export function TaxiBookingForm() {
     phone: "",
     email: "",
     message: "",
+    howFound: "",
+    referralCode: "",
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
@@ -87,7 +98,7 @@ export function TaxiBookingForm() {
     const today = new Date()
     today.setHours(0, 0, 0, 0)
     selectedDate.setHours(0, 0, 0, 0)
-    
+
     if (selectedDate < today) {
       return "Please select a date from today onwards"
     }
@@ -97,12 +108,12 @@ export function TaxiBookingForm() {
   // Handle input change with real-time validation
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    
+
     // For phone field, only allow numeric input
     if (name === 'phone') {
       const numericValue = value.replace(/\D/g, '')
       setFormData(prev => ({ ...prev, [name]: numericValue }))
-      
+
       // Real-time validation if field has been touched
       if (touched[name]) {
         const error = validatePhone(numericValue)
@@ -120,7 +131,7 @@ export function TaxiBookingForm() {
       // For name field, allow only letters and spaces
       const sanitizedValue = value.replace(/[^A-Za-z\s]/g, '')
       setFormData(prev => ({ ...prev, [name]: sanitizedValue }))
-      
+
       // Real-time validation if field has been touched
       if (touched[name]) {
         const error = validateName(sanitizedValue)
@@ -136,7 +147,7 @@ export function TaxiBookingForm() {
       }
     } else if (name === 'date') {
       setFormData(prev => ({ ...prev, [name]: value }))
-      
+
       // Real-time validation if field has been touched
       if (touched[name]) {
         const error = validateDate(value)
@@ -159,7 +170,7 @@ export function TaxiBookingForm() {
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setTouched(prev => ({ ...prev, [name]: true }))
-    
+
     let error: string | null = null
     if (name === 'name') {
       error = validateName(value)
@@ -168,7 +179,7 @@ export function TaxiBookingForm() {
     } else if (name === 'date') {
       error = validateDate(value)
     }
-    
+
     setErrors(prev => {
       const newErrors = { ...prev }
       if (error) {
@@ -201,6 +212,7 @@ export function TaxiBookingForm() {
     if (formData.email && !/^.+@.+\..+$/.test(formData.email)) {
       newErrors.email = "Valid email is required"
     }
+    if (!formData.howFound) newErrors.howFound = "Please tell us how you found us"
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -222,7 +234,7 @@ export function TaxiBookingForm() {
           phone: formData.phone,
           email: formData.email || "noemail@himachalyatra.com",
           subject: `Taxi Booking: ${formData.pickup} to ${formData.drop}`,
-          message: `Service Type: ${formData.serviceType}\nVehicle: ${formData.vehicleType}\nPickup: ${formData.pickup}\nDrop: ${formData.drop}\nDate: ${formData.date}\nPassengers: ${formData.passengers || "Not specified"}\n\nAdditional Notes: ${formData.message || "None"}`,
+          message: `Service Type: ${formData.serviceType}\nVehicle: ${formData.vehicleType}\nPickup: ${formData.pickup}\nDrop: ${formData.drop}\nDate: ${formData.date}\nPassengers: ${formData.passengers || "Not specified"}\nHow Found: ${formData.howFound}${formData.referralCode ? `\nReferral Code: ${formData.referralCode}` : ""}\n\nAdditional Notes: ${formData.message || "None"}`,
           serviceType: "taxi",
           honeypot: "",
         }),
@@ -313,6 +325,8 @@ export function TaxiBookingForm() {
               phone: "",
               email: "",
               message: "",
+              howFound: "",
+              referralCode: "",
             })
           }}
           variant="outline"
@@ -566,6 +580,46 @@ export function TaxiBookingForm() {
               </motion.p>
             )}
           </AnimatePresence>
+        </div>
+      </div>
+
+      {/* How Found & Referral Code */}
+      <div className="mb-4 grid grid-cols-2 gap-3 sm:gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="howFound">How did you find us? *</Label>
+          <Select
+            value={formData.howFound}
+            onValueChange={(value) => setFormData({ ...formData, howFound: value })}
+          >
+            <SelectTrigger id="howFound" aria-invalid={!!errors.howFound}>
+              <SelectValue placeholder="Select an option" />
+            </SelectTrigger>
+            <SelectContent>
+              {HOW_FOUND_OPTIONS.map((opt) => (
+                <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {errors.howFound && (
+            <p className="text-destructive flex items-center gap-1 text-sm">
+              <AlertCircle className="h-3 w-3" />
+              {errors.howFound}
+            </p>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="referralCode">Referral Code <span className="text-muted-foreground text-xs">(Optional)</span></Label>
+          <div className="relative">
+            <Tag className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+            <Input
+              id="referralCode"
+              placeholder="Enter referral code"
+              value={formData.referralCode}
+              onChange={(e) => setFormData({ ...formData, referralCode: e.target.value })}
+              className="pl-10"
+            />
+          </div>
         </div>
       </div>
 

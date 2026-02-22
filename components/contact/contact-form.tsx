@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Send, Loader2, CheckCircle2, Upload, X, AlertCircle } from "lucide-react"
+import { Send, Loader2, CheckCircle2, Upload, X, AlertCircle, Tag } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,6 +13,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { fadeInUp } from "@/lib/animation-variants"
 import { useSettings } from "@/lib/settings-context"
 import { submitContactForm, type ContactFormData } from "@/lib/contact"
+
+const HOW_FOUND_OPTIONS = [
+  "Google Search",
+  "Instagram",
+  "Facebook",
+  "Friends/Family",
+  "Online Ads",
+  "Previous Customer",
+]
 
 const serviceTypes = [
   { value: "package", label: "Tour Package Inquiry" },
@@ -27,6 +36,7 @@ interface FormErrors {
   subject?: string[]
   message?: string[]
   serviceType?: string[]
+  howFound?: string[]
 }
 
 // Get today's date in YYYY-MM-DD format for min date attribute
@@ -57,6 +67,8 @@ export function ContactForm() {
     serviceType: "",
     message: "",
     honeypot: "", // Spam protection field
+    howFound: "",
+    referralCode: "",
   })
 
   // Real-time validation for name field
@@ -138,12 +150,12 @@ export function ContactForm() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    
+
     // For phone field, only allow numeric input
     if (name === 'phone') {
       const numericValue = value.replace(/\D/g, '')
       setFormData((prev) => ({ ...prev, [name]: numericValue }))
-      
+
       // Real-time validation
       if (errors[name as keyof FormErrors]) {
         validateField(name, numericValue)
@@ -152,14 +164,14 @@ export function ContactForm() {
       // For name field, allow only letters and spaces
       const sanitizedValue = value.replace(/[^A-Za-z\s]/g, '')
       setFormData((prev) => ({ ...prev, [name]: sanitizedValue }))
-      
+
       // Real-time validation
       if (errors[name as keyof FormErrors]) {
         validateField(name, sanitizedValue)
       }
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }))
-      
+
       // Real-time validation on blur
       if (errors[name as keyof FormErrors]) {
         validateField(name, value)
@@ -220,6 +232,7 @@ export function ContactForm() {
     }
     if (formData.message.length < 10) newErrors.message = ["Message must be at least 10 characters"]
     if (!formData.serviceType) newErrors.serviceType = ["Please select a service type"]
+    if (!formData.howFound) newErrors.howFound = ["Please tell us how you found us"]
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
@@ -232,7 +245,7 @@ export function ContactForm() {
       phone: formData.phone,
       email: formData.email,
       subject: formData.subject || undefined,
-      message: formData.message,
+      message: `${formData.message}\n\nHow Found: ${formData.howFound}${formData.referralCode ? `\nReferral Code: ${formData.referralCode}` : ""}`,
       serviceType: formData.serviceType as "package" | "taxi" | "enquiry",
       honeypot: formData.honeypot,
     }
@@ -298,6 +311,8 @@ export function ContactForm() {
                 serviceType: "",
                 message: "",
                 honeypot: "",
+                howFound: "",
+                referralCode: "",
               })
               setSelectedFile(null)
             }}
@@ -347,9 +362,8 @@ export function ContactForm() {
               maxLength={30}
               aria-invalid={!!errors.name}
               aria-describedby={errors.name ? "name-error" : undefined}
-              className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 pr-12 ${
-                errors.name ? "border-destructive" : ""
-              }`}
+              className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 pr-12 ${errors.name ? "border-destructive" : ""
+                }`}
             />
             {/* Character count indicator */}
             <AnimatePresence>
@@ -393,9 +407,8 @@ export function ContactForm() {
             required
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? "email-error" : undefined}
-            className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 ${
-              errors.email ? "border-destructive" : ""
-            }`}
+            className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 ${errors.email ? "border-destructive" : ""
+              }`}
           />
           <AnimatePresence>
             {errors.email && (
@@ -435,9 +448,8 @@ export function ContactForm() {
               maxLength={10}
               aria-invalid={!!errors.phone}
               aria-describedby={errors.phone ? "phone-error" : undefined}
-              className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 pr-12 ${
-                errors.phone ? "border-destructive" : ""
-              }`}
+              className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 pr-12 ${errors.phone ? "border-destructive" : ""
+                }`}
             />
             {/* Phone validation indicator */}
             <AnimatePresence>
@@ -477,9 +489,8 @@ export function ContactForm() {
           >
             <SelectTrigger
               id="serviceType"
-              className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 ${
-                errors.serviceType ? "border-destructive" : ""
-              }`}
+              className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 ${errors.serviceType ? "border-destructive" : ""
+                }`}
               aria-invalid={!!errors.serviceType}
             >
               <SelectValue placeholder="Select service type" />
@@ -508,6 +519,57 @@ export function ContactForm() {
         </div>
       </div>
 
+      {/* How Found & Referral Code */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 min-w-0">
+        <div className="space-y-2">
+          <Label htmlFor="howFound">How did you find us? *</Label>
+          <Select
+            value={formData.howFound}
+            onValueChange={(value) => setFormData((prev) => ({ ...prev, howFound: value }))}
+          >
+            <SelectTrigger
+              id="howFound"
+              className={`focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2 ${errors.howFound ? "border-destructive" : ""}`}
+              aria-invalid={!!errors.howFound}
+            >
+              <SelectValue placeholder="Select an option" />
+            </SelectTrigger>
+            <SelectContent>
+              {HOW_FOUND_OPTIONS.map((opt) => (
+                <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <AnimatePresence>
+            {errors.howFound && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="text-destructive flex items-center gap-1 text-sm"
+              >
+                <AlertCircle className="h-3 w-3" />
+                {errors.howFound[0]}
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="referralCode">Referral Code <span className="text-muted-foreground text-xs">(Optional)</span></Label>
+          <div className="relative">
+            <Tag className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+            <Input
+              id="referralCode"
+              placeholder="Enter referral code if any"
+              value={formData.referralCode}
+              onChange={(e) => setFormData((prev) => ({ ...prev, referralCode: e.target.value }))}
+              className="pl-10 focus:ring-primary/20 transition-all duration-200 focus:shadow-lg focus:ring-2"
+            />
+          </div>
+        </div>
+      </div>
+
       <div className="space-y-2 min-w-0">
         <Label htmlFor="subject">Subject</Label>
         <Input
@@ -533,9 +595,8 @@ export function ContactForm() {
           required
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "message-error" : undefined}
-          className={`focus:ring-primary/20 resize-none transition-all duration-200 focus:shadow-lg focus:ring-2 ${
-            errors.message ? "border-destructive" : ""
-          }`}
+          className={`focus:ring-primary/20 resize-none transition-all duration-200 focus:shadow-lg focus:ring-2 ${errors.message ? "border-destructive" : ""
+            }`}
         />
         <AnimatePresence>
           {errors.message && (
