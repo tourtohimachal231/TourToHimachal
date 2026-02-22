@@ -22,21 +22,13 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
+
   const { settings, loading } = useSettings()
   const scrollYRef = useRef(0)
   const pathname = usePathname()
 
   const whatsappNumber = settings.whatsapp_number || ""
   const contactPhone = settings.contact_phone || ""
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth)
-    }
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,9 +93,8 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`rounded-full px-3 py-2 text-sm font-medium transition-all duration-300 md:px-4 ${
-                    isActive ? "bg-saffron text-white" : "text-foreground hover:bg-saffron hover:text-white"
-                  }`}
+                  className={`rounded-full px-3 py-2 text-sm font-medium transition-all duration-300 md:px-4 ${isActive ? "bg-saffron text-white" : "text-foreground hover:bg-saffron hover:text-white"
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -127,8 +118,8 @@ export function Header() {
               </div>
             )}
 
-            {whatsappNumber && windowWidth >= 1140 && (
-              <Button asChild variant="gradient" size="lg" className="gap-1 px-3 py-2 text-xs font-medium md:gap-2 md:px-4 md:py-2 md:text-sm">
+            {whatsappNumber && (
+              <Button asChild variant="gradient" size="lg" className="hidden min-[1140px]:inline-flex gap-1 px-3 py-2 text-xs font-medium md:gap-2 md:px-4 md:py-2 md:text-sm">
                 <a
                   href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}`}
                   target="_blank"
@@ -213,11 +204,10 @@ export function Header() {
                       >
                         <Link
                           href={link.href}
-                          className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition-all sm:px-4 sm:py-3 sm:text-base ${
-                            isActive
-                              ? "bg-saffron text-white"
-                              : "text-foreground hover:bg-saffron hover:text-white"
-                          }`}
+                          className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition-all sm:px-4 sm:py-3 sm:text-base ${isActive
+                            ? "bg-saffron text-white"
+                            : "text-foreground hover:bg-saffron hover:text-white"
+                            }`}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           <span

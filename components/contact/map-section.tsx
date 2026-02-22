@@ -38,7 +38,7 @@ export function MapSection() {
             {/* Map */}
             <div className="bg-muted relative aspect-[16/10] sm:aspect-[21/9]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27032.68486831538!2d76.04!3d31.52!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391abd05e5d31eaf%3A0x4f7d0c6a4c0c7e8c!2sChintpurni%2C%20Himachal%20Pradesh!5e0!3m2!1sen!2sin!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d435810.236759943!2d76.07378120463018!3d31.42053196282243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1771506862723!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -61,7 +61,7 @@ export function MapSection() {
                       TourToHimachal Office
                     </h3>
                     <p className="text-muted-foreground text-sm md:text-base">
-                      Near Temple Complex, Chintpurni, HP 177106
+                      {settings.address || "Near Temple Complex, Chintpurni, HP 177110"}
                     </p>
                   </div>
                 </div>
@@ -69,7 +69,7 @@ export function MapSection() {
                 <div className="mb-3 grid grid-cols-2 gap-2 sm:mb-4 sm:gap-3">
                   <div className="text-muted-foreground bg-muted/50 flex items-center gap-2 rounded-lg p-2 text-sm md:text-base">
                     <Clock className="text-saffron h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
-                    <span className="truncate">9 AM - 7 PM</span>
+                    <span className="truncate">8 AM - 8 PM</span>
                   </div>
                   <div className="text-muted-foreground bg-muted/50 flex items-center gap-2 rounded-lg p-2 text-xs sm:text-sm">
                     <Phone className="text-saffron h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
