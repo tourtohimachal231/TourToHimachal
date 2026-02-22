@@ -74,330 +74,330 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
   return (
     <div className="flex min-h-screen flex-col">
       <main className="bg-background flex-grow pb-8 safe-area-bottom">
-      <Header />
+        <Header />
 
-      {/* Main Content */}
-      <section className="to-background bg-linear-to-b from-transparent via-[oklch(0.99_0.015_85)] py-4 pt-20 sm:py-6 md:py-8">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {/* Left Content */}
-            {/* Left Content */}
-            <div className="space-y-8 lg:col-span-2 lg:mt-20">
-              {/* Package Summary */}
-              <motion.div
-                variants={fadeInUp}
-                initial="hidden"
-                animate="visible"
-                className="py-2"
-              >
-                <div className="mb-3 flex flex-wrap items-center gap-1.5 sm:mb-4 sm:gap-2">
-                  {pkg.is_featured && (
-                    <Badge className="from-saffron to-sunset-orange border-0 bg-linear-to-r px-2 py-0.5 text-xs text-white shadow-md sm:px-3 sm:py-1 sm:text-sm">
-                      ⭐ Featured
-                    </Badge>
-                  )}
-                  {pkg.category && (
-                    <Badge
-                      variant="outline"
-                      className="border-saffron/30 text-saffron border-2 px-2 py-0.5 text-xs font-semibold capitalize sm:px-3 sm:py-1 sm:text-sm"
-                    >
-                      {pkg.category}
-                    </Badge>
-                  )}
-                  {pkg.region && (
-                    <Badge
-                      variant="outline"
-                      className="border-saffron/30 text-saffron flex items-center gap-1 border-2 px-3 py-1 font-semibold"
-                    >
-                      <MapPin className="h-3 w-3" />
-                      {pkg.region}
-                    </Badge>
-                  )}
-                </div>
-                <h1 className="mb-4 font-serif text-xl font-bold text-[#fc9700] sm:mb-6 sm:text-2xl md:text-4xl">
-                  {pkg.title}
-                </h1>
-
-                {/* Hero Slider placed between Title and Description */}
-                <div className="border-saffron/20 mb-8 overflow-hidden rounded-lg border shadow-lg">
-                  <PackageHeroSlider
-                    images={pkg.images || []}
-                    title={pkg.title}
-                    pdfUrl={pkg.itinerary_pdf_url}
-                  />
-                </div>
-
-                <div>
-                  <h3 className="text-foreground mb-3 font-serif text-lg font-bold sm:mb-4 sm:text-xl md:text-2xl">
-                    Overview
-                  </h3>
-                  <MarkdownRenderer content={pkg.description} />
-                </div>
-              </motion.div>
-
-              {/* Highlights */}
-              {pkg.highlights && pkg.highlights.length > 0 && (
+        {/* Main Content */}
+        <section className="to-background bg-linear-to-b from-transparent via-[oklch(0.99_0.015_85)] py-4 pt-20 sm:py-6 md:py-8">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+              {/* Left Content */}
+              {/* Left Content */}
+              <div className="space-y-8 lg:col-span-2 lg:mt-20">
+                {/* Package Summary */}
                 <motion.div
-                  variants={slideInLeft}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="py-2"
-                >
-                  <div className="mb-4 flex items-center gap-2 sm:mb-6 sm:gap-3">
-                    <div className="from-saffron to-sunset-orange flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br sm:h-10 sm:w-10">
-                      <Check className="h-4 w-4 text-white sm:h-6 sm:w-6" />
-                    </div>
-                    <h2 className="text-foreground font-serif text-lg font-bold sm:text-2xl md:text-3xl">
-                      Tour Highlights
-                    </h2>
-                  </div>
-                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
-                    {pkg.highlights.map((highlight, index) => (
-                      <div
-                        key={index}
-                        className="border-saffron/20 hover:border-saffron/40 flex items-start gap-2 rounded-lg border bg-white/80 p-2 backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:rounded-xl"
-                      >
-                        <div className="from-saffron to-sunset-orange mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br sm:h-6 sm:w-6">
-                          <Check className="h-3 w-3 text-white sm:h-4 sm:w-4" />
-                        </div>
-                        <div className="text-sm sm:text-base">
-                          <MarkdownRenderer content={highlight} textColor="text-foreground" />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Itinerary */}
-              {pkg.itinerary && Array.isArray(pkg.itinerary) && pkg.itinerary.length > 0 && (
-                <motion.div
-                  variants={slideInLeft}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="py-2"
-                >
-                  <div className="mb-6 flex items-center gap-3">
-                    <div className="from-saffron to-sunset-orange flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br">
-                      <MapPin className="h-6 w-6 text-white" />
-                    </div>
-                    <h2 className="text-foreground font-serif text-2xl font-bold md:text-3xl">
-                      Day-by-Day Itinerary
-                    </h2>
-                  </div>
-                  <ItineraryAccordion itinerary={pkg.itinerary} />
-                </motion.div>
-              )}
-
-              {/* Inclusions & Exclusions */}
-              {((pkg.inclusions && pkg.inclusions.length > 0) ||
-                (pkg.exclusions && pkg.exclusions.length > 0)) && (
-                <motion.div
-                  variants={slideInRight}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="grid grid-cols-1 gap-2 sm:gap-3 md:grid-cols-2"
-                >
-                  {pkg.inclusions && pkg.inclusions.length > 0 && (
-                    <div className="from-saffron/5 to-saffron/10 border-saffron/20 rounded-2xl border-2 bg-linear-to-br p-4 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-6">
-                      <div className="mb-3 flex items-center gap-2 sm:mb-5 sm:gap-3">
-                        <div className="bg-forest-green flex h-8 w-8 items-center justify-center rounded-full sm:h-10 sm:w-10">
-                          <Check className="h-4 w-4 text-white sm:h-6 sm:w-6" />
-                        </div>
-                        <h3 className="text-foreground font-serif text-base font-bold sm:text-xl">
-                          What's Included
-                        </h3>
-                      </div>
-                      <ul >
-                        {pkg.inclusions.map((item, index) => (
-                          <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
-                            <Check className="text-saffron mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
-                            <div className="text-sm sm:text-base">
-                              <MarkdownRenderer content={item} textColor="text-foreground" />
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {pkg.exclusions && pkg.exclusions.length > 0 && (
-                    <div className="from-destructive/5 to-destructive/10 border-destructive/20 rounded-2xl border-2 bg-linear-to-br p-4 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-6">
-                      <div className="mb-3 flex items-center gap-2 sm:mb-5 sm:gap-3">
-                        <div className="bg-destructive flex h-8 w-8 items-center justify-center rounded-full sm:h-10 sm:w-10">
-                          <X className="h-4 w-4 text-white sm:h-6 sm:w-6" />
-                        </div>
-                        <h3 className="text-foreground font-serif text-base font-bold sm:text-xl">
-                          What's Not Included
-                        </h3>
-                      </div>
-                      <ul>
-                        {pkg.exclusions.map((item, index) => (
-                          <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
-                            <X className="text-destructive mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
-                            <div className="text-sm sm:text-base">
-                              <MarkdownRenderer content={item} textColor="text-foreground" />
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </motion.div>
-              )}
-            </div>
-
-            {/* Sidebar - Booking Panel */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-28">
-                <motion.div
-                  variants={slideInRight}
+                  variants={fadeInUp}
                   initial="hidden"
                   animate="visible"
-                  className="via-saffron/5 to-sunset-orange/10 border-saffron/20 rounded-3xl border-2 bg-linear-to-br from-white p-5 shadow-xl"
+                  className="py-2"
                 >
-                  <div className="border-saffron/20 mb-4 border-b pb-4">
-                    <p className="text-muted-foreground mb-1 text-xs font-semibold tracking-wide uppercase">
-                      Tour Price
-                    </p>
-                    <div className="mb-1 flex items-baseline gap-2">
-                      <span className="from-saffron to-sunset-orange bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent">
-                        ₹{pkg.price?.toLocaleString()}
-                      </span>
-                      {pkg.original_price && pkg.original_price > pkg.price && (
-                        <span className="text-muted-foreground text-sm line-through">
-                          ₹{pkg.original_price.toLocaleString()}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-muted-foreground text-xs">for whole journey</p>
-                    {pkg.original_price && pkg.original_price > pkg.price && (
-                      <Badge className="from-forest-green to-mountain-blue mt-2 border-0 bg-linear-to-r px-2 py-0.5 text-xs text-white shadow-md">
-                        🎉 Save ₹{(pkg.original_price - pkg.price).toLocaleString()}
+                  <div className="mb-3 flex flex-wrap items-center gap-1.5 sm:mb-4 sm:gap-2">
+                    {pkg.is_featured && (
+                      <Badge className="from-saffron to-sunset-orange border-0 bg-linear-to-r px-2 py-0.5 text-xs text-white shadow-md sm:px-3 sm:py-1 sm:text-sm">
+                        ⭐ Featured
+                      </Badge>
+                    )}
+                    {pkg.category && (
+                      <Badge
+                        variant="outline"
+                        className="border-saffron/30 text-saffron border-2 px-2 py-0.5 text-xs font-semibold capitalize sm:px-3 sm:py-1 sm:text-sm"
+                      >
+                        {pkg.category}
+                      </Badge>
+                    )}
+                    {pkg.region && (
+                      <Badge
+                        variant="outline"
+                        className="border-saffron/30 text-saffron flex items-center gap-1 border-2 px-3 py-1 font-semibold"
+                      >
+                        <MapPin className="h-3 w-3" />
+                        {pkg.region}
                       </Badge>
                     )}
                   </div>
+                  <h1 className="mb-4 font-serif text-xl font-bold text-[#fc9700] sm:mb-6 sm:text-2xl md:text-4xl">
+                    {pkg.title}
+                  </h1>
 
-                  <div className="border-saffron/20 mb-4 space-y-2 border-b pb-4">
-                    <div className="flex items-center gap-2 rounded-lg bg-white/60 p-2">
-                      <div className="bg-mountain-blue/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full">
-                        <Clock className="text-saffron h-4 w-4" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-muted-foreground text-xs">Duration</p>
-                        <p className="text-foreground truncate text-sm font-semibold">{pkg.duration}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 rounded-lg bg-white/60 p-2">
-                      <div className="bg-forest-green/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full">
-                        <MapPin className="text-saffron h-4 w-4" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-muted-foreground text-xs">Destination</p>
-                        <p className="text-foreground truncate text-sm font-semibold">
-                          {pkg.region || "Himachal Pradesh"}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 rounded-lg bg-white/60 p-2">
-                      <div className="bg-saffron/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full">
-                        <Users className="text-saffron h-4 w-4" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-muted-foreground text-xs">Group Size</p>
-                        <p className="text-foreground text-sm font-semibold">
-                          Max {pkg.min_persons ?? 2} persons
-                        </p>
-                      </div>
-                    </div>
+                  {/* Hero Slider placed between Title and Description */}
+                  <div className="border-saffron/20 mb-8 overflow-hidden rounded-lg border shadow-lg">
+                    <PackageHeroSlider
+                      images={pkg.images || []}
+                      title={pkg.title}
+                      pdfUrl={pkg.itinerary_pdf_url}
+                    />
                   </div>
 
-                  <div className="space-y-2">
-                    <Dialog open={isBookingOpen} onOpenChange={setIsBookingOpen}>
-                      <DialogTrigger asChild>
-                        <Button className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 h-10 w-full gap-2 bg-linear-to-r text-sm text-white shadow-lg transition-all hover:shadow-xl">
-                          📅 Book This Tour
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-h-[90vh] max-w-md overflow-y-auto">
-                        <DialogHeader>
-                          <DialogTitle>Book {pkg.title}</DialogTitle>
-                          <DialogDescription>
-                            Fill in your details and we'll get back to you within 12 hours.
-                          </DialogDescription>
-                        </DialogHeader>
-                        <PackageBookingForm
-                          packageName={pkg.title}
-                          packagePrice={pkg.price}
-                          onSuccess={() => {}}
-                        />
-                      </DialogContent>
-                    </Dialog>
-
-                    <Button
-                      asChild
-                      className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 h-10 w-full gap-2 bg-linear-to-r text-sm text-white shadow-md transition-all hover:shadow-lg"
-                    >
-                      <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                        <WhatsAppIcon className="h-4 w-4" />
-                        WhatsApp Booking
-                      </a>
-                    </Button>
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="border-saffron/20 hover:bg-saffron/10 hover:border-saffron/40 h-10 w-full gap-2 border-2 bg-white/60 text-sm"
-                    >
-                      <a href={`tel:${(settings.contact_phone || "").replace(/\s/g, "")}`}>
-                        <Phone className="h-4 w-4" />
-                        Call Now
-                      </a>
-                    </Button>
+                  <div>
+                    <h3 className="text-foreground mb-3 font-serif text-lg font-bold sm:mb-4 sm:text-xl md:text-2xl">
+                      Overview
+                    </h3>
+                    <MarkdownRenderer content={pkg.description} />
                   </div>
-
-                  <p className="text-muted-foreground mt-3 text-center text-xs">
-                    No payment required to book. Pay later at your convenience.
-                  </p>
                 </motion.div>
+
+                {/* Highlights */}
+                {pkg.highlights && pkg.highlights.length > 0 && (
+                  <motion.div
+                    variants={slideInLeft}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="py-2"
+                  >
+                    <div className="mb-4 flex items-center gap-2 sm:mb-6 sm:gap-3">
+                      <div className="from-saffron to-sunset-orange flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br sm:h-10 sm:w-10">
+                        <Check className="h-4 w-4 text-white sm:h-6 sm:w-6" />
+                      </div>
+                      <h2 className="text-foreground font-serif text-lg font-bold sm:text-2xl md:text-3xl">
+                        Tour Highlights
+                      </h2>
+                    </div>
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+                      {pkg.highlights.map((highlight, index) => (
+                        <div
+                          key={index}
+                          className="border-saffron/20 hover:border-saffron/40 flex items-start gap-2 rounded-lg border bg-white/80 p-2 backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:rounded-xl"
+                        >
+                          <div className="from-saffron to-sunset-orange mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br sm:h-6 sm:w-6">
+                            <Check className="h-3 w-3 text-white sm:h-4 sm:w-4" />
+                          </div>
+                          <div className="text-sm sm:text-base">
+                            <MarkdownRenderer content={highlight} textColor="text-foreground" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Itinerary */}
+                {pkg.itinerary && Array.isArray(pkg.itinerary) && pkg.itinerary.length > 0 && (
+                  <motion.div
+                    variants={slideInLeft}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="py-2"
+                  >
+                    <div className="mb-6 flex items-center gap-3">
+                      <div className="from-saffron to-sunset-orange flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br">
+                        <MapPin className="h-6 w-6 text-white" />
+                      </div>
+                      <h2 className="text-foreground font-serif text-2xl font-bold md:text-3xl">
+                        Day-by-Day Itinerary
+                      </h2>
+                    </div>
+                    <ItineraryAccordion itinerary={pkg.itinerary} />
+                  </motion.div>
+                )}
+
+                {/* Inclusions & Exclusions */}
+                {((pkg.inclusions && pkg.inclusions.length > 0) ||
+                  (pkg.exclusions && pkg.exclusions.length > 0)) && (
+                    <motion.div
+                      variants={slideInRight}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      className="grid grid-cols-1 gap-2 sm:gap-3 md:grid-cols-2"
+                    >
+                      {pkg.inclusions && pkg.inclusions.length > 0 && (
+                        <div className="from-saffron/5 to-saffron/10 border-saffron/20 rounded-2xl border-2 bg-linear-to-br p-4 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-6">
+                          <div className="mb-3 flex items-center gap-2 sm:mb-5 sm:gap-3">
+                            <div className="bg-forest-green flex h-8 w-8 items-center justify-center rounded-full sm:h-10 sm:w-10">
+                              <Check className="h-4 w-4 text-white sm:h-6 sm:w-6" />
+                            </div>
+                            <h3 className="text-foreground font-serif text-base font-bold sm:text-xl">
+                              What's Included
+                            </h3>
+                          </div>
+                          <ul >
+                            {pkg.inclusions.map((item, index) => (
+                              <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
+                                <Check className="text-saffron mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
+                                <div className="text-sm sm:text-base">
+                                  <MarkdownRenderer content={item} textColor="text-foreground" />
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {pkg.exclusions && pkg.exclusions.length > 0 && (
+                        <div className="from-destructive/5 to-destructive/10 border-destructive/20 rounded-2xl border-2 bg-linear-to-br p-4 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-6">
+                          <div className="mb-3 flex items-center gap-2 sm:mb-5 sm:gap-3">
+                            <div className="bg-destructive flex h-8 w-8 items-center justify-center rounded-full sm:h-10 sm:w-10">
+                              <X className="h-4 w-4 text-white sm:h-6 sm:w-6" />
+                            </div>
+                            <h3 className="text-foreground font-serif text-base font-bold sm:text-xl">
+                              What's Not Included
+                            </h3>
+                          </div>
+                          <ul>
+                            {pkg.exclusions.map((item, index) => (
+                              <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
+                                <X className="text-destructive mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
+                                <div className="text-sm sm:text-base">
+                                  <MarkdownRenderer content={item} textColor="text-foreground" />
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
+              </div>
+
+              {/* Sidebar - Booking Panel */}
+              <div className="lg:col-span-1">
+                <div className="sticky top-28">
+                  <motion.div
+                    variants={slideInRight}
+                    initial="hidden"
+                    animate="visible"
+                    className="via-saffron/5 to-sunset-orange/10 border-saffron/20 rounded-3xl border-2 bg-linear-to-br from-white p-5 shadow-xl"
+                  >
+                    <div className="border-saffron/20 mb-4 border-b pb-4">
+                      <p className="text-muted-foreground mb-1 text-xs font-semibold tracking-wide uppercase">
+                        Tour Price
+                      </p>
+                      <div className="mb-1 flex items-baseline gap-2">
+                        <span className="from-saffron to-sunset-orange bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent">
+                          ₹{pkg.price?.toLocaleString()}
+                        </span>
+                        {pkg.original_price && pkg.original_price > pkg.price && (
+                          <span className="text-muted-foreground text-sm line-through">
+                            ₹{pkg.original_price.toLocaleString()}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-muted-foreground text-xs">for whole journey</p>
+                      {pkg.original_price && pkg.original_price > pkg.price && (
+                        <Badge className="from-forest-green to-mountain-blue mt-2 border-0 bg-linear-to-r px-2 py-0.5 text-xs text-white shadow-md">
+                          🎉 Save ₹{(pkg.original_price - pkg.price).toLocaleString()}
+                        </Badge>
+                      )}
+                    </div>
+
+                    <div className="border-saffron/20 mb-4 space-y-2 border-b pb-4">
+                      <div className="flex items-center gap-2 rounded-lg bg-white/60 p-2">
+                        <div className="bg-mountain-blue/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full">
+                          <Clock className="text-saffron h-4 w-4" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-muted-foreground text-xs">Duration</p>
+                          <p className="text-foreground truncate text-sm font-semibold">{pkg.duration}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 rounded-lg bg-white/60 p-2">
+                        <div className="bg-forest-green/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full">
+                          <MapPin className="text-saffron h-4 w-4" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-muted-foreground text-xs">Destination</p>
+                          <p className="text-foreground truncate text-sm font-semibold">
+                            {pkg.region || "Himachal Pradesh"}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 rounded-lg bg-white/60 p-2">
+                        <div className="bg-saffron/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full">
+                          <Users className="text-saffron h-4 w-4" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-muted-foreground text-xs">Group Size</p>
+                          <p className="text-foreground text-sm font-semibold">
+                            Max {pkg.min_persons ?? 2} persons
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Dialog open={isBookingOpen} onOpenChange={setIsBookingOpen}>
+                        <DialogTrigger asChild>
+                          <Button className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 h-10 w-full gap-2 bg-linear-to-r text-sm text-white shadow-lg transition-all hover:shadow-xl">
+                            📅 Book This Tour
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-h-[92vh] w-[95vw] max-w-lg overflow-y-auto rounded-2xl p-4 sm:max-w-xl sm:p-6 md:max-w-2xl">
+                          <DialogHeader>
+                            <DialogTitle className="text-lg sm:text-xl">Book {pkg.title}</DialogTitle>
+                            <DialogDescription className="text-sm">
+                              Fill in your details and we'll get back to you within 12 hours.
+                            </DialogDescription>
+                          </DialogHeader>
+                          <PackageBookingForm
+                            packageName={pkg.title}
+                            packagePrice={pkg.price}
+                            onSuccess={() => { }}
+                          />
+                        </DialogContent>
+                      </Dialog>
+
+                      <Button
+                        asChild
+                        className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 h-10 w-full gap-2 bg-linear-to-r text-sm text-white shadow-md transition-all hover:shadow-lg"
+                      >
+                        <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+                          <WhatsAppIcon className="h-4 w-4" />
+                          WhatsApp Booking
+                        </a>
+                      </Button>
+                      <Button
+                        asChild
+                        variant="outline"
+                        className="border-saffron/20 hover:bg-saffron/10 hover:border-saffron/40 h-10 w-full gap-2 border-2 bg-white/60 text-sm"
+                      >
+                        <a href={`tel:${(settings.contact_phone || "").replace(/\s/g, "")}`}>
+                          <Phone className="h-4 w-4" />
+                          Call Now
+                        </a>
+                      </Button>
+                    </div>
+
+                    <p className="text-muted-foreground mt-3 text-center text-xs">
+                      No payment required to book. Pay later at your convenience.
+                    </p>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Related Packages */}
-      {allPackages.length > 1 && (
-        <section className="bg-muted/30 py-12">
-          <div className="container mx-auto px-4">
-            <RelatedPackagesCarousel packages={allPackages} currentSlug={pkg.slug} />
-          </div>
         </section>
-      )}
 
-      {/* Sticky Mobile Booking Bar */}
-      <div className="to-saffron/10 border-saffron/30 fixed right-0 bottom-0 left-0 z-40 border-t-2 bg-linear-to-r from-white p-4 shadow-2xl backdrop-blur-md lg:hidden safe-area-bottom">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <span className="from-saffron to-sunset-orange bg-linear-to-r bg-clip-text text-2xl font-bold text-transparent">
-              ₹{pkg.price?.toLocaleString()}
-            </span>
-            <p className="text-muted-foreground text-xs font-medium">for whole journey</p>
+        {/* Related Packages */}
+        {allPackages.length > 1 && (
+          <section className="bg-muted/30 py-12">
+            <div className="container mx-auto px-4">
+              <RelatedPackagesCarousel packages={allPackages} currentSlug={pkg.slug} />
+            </div>
+          </section>
+        )}
+
+        {/* Sticky Mobile Booking Bar */}
+        <div className="to-saffron/10 border-saffron/30 fixed right-0 bottom-0 left-0 z-40 border-t-2 bg-linear-to-r from-white p-4 shadow-2xl backdrop-blur-md lg:hidden safe-area-bottom">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <span className="from-saffron to-sunset-orange bg-linear-to-r bg-clip-text text-2xl font-bold text-transparent">
+                ₹{pkg.price?.toLocaleString()}
+              </span>
+              <p className="text-muted-foreground text-xs font-medium">for whole journey</p>
+            </div>
+            <Button
+              onClick={() => setIsBookingOpen(true)}
+              className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 max-w-50 flex-1 gap-2 bg-linear-to-r text-white shadow-lg"
+            >
+              📅 Book Now
+            </Button>
           </div>
-          <Button
-            onClick={() => setIsBookingOpen(true)}
-            className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 max-w-50 flex-1 gap-2 bg-linear-to-r text-white shadow-lg"
-          >
-            📅 Book Now
-          </Button>
         </div>
-      </div>
 
-      <div className="pb-20 lg:pb-0">
-        <Footer />
-      </div>
-    </main>
+        <div className="pb-20 lg:pb-0">
+          <Footer />
+        </div>
+      </main>
     </div>
   )
 }

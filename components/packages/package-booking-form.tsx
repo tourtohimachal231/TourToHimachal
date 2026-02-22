@@ -318,9 +318,9 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
       initial="hidden"
       animate="visible"
       onSubmit={handleSubmit}
-      className="space-y-4"
+      className="relative z-10 space-y-4 rounded-2xl bg-card/95 p-4 shadow-xl backdrop-blur-sm sm:p-5"
     >
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="name" className="flex items-center justify-between">
             Full Name *
@@ -440,7 +440,7 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
         {errors.email && <p className="text-destructive text-sm">{errors.email}</p>}
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="date">Preferred Date *</Label>
           <div className="relative">
@@ -492,7 +492,7 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="howFound">How did you find us? *</Label>
           <Select
