@@ -1,10 +1,10 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Star, Loader2, Upload, ImageIcon } from "lucide-react"
+import { Star, Loader2 } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,12 +13,31 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { toast } from "sonner"
 import { DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 
+
+const LETTERS_ONLY = /^[A-Za-z\s]*$/
+const SAFE_TEXT = /^[A-Za-z0-9\s]*$/
+
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  city: z.string().min(2, "City name is required"),
+  name: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .refine((v) => LETTERS_ONLY.test(v), {
+      message: "Only letters and spaces are allowed — no special characters, symbols, or accented letters",
+    }),
+  phone: z.string().min(10, "Please enter a valid phone number").regex(/^\d+$/, "Phone must contain only digits"),
+  city: z
+    .string()
+    .min(2, "City name is required")
+    .refine((v) => LETTERS_ONLY.test(v), {
+      message: "Only letters and spaces are allowed — no special characters, symbols, or accented letters",
+    }),
   rating: z.number().min(1, "Please select a rating").max(5),
-  review_text: z.string().min(10, "Review must be at least 10 characters"),
+  review_text: z
+    .string()
+    .min(10, "Review must be at least 10 characters")
+    .refine((v) => SAFE_TEXT.test(v), {
+      message: "Special characters, accented letters, and symbols are not allowed",
+    }),
 })
 
 interface ReviewFormProps {
@@ -28,8 +47,6 @@ interface ReviewFormProps {
 export function ReviewForm({ onSuccess }: ReviewFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [hoverRating, setHoverRating] = useState(0)
-  const [file, setFile] = useState<File | null>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,70 +59,12 @@ export function ReviewForm({ onSuccess }: ReviewFormProps) {
     },
   })
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0])
-    }
-  }
-
-  async function uploadImage(): Promise<string | null> {
-    if (!file) return null
-
-    try {
-      const formDataToSend = new FormData()
-      formDataToSend.append("file", file)
-      formDataToSend.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "")
-
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/auto/upload`,
-        {
-          method: "POST",
-          body: formDataToSend,
-        },
-      )
-
-      if (!response.ok) {
-        throw new Error("Upload failed")
-      }
-
-      const data = await response.json()
-
-      // Save metadata to media table
-      const supabase = createClient()
-      const { error: mediaError } = await supabase.from("media").insert({
-        name: file.name.replace(/\.[^/.]+$/, ""),
-        url: data.secure_url,
-        type: "image",
-        folder: "reviews",
-        alt_text: "Review image by customer",
-      })
-
-      if (mediaError) {
-        console.error("Failed to save media metadata:", mediaError)
-        // We continue anyway since we have the URL
-      }
-
-      return data.secure_url
-    } catch (error) {
-      console.error("Image upload error:", error)
-      toast.error("Failed to upload image")
-      return null
-    }
-  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
     const supabase = createClient()
 
     try {
-      let imageUrl = null
-      if (file) {
-        imageUrl = await uploadImage()
-        if (!imageUrl) {
-          throw new Error("Image upload failed")
-        }
-      }
-
       const { error } = await supabase.from("reviews").insert([
         {
           name: values.name,
@@ -113,8 +72,8 @@ export function ReviewForm({ onSuccess }: ReviewFormProps) {
           city: values.city,
           rating: values.rating,
           review_text: values.review_text,
-          image_url: imageUrl,
-          is_approved: true, // Auto-approve as per user request
+          image_url: null,
+          is_approved: true,
         },
       ])
 
@@ -125,7 +84,6 @@ export function ReviewForm({ onSuccess }: ReviewFormProps) {
       })
 
       form.reset()
-      setFile(null)
       onSuccess?.()
     } catch (error) {
       console.error("Error submitting review:", error)
@@ -156,7 +114,15 @@ export function ReviewForm({ onSuccess }: ReviewFormProps) {
                 <FormItem>
                   <FormLabel>Name *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your full name" {...field} className="text-base sm:text-sm" />
+                    <Input
+                      placeholder="Your full name"
+                      {...field}
+                      className="text-base sm:text-sm"
+                      onChange={(e) => {
+                        // Strip non-letter chars in real time
+                        field.onChange(e.target.value.replace(/[^A-Za-z\s]/g, ""))
+                      }}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -170,7 +136,16 @@ export function ReviewForm({ onSuccess }: ReviewFormProps) {
                 <FormItem>
                   <FormLabel>Phone Number *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Contact number" {...field} className="text-base sm:text-sm" />
+                    <Input
+                      placeholder="Contact number"
+                      {...field}
+                      className="text-base sm:text-sm"
+                      inputMode="numeric"
+                      onChange={(e) => {
+                        // Strip non-digit chars in real time
+                        field.onChange(e.target.value.replace(/\D/g, ""))
+                      }}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -185,50 +160,22 @@ export function ReviewForm({ onSuccess }: ReviewFormProps) {
               <FormItem>
                 <FormLabel>City *</FormLabel>
                 <FormControl>
-                  <Input placeholder="Where are you from?" {...field} className="text-base sm:text-sm" />
+                  <Input
+                    placeholder="Where are you from?"
+                    {...field}
+                    className="text-base sm:text-sm"
+                    onChange={(e) => {
+                      // Strip non-letter chars in real time
+                      field.onChange(e.target.value.replace(/[^A-Za-z\s]/g, ""))
+                    }}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <FormItem>
-            <FormLabel>Photo (Optional)</FormLabel>
-            <FormControl>
-              <div className="flex items-center gap-4">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="h-11 w-full sm:h-10"
-                >
-                  {file ? (
-                    <>
-                      <ImageIcon className="mr-2 h-4 w-4" />
-                      <span className="max-w-[200px] truncate">{file.name}</span>
-                    </>
-                  ) : (
-                    <>
-                      <Upload className="mr-2 h-4 w-4" />
-                      Upload Photo
-                    </>
-                  )}
-                </Button>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  accept="image/*"
-                  className="hidden"
-                />
-              </div>
-            </FormControl>
-            {file && (
-              <p className="text-muted-foreground mt-1 text-xs">
-                Selected: {file.name} ({(file.size / 1024 / 1024).toFixed(2)} MB)
-              </p>
-            )}
-          </FormItem>
+
 
           <FormField
             control={form.control}
@@ -248,11 +195,10 @@ export function ReviewForm({ onSuccess }: ReviewFormProps) {
                         onClick={() => field.onChange(star)}
                       >
                         <Star
-                          className={`h-8 w-8 sm:h-8 sm:w-8 ${
-                            star <= (hoverRating || field.value)
-                              ? "fill-golden-yellow text-golden-yellow"
-                              : "text-muted-foreground/30"
-                          }`}
+                          className={`h-8 w-8 sm:h-8 sm:w-8 ${star <= (hoverRating || field.value)
+                            ? "fill-golden-yellow text-golden-yellow"
+                            : "text-muted-foreground/30"
+                            }`}
                         />
                       </button>
                     ))}
@@ -274,6 +220,10 @@ export function ReviewForm({ onSuccess }: ReviewFormProps) {
                     placeholder="Tell us about your trip..."
                     className="min-h-[100px] resize-none"
                     {...field}
+                    onChange={(e) => {
+                      // Strip non-letter/number chars in real time
+                      field.onChange(e.target.value.replace(/[^A-Za-z0-9\s]/g, ""))
+                    }}
                   />
                 </FormControl>
                 <FormMessage />

@@ -1,9 +1,9 @@
 "use client"
 
 import type React from "react"
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Send, Loader2, CheckCircle2, Upload, X, AlertCircle, Tag } from "lucide-react"
+import { Send, Loader2, CheckCircle2, AlertCircle, Tag } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,6 +13,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { fadeInUp } from "@/lib/animation-variants"
 import { useSettings } from "@/lib/settings-context"
 import { submitContactForm, type ContactFormData } from "@/lib/contact"
+import {
+  validateName as sharedValidateName,
+  validatePhone as sharedValidatePhone,
+  validateNoSpecialCharsText,
+} from "@/lib/form-validators"
 
 const HOW_FOUND_OPTIONS = [
   "Google Search",
@@ -55,8 +60,7 @@ export function ContactForm() {
   const [referenceNumber, setReferenceNumber] = useState<string | null>(null)
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitError, setSubmitError] = useState<string | null>(null)
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null)
+
   const todayDate = getTodayDate()
 
   const [formData, setFormData] = useState({
@@ -71,34 +75,16 @@ export function ContactForm() {
     referralCode: "",
   })
 
-  // Real-time validation for name field
+  // Wrap shared validators to match local string[] | undefined return type
   const validateName = (value: string): string[] | undefined => {
-    if (!value) return undefined
-    // Check for alphabetical characters only (allowing spaces)
-    if (!/^[A-Za-z\s]*$/.test(value)) {
-      return ["Name must contain only letters and spaces"]
-    }
-    // Check maximum length
-    if (value.length > 30) {
-      return ["Name must not exceed 30 characters"]
-    }
-    return undefined
+    const err = sharedValidateName(value)
+    if (!err && value.length > 0 && value.length < 2) return ["Name must be at least 2 characters"]
+    return err ? [err] : undefined
   }
 
-  // Real-time validation for phone field
   const validatePhone = (value: string): string[] | undefined => {
-    if (!value) return undefined
-    // Remove non-numeric characters for validation
-    const numericValue = value.replace(/\D/g, '')
-    // Check if input contains only numeric characters
-    if (value !== numericValue) {
-      return ["Phone number must contain only digits"]
-    }
-    // Check for exactly 10 digits
-    if (numericValue.length > 0 && numericValue.length !== 10) {
-      return [`Phone number must be exactly 10 digits (current: ${numericValue.length})`]
-    }
-    return undefined
+    const err = sharedValidatePhone(value)
+    return err ? [err] : undefined
   }
 
   const validateField = (name: string, value: string) => {
@@ -136,13 +122,26 @@ export function ContactForm() {
           }
         }
         break
-      case "message":
-        if (value.length < 10) {
+      case "subject": {
+        const subjectSpecialErr = validateNoSpecialCharsText(value)
+        if (subjectSpecialErr) {
+          newErrors.subject = [subjectSpecialErr]
+        } else {
+          delete newErrors.subject
+        }
+        break
+      }
+      case "message": {
+        const msgSpecialErr = validateNoSpecialCharsText(value)
+        if (msgSpecialErr) {
+          newErrors.message = [msgSpecialErr]
+        } else if (value.length < 10) {
           newErrors.message = ["Message must be at least 10 characters"]
         } else {
           delete newErrors.message
         }
         break
+      }
     }
 
     setErrors(newErrors)
@@ -161,14 +160,19 @@ export function ContactForm() {
         validateField(name, numericValue)
       }
     } else if (name === 'name') {
-      // For name field, allow only letters and spaces
+      // Allow only letters and spaces
       const sanitizedValue = value.replace(/[^A-Za-z\s]/g, '')
       setFormData((prev) => ({ ...prev, [name]: sanitizedValue }))
 
-      // Real-time validation
       if (errors[name as keyof FormErrors]) {
         validateField(name, sanitizedValue)
       }
+    } else if (name === 'subject' || name === 'message') {
+      // Allow only letters, numbers, and spaces
+      const sanitizedValue = value.replace(/[^A-Za-z0-9\s]/g, '')
+      setFormData((prev) => ({ ...prev, [name]: sanitizedValue }))
+
+      validateField(name, sanitizedValue)
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }))
 
@@ -184,30 +188,6 @@ export function ContactForm() {
     validateField(name, value)
   }
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      // Validate file size (max 5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        alert("File size must be less than 5MB")
-        return
-      }
-      // Validate file type
-      const allowedTypes = ["application/pdf", "image/jpeg", "image/png", "image/webp"]
-      if (!allowedTypes.includes(file.type)) {
-        alert("Only PDF and image files are allowed")
-        return
-      }
-      setSelectedFile(file)
-    }
-  }
-
-  const removeFile = () => {
-    setSelectedFile(null)
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ""
-    }
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -230,7 +210,14 @@ export function ContactForm() {
       const phoneError = validatePhone(formData.phone)
       if (phoneError) newErrors.phone = phoneError
     }
-    if (formData.message.length < 10) newErrors.message = ["Message must be at least 10 characters"]
+    const subjectSpecialErr = validateNoSpecialCharsText(formData.subject)
+    if (subjectSpecialErr) newErrors.subject = [subjectSpecialErr]
+    const msgSpecialErr = validateNoSpecialCharsText(formData.message)
+    if (msgSpecialErr) {
+      newErrors.message = [msgSpecialErr]
+    } else if (formData.message.length < 10) {
+      newErrors.message = ["Message must be at least 10 characters"]
+    }
     if (!formData.serviceType) newErrors.serviceType = ["Please select a service type"]
     if (!formData.howFound) newErrors.howFound = ["Please tell us how you found us"]
 
@@ -316,7 +303,6 @@ export function ContactForm() {
                 howFound: "",
                 referralCode: "",
               })
-              setSelectedFile(null)
             }}
           >
             Send Another Inquiry
@@ -616,48 +602,6 @@ export function ContactForm() {
         </AnimatePresence>
       </div>
 
-      {/* File Upload */}
-      <div className="space-y-2">
-        <Label htmlFor="file">Attach Document (Optional)</Label>
-        <p className="text-muted-foreground mb-2 text-xs">
-          Upload itinerary request or travel document (PDF, JPG, PNG - max 5MB)
-        </p>
-        <div className="flex items-center gap-4">
-          <input
-            ref={fileInputRef}
-            type="file"
-            id="file"
-            accept=".pdf,.jpg,.jpeg,.png,.webp"
-            onChange={handleFileChange}
-            className="hidden"
-          />
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => fileInputRef.current?.click()}
-            className="gap-2"
-          >
-            <Upload className="h-4 w-4" />
-            Choose File
-          </Button>
-          {selectedFile && (
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="bg-muted flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm"
-            >
-              <span className="max-w-37.5 truncate">{selectedFile.name}</span>
-              <button
-                type="button"
-                onClick={removeFile}
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </motion.div>
-          )}
-        </div>
-      </div>
 
       {/* Submit Error */}
       <AnimatePresence>

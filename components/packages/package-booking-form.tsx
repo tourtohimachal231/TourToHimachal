@@ -12,6 +12,12 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { fadeInUp } from "@/lib/animation-variants"
 import { generateWhatsAppLink } from "@/lib/whatsapp"
+import {
+  validateName as sharedValidateName,
+  validatePhone as sharedValidatePhone,
+  validateDate as sharedValidateDate,
+  validateNoSpecialCharsText,
+} from "@/lib/form-validators"
 import { useSettings } from "@/lib/settings-context"
 
 const HOW_FOUND_OPTIONS = [
@@ -57,49 +63,9 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
   const [referenceNumber, setReferenceNumber] = useState<string | null>(null)
   const todayDate = getTodayDate()
 
-  // Real-time validation for name field
-  const validateName = (value: string): string | null => {
-    if (!value) return null
-    // Check for alphabetical characters only (allowing spaces)
-    if (!/^[A-Za-z\s]*$/.test(value)) {
-      return "Name must contain only letters and spaces"
-    }
-    // Check maximum length
-    if (value.length > 30) {
-      return "Name must not exceed 30 characters"
-    }
-    return null
-  }
-
-  // Real-time validation for phone field
-  const validatePhone = (value: string): string | null => {
-    if (!value) return null
-    // Remove non-numeric characters for validation
-    const numericValue = value.replace(/\D/g, '')
-    // Check if input contains only numeric characters
-    if (value !== numericValue) {
-      return "Phone number must contain only digits"
-    }
-    // Check for exactly 10 digits
-    if (numericValue.length > 0 && numericValue.length !== 10) {
-      return `Phone number must be exactly 10 digits (current: ${numericValue.length})`
-    }
-    return null
-  }
-
-  // Validate date - ensure it's not in the past
-  const validateDate = (value: string): string | null => {
-    if (!value) return null
-    const selectedDate = new Date(value)
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
-    selectedDate.setHours(0, 0, 0, 0)
-
-    if (selectedDate < today) {
-      return "Please select a date from today onwards"
-    }
-    return null
-  }
+  const validateName = sharedValidateName
+  const validatePhone = sharedValidatePhone
+  const validateDate = sharedValidateDate
 
   // Handle input change with real-time validation
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -157,6 +123,21 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
           return newErrors
         })
       }
+    } else if (name === 'message') {
+      // Allow only letters, numbers, and spaces
+      const sanitizedValue = value.replace(/[^A-Za-z0-9\s]/g, '')
+      setFormData(prev => ({ ...prev, [name]: sanitizedValue }))
+
+      const err = validateNoSpecialCharsText(sanitizedValue)
+      setErrors(prev => {
+        const newErrors = { ...prev }
+        if (err) {
+          newErrors[name] = err
+        } else {
+          delete newErrors[name]
+        }
+        return newErrors
+      })
     } else {
       setFormData(prev => ({ ...prev, [name]: value }))
     }
@@ -211,6 +192,8 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
       const dateError = validateDate(formData.date)
       if (dateError) newErrors.date = dateError
     }
+    const msgSpecialErr = validateNoSpecialCharsText(formData.message)
+    if (msgSpecialErr) newErrors.message = msgSpecialErr
     if (!formData.howFound) newErrors.howFound = "Please tell us how you found us"
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -539,7 +522,7 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
             id="message"
             placeholder="Any special requirements or questions..."
             value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            onChange={(e) => setFormData({ ...formData, message: e.target.value.replace(/[^A-Za-z0-9\s]/g, '') })}
             className="min-h-20 pl-10"
           />
         </div>
