@@ -15,6 +15,8 @@ export const contactFormSchema = z.object({
     required_error: "Please select a service type",
   }),
   honeypot: z.string().max(0, "Bot detected").optional(), // Spam protection
+  howFound: z.string().optional(),
+  referralCode: z.string().optional(),
 })
 
 export type ContactFormData = z.infer<typeof contactFormSchema>

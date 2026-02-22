@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server"
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, phone, email, subject, message, serviceType } = body
+    const { name, phone, email, subject, message, serviceType, howFound, referralCode } = body
 
     // Validate required fields
     if (!name || name.toString().trim().length < 2) {
@@ -48,6 +48,8 @@ export async function POST(request: NextRequest) {
       message: String(message).trim(),
       service_type: serviceType || "taxi",
       status: "new",
+      how_found: howFound ? String(howFound).trim() : null,
+      referral_code: referralCode ? String(referralCode).trim() : null,
     }
 
     console.log("Taxi booking insert data:", insertData)

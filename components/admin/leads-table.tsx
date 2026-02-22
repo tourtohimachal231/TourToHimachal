@@ -34,6 +34,8 @@ interface Lead {
   created_at: string
   reference_number: string
   file_url?: string
+  how_found?: string
+  referral_code?: string
 }
 
 interface LeadsTableProps {
@@ -355,6 +357,20 @@ export function LeadsTable({ leads }: LeadsTableProps) {
                   {selectedLead.message}
                 </p>
               </div>
+              {selectedLead.how_found && (
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <p className="text-muted-foreground text-xs sm:text-sm">How Did They Find Us</p>
+                    <p className="text-sm font-medium sm:text-base">{selectedLead.how_found}</p>
+                  </div>
+                  {selectedLead.referral_code && (
+                    <div>
+                      <p className="text-muted-foreground text-xs sm:text-sm">Referral Code</p>
+                      <code className="bg-muted rounded px-2 py-1 text-xs sm:text-sm">{selectedLead.referral_code}</code>
+                    </div>
+                  )}
+                </div>
+              )}
               <div className="flex flex-col gap-2 pt-4 sm:flex-row">
                 <Button asChild className="flex-1 bg-saffron text-sm hover:bg-saffron/90">
                   <a

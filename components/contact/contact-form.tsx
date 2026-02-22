@@ -248,6 +248,8 @@ export function ContactForm() {
       message: `${formData.message}\n\nHow Found: ${formData.howFound}${formData.referralCode ? `\nReferral Code: ${formData.referralCode}` : ""}`,
       serviceType: formData.serviceType as "package" | "taxi" | "enquiry",
       honeypot: formData.honeypot,
+      howFound: formData.howFound || undefined,
+      referralCode: formData.referralCode || undefined,
     }
 
     const result = await submitContactForm(submitData)

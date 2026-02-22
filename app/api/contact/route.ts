@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { name, phone, email, subject, message, serviceType, honeypot } = validationResult.data
+    const { name, phone, email, subject, message, serviceType, honeypot, howFound, referralCode } = validationResult.data
 
     // Honeypot spam check
     if (honeypot && honeypot.length > 0) {
@@ -46,6 +46,8 @@ export async function POST(request: NextRequest) {
         message,
         service_type: serviceType,
         status: "new",
+        how_found: howFound || null,
+        referral_code: referralCode || null,
       })
       .select("reference_number")
       .single()
