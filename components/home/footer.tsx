@@ -180,7 +180,7 @@ export function Footer() {
                         <MapPin className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                       </div>
                       <span className="text-sm text-slate-400 md:text-base">
-                        Near Temple Complex, Chintpurni, HP 177106
+                        Near Temple Complex, Chintpurni, HP 177110
                       </span>
                     </li>
                     <li className="group flex items-center gap-2 sm:gap-3">

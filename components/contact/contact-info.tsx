@@ -13,7 +13,7 @@ export function ContactInfo() {
   const contactPhone = settings.contact_phone || ""
   const whatsappNumber = settings.whatsapp_number || ""
   const contactEmail = settings.contact_email || "info@tourtohimachal.com"
-  const address = settings.address || "Near Temple Complex, Chintpurni, HP 177106"
+  const address = settings.address || "Near Temple Complex, Chintpurni, HP 177110"
   const businessHours = settings.business_hours || "Mon-Sat: 9:00 AM - 7:00 PM, Sun: 10:00 AM - 5:00 PM"
 
   const contactInfo = [

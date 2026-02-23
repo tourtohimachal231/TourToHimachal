@@ -27,7 +27,7 @@ const defaultSettings: SiteSettings = {
   contact_email: "info@tourtohimachal.com",
   contact_phone: "",
   whatsapp_number: "",
-  address: "Near Temple Complex, Chintpurni, HP 177106",
+  address: "Near Temple Complex, Chintpurni, HP 177110",
   google_maps_embed: "",
   facebook_url: "",
   instagram_url: "",
@@ -51,7 +51,7 @@ interface SettingsContextType {
 const SettingsContext = createContext<SettingsContextType>({
   settings: defaultSettings,
   loading: true,
-  refreshSettings: async () => {},
+  refreshSettings: async () => { },
 })
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
@@ -89,7 +89,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
                 parsedValue = row.value
               }
             }
-            ;(settingsObj as any)[row.key] = parsedValue
+            ; (settingsObj as any)[row.key] = parsedValue
           }
         })
         setSettings(settingsObj)
