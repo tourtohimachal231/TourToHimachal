@@ -57,9 +57,9 @@ export function Footer() {
 
   ]
 
-  const contactPhone = settings.contact_phone || ""
-  const contactEmail = settings.contact_email || "info@tourtohimachal.com"
-  const address = settings.address || "123 Mall Road, Shimla, Himachal Pradesh 171001"
+  const contactPhone = settings.contact_phone || "+91 8628839955"
+  const contactEmail = settings.contact_email || "tourtohimachal231@gmail.com"
+  const address = settings.address || "Near Temple Complex, Chintpurni, HP 177110"
 
   return (
     <footer className="relative safe-area-bottom">
@@ -185,13 +185,24 @@ export function Footer() {
                     </li>
                     <li className="group flex items-center gap-2 sm:gap-3">
                       <div className="bg-saffron/10 group-hover:bg-saffron/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
+                        <Phone className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
+                      </div>
+                      <a
+                        href="tel:+918628839955"
+                        className="hover:text-saffron text-sm text-slate-400 transition-colors md:text-base"
+                      >
+                        +91 8628839955
+                      </a>
+                    </li>
+                    <li className="group flex items-center gap-2 sm:gap-3">
+                      <div className="bg-saffron/10 group-hover:bg-saffron/20 shrink-0 rounded-lg p-1.5 transition-colors sm:p-2">
                         <Mail className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                       </div>
                       <a
-                        href="mailto:info@tourtohimachal.com"
+                        href="mailto:tourtohimachal231@gmail.com"
                         className="hover:text-saffron text-sm break-all text-slate-400 transition-colors md:text-base"
                       >
-                        info@tourtohimachal.com
+                        tourtohimachal231@gmail.com
                       </a>
                     </li>
                   </ul>
