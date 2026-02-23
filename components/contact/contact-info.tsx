@@ -10,11 +10,11 @@ import { useSettings } from "@/lib/settings-context"
 export function ContactInfo() {
   const { settings } = useSettings()
 
-  const contactPhone = settings.contact_phone || ""
-  const whatsappNumber = settings.whatsapp_number || ""
-  const contactEmail = settings.contact_email || "info@tourtohimachal.com"
+  const contactPhone = settings.contact_phone || "+91 8628839955"
+  const whatsappNumber = settings.whatsapp_number || "+918628839955"
+  const contactEmail = settings.contact_email || "tourtohimachal231@gmail.com"
   const address = settings.address || "Near Temple Complex, Chintpurni, HP 177110"
-  const businessHours = settings.business_hours || "Mon-Sat: 9:00 AM - 7:00 PM, Sun: 10:00 AM - 5:00 PM"
+  const businessHours = settings.business_hours || "Mon-Sun: 8:00 AM - 8:00 PM"
 
   const contactInfo = [
     {
