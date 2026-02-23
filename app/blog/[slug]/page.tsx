@@ -2,6 +2,8 @@ import { notFound } from "next/navigation"
 import { createPublicClient } from "@/lib/supabase/public"
 import { BlogDetailClient } from "./blog-detail-client"
 
+const SITE_URL = "https://www.tourtohimachal.in"
+
 interface BlogDetailPageProps {
   params: Promise<{ slug: string }>
 }
@@ -34,11 +36,16 @@ export async function generateMetadata({ params }: BlogDetailPageProps) {
   return {
     title: `${post.title} | TourToHimachal Blog`,
     description: post.excerpt,
+    alternates: {
+      canonical: `${SITE_URL}/blog/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       images: post.gallery && post.gallery.length > 0 ? post.gallery : post.cover_image ? [post.cover_image] : [],
       type: "article",
+      url: `${SITE_URL}/blog/${slug}`,
+      siteName: "TourToHimachal",
       publishedTime: post.published_at,
       authors: [displayAuthor],
     },
@@ -92,7 +99,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     },
   }
 
-  const blogUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/blog/${slug}`
+  const blogUrl = `${SITE_URL}/blog/${slug}`
 
   return (
     <>

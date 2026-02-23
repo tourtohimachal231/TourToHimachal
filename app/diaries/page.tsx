@@ -2,15 +2,25 @@ import type { Metadata } from "next"
 import { createPublicClient } from "@/lib/supabase/public"
 import { DiariesPageClient } from "@/components/diaries/diaries-page-client"
 
+const SITE_URL = "https://www.tourtohimachal.in"
+
 export const metadata: Metadata = {
-  title: "Travel Diaries | Real Himachal Trips & Travel Stories",
+  title: "Himachal Travel Diaries | Real Trip Stories & Itineraries – TourToHimachal",
   description:
-    "Explore real travel diaries from Himachal: itineraries, photos & tips from recent journeys. Get authentic insights to plan your perfect trip!",
+    "Read real travel diaries from Himachal: actual itineraries, photos & tips from recent journeys. Get authentic insights to plan your tour to Himachal Pradesh!",
+  keywords:
+    "himachal travel diary, himachal trip story, himachal itinerary, manali trip diary, shimla travel story, chintpurni yatra diary",
+  alternates: {
+    canonical: `${SITE_URL}/diaries`,
+  },
   openGraph: {
-    title: "Travel Diaries | Real Himachal Trips & Travel Stories",
+    title: "Himachal Travel Diaries | Real Trip Stories & Itineraries",
     description:
-      "Explore real travel diaries from Himachal: itineraries, photos & tips from recent journeys. Get authentic insights to plan your perfect trip!",
+      "Real travel diaries from Himachal: itineraries, photos & tips from recent journeys. Authentic insights for your Himachal trip!",
     type: "website",
+    url: `${SITE_URL}/diaries`,
+    siteName: "TourToHimachal",
+    locale: "en_IN",
   },
 }
 

@@ -2,17 +2,28 @@ import type { Metadata } from "next"
 import { createPublicClient } from "@/lib/supabase/public"
 import { TaxiPageClient } from "@/components/taxi/taxi-page-client"
 
+const SITE_URL = "https://www.tourtohimachal.in"
+
 export const metadata: Metadata = {
-  title: "Himachal Taxi Service | Reliable Cabs & Transparent Fares",
+  title: "Himachal Taxi Service | Reliable Cabs & Transparent Fares – TourToHimachal",
   description:
-    "Book safe, reliable taxi service across Himachal. Airport pickups, inter-city rides & sightseeing tours with verified drivers. No hidden charges!",
+    "Book safe, reliable taxi service across Himachal Pradesh. Airport pickups, inter-city rides, Chintpurni to Shimla, Manali & sightseeing tours with verified drivers. No hidden charges!",
+  keywords:
+    "himachal taxi service, taxi himachal pradesh, cab service himachal, chintpurni taxi, shimla taxi, manali taxi, airport pickup himachal, tempo traveller himachal",
+  alternates: {
+    canonical: `${SITE_URL}/taxi`,
+  },
   openGraph: {
     title: "Himachal Taxi Service | Reliable Cabs & Transparent Fares",
     description:
-      "Book safe, reliable taxi service across Himachal. Airport pickups, inter-city rides & sightseeing tours with verified drivers. No hidden charges!",
+      "Book safe taxi service across Himachal. Airport pickups, inter-city rides & sightseeing tours with verified drivers. No hidden charges!",
     type: "website",
+    url: `${SITE_URL}/taxi`,
+    siteName: "TourToHimachal",
+    locale: "en_IN",
   },
 }
+
 
 export const revalidate = 0 // Always fetch fresh data
 

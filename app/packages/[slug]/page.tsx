@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { createPublicClient } from "@/lib/supabase/public"
 import { PackageDetailClient } from "./package-detail-client"
 
+const SITE_URL = "https://www.tourtohimachal.in"
+
 interface PageProps {
   params: Promise<{ slug: string }>
 }
@@ -47,10 +49,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${pkg.title} | TourToHimachal`,
     description: pkg.short_description || pkg.description,
+    alternates: {
+      canonical: `${SITE_URL}/packages/${slug}`,
+    },
     openGraph: {
       title: pkg.title,
       description: pkg.short_description || pkg.description,
       images: pkg.images?.[0] ? [pkg.images[0]] : [],
+      type: "website",
+      url: `${SITE_URL}/packages/${slug}`,
+      siteName: "TourToHimachal",
     },
   }
 }

@@ -2,17 +2,28 @@ import type { Metadata } from "next"
 import { createPublicClient } from "@/lib/supabase/public"
 import { BlogPageClient } from "@/components/blog/blog-page-client"
 
+const SITE_URL = "https://www.tourtohimachal.in"
+
 export const metadata: Metadata = {
-  title: "Himachal Travel Blog | Tips, Guides & Travel Stories",
+  title: "Himachal Travel Blog | Tips, Guides & Travel Stories – TourToHimachal",
   description:
-    "Expert travel tips, temple guides, road trip advice & stories from across Himachal Pradesh. Plan your journey with insider knowledge & local insights!",
+    "Expert travel tips, temple guides, road trip advice & stories from across Himachal Pradesh. Plan your tour to Himachal with insider knowledge & local insights!",
+  keywords:
+    "himachal travel blog, himachal pradesh travel guide, shimla travel tips, manali travel guide, chintpurni temple guide, himachal road trip",
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+  },
   openGraph: {
     title: "Himachal Travel Blog | Tips, Guides & Travel Stories",
     description:
-      "Expert travel tips, temple guides, road trip advice & stories from across Himachal Pradesh. Plan your journey with insider knowledge & local insights!",
+      "Expert travel tips, temple guides & road trip advice from across Himachal Pradesh. Plan your journey with local insights!",
     type: "website",
+    url: `${SITE_URL}/blog`,
+    siteName: "TourToHimachal",
+    locale: "en_IN",
   },
 }
+
 
 export const revalidate = 0 // Always fetch fresh data
 

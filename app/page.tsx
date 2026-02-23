@@ -5,13 +5,40 @@ import dynamic from "next/dynamic"
 
 export const revalidate = 0 // Always fetch fresh data
 
+const SITE_URL = "https://www.tourtohimachal.in"
+
 export const metadata: Metadata = {
-  title: "TourToHimachal | Best Himachal Tours & Taxi Services",
-  description: "Explore Himachal with expert tours, taxi services & custom packages. Spiritual journeys, honeymoon trips & adventure getaways. Book your dream trip today!",
+  title: "Tour to Himachal Pradesh | Best Tour Packages & Taxi Services – TourToHimachal",
+  description:
+    "Plan your tour to Himachal Pradesh with TourToHimachal. Affordable tour packages, taxi services, spiritual journeys, honeymoon trips & adventure getaways from Shimla, Manali, Chintpurni & more. Book today!",
+  keywords:
+    "tour to himachal, tour to himachal pradesh, himachal tour packages, manali tour package, shimla tour, chintpurni taxi, himachal taxi service, spiritual tour himachal, honeymoon packages himachal, adventure trip himachal, tourtohimachal",
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
-    title: "TourToHimachal | Best Himachal Tours & Taxi Services",
-    description: "Explore Himachal with expert tours, taxi services & custom packages. Spiritual journeys, honeymoon trips & adventure getaways. Book your dream trip today!",
+    title: "Tour to Himachal Pradesh | Best Tour Packages & Taxi Services",
+    description:
+      "Plan your tour to Himachal Pradesh with TourToHimachal. Curated packages, reliable taxi, spiritual & adventure tours. Book your dream Himalayan trip today!",
     type: "website",
+    url: SITE_URL,
+    siteName: "TourToHimachal",
+    locale: "en_IN",
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Tour to Himachal Pradesh – TourToHimachal",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tour to Himachal Pradesh | TourToHimachal",
+    description:
+      "Curated Himachal tour packages, taxi services & spiritual journeys. Book your trip with TourToHimachal today!",
+    images: [`${SITE_URL}/og-image.jpg`],
   },
 }
 
@@ -62,10 +89,12 @@ const Footer = dynamic(
   () => import("@/components/home/footer").then((mod) => ({ default: mod.Footer })),
   { loading: () => null }
 )
+
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="bg-background grow safe-area-bottom">
+        {/* TravelAgency + LocalBusiness structured data */}
         <Script
           id="org-jsonld"
           type="application/ld+json"
@@ -73,13 +102,37 @@ export default function HomePage() {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": ["TravelAgency", "LocalBusiness"],
               name: "TourToHimachal",
-              url: "https://www.tourtohimachal.in/",
-              logo: "https://www.tourtohimachal.in/icon.png",
+              url: `${SITE_URL}/`,
+              logo: `${SITE_URL}/icon.png`,
+              image: `${SITE_URL}/og-image.jpg`,
+              description:
+                "TourToHimachal offers curated tour packages, reliable taxi services, spiritual journeys, and adventure travel across Himachal Pradesh.",
+              telephone: "+91-8628839955",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Chintpurni",
+                addressLocality: "Una",
+                addressRegion: "Himachal Pradesh",
+                postalCode: "177110",
+                addressCountry: "IN",
+              },
+              areaServed: [
+                "Himachal Pradesh",
+                "Shimla",
+                "Manali",
+                "Dharamshala",
+                "Chintpurni",
+                "Kullu",
+                "Spiti Valley",
+              ],
+              priceRange: "₹₹",
+              sameAs: [],
             }),
           }}
         />
+        {/* WebSite structured data with SearchAction */}
         <Script
           id="website-jsonld"
           type="application/ld+json"
@@ -89,7 +142,15 @@ export default function HomePage() {
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "TourToHimachal",
-              url: "https://www.tourtohimachal.in/",
+              url: `${SITE_URL}/`,
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: `${SITE_URL}/packages?search={search_term_string}`,
+                },
+                "query-input": "required name=search_term_string",
+              },
             }),
           }}
         />
@@ -112,3 +173,5 @@ export default function HomePage() {
     </div>
   )
 }
+
+
