@@ -8,7 +8,7 @@ interface DiaryDetailPageProps {
   params: Promise<{ slug: string }>
 }
 
-export const revalidate = 0
+export const revalidate = 3600 // Revalidate every hour for ISR caching
 
 export async function generateMetadata({ params }: DiaryDetailPageProps) {
   const { slug } = await params

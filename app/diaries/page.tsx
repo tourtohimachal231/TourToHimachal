@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
 }
 
-export const revalidate = 0 // Always fetch fresh data
+export const revalidate = 3600 // Revalidate every hour for ISR caching
 
 export default async function DiariesPage() {
   const supabase = createPublicClient()

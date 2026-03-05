@@ -9,6 +9,8 @@ interface PageProps {
   params: Promise<{ slug: string }>
 }
 
+export const revalidate = 3600 // Revalidate every hour for ISR caching
+
 async function getPackage(slug: string) {
   const supabase = createPublicClient()
 

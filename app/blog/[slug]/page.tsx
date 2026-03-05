@@ -8,7 +8,7 @@ interface BlogDetailPageProps {
   params: Promise<{ slug: string }>
 }
 
-export const revalidate = 0 // Always fetch fresh data
+export const revalidate = 3600 // Revalidate every hour for ISR caching
 
 export async function generateMetadata({ params }: BlogDetailPageProps) {
   const { slug } = await params
