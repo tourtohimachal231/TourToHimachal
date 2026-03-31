@@ -359,9 +359,6 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                       </Button>
                     </div>
 
-                    <p className="text-muted-foreground mt-3 text-center text-xs">
-                      No payment required to book. Pay later at your convenience.
-                    </p>
                   </motion.div>
                 </div>
               </div>
