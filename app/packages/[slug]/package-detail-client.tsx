@@ -145,7 +145,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                     className="py-2"
                   >
                     <div className="mb-4 flex items-center gap-2 sm:mb-6 sm:gap-3">
-                      <div className="from-saffron to-sunset-orange flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br sm:h-10 sm:w-10">
+                      <div className="from-green-500 to-green-600 flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br sm:h-10 sm:w-10">
                         <Check className="h-4 w-4 text-white sm:h-6 sm:w-6" />
                       </div>
                       <h2 className="text-foreground font-serif text-lg font-bold sm:text-2xl md:text-3xl">
@@ -156,13 +156,13 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                       {pkg.highlights.map((highlight, index) => (
                         <div
                           key={index}
-                          className="border-saffron/20 hover:border-saffron/40 flex items-start gap-2 rounded-lg border bg-white/80 p-2 backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:rounded-xl"
+                          className="border-saffron/20 hover:border-saffron/40 flex items-center gap-2 rounded-lg border bg-white/80 py-1.5 px-2 backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:rounded-xl sm:py-2 sm:px-3"
                         >
-                          <div className="from-saffron to-sunset-orange mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br sm:h-6 sm:w-6">
+                          <div className="from-green-500 to-green-600 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br sm:h-6 sm:w-6">
                             <Check className="h-3 w-3 text-white sm:h-4 sm:w-4" />
                           </div>
-                          <div className="text-sm sm:text-base">
-                            <MarkdownRenderer content={highlight} textColor="text-foreground" />
+                          <div className="flex items-center text-sm sm:text-base">
+                            <MarkdownRenderer content={highlight} textColor="text-foreground" className="[&_p]:mb-0" />
                           </div>
                         </div>
                       ))}
@@ -202,10 +202,10 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                       className="grid grid-cols-1 gap-2 sm:gap-3 md:grid-cols-2"
                     >
                       {pkg.inclusions && pkg.inclusions.length > 0 && (
-                        <div className="from-saffron/5 to-saffron/10 border-saffron/20 rounded-2xl border-2 bg-linear-to-br p-4 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-6">
-                          <div className="mb-3 flex items-center gap-2 sm:mb-5 sm:gap-3">
-                            <div className="bg-forest-green flex h-8 w-8 items-center justify-center rounded-full sm:h-10 sm:w-10">
-                              <Check className="h-4 w-4 text-white sm:h-6 sm:w-6" />
+                        <div className="from-saffron/5 to-saffron/10 border-saffron/20 rounded-2xl border-2 bg-linear-to-br py-2.5 px-3 shadow-sm transition-shadow hover:shadow-md sm:py-3 sm:px-4 md:py-3.5 md:px-5">
+                          <div className="mb-2 flex items-center gap-2 sm:mb-3 sm:gap-3">
+                            <div className="from-green-500 to-green-600 flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-br sm:h-8 sm:w-8">
+                              <Check className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4" />
                             </div>
                             <h3 className="text-foreground font-serif text-base font-bold sm:text-xl">
                               What's Included
@@ -213,10 +213,12 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                           </div>
                           <ul >
                             {pkg.inclusions.map((item, index) => (
-                              <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
-                                <Check className="text-saffron mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
-                                <div className="text-sm sm:text-base">
-                                  <MarkdownRenderer content={item} textColor="text-foreground" />
+                              <li key={index} className="text-foreground flex items-center gap-2 sm:gap-3">
+                                <div className="from-green-500 to-green-600 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-linear-to-br sm:h-5 sm:w-5">
+                                  <Check className="h-3 w-3 text-white sm:h-4 sm:w-4" />
+                                </div>
+                                <div className="flex items-center text-sm sm:text-base">
+                                  <MarkdownRenderer content={item} textColor="text-foreground" className="[&_p]:mb-0" />
                                 </div>
                               </li>
                             ))}
@@ -224,10 +226,10 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                         </div>
                       )}
                       {pkg.exclusions && pkg.exclusions.length > 0 && (
-                        <div className="from-destructive/5 to-destructive/10 border-destructive/20 rounded-2xl border-2 bg-linear-to-br p-4 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-6">
-                          <div className="mb-3 flex items-center gap-2 sm:mb-5 sm:gap-3">
-                            <div className="bg-destructive flex h-8 w-8 items-center justify-center rounded-full sm:h-10 sm:w-10">
-                              <X className="h-4 w-4 text-white sm:h-6 sm:w-6" />
+                        <div className="from-destructive/5 to-destructive/10 border-destructive/20 rounded-2xl border-2 bg-linear-to-br py-2.5 px-3 shadow-sm transition-shadow hover:shadow-md sm:py-3 sm:px-4 md:py-3.5 md:px-5">
+                          <div className="mb-2 flex items-center gap-2 sm:mb-3 sm:gap-3">
+                            <div className="bg-destructive flex h-7 w-7 items-center justify-center rounded-full sm:h-8 sm:w-8">
+                              <X className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4" />
                             </div>
                             <h3 className="text-foreground font-serif text-base font-bold sm:text-xl">
                               What's Not Included
@@ -235,10 +237,10 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                           </div>
                           <ul>
                             {pkg.exclusions.map((item, index) => (
-                              <li key={index} className="text-foreground flex items-start gap-2 sm:gap-3">
-                                <X className="text-destructive mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
-                                <div className="text-sm sm:text-base">
-                                  <MarkdownRenderer content={item} textColor="text-foreground" />
+                              <li key={index} className="text-foreground flex items-center gap-2 sm:gap-3">
+                                <X className="text-destructive h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
+                                <div className="flex items-center text-sm sm:text-base">
+                                  <MarkdownRenderer content={item} textColor="text-foreground" className="[&_p]:mb-0" />
                                 </div>
                               </li>
                             ))}

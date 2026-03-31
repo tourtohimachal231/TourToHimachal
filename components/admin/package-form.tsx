@@ -88,7 +88,13 @@ export function PackageForm({ initialData }: PackageFormProps) {
       title: string
       description: string
       activities: string[]
-      subtitles?: Array<{ title: string; highlight?: string; description: string; activities: string[] }>
+      subtitles?: Array<{
+        title: string;
+        highlight?: string;
+        description: string;
+        activities: string[];
+        image?: string;
+      }>
     }>
   >([])
 
@@ -158,6 +164,7 @@ export function PackageForm({ initialData }: PackageFormProps) {
       highlight: "",
       description: "",
       activities: [],
+      image: undefined,
     })
     setItinerary(updated)
   }
@@ -165,7 +172,7 @@ export function PackageForm({ initialData }: PackageFormProps) {
   const updateSubtitle = (
     dayIndex: number,
     subtitleIndex: number,
-    field: "title" | "highlight" | "description",
+    field: "title" | "highlight" | "description" | "image",
     value: string,
   ) => {
     const updated = [...itinerary]
@@ -719,6 +726,66 @@ export function PackageForm({ initialData }: PackageFormProps) {
                                     </span>
                                   ))}
                                 </div>
+                              </div>
+
+                              {/* Image Upload Section */}
+                              <div className="space-y-2">
+                                <Label>Sub-section Image</Label>
+                                {!subtitle.image ? (
+                                  <CloudinaryUploadWidget
+                                    key={`sub-${dayIndex}-${subtitleIndex}-upload`}
+                                    onUploadSuccess={async (result: CloudinaryUploadResult) => {
+                                      const registered = await registerMedia({
+                                        url: result.secure_url,
+                                        public_id: result.public_id,
+                                        folder: "itinerary",
+                                        name: result.original_filename,
+                                        alt_text: `${subtitle.title || 'Itinerary'} - Day ${day.day}`,
+                                        size: result.bytes,
+                                        format: result.format,
+                                        resource_type: result.resource_type,
+                                      })
+
+                                      if (!registered.ok) {
+                                        toast.error(registered.error)
+                                        return
+                                      }
+
+                                      updateSubtitle(dayIndex, subtitleIndex, "image", result.secure_url)
+                                      toast.success("Image uploaded successfully!")
+                                    }}
+                                    onUploadError={(error) => {
+                                      console.error("Upload failed:", error)
+                                      toast.error("Failed to upload image")
+                                    }}
+                                    folder="himachal-yatra/itinerary"
+                                    maxFiles={1}
+                                    multiple={false}
+                                    acceptedFormats={["jpg", "jpeg", "png", "webp"]}
+                                    buttonText="Upload Image"
+                                    buttonVariant="outline"
+                                  />
+                                ) : (
+                                  <div className="relative group">
+                                    <div className="relative h-32 w-full overflow-hidden rounded-lg border">
+                                      <img
+                                        src={subtitle.image}
+                                        alt={`Sub-section ${subtitleIndex + 1}`}
+                                        className="h-full w-full object-cover"
+                                      />
+                                      <Button
+                                        type="button"
+                                        variant="destructive"
+                                        size="sm"
+                                        onClick={() => updateSubtitle(dayIndex, subtitleIndex, "image", "")}
+                                        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                                      >
+                                        <X className="h-4 w-4" />
+                                      </Button>
+                                    </div>
+                                    <p className="text-muted-foreground mt-1 text-xs">Image uploaded successfully</p>
+                                  </div>
+                                )}
                               </div>
                             </CardContent>
                           </Card>

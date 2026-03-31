@@ -11,7 +11,13 @@ interface ItineraryDay {
   title: string
   description: string
   activities: string[]
-  subtitles?: Array<{ title: string; highlight?: string; description: string; activities: string[] }>
+  subtitles?: Array<{
+    title: string;
+    highlight?: string;
+    description: string;
+    activities: string[];
+    image?: string;
+  }>
 }
 
 interface ItineraryAccordionProps {
@@ -34,7 +40,7 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
         >
           <button
             onClick={() => toggleDay(item.day)}
-            className="hover:bg-saffron/5 flex w-full items-center justify-between p-4 text-left transition-colors sm:p-5 md:p-6"
+            className="hover:bg-saffron/5 flex w-full items-center justify-between py-2.5 px-3 text-left transition-colors sm:py-3 sm:px-4 md:py-3.5 md:px-5"
             aria-expanded={openDay === item.day}
           >
             <div className="flex items-center gap-4">
@@ -47,9 +53,8 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
               </div>
             </div>
             <ChevronDown
-              className={`text-saffron h-5 w-5 transition-transform duration-300 sm:h-6 sm:w-6 ${
-                openDay === item.day ? "rotate-180" : ""
-              }`}
+              className={`text-saffron h-5 w-5 transition-transform duration-300 sm:h-6 sm:w-6 ${openDay === item.day ? "rotate-180" : ""
+                }`}
             />
           </button>
 
@@ -65,43 +70,64 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
                 <div className="px-3 pt-1 pb-5 sm:px-5 md:px-6">
                   {/* Subtitles Section */}
                   {item.subtitles && item.subtitles.length > 0 ? (
-                    <div className="space-y-3 pl-0 md:pl-16">
-                      {item.subtitles.map((subtitle, subtitleIndex) => (
-                        <div
-                          key={subtitleIndex}
-                          className="to-saffron/5 border-saffron/20 rounded-xl border bg-linear-to-br from-white p-3 transition-all duration-300 hover:shadow-md sm:p-4 md:p-5"
-                        >
-                          <h5 className="text-foreground mb-2.5 flex items-center gap-2 text-sm font-bold md:text-base">
-                            <div className="from-saffron to-sunset-orange h-2 w-2 rounded-full bg-linear-to-br" />
-                            {subtitle.title}
-                          </h5>
-                          {subtitle.highlight && (
-                            <div className="mb-3 inline-flex max-w-full items-start rounded-xl border-2 border-yellow-400/50 bg-linear-to-r from-yellow-50 to-yellow-100 px-3 py-2 shadow-lg shadow-yellow-200/60">
-                              <span className="inline-flex items-start gap-2 text-xs font-semibold text-yellow-900 whitespace-normal">
-                                <span className="text-base leading-none">⚠️</span>
-                                <span>{subtitle.highlight}</span>
-                              </span>
+                    <div className="space-y-6">
+                      {item.subtitles.map((subtitle, subtitleIndex) => {
+                        const isEvenIndex = subtitleIndex % 2 === 0
+                        return (
+                          <div
+                            key={subtitleIndex}
+                            className={`py-3 px-4 md:py-4 md:px-5`}
+                          >
+                            <div className={`flex flex-col gap-4 ${isEvenIndex ? 'md:flex-row' : 'md:flex-row-reverse'
+                              }`}
+                            >
+                              {/* Image Section - Only show if image exists */}
+                              {subtitle.image && (
+                                <div className="md:w-[25%] flex-shrink-0">
+                                  <img
+                                    src={subtitle.image}
+                                    alt={subtitle.title || `Sub-section ${subtitleIndex + 1}`}
+                                    className="h-auto w-full object-contain transition-transform duration-300 hover:scale-105"
+                                  />
+                                </div>
+                              )}
+
+                              {/* Content Section */}
+                              <div className={`flex-1 ${subtitle.image ? 'md:w-[75%]' : 'md:w-full'}`}>
+                                <h5 className="text-foreground mb-2.5 flex items-center gap-2 text-sm font-bold md:text-base">
+                                  <div className="from-saffron to-sunset-orange h-2 w-2 rounded-full bg-linear-to-br" />
+                                  {subtitle.title}
+                                </h5>
+                                {subtitle.highlight && (
+                                  <div className="mb-3 inline-flex max-w-full items-start rounded-xl border-2 border-yellow-400/50 bg-linear-to-r from-yellow-50 to-yellow-100 px-3 py-2 shadow-lg shadow-yellow-200/60">
+                                    <span className="inline-flex items-start gap-2 text-xs font-semibold text-yellow-900 whitespace-normal">
+                                      <span className="text-base leading-none">⚠️</span>
+                                      <span>{subtitle.highlight}</span>
+                                    </span>
+                                  </div>
+                                )}
+                                <MarkdownRenderer content={subtitle.description} className="mb-3 text-sm md:text-base" />
+                                {subtitle.activities && subtitle.activities.length > 0 && (
+                                  <div className="flex flex-wrap gap-2">
+                                    {subtitle.activities.map((activity, actIndex) => (
+                                      <span
+                                        key={actIndex}
+                                        className="border-saffron/30 text-saffron hover:bg-saffron/5 hover:border-saffron/50 inline-flex items-center gap-1 rounded-full border bg-white px-2.5 py-1 text-[10px] font-medium transition-all sm:text-[11px]"
+                                      >
+                                        <MapPin className="h-3 w-3" />
+                                        {activity}
+                                      </span>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                          )}
-                          <MarkdownRenderer content={subtitle.description} className="mb-3 text-sm md:text-base" />
-                          {subtitle.activities && subtitle.activities.length > 0 && (
-                            <div className="flex flex-wrap gap-2">
-                              {subtitle.activities.map((activity, actIndex) => (
-                                <span
-                                  key={actIndex}
-                                  className="border-saffron/30 text-saffron hover:bg-saffron/5 hover:border-saffron/50 inline-flex items-center gap-1 rounded-full border bg-white px-2.5 py-1 text-[10px] font-medium transition-all sm:text-[11px]"
-                                >
-                                  <MapPin className="h-3 w-3" />
-                                  {activity}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      ))}
+                          </div>
+                        )
+                      })}
                     </div>
                   ) : (
-                    <div className="text-muted-foreground py-3 pl-0 text-sm italic md:pl-16 md:text-base">
+                    <div className="text-muted-foreground py-3 text-sm italic md:text-base">
                       No sub-sections added.
                     </div>
                   )}

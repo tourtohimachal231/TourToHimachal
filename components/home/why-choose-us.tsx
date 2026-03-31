@@ -1,5 +1,6 @@
 "use client"
 
+import type React from "react"
 import { motion } from "framer-motion"
 import { MapPin, Wallet, Shield, ClipboardList, BadgeCheck, Award } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp"
@@ -7,48 +8,45 @@ import { fadeInUp, staggerContainer } from "@/lib/animation-variants"
 
 const features = [
   {
-    icon: MapPin,
+    icon: "mapPin",
     title: "Local Himachal Expertise",
-    description: "Deep knowledge of hidden gems and best routes across the state.",
-    gradient: "from-saffron to-sunset-orange",
-    bgColor: "from-saffron/20 to-sunset-orange/10",
+    description: "Deep knowledge of hidden gems and best routes across state.",
   },
   {
-    icon: Wallet,
+    icon: "wallet",
     title: "Affordable Packages",
     description: "Best value for money with no hidden costs or surprises.",
-    gradient: "from-saffron to-golden-yellow",
-    bgColor: "from-saffron/20 to-golden-yellow/10",
   },
   {
-    icon: Shield,
+    icon: "shield",
     title: "Safe Taxi Service",
     description: "Well-maintained vehicles with experienced, verified drivers.",
-    gradient: "from-saffron to-sunset-orange",
-    bgColor: "from-saffron/20 to-sunset-orange/10",
   },
   {
-    icon: WhatsAppIcon,
+    icon: "whatsAppIcon",
     title: "WhatsApp Instant Booking",
     description: "Quick and easy bookings directly via WhatsApp chat.",
-    gradient: "from-saffron to-sunset-orange",
-    bgColor: "from-saffron/20 to-sunset-orange/10",
   },
   {
-    icon: ClipboardList,
+    icon: "clipboardList",
     title: "Custom Itineraries",
     description: "Personalized travel plans tailored to your preferences.",
-    gradient: "from-saffron to-sunset-orange",
-    bgColor: "from-saffron/20 to-sunset-orange/10",
   },
   {
-    icon: BadgeCheck,
+    icon: "badgeCheck",
     title: "Verified Drivers",
     description: "Background-checked, courteous, and professional drivers.",
-    gradient: "from-sunset-orange to-temple-red",
-    bgColor: "from-sunset-orange/20 to-temple-red/10",
   },
 ]
+
+const iconMap: Record<string, React.ReactNode> = {
+  mapPin: <MapPin className="h-6 w-6" />,
+  wallet: <Wallet className="h-6 w-6" />,
+  shield: <Shield className="h-6 w-6" />,
+  whatsAppIcon: <WhatsAppIcon className="h-6 w-6" />,
+  clipboardList: <ClipboardList className="h-6 w-6" />,
+  badgeCheck: <BadgeCheck className="h-6 w-6" />,
+}
 
 export function WhyChooseUs() {
   return (
@@ -97,26 +95,19 @@ export function WhyChooseUs() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-6"
+          className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6"
         >
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
               variants={fadeInUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative rounded-2xl border-2 border-white/50 bg-white p-5 shadow-md transition-all duration-500 hover:shadow-2xl md:rounded-3xl md:p-8"
+              className="bg-card border-border rounded-xl border p-4 text-center transition-shadow hover:shadow-md"
             >
-              {/* Icon with gradient background */}
-              <div
-                className={`h-12 w-12 bg-gradient-to-br md:h-16 md:w-16 ${feature.gradient} mb-4 flex items-center justify-center rounded-xl shadow-lg transition-transform duration-300 group-hover:scale-110 md:mb-6 md:rounded-2xl`}
-              >
-                <feature.icon className="h-6 w-6 text-white md:h-8 md:w-8" />
+              <div className="bg-primary/10 text-primary mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full">
+                {iconMap[feature.icon]}
               </div>
-
-              <h3 className="text-foreground mb-2 text-lg font-bold md:mb-3 md:text-xl">{feature.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed md:text-base">
-                {feature.description}
-              </p>
+              <h3 className="text-foreground mb-1 text-sm font-medium md:text-base">{feature.title}</h3>
+              <p className="text-muted-foreground text-sm md:text-base">{feature.description}</p>
             </motion.div>
           ))}
         </motion.div>
