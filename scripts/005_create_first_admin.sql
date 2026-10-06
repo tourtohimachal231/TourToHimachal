@@ -8,7 +8,7 @@
 -- INSERT INTO admin_profiles (id, email, full_name, role)
 -- VALUES (
 --   'YOUR-USER-UUID-HERE',  -- Get this from auth.users after signup
---   'admin@himachalyatra.com',
+--   'admin@tourtohimachal.in',
 --   'Admin User',
 --   'super_admin'
 -- );

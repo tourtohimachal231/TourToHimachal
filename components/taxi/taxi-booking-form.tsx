@@ -224,7 +224,7 @@ export function TaxiBookingForm() {
         body: JSON.stringify({
           name: formData.name,
           phone: formData.phone,
-          email: formData.email || "noemail@himachalyatra.com",
+          email: formData.email || "booking@tourtohimachal.in",
           subject: `Taxi Booking: ${formData.pickup} to ${formData.drop}`,
           message: `Service Type: ${formData.serviceType}\nVehicle: ${formData.vehicleType}\nPickup: ${formData.pickup}\nDrop: ${formData.drop}\nDate: ${formData.date}\nPassengers: ${formData.passengers || "Not specified"}\nHow Found: ${formData.howFound}${formData.referralCode ? `\nReferral Code: ${formData.referralCode}` : ""}\n\nAdditional Notes: ${formData.message || "None"}`,
           serviceType: "taxi",

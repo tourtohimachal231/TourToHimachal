@@ -17,12 +17,12 @@ Email notifications are now enabled for new lead submissions using Resend email 
 **Option A: Use Your Own Domain (Recommended for Production)**
 
 1. Go to Resend Dashboard → Domains → Add Domain
-2. Enter your domain (e.g., `tourtohimachal.com`)
-3. Add the DNS records provided by Resend to your domain registrar
+2. Enter your domain (e.g., `tourtohimachal.in`)
+3. Add the DNS records provided by Resend to your domain registrar (Zoho / DNS host)
 4. Wait for verification (usually 5-30 minutes)
 5. Update the `from` address in `lib/email.ts` to use your domain:
    ```typescript
-   from: "TourToHimachal <noreply@tourtohimachal.com>"
+   from: "TourToHimachal <booking@tourtohimachal.in>"
    ```
 
 **Option B: Use Resend's Onboarding Domain (For Testing Only)**
@@ -50,10 +50,10 @@ Add to your `.env.local` file:
 RESEND_API_KEY=re_your_actual_api_key_here
 
 # Admin email to receive notifications
-ADMIN_NOTIFICATION_EMAIL=your-email@example.com
+ADMIN_NOTIFICATION_EMAIL=admin@tourtohimachal.in
 
 # Site URL (for email links)
-NEXT_PUBLIC_SITE_URL=https://tourtohimachal.com
+NEXT_PUBLIC_SITE_URL=https://www.tourtohimachal.in
 ```
 
 ### 5. Restart Your Development Server

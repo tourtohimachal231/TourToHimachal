@@ -2,11 +2,11 @@
 INSERT INTO settings (key, value) VALUES
   ('whatsapp_number', '"919876543210"'),
   ('business_phone', '"+91 98765 43210"'),
-  ('business_email', '"tourtohimachal231@gmail.com"'),
+  ('business_email', '"contact@tourtohimachal.in"'),
   ('business_address', '{"street": "Near Temple Complex", "city": "Chintpurni", "state": "Himachal Pradesh", "pincode": "177110"}'::jsonb),
   ('office_hours', '{"weekdays": "9:00 AM - 7:00 PM", "saturday": "9:00 AM - 5:00 PM", "sunday": "10:00 AM - 4:00 PM"}'::jsonb),
   ('auto_reply_text', '"Thank you for contacting TourToHimachal! We have received your inquiry and will respond within 12 hours."'),
-  ('seo_defaults', '{"title_suffix": " | Himachal Yatra", "default_description": "Discover Himachal Pradesh with curated tour packages and reliable taxi services."}'::jsonb)
+  ('seo_defaults', '{"title_suffix": " | TourToHimachal", "default_description": "Discover Himachal Pradesh with curated tour packages and reliable taxi services."}'::jsonb)
 ON CONFLICT (key) DO NOTHING;
 
 -- Insert sample vehicles

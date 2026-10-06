@@ -15,9 +15,12 @@ export function createClient(): SupabaseClient {
     return browserClient
   }
 
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co"
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.placeholder"
+
   browserClient = createSupabaseBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    supabaseUrl,
+    supabaseAnonKey,
     {
       auth: {
         autoRefreshToken: false,
@@ -28,6 +31,16 @@ export function createClient(): SupabaseClient {
       global: {
         fetch: (url: RequestInfo | URL, options?: RequestInit) => {
           const urlStr = url.toString()
+
+          // If placeholder domain, return empty array safely
+          if (urlStr.includes("placeholder.supabase.co")) {
+            return Promise.resolve(
+              new Response(JSON.stringify([]), {
+                status: 200,
+                headers: { "Content-Type": "application/json" },
+              }),
+            )
+          }
 
           // Allow all requests during sign-in
           if (isSigningIn) {
@@ -54,12 +67,12 @@ export function createClient(): SupabaseClient {
 }
 
 export function getSessionFromStorage(): { user: { email: string; id: string } | null } {
-  if (typeof window === "undefined") {
+  if (typeof window === "undefined" || !process.env.NEXT_PUBLIC_SUPABASE_URL) {
     return { user: null }
   }
 
   try {
-    const storageKey = `sb-${new URL(process.env.NEXT_PUBLIC_SUPABASE_URL!).hostname.split(".")[0]}-auth-token`
+    const storageKey = `sb-${new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname.split(".")[0]}-auth-token`
     const stored = localStorage.getItem(storageKey)
 
     if (stored) {
@@ -79,17 +92,19 @@ export async function safeGetUser() {
 }
 
 export async function safeSignOut() {
-  if (typeof window === "undefined") return { error: null }
+  if (typeof window === "undefined" || !process.env.NEXT_PUBLIC_SUPABASE_URL) return { error: null }
 
   try {
-    const projectRef = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL!).hostname.split(".")[0]
+    const projectRef = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname.split(".")[0]
     const storageKey = `sb-${projectRef}-auth-token`
 
     // Allow auth calls during sign-out
     setSigningIn(true)
     try {
       const supabase = createClient()
-      await supabase.auth.signOut({ scope: "local" })
+      if (supabase) {
+        await supabase.auth.signOut({ scope: "local" })
+      }
     } catch {
       // Ignore network/auth errors; we'll still clear client storage/cookies below.
     } finally {

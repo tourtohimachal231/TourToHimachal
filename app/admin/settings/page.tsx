@@ -46,7 +46,7 @@ interface Settings {
 
 const defaultSettings: Settings = {
   site_name: "TourToHimachal",
-  contact_email: "tourtohimachal231@gmail.com",
+  contact_email: "contact@tourtohimachal.in",
   contact_phone: "+91 8628839955",
   whatsapp_number: "+918628839955",
   address: "Near Temple Complex, Chintpurni, HP 177110",
@@ -277,7 +277,7 @@ export default function SettingsPage() {
                     type="email"
                     value={settings.contact_email}
                     onChange={(e) => updateSetting("contact_email", e.target.value)}
-                    placeholder="info@tourtohimachal.com"
+                    placeholder="contact@tourtohimachal.in"
                   />
                 </div>
                 <div className="space-y-2">

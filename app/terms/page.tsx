@@ -453,8 +453,8 @@ export default function TermsPage() {
                   <div className="space-y-3">
                     <div>
                       <p className="text-foreground font-semibold text-sm">Email:</p>
-                      <a href="mailto:tourtohimachal231@gmail.com" className="text-saffron text-sm hover:underline">
-                        tourtohimachal231@gmail.com
+                      <a href="mailto:contact@tourtohimachal.in" className="text-saffron text-sm hover:underline">
+                        contact@tourtohimachal.in
                       </a>
                     </div>
                     <div>

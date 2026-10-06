@@ -24,7 +24,7 @@ export interface SiteSettings {
 
 const defaultSettings: SiteSettings = {
   site_name: "TourToHimachal",
-  contact_email: "tourtohimachal231@gmail.com",
+  contact_email: "contact@tourtohimachal.in",
   contact_phone: "+91 8628839955",
   whatsapp_number: "+918628839955",
   address: "Near Temple Complex, Chintpurni, HP 177110",

@@ -58,7 +58,7 @@ export function Footer() {
   ]
 
   const contactPhone = settings.contact_phone || "+91 8628839955"
-  const contactEmail = settings.contact_email || "tourtohimachal231@gmail.com"
+  const contactEmail = settings.contact_email || "contact@tourtohimachal.in"
   const address = settings.address || "Near Temple Complex, Chintpurni, HP 177110"
 
   return (
@@ -199,10 +199,10 @@ export function Footer() {
                         <Mail className="text-saffron h-4 w-4 sm:h-5 sm:w-5" />
                       </div>
                       <a
-                        href="mailto:tourtohimachal231@gmail.com"
+                        href="mailto:contact@tourtohimachal.in"
                         className="hover:text-saffron text-sm break-all text-slate-400 transition-colors md:text-base"
                       >
-                        tourtohimachal231@gmail.com
+                        contact@tourtohimachal.in
                       </a>
                     </li>
                   </ul>

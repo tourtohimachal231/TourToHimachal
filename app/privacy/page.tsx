@@ -236,8 +236,8 @@ export default function PrivacyPage() {
                   <h3 className="text-foreground font-semibold mb-2">How to Exercise Your Rights</h3>
                   <p className="text-muted-foreground text-sm">
                     To exercise any of these rights, please contact us at{" "}
-                    <a href="mailto:tourtohimachal231@gmail.com" className="text-saffron hover:underline">
-                      tourtohimachal231@gmail.com
+                    <a href="mailto:contact@tourtohimachal.in" className="text-saffron hover:underline">
+                      contact@tourtohimachal.in
                     </a>
                     {" "}or call us directly. We will respond to your request within 30 days.
                   </p>
@@ -284,8 +284,8 @@ export default function PrivacyPage() {
                   <div className="space-y-3">
                     <div>
                       <p className="text-foreground font-semibold text-sm">Email:</p>
-                      <a href="mailto:tourtohimachal231@gmail.com" className="text-saffron text-sm hover:underline">
-                        tourtohimachal231@gmail.com
+                      <a href="mailto:contact@tourtohimachal.in" className="text-saffron text-sm hover:underline">
+                        contact@tourtohimachal.in
                       </a>
                     </div>
                     <div>

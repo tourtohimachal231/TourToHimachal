@@ -12,7 +12,7 @@ export function ContactInfo() {
 
   const contactPhone = settings.contact_phone || "+91 8628839955"
   const whatsappNumber = settings.whatsapp_number || "+918628839955"
-  const contactEmail = settings.contact_email || "tourtohimachal231@gmail.com"
+  const contactEmail = settings.contact_email || "contact@tourtohimachal.in"
   const address = settings.address || "Near Temple Complex, Chintpurni, HP 177110"
   const businessHours = settings.business_hours || "Mon-Sun: 8:00 AM - 8:00 PM"
 

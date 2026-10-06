@@ -34,6 +34,10 @@ export function Testimonials() {
   const fetchReviews = async () => {
     try {
       const supabase = createClient()
+      if (!supabase) {
+        setIsLoading(false)
+        return
+      }
       const { data, error } = await supabase
         .from("reviews")
         .select("*")

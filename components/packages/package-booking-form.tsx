@@ -214,7 +214,7 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
         body: JSON.stringify({
           name: formData.name,
           phone: formData.phone,
-          email: formData.email || "noemail@himachalyatra.com",
+          email: formData.email || "booking@tourtohimachal.in",
           subject: `Package Booking: ${packageName}`,
           message: `Package: ${packageName}\nPrice: ₹${packagePrice.toLocaleString()}\nPreferred Date: ${formData.date}\nTravelers: ${formData.travelers || "Not specified"}\nHow Found: ${formData.howFound}${formData.referralCode ? `\nReferral Code: ${formData.referralCode}` : ""}\n\nAdditional Notes: ${formData.message || "None"}`,
           serviceType: "package",

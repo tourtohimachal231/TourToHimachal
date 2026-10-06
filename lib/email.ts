@@ -24,7 +24,7 @@ export async function sendLeadNotification({ to, leadData }: SendLeadNotificatio
 
   try {
     const { data, error } = await resend.emails.send({
-      from: "TourToHimachal <noreply@tourtohimachal.com>", // Must be verified domain in Resend
+      from: process.env.RESEND_FROM_EMAIL || "TourToHimachal <booking@tourtohimachal.in>", // Must be verified domain in Resend
       to: [to],
       subject: `🔔 New ${leadData.serviceType} Inquiry from ${leadData.name}`,
       html: `

@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: true,
         message: "Thank you for your submission!",
-        referenceNumber: "HY-BLOCKED",
+        referenceNumber: "TTH-BLOCKED",
       })
     }
 
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
       .insert({
         name,
         phone,
-        email: email || "noemail@himachalyatra.com",
+        email: email || "noemail@tourtohimachal.in",
         subject: subject || `${serviceType} inquiry`,
         message,
         service_type: serviceType,
@@ -65,13 +65,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Send email notification
-    const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || "info@himachalyatra.com"
+    // Send email notification to appropriate department
+    const departmentEmails: Record<string, string> = {
+      package: "packages@tourtohimachal.in",
+      taxi: "booking@tourtohimachal.in",
+      enquiry: "contact@tourtohimachal.in",
+    }
+    const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || departmentEmails[serviceType] || "admin@tourtohimachal.in"
     await sendLeadNotification({
       to: adminEmail,
       leadData: {
         name,
-        email: email || "noemail@himachalyatra.com",
+        email: email || "noemail@tourtohimachal.in",
         phone,
         subject: subject || `${serviceType} inquiry`,
         message,

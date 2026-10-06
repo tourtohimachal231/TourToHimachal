@@ -8,7 +8,7 @@ export const contactFormSchema = z.object({
     .string()
     .email("Please enter a valid email address")
     .optional()
-    .default("noemail@himachalyatra.com"),
+    .default("noemail@tourtohimachal.in"),
   subject: z.string().min(5, "Subject must be at least 5 characters").max(200).optional(),
   message: z.string().min(10, "Message must be at least 10 characters").max(2000),
   serviceType: z.enum(["package", "taxi", "enquiry"], {
