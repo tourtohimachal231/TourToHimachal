@@ -12,6 +12,8 @@ import { PackageHeroSlider } from "@/components/packages/package-hero-slider"
 import { RelatedPackagesCarousel } from "@/components/packages/related-packages-carousel"
 import { ItineraryAccordion } from "@/components/packages/itinerary-accordion"
 import { PackageBookingForm } from "@/components/packages/package-booking-form"
+import { FairBookingPolicy } from "@/components/common/fair-booking-policy"
+import { TrustPaymentBadge } from "@/components/common/trust-payment-badge"
 import { MarkdownRenderer } from "@/lib/markdown-renderer"
 import { useSettings } from "@/lib/settings-context"
 import { generateWhatsAppLink } from "@/lib/whatsapp"
@@ -249,6 +251,16 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                       )}
                     </motion.div>
                   )}
+
+                {/* Transparent Booking & Payment Policy */}
+                <motion.div
+                  variants={fadeInUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
+                  <FairBookingPolicy defaultTab="packages" className="mt-4" />
+                </motion.div>
               </div>
 
               {/* Sidebar - Booking Panel */}
@@ -359,6 +371,8 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                       </Button>
                     </div>
 
+                    {/* Trust Payment Badge */}
+                    <TrustPaymentBadge type="package" className="mt-4" />
                   </motion.div>
                 </div>
               </div>

@@ -15,6 +15,7 @@ import { TaxiBookingForm } from "@/components/taxi/taxi-booking-form"
 import { SafetyFeatures } from "@/components/taxi/safety-features"
 import { Testimonials } from "@/components/home/testimonials"
 import { PackageFAQ } from "@/components/packages/package-faq"
+import { FairBookingPolicy } from "@/components/common/fair-booking-policy"
 import { useSettings } from "@/lib/settings-context"
 import { fadeInUp, staggerContainer, slideInLeft, slideInRight } from "@/lib/animation-variants"
 
@@ -48,23 +49,29 @@ interface TaxiPageClientProps {
 
 const taxiFaqs = [
   {
-    question: "How do I book a taxi?",
+    question: "How much advance payment is required for taxi booking?",
     answer:
-      "You can book through WhatsApp, call us directly, or fill out the booking form on this page. We'll confirm your booking within 30 minutes.",
+      "We only take a small 20% token advance (minimum ₹1,000 for local rides) to lock your cab model and assign a verified mountain driver. 50% is payable when you board the car on Day 1, and the remaining 30% only when you reach your final drop safely.",
   },
   {
-    question: "Is advance payment required?",
-    answer: "No advance payment is required. You can pay after your trip is completed.",
+    question: "What if roads are blocked by landslides or heavy snowfall?",
+    answer:
+      "Your safety comes first. If routes like Atal Tunnel, Rohtang, or national highways are closed by authorities, we do not deduct cancellation fees. We either offer a safe scenic alternate route or provide a 100% credit voucher valid for up to 1 year.",
   },
   {
-    question: "Are your drivers verified?",
+    question: "Are toll taxes, state border permits, and driver allowance included?",
     answer:
-      "Yes, all our drivers are verified with proper documentation, driving licenses, and background checks.",
+      "Yes, 100%! All our quoted taxi fares are fully all-inclusive. Himachal state entry permits, toll taxes, parking fees, and driver night bhatta are covered with zero hidden surprises on the road.",
+  },
+  {
+    question: "Are your drivers trained for Himalayan mountain roads?",
+    answer:
+      "Yes, absolutely. All our drivers are Himachal-native mountain specialists with over 8 years of ghat driving and snow navigation experience, clean commercial driving licenses, and verified police backgrounds.",
   },
   {
     question: "Can I modify or cancel my booking?",
     answer:
-      "Yes, you can modify or cancel your booking up to 24 hours before the scheduled pickup time without any charges.",
+      "Yes! You can cancel or reschedule for free up to 24 hours before your scheduled pickup time with 100% token refund.",
   },
 ]
 
@@ -286,6 +293,13 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
         </section>
       )}
 
+      {/* Fair Booking & Payment Promise Section */}
+      <section className="py-8">
+        <div className="container mx-auto px-4">
+          <FairBookingPolicy defaultTab="taxi" />
+        </div>
+      </section>
+
       {/* Booking Form */}
       <section className="bg-muted/30 py-16" id="book">
         <div className="container mx-auto px-4">
@@ -312,14 +326,13 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
               <div className="lg:mt-auto">
                 <h2 className="mb-3 text-3xl font-bold tracking-tight text-black sm:text-4xl lg:mb-4">Get Your Quote</h2>
                 <p className="text-muted-foreground mb-5 lg:mb-6">
-                  Fill in your travel details and we will get back to you with the best options. No advance
-                  payment required - pay after your trip!
+                  Transparent, Win-Win Mountain Travel. Only 20% token (min ₹1,000) to confirm your vehicle & hill driver. Pay 50% on pickup, balance 30% only on safe drop. 100% weather & landslide protection.
                 </p>
                 <div className="space-y-3 lg:space-y-4">
                   {[
-                    { icon: <Car className="h-5 w-5" />, text: "Wide range of vehicles for every need" },
-                    { icon: <Calendar className="h-5 w-5" />, text: "Flexible booking and cancellation" },
-                    { icon: <Shield className="h-5 w-5" />, text: "Verified drivers and sanitized cars" },
+                    { icon: <Car className="h-5 w-5" />, text: "Native Himachali mountain drivers (8+ yrs experience)" },
+                    { icon: <Calendar className="h-5 w-5" />, text: "Only 20% token to lock • 100% weather reschedule" },
+                    { icon: <Shield className="h-5 w-5" />, text: "All-inclusive quote (tolls, state permit, driver bhatta)" },
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <div className="bg-primary/10 text-primary flex h-10 w-10 items-center justify-center rounded-full">

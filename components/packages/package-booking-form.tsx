@@ -19,6 +19,7 @@ import {
   validateNoSpecialCharsText,
 } from "@/lib/form-validators"
 import { useSettings } from "@/lib/settings-context"
+import { TrustPaymentBadge } from "@/components/common/trust-payment-badge"
 
 const HOW_FOUND_OPTIONS = [
   "Google Search",
@@ -303,6 +304,8 @@ export function PackageBookingForm({ packageName, packagePrice, onSuccess }: Pac
       onSubmit={handleSubmit}
       className="relative z-10 space-y-4 rounded-2xl bg-card/95 p-4 shadow-xl backdrop-blur-sm sm:p-5"
     >
+      <TrustPaymentBadge type="package" className="mb-3" />
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="name" className="flex items-center justify-between">

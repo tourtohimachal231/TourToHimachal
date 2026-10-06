@@ -2,17 +2,25 @@ import type { Metadata } from "next"
 import { Header } from "@/components/home/header"
 import { Footer } from "@/components/home/footer"
 import { StaticHero } from "@/components/ui/static-hero"
+import { FairBookingPolicy } from "@/components/common/fair-booking-policy"
 import { FileText, Calendar, AlertCircle, CreditCard, Users, MapPin, Clock, XCircle, ShieldCheck } from "lucide-react"
+
+const SITE_URL = "https://www.tourtohimachal.in"
 
 export const metadata: Metadata = {
   title: "Terms of Service | TourToHimachal - Tours, Packages & Taxi Services",
   description:
-    "Read TourToHimachal's terms of service to understand our booking policies, cancellation rules, payment terms, and service conditions for tours, packages, and taxi services in Himachal Pradesh.",
+    "Read TourToHimachal's terms of service to understand our transparent booking policies, cancellation rules, milestone payment terms, and weather guarantees for Himachal Pradesh.",
   keywords: "terms of service tourtohimachal, booking terms, cancellation policy, himachal travel terms, taxi service terms",
+  alternates: {
+    canonical: `${SITE_URL}/terms`,
+  },
   openGraph: {
     title: "Terms of Service | TourToHimachal",
-    description: "Clear and fair terms for your Himachal travel experience.",
+    description: "Clear, transparent, and fair milestone terms for your Himachal travel experience.",
     type: "website",
+    url: `${SITE_URL}/terms`,
+    siteName: "TourToHimachal",
   },
 }
 
@@ -102,52 +110,57 @@ export default function TermsPage() {
                 </div>
               </div>
 
+              {/* Interactive Visual Booking Policy */}
+              <div className="mb-12">
+                <FairBookingPolicy />
+              </div>
+
               {/* Payment Terms */}
               <div className="mb-8 md:mb-10 lg:mb-12">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-saffron/10 text-saffron rounded-xl p-2">
                     <CreditCard className="h-6 w-6" />
                   </div>
-                  <h2 className="text-foreground font-serif text-2xl font-bold sm:text-3xl">Payment Terms</h2>
+                  <h2 className="text-foreground font-serif text-2xl font-bold sm:text-3xl">Payment Terms & Milestones</h2>
                 </div>
                 
-                <div className="bg-card border-border rounded-2xl border p-6">
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="text-foreground font-semibold mb-2">Advance Payment</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        A non-refundable advance payment is required to confirm your booking. The advance amount
-                        typically ranges from 20% to 50% of the total package cost, depending on the type of service
-                        and season.
-                      </p>
-                    </div>
+                <div className="bg-card border-border rounded-2xl border p-6 space-y-6">
+                  <div>
+                    <h3 className="text-foreground font-semibold text-base mb-2">1. Tour Packages Payment Milestones (25 : 50 : 25)</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                      To ensure you never carry unnecessary upfront risk while allowing us to reserve boutique hotels in high-demand hill stations, package payments are split into three clear milestones:
+                    </p>
+                    <ul className="text-muted-foreground text-sm space-y-2 list-disc list-inside bg-muted/20 p-4 rounded-xl">
+                      <li><strong>Step 1 (Booking Token - 25%):</strong> Paid to confirm your package and issue official stamped vouchers. Locks hotel inventory and your dedicated vehicle.</li>
+                      <li><strong>Step 2 (Arrival & Check-in - 50%):</strong> Payable upon arrival on Day 1 after you meet your local driver, inspect your vehicle, and check into your first destination hotel.</li>
+                      <li><strong>Step 3 (Mid-Journey - 25%):</strong> Payable midway through your tour (typically Day 3 or 4) once you are fully settled and enjoying your holiday.</li>
+                    </ul>
+                  </div>
 
-                    <div>
-                      <h3 className="text-foreground font-semibold mb-2">Balance Payment</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        The remaining balance must be paid before or upon the start of your trip, as specified in your
-                        booking confirmation. Failure to pay the balance on time may result in cancellation of your
-                        booking.
-                      </p>
-                    </div>
+                  <div>
+                    <h3 className="text-foreground font-semibold text-base mb-2">2. Taxi Services Payment Milestones (20 : 50 : 30)</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                      Unlike distant brokers who demand 100% upfront or roadside taxis with fluctuating charges, our taxi fares are transparent and milestone-based:
+                    </p>
+                    <ul className="text-muted-foreground text-sm space-y-2 list-disc list-inside bg-muted/20 p-4 rounded-xl">
+                      <li><strong>Token Advance (20% or flat ₹1,000 min):</strong> Paid to confirm vehicle category and block the driver's schedule. Driver contact and vehicle number are shared 12 hours before pickup.</li>
+                      <li><strong>Trip Start (50%):</strong> Payable after you board the cab at Chandigarh, Delhi, Kalka, or your pickup station, ensuring vehicle cleanliness and hill driver credentials meet your expectations.</li>
+                      <li><strong>Final Drop (Remaining 30%):</strong> Payable only when you arrive safely at your final destination or drop-off airport/railway station.</li>
+                    </ul>
+                  </div>
 
-                    <div>
-                      <h3 className="text-foreground font-semibold mb-2">Payment Methods</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        We accept payments via UPI, bank transfer, credit/debit cards, and other digital payment methods.
-                        All payments are processed securely through trusted payment gateways. We do not store your
-                        payment card details.
-                      </p>
-                    </div>
+                  <div>
+                    <h3 className="text-foreground font-semibold text-base mb-2">3. 100% All-Inclusive Mountain Pricing</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Every quote provided by TourToHimachal includes vehicle fuel, Himachal Pradesh state border road permits, toll taxes, parking fees, and driver night allowances (bhatta). There are zero hidden "hill climb surcharges" or unexpected roadside demands.
+                    </p>
+                  </div>
 
-                    <div>
-                      <h3 className="text-foreground font-semibold mb-2">Price Changes</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        Prices quoted at the time of booking are final unless there are significant changes in taxes,
-                        fuel prices, or government regulations. We will inform you of any price changes before finalizing
-                        your booking.
-                      </p>
-                    </div>
+                  <div>
+                    <h3 className="text-foreground font-semibold text-base mb-2">4. Accepted Payment Methods</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      We accept UPI (Google Pay, PhonePe, Paytm, BHIM), IMPS/NEFT bank transfers, debit/credit cards, and cash payments to our verified accounts. Official digital GST receipts and transaction acknowledgments are provided for every milestone payment.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -161,53 +174,42 @@ export default function TermsPage() {
                   <h2 className="text-foreground font-serif text-2xl font-bold sm:text-3xl">Cancellation & Refund Policy</h2>
                 </div>
                 
-                <div className="bg-card border-border rounded-2xl border p-6">
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                    We understand that plans may change. Our cancellation policy is as follows:
+                <div className="bg-card border-border rounded-2xl border p-6 space-y-6">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    We understand that life happens and travel plans can change unexpectedly. Our cancellation policy is designed to be completely fair and practical:
                   </p>
 
                   <div className="space-y-4">
                     <div className="border-l-4 border-saffron pl-4">
-                      <h3 className="text-foreground font-semibold mb-1">Tour Packages</h3>
+                      <h3 className="text-foreground font-semibold mb-1">Tour Package Cancellations</h3>
                       <ul className="text-muted-foreground text-sm space-y-1 list-disc list-inside">
-                        <li><strong>30+ days before travel:</strong> Full refund (minus advance processing fee)</li>
-                        <li><strong>15-29 days before travel:</strong> 75% refund of total amount</li>
-                        <li><strong>7-14 days before travel:</strong> 50% refund of total amount</li>
-                        <li><strong>Less than 7 days before travel:</strong> No refund</li>
+                        <li><strong>15+ days before travel:</strong> 90% refund of advance paid (nominal 10% or ₹1,000 retained to cover bank gateway fees & hotel reservation overhead), OR a <strong>100% credit voucher</strong> valid for 1 year.</li>
+                        <li><strong>7 to 14 days before travel:</strong> 50% refund of advance paid, as hill hotels lock room inventory 14 days prior.</li>
+                        <li><strong>Less than 7 days / No-show:</strong> Advance is non-refundable due to 100% retention charged by Himachal hotels during peak and seasonal windows.</li>
                       </ul>
                     </div>
 
                     <div className="border-l-4 border-saffron pl-4">
-                      <h3 className="text-foreground font-semibold mb-1">Taxi Services</h3>
+                      <h3 className="text-foreground font-semibold mb-1">Taxi Service Cancellations</h3>
                       <ul className="text-muted-foreground text-sm space-y-1 list-disc list-inside">
-                        <li><strong>24+ hours before pickup:</strong> Full refund (minus processing fee)</li>
-                        <li><strong>12-24 hours before pickup:</strong> 50% refund</li>
-                        <li><strong>Less than 12 hours before pickup:</strong> No refund</li>
+                        <li><strong>24+ hours before pickup:</strong> 100% refund of token advance, or free date change with zero penalty.</li>
+                        <li><strong>12 to 24 hours before pickup:</strong> 50% refund of token advance (₹500 retained to compensate driver for blocking the slot).</li>
+                        <li><strong>Less than 12 hours before pickup:</strong> Token advance retained to cover empty kilometer fuel of dispatched mountain cab.</li>
                       </ul>
                     </div>
 
-                    <div className="border-l-4 border-saffron pl-4">
-                      <h3 className="text-foreground font-semibold mb-1">Hotel Accommodations</h3>
-                      <p className="text-muted-foreground text-sm">
-                        Hotel cancellation policies vary by property and season. Specific cancellation terms will be
-                        provided at the time of booking.
+                    <div className="rounded-xl border border-amber-300/60 bg-amber-50/70 p-4 text-amber-950">
+                      <h3 className="font-semibold text-sm mb-1">Himachal Weather, Landslide & Snow Guarantee</h3>
+                      <p className="text-xs sm:text-sm text-amber-900/90 leading-relaxed">
+                        Himalayan weather can be dynamic. In the event of high pass closures (e.g. Rohtang Pass, Atal Tunnel, Jalori Pass, Spiti route) or official administrative road blocks due to heavy snowfall or landslides:
+                        <strong> We never withhold your unutilized funds.</strong> We will immediately provide a safe scenic alternate route or issue a <strong>100% credit note valid for 12 months</strong> with ZERO rescheduling penalties.
                       </p>
                     </div>
 
                     <div className="bg-muted/30 rounded-xl p-4">
-                      <h3 className="text-foreground font-semibold mb-2">Refund Processing</h3>
+                      <h3 className="text-foreground font-semibold mb-2">Refund Processing Timeline</h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">
-                        Refunds are processed within 7-14 business days from the date of cancellation approval. The amount
-                        will be credited to the original payment method used for booking.
-                      </p>
-                    </div>
-
-                    <div className="bg-muted/30 rounded-xl p-4">
-                      <h3 className="text-foreground font-semibold mb-2">Force Majeure</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        In case of unforeseen circumstances beyond our control (natural disasters, political unrest,
-                        pandemics, etc.), we will work with you to reschedule your trip or provide a credit note for
-                        future travel. Refund decisions will be made on a case-by-case basis.
+                        All approved refunds are initiated within 48 to 72 hours and credited back to the original bank account or UPI handle within 5 to 7 business days.
                       </p>
                     </div>
                   </div>

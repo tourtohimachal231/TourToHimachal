@@ -181,14 +181,19 @@ export const safetyFeatures = [
 
 export const taxiFaqs = [
   {
+    question: "What is your taxi advance booking policy?",
+    answer:
+      "We only charge a 20% advance token (min ₹1,000) to confirm your vehicle and hill driver. 50% is payable upon boarding on Day 1, and the balance 30% upon safe drop.",
+  },
+  {
     question: "What is your cancellation policy?",
     answer:
-      "Free cancellation is available up to 24 hours before the scheduled pickup time. Cancellations made within 24 hours may incur a 20% charge.",
+      "Free cancellation with 100% token refund is available up to 24 hours before your scheduled pickup time. In case of mountain road closures due to snow or landslides, rescheduling is 100% free.",
   },
   {
     question: "What payment options do you accept?",
     answer:
-      "We accept cash, UPI, all major credit/debit cards, and net banking. Payment can be made at the end of the trip or in advance online.",
+      "We accept UPI (Google Pay, PhonePe, Paytm), bank transfers, net banking, debit/credit cards, and cash.",
   },
   {
     question: "Are there any night charges?",

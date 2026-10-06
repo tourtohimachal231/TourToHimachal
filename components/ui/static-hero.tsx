@@ -15,10 +15,11 @@ interface StaticHeroProps {
 
 // Helper function to ensure Cloudinary images work directly
 function getImageUrl(url: string): string {
+  if (!url) return "/placeholder.svg"
   if (url.includes("cloudinary.com") || url.includes("res.cloudinary.com")) {
     return optimizeCloudinaryDeliveryUrl(url, { width: 1600, quality: "auto", format: "auto", crop: "limit" })
   }
-  return url || "/placeholder.svg"
+  return url.startsWith("http") || url.startsWith("/") ? url : `/${url}`
 }
 
 export function StaticHero({ image, title, subtitle, badge, children }: StaticHeroProps) {

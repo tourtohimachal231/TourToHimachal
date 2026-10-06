@@ -4,15 +4,22 @@ import { Footer } from "@/components/home/footer"
 import { StaticHero } from "@/components/ui/static-hero"
 import { ShieldCheck, Lock, Eye, Database, Globe, Mail } from "lucide-react"
 
+const SITE_URL = "https://www.tourtohimachal.in"
+
 export const metadata: Metadata = {
   title: "Privacy Policy | TourToHimachal - Tours, Packages & Taxi Services",
   description:
     "Read TourToHimachal's privacy policy to understand how we collect, use, and protect your personal information when you book tours, packages, or taxi services in Himachal Pradesh.",
   keywords: "privacy policy tourtohimachal, data protection, personal information, himachal travel privacy",
+  alternates: {
+    canonical: `${SITE_URL}/privacy`,
+  },
   openGraph: {
     title: "Privacy Policy | TourToHimachal",
     description: "Your privacy matters to us. Learn how we protect your personal information.",
     type: "website",
+    url: `${SITE_URL}/privacy`,
+    siteName: "TourToHimachal",
   },
 }
 

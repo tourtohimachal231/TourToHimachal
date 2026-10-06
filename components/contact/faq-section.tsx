@@ -13,7 +13,7 @@ const faqs = [
   {
     question: "What is your cancellation policy?",
     answer:
-      "Cancellations made 15+ days before the trip get a full refund. 7-14 days before: 50% refund. Less than 7 days: No refund. We recommend travel insurance for added protection.",
+      "Cancellations made 15+ days before the trip receive a 90% refund (or 100% credit voucher). 7-14 days before: 50% refund. Less than 7 days: non-refundable as hotels lock rooms. In case of government road closures due to landslides or heavy snowfall, we offer 100% free date rescheduling or credit notes.",
   },
   {
     question: "Are your taxi services available 24/7?",
@@ -21,9 +21,9 @@ const faqs = [
       "Yes, our taxi services are available round the clock. For early morning pickups (before 6 AM) or late-night travel (after 10 PM), please book at least 6 hours in advance to ensure availability.",
   },
   {
-    question: "What payment methods do you accept?",
+    question: "What payment methods and advance amounts do you require?",
     answer:
-      "We accept bank transfers, UPI (GPay, PhonePe, Paytm), credit/debit cards, and cash. A 30% advance is required to confirm bookings, with the balance payable before the trip starts.",
+      "We accept UPI (GPay, PhonePe, Paytm), bank transfers, credit/debit cards, and cash. We require only a modest token (20% for taxis, 25% for packages) to lock bookings. 50% is payable upon pickup/arrival, and the balance at trip completion.",
   },
   {
     question: "Do you provide travel insurance?",

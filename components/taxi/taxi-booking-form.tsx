@@ -20,6 +20,7 @@ import {
 import { useSettings } from "@/lib/settings-context"
 import { vehicles } from "@/data/taxis"
 import { fadeInUp } from "@/lib/animation-variants"
+import { TrustPaymentBadge } from "@/components/common/trust-payment-badge"
 
 const HOW_FOUND_OPTIONS = [
   "Google Search",
@@ -337,7 +338,8 @@ export function TaxiBookingForm() {
       onSubmit={handleSubmit}
       className="bg-card border-border rounded-xl border p-6 md:p-8"
     >
-      <h3 className="text-foreground mb-6 text-xl font-semibold">Book Your Ride</h3>
+      <h3 className="text-foreground mb-4 text-xl font-semibold">Book Your Ride</h3>
+      <TrustPaymentBadge type="taxi" className="mb-5" />
 
       <div className="mb-4 grid grid-cols-2 gap-3 sm:gap-4">
         {/* Service Type */}
