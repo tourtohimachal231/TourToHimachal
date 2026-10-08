@@ -60,6 +60,11 @@ const Header = dynamic(
   { loading: () => null }
 )
 
+const RecognitionTrust = dynamic(
+  () => import("@/components/home/recognition-trust").then((mod) => ({ default: mod.RecognitionTrust })),
+  { loading: () => null }
+)
+
 const PopularDestinations = dynamic(
   () => import("@/components/home/popular-destinations").then((mod) => ({ default: mod.PopularDestinations })),
   { loading: () => null }
@@ -156,6 +161,7 @@ export default function HomePage() {
         />
         <Header />
         <Hero />
+        <RecognitionTrust />
         <TaxiService />
         <Suspense fallback={null}>
           <PopularDestinations />
