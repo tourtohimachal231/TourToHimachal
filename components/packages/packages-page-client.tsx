@@ -10,6 +10,7 @@ import { PackageFilter } from "@/components/packages/package-filter"
 import { Button } from "@/components/ui/button"
 import { staggerContainer } from "@/lib/animation-variants"
 import { MapPin } from "lucide-react"
+import { FairBookingPolicy } from "@/components/common/fair-booking-policy"
 
 interface Package {
   id: string
@@ -249,6 +250,13 @@ export function PackagesPageClient({ packages }: PackagesPageClientProps) {
                   </Button>
                 </div>
               )}
+        </div>
+      </section>
+
+      {/* Fair Booking & Payment Promise Section */}
+      <section className="py-12 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <FairBookingPolicy defaultTab="packages" />
         </div>
       </section>
 

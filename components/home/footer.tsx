@@ -58,7 +58,9 @@ export function Footer() {
   ]
 
   const contactPhone = settings.contact_phone || "+91 8628839955"
-  const contactEmail = settings.contact_email || "contact@tourtohimachal.in"
+  const contactEmail = (!settings.contact_email || settings.contact_email.includes("gmail.com"))
+    ? "contact@tourtohimachal.in"
+    : settings.contact_email
   const address = settings.address || "Near Temple Complex, Chintpurni, HP 177110"
 
   return (

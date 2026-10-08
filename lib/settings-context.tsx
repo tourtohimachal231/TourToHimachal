@@ -85,10 +85,14 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
               try {
                 parsedValue = JSON.parse(row.value)
               } catch {
-                // If parsing fails, use the raw value
+                parsedValue = row.value
+              }
+            }
+
             if (row.key === "contact_email" && (typeof parsedValue !== "string" || parsedValue.includes("gmail.com") || !parsedValue)) {
               parsedValue = "contact@tourtohimachal.in"
             }
+
             ; (settingsObj as any)[row.key] = parsedValue
           }
         })

@@ -8,6 +8,7 @@ import { ClientOnly } from "@/components/ui/client-only"
 import { useSettings } from "@/lib/settings-context"
 import { Car, MapPin, Shield, Clock, CheckCircle2, ArrowRight } from "lucide-react"
 import { slideInLeft, slideInRight } from "@/lib/animation-variants"
+import { TrustPaymentBadge } from "@/components/common/trust-payment-badge"
 
 // Ensure pasted URLs (including Cloudinary) work reliably like in the Hero
 function getImageUrl(url: string): string {
@@ -161,6 +162,8 @@ export function TaxiService() {
                 ))}
               </div>
             </div>
+
+            <TrustPaymentBadge type="taxi" className="mt-3 mb-2" />
 
             <div className="mt-3 flex flex-col gap-2 sm:mt-4 sm:flex-row sm:gap-2.5 md:mt-5 md:gap-3">
               <ClientOnly
