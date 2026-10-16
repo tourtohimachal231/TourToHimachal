@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import { createPublicClient } from "@/lib/supabase/public"
+import { blogPosts as fallbackBlogPosts } from "@/data/blogs"
 import { BlogDetailClient } from "./blog-detail-client"
 
 const SITE_URL = "https://www.tourtohimachal.in"
@@ -21,32 +22,56 @@ export async function generateMetadata({ params }: BlogDetailPageProps) {
     .eq("is_published", true)
     .single()
 
-  if (!post) {
+  const fallback =
+    !post || Array.isArray(post) || !post.title
+      ? fallbackBlogPosts.find((b) => b.slug === slug)
+      : null
+
+  const postData =
+    post && !Array.isArray(post) && post.title
+      ? post
+      : fallback
+      ? {
+          title: fallback.title,
+          excerpt: fallback.excerpt,
+          cover_image: fallback.featuredImage,
+          gallery: [fallback.featuredImage],
+          published_at: fallback.date,
+          author: fallback.author,
+        }
+      : null
+
+  if (!postData) {
     return {
       title: "Post Not Found",
     }
   }
 
-  const normalizedAuthor = (post.author ?? "").trim()
+  const normalizedAuthor = (postData.author ?? "").trim()
   const displayAuthor =
     !normalizedAuthor || normalizedAuthor.toLowerCase() === "himachal yatra"
       ? "TourToHimachal"
       : normalizedAuthor
 
   return {
-    title: `${post.title} | TourToHimachal Blog`,
-    description: post.excerpt,
+    title: `${postData.title} | TourToHimachal Blog`,
+    description: postData.excerpt,
     alternates: {
       canonical: `${SITE_URL}/blog/${slug}`,
     },
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      images: post.gallery && post.gallery.length > 0 ? post.gallery : post.cover_image ? [post.cover_image] : [],
+      title: postData.title,
+      description: postData.excerpt,
+      images:
+        postData.gallery && postData.gallery.length > 0
+          ? postData.gallery
+          : postData.cover_image
+          ? [postData.cover_image]
+          : [],
       type: "article",
       url: `${SITE_URL}/blog/${slug}`,
       siteName: "TourToHimachal",
-      publishedTime: post.published_at,
+      publishedTime: postData.published_at,
       authors: [displayAuthor],
     },
   }
@@ -63,11 +88,35 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     .eq("is_published", true)
     .single()
 
-  if (error || !post) {
+  const fallback =
+    error || !post || Array.isArray(post) || !post.title
+      ? fallbackBlogPosts.find((b) => b.slug === slug)
+      : null
+
+  const postData =
+    post && !Array.isArray(post) && post.title
+      ? post
+      : fallback
+      ? {
+          id: fallback.slug,
+          title: fallback.title,
+          slug: fallback.slug,
+          excerpt: fallback.excerpt,
+          content: fallback.markdownContent,
+          cover_image: fallback.featuredImage,
+          gallery: [fallback.featuredImage],
+          published_at: fallback.date,
+          author: fallback.author,
+          category: fallback.category,
+          tags: fallback.tags,
+        }
+      : null
+
+  if (!postData) {
     notFound()
   }
 
-  const normalizedAuthor = (post.author ?? "").trim()
+  const normalizedAuthor = (postData.author ?? "").trim()
   const displayAuthor =
     !normalizedAuthor || normalizedAuthor.toLowerCase() === "himachal yatra"
       ? "TourToHimachal"
@@ -82,13 +131,27 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     .order("published_at", { ascending: false })
     .limit(4)
 
+  const resolvedPopularPosts =
+    popularPosts && Array.isArray(popularPosts) && popularPosts.length > 0
+      ? popularPosts
+      : fallbackBlogPosts
+          .filter((b) => b.slug !== slug)
+          .slice(0, 4)
+          .map((b) => ({
+            id: b.slug,
+            title: b.title,
+            slug: b.slug,
+            excerpt: b.excerpt,
+            cover_image: b.featuredImage,
+          }))
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: post.title,
-    description: post.excerpt,
-    image: post.cover_image || "",
-    datePublished: post.published_at,
+    headline: postData.title,
+    description: postData.excerpt,
+    image: postData.cover_image || "",
+    datePublished: postData.published_at,
     author: {
       "@type": "Person",
       name: displayAuthor,
@@ -99,12 +162,41 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     },
   }
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Our Blogs",
+        item: `${SITE_URL}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: postData.title,
+        item: `${SITE_URL}/blog/${postData.slug || slug}`,
+      },
+    ],
+  }
+
   const blogUrl = `${SITE_URL}/blog/${slug}`
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <BlogDetailClient post={post} popularPosts={popularPosts || []} url={blogUrl} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <BlogDetailClient post={postData} popularPosts={resolvedPopularPosts || []} url={blogUrl} />
     </>
   )
 }

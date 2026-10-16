@@ -100,32 +100,54 @@ interface BreadcrumbItem {
 interface BreadcrumbNavProps {
   items: BreadcrumbItem[]
   className?: string
+  variant?: "default" | "light" | "dark"
 }
 
-function BreadcrumbNav({ items, className }: BreadcrumbNavProps) {
+function BreadcrumbNav({ items, className, variant = "default" }: BreadcrumbNavProps) {
+  const isDark = variant === "dark"
+
   return (
     <Breadcrumb className={className}>
-      <BreadcrumbList className="text-white/80">
+      <BreadcrumbList className={isDark ? "text-white/80" : "text-muted-foreground"}>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/" className="flex items-center gap-1 hover:text-white">
-              <Home className="h-4 w-4" />
+            <Link
+              href="/"
+              className={cn(
+                "flex items-center gap-1 transition-colors",
+                isDark ? "hover:text-white" : "hover:text-foreground",
+              )}
+            >
+              <Home className="h-3.5 w-3.5" />
               <span>Home</span>
             </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         {items.map((item, index) => (
           <React.Fragment key={index}>
-            <BreadcrumbSeparator className="text-white/60" />
+            <BreadcrumbSeparator className={isDark ? "text-white/60" : "text-muted-foreground/60"} />
             <BreadcrumbItem>
               {item.href ? (
                 <BreadcrumbLink asChild>
-                  <Link href={item.href} className="hover:text-white">
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "transition-colors",
+                      isDark ? "hover:text-white" : "hover:text-foreground",
+                    )}
+                  >
                     {item.label}
                   </Link>
                 </BreadcrumbLink>
               ) : (
-                <BreadcrumbPage className="text-white">{item.label}</BreadcrumbPage>
+                <BreadcrumbPage
+                  className={cn(
+                    "font-medium truncate max-w-[200px] sm:max-w-xs md:max-w-md",
+                    isDark ? "text-white" : "text-foreground",
+                  )}
+                >
+                  {item.label}
+                </BreadcrumbPage>
               )}
             </BreadcrumbItem>
           </React.Fragment>

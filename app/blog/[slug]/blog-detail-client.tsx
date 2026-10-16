@@ -4,9 +4,9 @@ import { motion } from "framer-motion"
 import { useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft } from "lucide-react"
 import { Header } from "@/components/home/header"
 import { Footer } from "@/components/home/footer"
+import { BreadcrumbNav } from "@/components/ui/breadcrumb"
 import { BlogTOC } from "@/components/blog/blog-toc"
 import { SocialShare } from "@/components/diaries/social-share"
 import { MarkdownRenderer } from "@/lib/markdown-renderer"
@@ -46,15 +46,14 @@ export function BlogDetailClient({ post, popularPosts, url }: BlogDetailClientPr
     <>
       <Header />
       <main className="pb-8 safe-area-bottom">
-        {/* Back Button */}
+        {/* Breadcrumb Navigation: Home → Our Blogs → Current Article Title */}
         <div className="container mx-auto px-4 pt-6">
-          <Link
-            href="/blog"
-            className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Blog
-          </Link>
+          <BreadcrumbNav
+            items={[
+              { label: "Our Blogs", href: "/blog" },
+              { label: post.title },
+            ]}
+          />
         </div>
         {/* Title-only header (excerpt removed) */}
         <section className="bg-background border-b">

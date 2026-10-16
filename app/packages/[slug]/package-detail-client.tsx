@@ -8,6 +8,7 @@ import { Header } from "@/components/home/header"
 import { Footer } from "@/components/home/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { BreadcrumbNav } from "@/components/ui/breadcrumb"
 import { PackageHeroSlider } from "@/components/packages/package-hero-slider"
 import { RelatedPackagesCarousel } from "@/components/packages/related-packages-carousel"
 import { ItineraryAccordion } from "@/components/packages/itinerary-accordion"
@@ -83,8 +84,16 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               {/* Left Content */}
-              {/* Left Content */}
-              <div className="space-y-8 lg:col-span-2 lg:mt-20">
+              <div className="space-y-6 lg:col-span-2 lg:mt-20">
+                {/* Breadcrumb Navigation: Home → Tour Packages → Current Package */}
+                <BreadcrumbNav
+                  items={[
+                    { label: "Tour Packages", href: "/packages" },
+                    { label: pkg.title },
+                  ]}
+                  className="mb-1"
+                />
+
                 {/* Package Summary */}
                 <motion.div
                   variants={fadeInUp}
