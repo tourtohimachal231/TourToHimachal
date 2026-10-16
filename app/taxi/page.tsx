@@ -42,5 +42,40 @@ export default async function TaxiPage() {
     console.error("Error fetching routes:", routesResult.error)
   }
 
-  return <TaxiPageClient vehicles={vehiclesResult.data || []} routes={routesResult.data || []} />
+  const taxiServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "TaxiService",
+    "@id": `${SITE_URL}/taxi#service`,
+    name: "TourToHimachal Taxi Service",
+    url: `${SITE_URL}/taxi`,
+    serviceType: "Private Taxi & Cab Service in Himachal Pradesh",
+    description:
+      "Book safe, reliable taxi service across Himachal Pradesh. Airport pickups, inter-city rides, Chintpurni to Shimla, Manali & sightseeing tours with verified drivers. No hidden charges!",
+    provider: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    areaServed: [
+      "Himachal Pradesh",
+      "Shimla",
+      "Manali",
+      "Dharamshala",
+      "Chintpurni",
+      "Kullu",
+      "Chandigarh",
+      "Delhi",
+    ],
+    termsOfService: `${SITE_URL}/terms`,
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(taxiServiceSchema),
+        }}
+      />
+      <TaxiPageClient vehicles={vehiclesResult.data || []} routes={routesResult.data || []} />
+    </>
+  )
 }

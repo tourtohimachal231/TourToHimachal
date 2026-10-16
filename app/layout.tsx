@@ -13,7 +13,8 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 })
 
-const siteMetadataAssets: Pick<Metadata, "icons" | "manifest"> = {
+const siteMetadataAssets: Pick<Metadata, "metadataBase" | "icons" | "manifest"> = {
+  metadataBase: new URL("https://www.tourtohimachal.in"),
   icons: {
     icon: [
       { url: "/icon.png", type: "image/png", sizes: "96x96" },
