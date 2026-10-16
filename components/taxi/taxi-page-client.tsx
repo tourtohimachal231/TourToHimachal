@@ -7,7 +7,7 @@ import { Phone, Car, Calendar, Shield, Zap, Users, Gauge } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp"
 import { Header } from "@/components/home/header"
 import { Footer } from "@/components/home/footer"
-import { ClockwiseSlideHero } from "@/components/ui/clockwise-slide-hero"
+import { TaxiHero } from "@/components/taxi/taxi-hero"
 import { Button } from "@/components/ui/button"
 import { VehicleCard } from "@/components/taxi/vehicle-card"
 import { RouteCard } from "@/components/taxi/route-card"
@@ -99,52 +99,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
       <main className="bg-background flex-grow pb-8 overflow-x-hidden safe-area-bottom">
       <Header />
 
-      <ClockwiseSlideHero
-        images={[
-          {
-            url: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767794694/hiktlwjkvx7nfb57hnfz.webp",
-            alt: "Mountain Roads",
-          },
-          {
-            url: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767796024/kmxibndk78rbidxmtef2.webp",
-            alt: "Taxi Service",
-          },
-          {
-            url: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767796598/eytslyy1tjm58mjubjcg.webp",
-            alt: "Car on Road",
-          },
-          {
-            url: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795334/cp0egvkhziyen6h57ffg.webp",
-            alt: "River",
-          },
-          {
-            url: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795901/y1plr2wekvbv7g7yjyk0.webp",
-            alt: "Landscape View",
-          },
-        ]}
-        badge="Trusted by 10,000+ Happy Travelers"
-        title="Your Mountain Journey, Our Priority"
-        subtitle="Navigate the winding Himalayan roads with confidence! From Chandigarh airport pickups to remote hill station drop-offs, our experienced local drivers ensure safe, comfortable, and memorable journeys. No hidden charges, no surprises — just pure travel bliss."
-      >
-        <div className="flex flex-wrap justify-center gap-4">
-          <Button asChild size="lg" className="bg-saffron hover:bg-saffron/90 gap-2 text-white">
-            <a
-              href={`https://wa.me/${(settings.whatsapp_number || "919876543210").replace(/[^0-9]/g, "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <WhatsAppIcon className="h-5 w-5" />
-              WhatsApp Us
-            </a>
-          </Button>
-          <Button asChild size="lg" variant="secondary" className="gap-2">
-            <a href={`tel:${settings.contact_phone || ""}`}>
-              <Phone className="h-5 w-5" />
-              Call Now
-            </a>
-          </Button>
-        </div>
-      </ClockwiseSlideHero>
+      <TaxiHero />
 
       {/* Stats Section - Enhanced Design */}
       <section className="from-saffron/5 via-saffron/5 to-saffron/5 relative overflow-hidden bg-linear-to-br py-6 md:py-8 lg:py-10">
