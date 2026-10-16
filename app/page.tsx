@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
-import Script from "next/script"
 import dynamic from "next/dynamic"
+import { Hero } from "@/components/home/hero"
 
 export const revalidate = 0 // Always fetch fresh data
 
@@ -41,18 +41,6 @@ export const metadata: Metadata = {
     images: [`${SITE_URL}/og-image.jpg`],
   },
 }
-
-// Dynamic import for Hero component (client component with animation)
-const Hero = dynamic(
-  () => import("@/components/home/hero").then((mod) => ({ default: mod.Hero })),
-  {
-    loading: () => (
-      <div className="relative min-h-screen flex items-center justify-center bg-linear-to-b from-black/70 via-black/40 to-black/80">
-        <div className="text-white text-center">Loading...</div>
-      </div>
-    )
-  }
-)
 
 // Dynamic imports for non-critical components
 const Header = dynamic(
@@ -96,67 +84,71 @@ const Footer = dynamic(
 )
 
 export default function HomePage() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": ["TravelAgency", "LocalBusiness"],
+    "@id": `${SITE_URL}/#organization`,
+    name: "TourToHimachal",
+    url: `${SITE_URL}/`,
+    logo: `${SITE_URL}/icon.png`,
+    image: `${SITE_URL}/og-image.jpg`,
+    description:
+      "TourToHimachal offers curated tour packages, reliable taxi services, spiritual journeys, and adventure travel across Himachal Pradesh.",
+    telephone: "+91-8628839955",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Chintpurni",
+      addressLocality: "Una",
+      addressRegion: "Himachal Pradesh",
+      postalCode: "177110",
+      addressCountry: "IN",
+    },
+    areaServed: [
+      "Himachal Pradesh",
+      "Shimla",
+      "Manali",
+      "Dharamshala",
+      "Chintpurni",
+      "Kullu",
+      "Spiti Valley",
+    ],
+    priceRange: "₹₹",
+  }
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    name: "TourToHimachal",
+    url: `${SITE_URL}/`,
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/packages?search={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <main className="bg-background grow safe-area-bottom">
         {/* TravelAgency + LocalBusiness structured data */}
-        <Script
-          id="org-jsonld"
+        <script
           type="application/ld+json"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": ["TravelAgency", "LocalBusiness"],
-              name: "TourToHimachal",
-              url: `${SITE_URL}/`,
-              logo: `${SITE_URL}/icon.png`,
-              image: `${SITE_URL}/og-image.jpg`,
-              description:
-                "TourToHimachal offers curated tour packages, reliable taxi services, spiritual journeys, and adventure travel across Himachal Pradesh.",
-              telephone: "+91-8628839955",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Chintpurni",
-                addressLocality: "Una",
-                addressRegion: "Himachal Pradesh",
-                postalCode: "177110",
-                addressCountry: "IN",
-              },
-              areaServed: [
-                "Himachal Pradesh",
-                "Shimla",
-                "Manali",
-                "Dharamshala",
-                "Chintpurni",
-                "Kullu",
-                "Spiti Valley",
-              ],
-              priceRange: "₹₹",
-              sameAs: [],
-            }),
+            __html: JSON.stringify(organizationSchema),
           }}
         />
         {/* WebSite structured data with SearchAction */}
-        <Script
-          id="website-jsonld"
+        <script
           type="application/ld+json"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "TourToHimachal",
-              url: `${SITE_URL}/`,
-              potentialAction: {
-                "@type": "SearchAction",
-                target: {
-                  "@type": "EntryPoint",
-                  urlTemplate: `${SITE_URL}/packages?search={search_term_string}`,
-                },
-                "query-input": "required name=search_term_string",
-              },
-            }),
+            __html: JSON.stringify(websiteSchema),
           }}
         />
         <Header />

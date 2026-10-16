@@ -22,12 +22,12 @@ export function BlogTOC({ content }: BlogTOCProps) {
    * Extract headings (h2, h3) from markdown
    * --------------------------------------------- */
   useEffect(() => {
-    const headingRegex = /^(#{2,3})\s+(.+)$/gm
+    const headingRegex = /^(#{1,3})\s+(.+)$/gm
     const items: TocItem[] = []
     let match
 
     while ((match = headingRegex.exec(content)) !== null) {
-      const level = match[1].length
+      const level = match[1].length === 1 ? 2 : match[1].length
       const text = match[2].trim()
       const id = text
         .toLowerCase()

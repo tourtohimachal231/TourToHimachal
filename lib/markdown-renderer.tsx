@@ -11,6 +11,7 @@ interface MarkdownRendererProps {
 }
 
 interface MarkdownComponents {
+  h1: React.ComponentType<{ children?: React.ReactNode }>
   h2: React.ComponentType<{ children?: React.ReactNode }>
   h3: React.ComponentType<{ children?: React.ReactNode }>
   p: React.ComponentType<{ children?: React.ReactNode }>
@@ -30,6 +31,18 @@ interface MarkdownComponents {
 
 export function MarkdownRenderer({ content, className, textColor = "text-muted-foreground" }: MarkdownRendererProps) {
   const components: MarkdownComponents = {
+    h1: ({ children }) => {
+      const text = String(children).trim()
+      const id = text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "")
+      return (
+        <h2 id={id} className="text-foreground mt-12 mb-6 scroll-mt-24 font-serif text-2xl font-bold md:text-3xl">
+          {children}
+        </h2>
+      )
+    },
     h2: ({ children }) => {
       const text = String(children).trim()
       const id = text
