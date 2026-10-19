@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { BreadcrumbNav } from "@/components/ui/breadcrumb"
 import { useEffect, useRef, useState } from "react"
 import { Header } from "@/components/home/header"
 import { Footer } from "@/components/home/footer"
@@ -70,15 +70,14 @@ export function DiaryDetailClient({ diary, popularDiaries, url }: DiaryDetailCli
     <>
       <Header />
       <main className="pb-8 safe-area-bottom">
-        {/* Back Button */}
+        {/* Breadcrumb Navigation */}
         <div className="container mx-auto px-4 pt-6">
-          <Link
-            href="/diaries"
-            className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Diaries
-          </Link>
+          <BreadcrumbNav
+            items={[
+              { label: "Travel Diaries", href: "/diaries" },
+              { label: diary.title },
+            ]}
+          />
         </div>
 
         {/* Title-only header */}

@@ -11,6 +11,67 @@ interface BlogDetailPageProps {
 
 export const revalidate = 3600 // Revalidate every hour for ISR caching
 
+function sanitizeBlogDescription(rawText: string | null | undefined, maxLength: number = 158): string {
+  if (!rawText) return ""
+
+  const text = rawText
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^(\s*[-*_]\s*){3,}$/gm, "")
+    .replace(/^\s*#{1,6}\s*/gm, "")
+    .replace(/^(=+|-+)\s*$/gm, "")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/__(.*?)__/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/_(.*?)_/g, "$1")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/^\s*\d+\.\s+/gm, "")
+    .replace(/[`~>]/g, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "")
+    .replace(/[*_]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+
+  if (text.length <= maxLength) {
+    return text
+  }
+
+  const cut = text.slice(0, maxLength)
+  const lastSpace = cut.lastIndexOf(" ")
+  const trimmed = (lastSpace > maxLength * 0.65 ? cut.slice(0, lastSpace) : cut).trim()
+  return trimmed.replace(/[,;:\-\s]+$/, "") + "..."
+}
+
+function isValidBlogDescription(s: string | null | undefined): boolean {
+  if (!s || typeof s !== "string") return false
+  const trimmed = s.trim()
+  return trimmed.length >= 25 && /[a-zA-Z0-9]/.test(trimmed)
+}
+
+function getSafeBlogDescription(
+  postData: { title?: string; excerpt?: string | null; content?: string | null },
+  slug: string,
+): string {
+  const fromExcerpt = sanitizeBlogDescription(postData.excerpt, 158)
+  if (isValidBlogDescription(fromExcerpt)) {
+    return fromExcerpt
+  }
+
+  if (postData.content) {
+    const fromContent = sanitizeBlogDescription(postData.content, 158)
+    if (isValidBlogDescription(fromContent)) {
+      return fromContent
+    }
+  }
+
+  if (slug === "chintpurni-mata-temple-himachal-history-travel-guide") {
+    return "Complete history, spiritual significance, and travel guide for Mata Chintpurni Temple in Una, Himachal Pradesh—one of the sacred Shakti Peethas."
+  }
+
+  return `Read our practical Himachal travel guide on ${postData.title || "this destination"} by TourToHimachal.`
+}
+
 export async function generateMetadata({ params }: BlogDetailPageProps) {
   const { slug } = await params
   const supabase = createPublicClient()
@@ -38,6 +99,7 @@ export async function generateMetadata({ params }: BlogDetailPageProps) {
           gallery: [fallback.featuredImage],
           published_at: fallback.date,
           author: fallback.author,
+          content: fallback.markdownContent,
         }
       : null
 
@@ -53,15 +115,17 @@ export async function generateMetadata({ params }: BlogDetailPageProps) {
       ? "TourToHimachal"
       : normalizedAuthor
 
+  const description = getSafeBlogDescription(postData, slug)
+
   return {
     title: `${postData.title} | TourToHimachal Blog`,
-    description: postData.excerpt,
+    description,
     alternates: {
       canonical: `${SITE_URL}/blog/${slug}`,
     },
     openGraph: {
       title: postData.title,
-      description: postData.excerpt,
+      description,
       images:
         postData.gallery && postData.gallery.length > 0
           ? postData.gallery
@@ -149,7 +213,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: postData.title,
-    description: postData.excerpt,
+    description: getSafeBlogDescription(postData, slug),
     image: postData.cover_image || "",
     datePublished: postData.published_at,
     author: {

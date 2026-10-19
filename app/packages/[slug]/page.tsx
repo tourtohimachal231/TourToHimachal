@@ -46,6 +46,38 @@ async function getAllPackages() {
   return packages
 }
 
+function sanitizePackageMetaDescription(rawText: string | null | undefined, maxLength: number = 158): string {
+  if (!rawText) return ""
+
+  const text = rawText
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^(\s*[-*_]\s*){3,}$/gm, "")
+    .replace(/^\s*#{1,6}\s*/gm, "")
+    .replace(/^(=+|-+)\s*$/gm, "")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/__(.*?)__/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/_(.*?)_/g, "$1")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/^\s*\d+\.\s+/gm, "")
+    .replace(/[`~>]/g, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "")
+    .replace(/[*_]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+
+  if (text.length <= maxLength) {
+    return text
+  }
+
+  const cut = text.slice(0, maxLength)
+  const lastSpace = cut.lastIndexOf(" ")
+  const trimmed = (lastSpace > maxLength * 0.65 ? cut.slice(0, lastSpace) : cut).trim()
+  return trimmed.replace(/[,;:\-\s]+$/, "") + "..."
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const pkg = await getPackage(slug)
@@ -54,15 +86,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Package Not Found" }
   }
 
+  const rawDescription = pkg.short_description || pkg.description
+  const description =
+    sanitizePackageMetaDescription(rawDescription, 158) ||
+    `Explore ${pkg.title} with TourToHimachal. Handcrafted travel itinerary across Himachal Pradesh.`
+
   return {
     title: `${pkg.title} | TourToHimachal`,
-    description: pkg.short_description || pkg.description,
+    description,
     alternates: {
       canonical: `${SITE_URL}/packages/${slug}`,
     },
     openGraph: {
       title: pkg.title,
-      description: pkg.short_description || pkg.description,
+      description,
       images: pkg.images?.[0] ? [pkg.images[0]] : [],
       type: "website",
       url: `${SITE_URL}/packages/${slug}`,
@@ -86,7 +123,9 @@ export default async function PackageDetailPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
     name: pkg.title,
-    description: pkg.description,
+    description:
+      sanitizePackageMetaDescription(pkg.description || pkg.short_description, 300) ||
+      `Explore ${pkg.title} with TourToHimachal. Handcrafted travel itinerary across Himachal Pradesh.`,
     image: pkg.images,
     offers: {
       "@type": "Offer",
