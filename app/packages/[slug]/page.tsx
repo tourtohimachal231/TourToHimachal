@@ -87,9 +87,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const rawDescription = pkg.short_description || pkg.description
+  const sanitized = sanitizePackageMetaDescription(rawDescription, 158)
   const description =
-    sanitizePackageMetaDescription(rawDescription, 158) ||
-    `Explore ${pkg.title} with TourToHimachal. Handcrafted travel itinerary across Himachal Pradesh.`
+    sanitized.length >= 25
+      ? sanitized
+      : `Explore ${pkg.title} with TourToHimachal. Handcrafted travel itinerary across Himachal Pradesh.`
 
   return {
     title: `${pkg.title} | TourToHimachal`,
@@ -124,8 +126,12 @@ export default async function PackageDetailPage({ params }: PageProps) {
     "@type": "TouristTrip",
     name: pkg.title,
     description:
-      sanitizePackageMetaDescription(pkg.description || pkg.short_description, 300) ||
-      `Explore ${pkg.title} with TourToHimachal. Handcrafted travel itinerary across Himachal Pradesh.`,
+      (() => {
+        const s = sanitizePackageMetaDescription(pkg.description || pkg.short_description, 300)
+        return s.length >= 25
+          ? s
+          : `Explore ${pkg.title} with TourToHimachal. Handcrafted travel itinerary across Himachal Pradesh.`
+      })(),
     image: pkg.images,
     offers: {
       "@type": "Offer",

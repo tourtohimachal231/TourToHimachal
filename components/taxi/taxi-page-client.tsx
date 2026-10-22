@@ -80,19 +80,6 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
   const { settings } = useSettings()
   const chooseVehicleRef = useRef<HTMLElement>(null)
 
-  // Auto-scroll to "Choose Your Vehicle" section after hero renders
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (chooseVehicleRef.current) {
-        chooseVehicleRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
-      }
-    }, 1800) // Wait for hero section to render
-
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -356,7 +343,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
           </Button>
           <Button asChild variant="outline" size="icon">
             <a
-              href={`https://wa.me/${(settings.whatsapp_number || "919876543210").replace(/[^0-9]/g, "")}`}
+              href={`https://wa.me/${(settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "")}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"

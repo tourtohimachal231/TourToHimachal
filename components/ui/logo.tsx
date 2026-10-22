@@ -46,7 +46,6 @@ export function Logo({
         height={dimensions[size].height}
         className={cn(sizes[size], "w-auto transition-all duration-300")}
         sizes={responsiveSizes[size]}
-        quality={85}
       />
     </div>
   )

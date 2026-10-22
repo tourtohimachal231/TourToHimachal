@@ -30,6 +30,25 @@ interface Package {
   region?: string
 }
 
+function cleanPackageCardDescription(text?: string | null): string {
+  if (!text) return ""
+  return text
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^(\s*[-*_]\s*){3,}$/gm, "")
+    .replace(/^\s*#{1,6}\s*/gm, "")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/__(.*?)__/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/_(.*?)_/g, "$1")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/^\s*\d+\.\s+/gm, "")
+    .replace(/[`~>]/g, "")
+    .replace(/[*_]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+}
+
 interface PackageCardProps {
   pkg: Package
 }
@@ -132,7 +151,7 @@ export function PackageCard({ pkg }: PackageCardProps) {
             </h3>
 
             <p className="text-muted-foreground mb-4 line-clamp-2 text-sm leading-relaxed md:text-base">
-              {pkg.short_description || pkg.description}
+              {cleanPackageCardDescription(pkg.short_description || pkg.description)}
             </p>
 
             <div className="text-muted-foreground mt-auto flex items-center justify-between gap-3 text-xs md:text-sm">

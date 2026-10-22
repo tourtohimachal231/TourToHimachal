@@ -13,19 +13,6 @@ import { MobileContactBar } from "@/components/contact/mobile-contact-bar"
 export function ContactPageClient() {
   const getInTouchRef = useRef<HTMLElement>(null)
 
-  // Auto-scroll to "Get In Touch" section after hero renders
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (getInTouchRef.current) {
-        getInTouchRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
-      }
-    }, 1800) // Wait for hero section to render
-
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <div className="flex min-h-[100dvh] flex-col">

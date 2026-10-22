@@ -13,19 +13,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export function AboutPageClient() {
   const aboutContentRef = useRef<HTMLElement>(null)
 
-  // Auto-scroll to "About Content" section after hero renders
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (aboutContentRef.current) {
-        aboutContentRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
-      }
-    }, 1800) // Wait for hero section to render
-
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <div className="flex min-h-screen flex-col">

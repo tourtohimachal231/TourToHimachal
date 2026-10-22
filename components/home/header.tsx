@@ -11,11 +11,11 @@ import { useSettings } from "@/lib/settings-context"
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/taxi", label: "Taxi Service" },
-  { href: "/about", label: "About Us" },
   { href: "/packages", label: "Packages" },
+  { href: "/taxi", label: "Taxi Service" },
   { href: "/diaries", label: "Travel Diaries" },
   { href: "/blog", label: "Our Blogs" },
+  { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
 ]
 
@@ -83,7 +83,7 @@ export function Header() {
     <header className="bg-background/95 border-border fixed top-0 right-0 left-0 z-[1000] border-b shadow-sm backdrop-blur-md transition-all duration-500 safe-area-top">
       <div className="mx-auto px-4">
         <div className="flex h-16 items-center justify-between md:h-20">
-          <Logo size="lg" className="origin-left translate-y-1.5 scale-x-[1.5] scale-y-[1.3]" />
+          <Logo size="lg" className="origin-left" />
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-1 lg:flex">
@@ -173,7 +173,7 @@ export function Header() {
                   size="md"
                   href="/"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="origin-left translate-y-0.5 scale-x-[1.2] scale-y-[1.05]"
+                  className="origin-left"
                 />
 
                 {/* Close button */}

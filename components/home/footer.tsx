@@ -9,8 +9,9 @@ import { useSettings } from "@/lib/settings-context"
 const quickLinks = [
   { href: "/packages", label: "Tour Packages" },
   { href: "/taxi", label: "Taxi Service" },
-  { href: "/about", label: "About Us" },
   { href: "/diaries", label: "Travel Diaries" },
+  { href: "/blog", label: "Our Blogs" },
+  { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
 ]
 
@@ -19,7 +20,7 @@ const destinations = [
   { name: "Mata Chintpurni - VIP", slug: "mata-chintpurni-mandir-vip-express" },
   { name: "Divya Mandir Yatra", slug: "divya-mandir-yatra-jwala-ji-baglamukhi-chintpurni" },
   { name: "4 Mahadev, 1 Shaktipeeth", slug: "4-mahadev-darshan-1-shakti-peeth-chintpurni-spiritual-circuit" },
-  { name: "4 Shaktipeeth, 1 Mahadev", slug: "4-shakti-peeth-1-siddh-peeth-darshan-chintpurni-circuit" },
+  { name: "4 Shaktipeeth, 1 Siddhpeeth", slug: "4-shakti-peeth-1-siddh-peeth-darshan-chintpurni-circuit" },
 ]
 
 export function Footer() {
@@ -80,7 +81,7 @@ export function Footer() {
                     src="/Images/logow.webp"
                     alt="TourToHimachal Logo"
                     fill
-                    className="object-contain object-left translate-x-16 lg:translate-x-24 scale-x-[1.5] scale-y-[1.2]"
+                    className="object-contain object-left"
                   />
                 </div>
 

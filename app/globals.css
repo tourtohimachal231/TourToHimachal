@@ -23,12 +23,10 @@ html {
 
 /* Safari/iOS touch action fixes */
 * {
- touch-action: manipulation;
+  touch-action: manipulation;
   -webkit-touch-action: manipulation;
   touch-action-delay: none;
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 /* Allow text selection for inputs and text elements */

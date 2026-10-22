@@ -24,7 +24,7 @@ function getOptimizedImageUrl(url: string): string {
 export function TaxiHero() {
   const { settings } = useSettings()
 
-  const whatsappHref = `https://wa.me/${(settings.whatsapp_number || "919876543210").replace(/[^0-9]/g, "")}`
+  const whatsappHref = `https://wa.me/${(settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "")}`
   const phoneHref = `tel:${settings.contact_phone || ""}`
 
   return (
