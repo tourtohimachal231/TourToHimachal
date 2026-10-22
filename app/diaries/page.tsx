@@ -27,6 +27,32 @@ export const metadata: Metadata = {
 export const revalidate = 3600 // Revalidate every hour for ISR caching
 
 export default async function DiariesPage() {
+  const isDevWithoutSupabase = process.env.NODE_ENV === "development" && !process.env.NEXT_PUBLIC_SUPABASE_URL
+
+  if (isDevWithoutSupabase) {
+    const { diaries: staticDiaries } = await import("@/data/diaries")
+    const fallbackDiaries = staticDiaries.map((diary) => ({
+      id: diary.slug,
+      title: diary.title,
+      slug: diary.slug,
+      excerpt: diary.excerpt,
+      content: diary.body,
+      cover_image: diary.coverImage,
+      author_name: diary.author.name,
+      author_avatar: diary.author.avatar,
+      author: diary.author,
+      destination: diary.region,
+      region: diary.region,
+      travel_date: diary.date,
+      date: diary.date,
+      published_at: diary.date,
+      gallery: diary.images,
+      images: diary.images,
+      tags: diary.tags,
+    }))
+    return <DiariesPageClient diaries={fallbackDiaries} />
+  }
+
   const supabase = createPublicClient()
 
   const { data: diaries, error } = await supabase

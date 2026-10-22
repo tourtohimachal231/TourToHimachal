@@ -32,6 +32,25 @@ export default async function BlogPage() {
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   if (!url || !anon) {
+    if (process.env.NODE_ENV === "development") {
+      const { blogPosts } = await import("@/data/blogs")
+      const mappedBlogs = blogPosts.map((post) => ({
+        id: post.slug,
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        content: post.markdownContent,
+        cover_image: post.featuredImage,
+        author: post.author,
+        category: post.category,
+        tags: post.tags,
+        published_at: post.date,
+        created_at: post.date,
+      }))
+      const categories = [...new Set(mappedBlogs.map((blog) => blog.category).filter(Boolean))]
+      return <BlogPageClient blogs={mappedBlogs} categories={categories} />
+    }
+
     console.error(
       "Supabase environment variables missing: NEXT_PUBLIC_SUPABASE_URL and/or NEXT_PUBLIC_SUPABASE_ANON_KEY",
     )

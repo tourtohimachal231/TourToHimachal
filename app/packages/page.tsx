@@ -28,6 +28,31 @@ export const metadata: Metadata = {
 export const revalidate = 3600 // Revalidate every hour for ISR caching
 
 export default async function PackagesPage() {
+  const isDevWithoutSupabase = process.env.NODE_ENV === "development" && !process.env.NEXT_PUBLIC_SUPABASE_URL
+
+  if (isDevWithoutSupabase) {
+    const { packages: staticPackages } = await import("@/data/packages")
+    const fallbackPackages = staticPackages.map((pkg) => ({
+      id: pkg.id,
+      title: pkg.title,
+      slug: pkg.slug,
+      description: pkg.description,
+      short_description: pkg.excerpt,
+      price: pkg.price,
+      original_price: pkg.originalPrice,
+      duration: pkg.duration,
+      highlights: pkg.highlights,
+      inclusions: pkg.inclusions,
+      exclusions: pkg.exclusions,
+      category: pkg.theme?.[0] || "Tour",
+      images: pkg.images,
+      is_active: true,
+      is_featured: pkg.badge === "Popular",
+      region: pkg.region,
+    }))
+    return <PackagesPageClient packages={fallbackPackages} />
+  }
+
   const supabase = createPublicClient()
 
   const { data: packages, error } = await supabase
