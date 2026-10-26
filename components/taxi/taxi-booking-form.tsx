@@ -20,6 +20,7 @@ import {
 import { useSettings } from "@/lib/settings-context"
 import { vehicles } from "@/data/taxis"
 import { fadeInUp } from "@/lib/animation-variants"
+import { TrustPaymentBadge } from "@/components/common/trust-payment-badge"
 
 const HOW_FOUND_OPTIONS = [
   "Google Search",
@@ -377,6 +378,8 @@ export function TaxiBookingForm({ selectedVehicle, onVehicleChange, availableVeh
           <span>Fixed Rates • No Hidden Tolls</span>
         </div>
       </div>
+
+      <TrustPaymentBadge type="taxi" className="mb-5" />
 
       <div className="mb-4 grid grid-cols-2 gap-3 sm:gap-4">
         {/* Service Type */}

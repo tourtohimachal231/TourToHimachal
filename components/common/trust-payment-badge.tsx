@@ -1,6 +1,6 @@
 "use client"
 
-import { ShieldCheck, CloudSnow, Check, Coins } from "lucide-react"
+import { ShieldCheck, CloudSnow, Check, Coins, Hotel, Car } from "lucide-react"
 
 interface TrustPaymentBadgeProps {
   type?: "package" | "taxi"
@@ -11,40 +11,51 @@ export function TrustPaymentBadge({ type = "package", className = "" }: TrustPay
   const isPackage = type === "package"
 
   return (
-    <div className={`rounded-2xl border border-saffron/30 bg-linear-to-br from-amber-50/80 via-white to-orange-50/50 p-3.5 shadow-sm ${className}`}>
-      <div className="flex items-center gap-2 mb-2">
-        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-saffron text-white">
-          <ShieldCheck className="h-3.5 w-3.5" />
+    <div
+      className={`rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-amber-50/30 p-3.5 shadow-xs ${className}`}
+    >
+      <div className="mb-2 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white">
+            <ShieldCheck className="h-3.5 w-3.5 text-amber-400" />
+          </div>
+          <span className="text-xs font-bold tracking-wide text-slate-900">
+            {isPackage ? "Milestone Booking & Hotel Protection" : "Fleet-Only Transparent Booking"}
+          </span>
         </div>
-        <span className="text-xs font-bold text-foreground tracking-wide">
-          100% Risk-Free Booking Promise
+        <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-700">
+          {isPackage ? <Hotel className="h-3 w-3 text-amber-600" /> : <Car className="h-3 w-3 text-emerald-600" />}
+          {isPackage ? "Hotels + Cab" : "Fleet Only"}
         </span>
       </div>
 
-      <div className="space-y-1.5 text-[11px] text-muted-foreground">
+      <div className="space-y-1.5 text-[11px] text-slate-600">
         <div className="flex items-start gap-1.5">
-          <Check className="h-3.5 w-3.5 text-forest-green shrink-0 mt-0.5" />
+          <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />
           <span>
             {isPackage ? (
-              <strong className="text-foreground">Only 25% Token</strong>
+              <>
+                <strong className="text-slate-900">25% Token</strong> to lock hotel rooms & cab. 50% on check-in, 25% mid-tour.
+              </>
             ) : (
-              <strong className="text-foreground">Only 20% Token</strong>
-            )}{" "}
-            needed to confirm. Balance payable after arrival.
+              <>
+                <strong className="text-slate-900">20% Token</strong> to allocate driver. 50% on boarding, 30% at final drop.
+              </>
+            )}
           </span>
         </div>
 
         <div className="flex items-start gap-1.5">
-          <CloudSnow className="h-3.5 w-3.5 text-mountain-blue shrink-0 mt-0.5" />
+          <CloudSnow className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sky-600" />
           <span>
-            <strong className="text-foreground">Weather & Landslide Safety:</strong> Free date rescheduling if roads are closed by authorities.
+            <strong className="text-slate-900">Weather & Pass Safety:</strong> Free date rescheduling if mountain passes are closed by authorities.
           </span>
         </div>
 
         <div className="flex items-start gap-1.5">
-          <Coins className="h-3.5 w-3.5 text-saffron shrink-0 mt-0.5" />
+          <Coins className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-600" />
           <span>
-            <strong className="text-foreground">Zero Hidden Charges:</strong> All tolls, state taxes, fuel & driver allowances included.
+            <strong className="text-slate-900">All-Inclusive Mountain Quote:</strong> All tolls, HP border permits, fuel & driver allowances included.
           </span>
         </div>
       </div>

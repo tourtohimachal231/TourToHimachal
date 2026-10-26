@@ -126,26 +126,26 @@ export default function TermsPage() {
                 
                 <div className="bg-card border-border rounded-2xl border p-6 space-y-6">
                   <div>
-                    <h3 className="text-foreground font-semibold text-base mb-2">1. Tour Packages Payment Milestones (25 : 50 : 25)</h3>
+                    <h3 className="text-foreground font-semibold text-base mb-2">1. Complete Holiday Packages (Hotels + Dedicated Cab)</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                      To ensure you never carry unnecessary upfront risk while allowing us to reserve boutique hotels in high-demand hill stations, package payments are split into three clear milestones:
+                      When booking a complete tour with hotel stays (Shimla, Manali, Dharamshala, Spiti, etc.), payments are milestone-based to guarantee room availability without demanding 100% upfront:
                     </p>
                     <ul className="text-muted-foreground text-sm space-y-2 list-disc list-inside bg-muted/20 p-4 rounded-xl">
-                      <li><strong>Step 1 (Booking Token - 25%):</strong> Paid to confirm your package and issue official stamped vouchers. Locks hotel inventory and your dedicated vehicle.</li>
-                      <li><strong>Step 2 (Arrival & Check-in - 50%):</strong> Payable upon arrival on Day 1 after you meet your local driver, inspect your vehicle, and check into your first destination hotel.</li>
-                      <li><strong>Step 3 (Mid-Journey - 25%):</strong> Payable midway through your tour (typically Day 3 or 4) once you are fully settled and enjoying your holiday.</li>
+                      <li><strong>Confirmation Token (25%):</strong> Paid to confirm your package and issue official stamped vouchers. Locks hotel room inventory and your dedicated vehicle and chauffeur.</li>
+                      <li><strong>Hotel Check-in & Arrival (50%):</strong> Payable upon arrival on Day 1 after you meet your local chauffeur, inspect your vehicle, and check into your first destination hotel.</li>
+                      <li><strong>Mid-Tour Balance (25%):</strong> Payable midway through your itinerary (typically Day 3 or 4) once you are settled and enjoying your vacation.</li>
                     </ul>
                   </div>
 
                   <div>
-                    <h3 className="text-foreground font-semibold text-base mb-2">2. Taxi Services Payment Milestones (20 : 50 : 30)</h3>
+                    <h3 className="text-foreground font-semibold text-base mb-2">2. Cab & Fleet Rental Only (No Hotels Required)</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                      Unlike distant brokers who demand 100% upfront or roadside taxis with fluctuating charges, our taxi fares are transparent and milestone-based:
+                      For travelers who already have accommodations arranged or only require airport/railway transfers, one-way drops, or private sightseeing cabs:
                     </p>
                     <ul className="text-muted-foreground text-sm space-y-2 list-disc list-inside bg-muted/20 p-4 rounded-xl">
-                      <li><strong>Token Advance (20% or flat ₹1,000 min):</strong> Paid to confirm vehicle category and block the driver's schedule. Driver contact and vehicle number are shared 12 hours before pickup.</li>
-                      <li><strong>Trip Start (50%):</strong> Payable after you board the cab at Chandigarh, Delhi, Kalka, or your pickup station, ensuring vehicle cleanliness and hill driver credentials meet your expectations.</li>
-                      <li><strong>Final Drop (Remaining 30%):</strong> Payable only when you arrive safely at your final destination or drop-off airport/railway station.</li>
+                      <li><strong>Advance Token (20% or ₹1,000 min):</strong> Confirms your vehicle model (Innova Crysta, Dzire, Force Urbania) and allocates a licensed mountain driver. Driver details and vehicle number are shared 12 hours prior to pickup.</li>
+                      <li><strong>Trip Start & Boarding (50%):</strong> Payable only after you board the cab at Chandigarh, Delhi, Kalka, or your pickup station, ensuring vehicle cleanliness and luggage space meet your expectations.</li>
+                      <li><strong>Final Destination Drop (Remaining 30%):</strong> Payable directly to the driver only when you reach your final hotel or return drop airport/station safely.</li>
                     </ul>
                   </div>
 
