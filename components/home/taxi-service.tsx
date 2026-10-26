@@ -1,213 +1,325 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ClientOnly } from "@/components/ui/client-only"
 import { useSettings } from "@/lib/settings-context"
-import { Car, MapPin, Shield, Clock, CheckCircle2, ArrowRight } from "lucide-react"
-import { slideInLeft, slideInRight } from "@/lib/animation-variants"
-import { TrustPaymentBadge } from "@/components/common/trust-payment-badge"
+import {
+  Car,
+  MapPin,
+  ShieldCheck,
+  Clock,
+  ArrowRight,
+  Sparkles,
+  CheckCircle2,
+  Users,
+  Fuel,
+  BadgePercent,
+  PhoneCall,
+} from "lucide-react"
+import { WhatsAppIcon } from "@/components/icons/whatsapp"
+import { slideInLeft, slideInRight, fadeInUp, staggerContainer } from "@/lib/animation-variants"
 
-// Ensure pasted URLs (including Cloudinary) work reliably like in the Hero
-function getImageUrl(url: string): string {
-  if (!url) return "/placeholder.svg"
-  const trimmed = url.trim()
-  const normalized = trimmed.startsWith("/http") ? trimmed.slice(1) : trimmed
-  return normalized
-}
+const fleetOptions = [
+  {
+    name: "Innova Crysta",
+    category: "SUV • Mountain King",
+    capacity: "6-7 Pax",
+    luggage: "4 Large Bags",
+    bestFor: "Families, rough roads & long hill circuits",
+    tag: "Most Popular",
+  },
+  {
+    name: "Swift Dzire / Etios",
+    category: "Sedan • Fuel Efficient",
+    capacity: "1-4 Pax",
+    luggage: "2 Medium Bags",
+    bestFor: "Couples, small families & budget transfers",
+    tag: "Best Value",
+  },
+  {
+    name: "Force Urbania / Tempo",
+    category: "Luxury Mini • Executive",
+    capacity: "9-17 Pax",
+    luggage: "10+ Bags",
+    bestFor: "Pilgrimage groups, corporate & extended family",
+    tag: "Luxury Group",
+  },
+]
+
+const popularRoutes = [
+  { name: "Chandigarh ⇄ Manali", duration: "6-7 hrs", note: "Via new 4-lane expressway" },
+  { name: "Delhi ⇄ Shimla", duration: "7-8 hrs", note: "Scenic Himalayan expressway" },
+  { name: "Chandigarh ⇄ Dharamshala", duration: "5-6 hrs", note: "Direct valley transit" },
+  { name: "Una / Amb ⇄ Chintpurni", duration: "45 mins", note: "Dedicated temple darshan" },
+  { name: "Kalka ⇄ Shimla Transfer", duration: "3-4 hrs", note: "Toy train station pickup" },
+  { name: "Manali ⇄ Atal Tunnel & Sissu", duration: "Day Tour", note: "Snow pass expedition" },
+]
 
 export function TaxiService() {
   const { settings } = useSettings()
+  const [selectedFleet, setSelectedFleet] = useState(0)
 
-  const routes = [
-    "Chandigarh to Manali",
-    "Delhi to Shimla",
-    "Airport Pickups",
-    "Local Sightseeing",
-    "Dharamshala Tours",
-    "Inter-state Transfers",
-  ]
-
-  const features = [
-    { icon: Car, text: "AC & Non-AC Vehicles", color: "from-saffron to-sunset-orange" },
-    { icon: MapPin, text: "Flexible Routes", color: "from-saffron to-sunset-orange" },
-    { icon: Shield, text: "Verified Drivers", color: "from-saffron to-golden-yellow" },
-    { icon: Clock, text: "24/7 Availability", color: "from-sunset-orange to-temple-red" },
-  ]
+  const activeFleet = fleetOptions[selectedFleet]
+  const whatsappNumber = (settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "") || "918628839955"
+  const phone = settings.contact_phone || "+918628839955"
 
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-[oklch(0.97_0.03_145)] via-[oklch(0.98_0.02_160)] to-[oklch(0.96_0.025_180)] py-6 md:py-8 lg:py-10">
-      {/* Background decorations */}
-      <div className="from-saffron/10 absolute top-0 right-0 h-full w-1/3 bg-linear-to-l to-transparent md:w-1/2" />
+    <section className="relative overflow-hidden bg-slate-950 py-14 text-white md:py-20 lg:py-24">
+      {/* Subtle background ambient lights */}
+      <div className="pointer-events-none absolute -top-40 left-1/4 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 right-1/4 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
 
       <div className="relative container mx-auto px-4">
-        <div className="mx-auto grid max-w-7xl items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-10 xl:gap-12">
+        {/* Section Header */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={staggerContainer}
+          className="mx-auto mb-12 max-w-3xl text-center md:mb-16"
+        >
+          <motion.div
+            variants={fadeInUp}
+            className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-4 py-1.5 backdrop-blur-md"
+          >
+            <Car className="h-4 w-4 text-amber-400" />
+            <span className="text-xs font-semibold tracking-wider text-amber-300 uppercase md:text-sm">
+              Himachal Certified Cab Fleet
+            </span>
+          </motion.div>
+
+          <motion.h2
+            variants={fadeInUp}
+            className="mt-4 font-serif text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl"
+          >
+            Himalayan Road Travel,{" "}
+            <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">
+              Engineered for Peace of Mind
+            </span>
+          </motion.h2>
+
+          <motion.p variants={fadeInUp} className="mt-3 text-base text-slate-300 md:text-lg">
+            No haggling, no unexpected hill surcharges. Travel with seasoned local drivers who know every hairpin curve,
+            monsoon detour, and winter pass route across Himachal Pradesh.
+          </motion.p>
+        </motion.div>
+
+        {/* 2-Column Showcase */}
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          {/* Left Column: Visual Showcase & Fleet Switcher */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={slideInLeft}
-            className="relative order-1 lg:order-1"
+            className="lg:col-span-6"
           >
-            <div className="relative h-[240px] overflow-hidden rounded-2xl shadow-2xl sm:h-[300px] md:h-[380px] md:rounded-3xl lg:h-[480px]">
-              <Image
-                src={getImageUrl(
-                  "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795626/ltbokgx2veuwypbwmgta.webp",
-                )}
-                alt="Premium Taxi Service"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-              />
-              {/* Gradient overlay */}
-              <div className="from-saffron/40 to-saffron/20 absolute inset-0 bg-linear-to-tr via-transparent" />
+            {/* Visual Frame */}
+            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl">
+              <div className="relative h-64 sm:h-80 md:h-96">
+                <Image
+                  src="/Images/mountain-drive.jpg"
+                  alt="Tour to Himachal Premium Taxi Drive in Mountains"
+                  fill
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  priority={false}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
-              {/* Decorative frame */}
-              <div className="absolute inset-2 rounded-xl border-2 border-white/30 md:inset-4 md:rounded-2xl" />
+                {/* Top Badge on image */}
+                <div className="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full border border-white/20 bg-slate-950/70 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md">
+                  <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                  <span>100% Hill-Licensed Commercial Cabs</span>
+                </div>
+
+                {/* Floating bottom card */}
+                <div className="absolute right-4 bottom-4 left-4 z-10 rounded-xl border border-white/10 bg-slate-950/80 p-3.5 backdrop-blur-md sm:p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-medium text-amber-400 uppercase">Featured Vehicle</p>
+                      <p className="font-serif text-lg font-bold text-white sm:text-xl">{activeFleet.name}</p>
+                    </div>
+                    <span className="rounded-md bg-amber-500/20 px-2.5 py-1 text-xs font-semibold text-amber-300">
+                      {activeFleet.tag}
+                    </span>
+                  </div>
+                  <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-300">
+                    <span className="flex items-center gap-1">
+                      <Users className="h-3.5 w-3.5 text-slate-400" />
+                      {activeFleet.capacity}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Fuel className="h-3.5 w-3.5 text-slate-400" />
+                      {activeFleet.category}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fleet Selection Tabs */}
+              <div className="grid grid-cols-3 divide-x divide-slate-800 border-t border-slate-800 bg-slate-900/90">
+                {fleetOptions.map((fleet, idx) => (
+                  <button
+                    key={fleet.name}
+                    onClick={() => setSelectedFleet(idx)}
+                    type="button"
+                    className={`p-3 text-left transition-all ${
+                      selectedFleet === idx
+                        ? "bg-amber-500/10 border-b-2 border-amber-400"
+                        : "hover:bg-slate-800/50"
+                    }`}
+                  >
+                    <p className={`text-xs font-bold ${selectedFleet === idx ? "text-amber-400" : "text-white"}`}>
+                      {fleet.name.split(" ")[0]}
+                    </p>
+                    <p className="mt-0.5 text-[11px] text-slate-400">{fleet.capacity}</p>
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="from-card border-forest-green/20 absolute -right-4 -bottom-4 rounded-xl border-2 bg-linear-to-br to-[oklch(0.98_0.02_145)] p-3 shadow-2xl sm:-right-6 sm:-bottom-6 sm:rounded-2xl sm:p-4 md:-right-8 md:-bottom-8 md:rounded-3xl md:p-6"
-            >
-              <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-                <div className="from-saffron to-sunset-orange flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br shadow-lg sm:h-12 sm:w-12 sm:rounded-xl md:h-16 md:w-16 md:rounded-2xl">
-                  <Shield className="h-5 w-5 text-white sm:h-6 sm:w-6 md:h-8 md:w-8" />
-                </div>
-                <div>
-                  <p className="text-foreground text-base font-bold sm:text-lg md:text-xl lg:text-2xl leading-tight">Local Drivers</p>
-                  <p className="text-muted-foreground text-[10px] sm:text-xs md:text-sm">Mountain Route Experience</p>
-                </div>
+            {/* Quick Guarantees bar */}
+            <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+              <div className="rounded-lg border border-slate-800 bg-slate-900/50 p-2.5">
+                <p className="text-xs font-bold text-white">All Tolls Included</p>
+                <p className="text-[10px] text-slate-400">Zero hidden checkpoints</p>
               </div>
-            </motion.div>
-
-            {/* Second floating element */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="from-saffron to-sunset-orange absolute top-4 left-4 rounded-lg bg-linear-to-r p-2 text-white shadow-xl sm:top-6 sm:left-6 sm:rounded-xl sm:p-3 md:top-8 md:left-8 md:rounded-2xl md:p-4"
-            >
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <CheckCircle2 className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
-                <span className="text-xs font-semibold sm:text-sm md:text-base">Trusted Service</span>
+              <div className="rounded-lg border border-slate-800 bg-slate-900/50 p-2.5">
+                <p className="text-xs font-bold text-white">Weather Guarantee</p>
+                <p className="text-[10px] text-slate-400">Free date adjustment</p>
               </div>
-            </motion.div>
+              <div className="rounded-lg border border-slate-800 bg-slate-900/50 p-2.5">
+                <p className="text-xs font-bold text-white">20% Token Only</p>
+                <p className="text-[10px] text-slate-400">Balance on arrival</p>
+              </div>
+            </div>
           </motion.div>
 
+          {/* Right Column: Why Choose Our Cabs & Popular Routes */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={slideInRight}
-            className="order-2 lg:order-2 lg:pl-8"
+            className="lg:col-span-6"
           >
-            {/* Section label */}
-            <div className="bg-saffron/15 mb-1 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 sm:mb-2 sm:gap-2 sm:px-3 sm:py-1.5 md:mb-3 md:px-4 md:py-2">
-              <Car className="text-saffron h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4" />
-              <span className="text-saffron text-[10px] font-semibold tracking-wider uppercase sm:text-xs md:text-sm">
-                Reliable Transportation
-              </span>
+            {/* 4 Pillars of Mountain Cab Service */}
+            <div className="space-y-3.5">
+              <div className="flex gap-3.5 rounded-xl border border-slate-800/80 bg-slate-900/40 p-3.5 transition-colors hover:border-slate-700">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white">Mountain-Vetted Local Drivers</h4>
+                  <p className="text-xs leading-relaxed text-slate-300">
+                    Himachali born chauffeurs with 10+ years mastering hairpin turns, fog, snow chains, and safe mountain driving.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-3.5 rounded-xl border border-slate-800/80 bg-slate-900/40 p-3.5 transition-colors hover:border-slate-700">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400">
+                  <BadgePercent className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white">Fixed, Transparent Pricing</h4>
+                  <p className="text-xs leading-relaxed text-slate-300">
+                    Fuel, interstate road permits, green cess, and driver night allowances are stated upfront.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-3.5 rounded-xl border border-slate-800/80 bg-slate-900/40 p-3.5 transition-colors hover:border-slate-700">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400">
+                  <Clock className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white">Punctual Airport & Railway Pickups</h4>
+                  <p className="text-xs leading-relaxed text-slate-300">
+                    Live flight/train tracking at Chandigarh (IXC), Delhi (DEL), Gaggal (DHM), and Kalka railway station.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <h2 className="xs:text-2xl text-foreground mt-1 mb-1.5 font-serif text-xl leading-tight font-bold sm:mt-2 sm:mb-2 sm:text-3xl md:mt-3 md:mb-3 md:text-4xl lg:text-5xl">
-              Premium <span className="text-saffron">Taxi Services</span>
-            </h2>
-            <p className="text-muted-foreground mb-3 text-xs leading-snug sm:mb-4 sm:text-sm md:mb-5 md:text-base lg:text-lg">
-              Travel comfortably across Himachal Pradesh with our fleet of well-maintained vehicles and
-              experienced local drivers who know every route like the back of their hand.
-            </p>
+            {/* Popular Routes Chips */}
+            <div className="mt-6">
+              <div className="mb-2.5 flex items-center justify-between">
+                <h4 className="flex items-center gap-1.5 text-xs font-semibold tracking-wider text-slate-300 uppercase">
+                  <MapPin className="h-3.5 w-3.5 text-amber-400" />
+                  Popular One-Way & Round Routes
+                </h4>
+                <span className="text-[11px] text-slate-400">Custom drop anywhere in HP</span>
+              </div>
 
-            <div className="mb-3 grid grid-cols-2 gap-2 sm:mb-4 sm:gap-2 md:mb-5 md:gap-3">
-              {features.map((item, index) => (
-                <motion.div
-                  key={item.text}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  className="group border-saffron/10 flex items-center gap-1.5 rounded-lg border bg-white/60 p-1.5 transition-colors hover:bg-white sm:gap-2 sm:rounded-xl sm:p-2 md:gap-3 md:rounded-2xl md:p-2.5"
-                >
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {popularRoutes.map((route) => (
                   <div
-                    className={`h-7 w-7 bg-linear-to-br sm:h-9 sm:w-9 md:h-12 md:w-12 ${item.color} flex shrink-0 items-center justify-center rounded-md shadow-md transition-transform group-hover:scale-110 sm:rounded-lg md:rounded-xl`}
+                    key={route.name}
+                    className="group rounded-lg border border-slate-800 bg-slate-900/70 p-2 transition-all hover:border-amber-400/50 hover:bg-slate-800/80"
                   >
-                    <item.icon className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4 md:h-6 md:w-6" />
+                    <p className="truncate text-xs font-semibold text-white group-hover:text-amber-300">
+                      {route.name}
+                    </p>
+                    <p className="text-[10px] text-slate-400">{route.duration}</p>
                   </div>
-                  <span className="text-foreground text-[10px] leading-tight font-semibold sm:text-xs md:text-sm">
-                    {item.text}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mb-3 sm:mb-4 md:mb-5">
-              <h3 className="text-foreground mb-1.5 flex items-center gap-1.5 text-sm font-bold sm:mb-2 sm:gap-2 md:text-base md:mb-3 md:text-lg">
-                <MapPin className="text-saffron h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
-                Popular Routes
-              </h3>
-              <div className="flex flex-wrap gap-1 sm:gap-1.5">
-                {routes.map((route) => (
-                  <span
-                    key={route}
-                    className="text-foreground border-border hover:border-saffron/50 hover:bg-saffron/5 cursor-pointer rounded-full border bg-white/80 px-2 py-1 text-[10px] font-medium transition-all sm:px-3 sm:py-1.5 sm:text-xs md:px-4 md:py-2 md:text-sm"
-                  >
-                    {route}
-                  </span>
                 ))}
               </div>
             </div>
 
-            <TrustPaymentBadge type="taxi" className="mt-3 mb-2" />
-
-            <div className="mt-3 flex flex-col gap-2 sm:mt-4 sm:flex-row sm:gap-2.5 md:mt-5 md:gap-3">
+            {/* CTA Action Row */}
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ClientOnly
                 fallback={
                   <Button
                     size="lg"
-                    variant="green"
-                    className="h-9 w-full gap-1.5 text-xs sm:h-10 sm:w-auto sm:gap-2 sm:text-sm md:h-11 md:text-base"
+                    className="h-12 w-full gap-2 rounded-xl bg-emerald-600 font-semibold text-white shadow-lg hover:bg-emerald-500 sm:w-auto"
                     asChild
                   >
                     <a
-                      href="https://wa.me/918628839955?text=Hi,%20I%20want%20to%20book%20a%20taxi"
+                      href="https://wa.me/918628839955?text=Hi,%20I%20want%20to%20get%20a%20taxi%20fare%20quote"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Book Taxi on WhatsApp
-                      <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+                      <WhatsAppIcon className="h-5 w-5" />
+                      Get WhatsApp Fare Quote
+                      <ArrowRight className="h-4 w-4" />
                     </a>
                   </Button>
                 }
               >
                 <Button
                   size="lg"
-                  variant="green"
-                  className="h-9 w-full gap-1.5 text-xs sm:h-10 sm:w-auto sm:gap-2 sm:text-sm md:h-11 md:text-base"
+                  className="h-12 w-full gap-2 rounded-xl bg-emerald-600 font-semibold text-white shadow-lg hover:bg-emerald-500 sm:w-auto"
                   asChild
                 >
                   <a
-                    href={`https://wa.me/${(settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "") || "918628839955"}?text=Hi, I want to book a taxi`}
+                    href={`https://wa.me/${whatsappNumber}?text=Hi,%20I%20want%20to%20get%20a%20taxi%20fare%20quote`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Book Taxi on WhatsApp
-                    <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+                    <WhatsAppIcon className="h-5 w-5" />
+                    Get WhatsApp Fare Quote
+                    <ArrowRight className="h-4 w-4" />
                   </a>
                 </Button>
               </ClientOnly>
+
               <Button
                 size="lg"
                 variant="outline"
-                className="h-9 w-full border-2 bg-white/50 text-xs sm:h-10 sm:w-auto sm:text-sm md:h-11 md:text-base"
+                className="h-12 w-full gap-2 rounded-xl border-slate-700 bg-slate-900 font-semibold text-white hover:bg-slate-800 hover:text-white sm:w-auto"
                 asChild
               >
-                <Link href="/taxi">View All Routes</Link>
+                <Link href="/taxi">
+                  View Vehicles & Rates
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </Button>
             </div>
           </motion.div>

@@ -3,20 +3,21 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useSettings } from "@/lib/settings-context"
-import { Phone, ArrowRight, Sparkles } from "lucide-react"
+import { Phone, ArrowRight, Sparkles, ShieldCheck, Clock, CalendarCheck } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp"
 import Image from "next/image"
 import { optimizeCloudinaryDeliveryUrl } from "@/lib/cloudinary"
 
 export function CTABanner() {
   const { settings } = useSettings()
+
   function getImageUrl(url: string): string {
     if (!url) return "/placeholder.svg"
     const trimmed = url.trim()
     const normalized = trimmed.startsWith("/http") ? trimmed.slice(1) : trimmed
     if (normalized.includes("res.cloudinary.com") || normalized.includes("cloudinary.com")) {
       return optimizeCloudinaryDeliveryUrl(normalized, {
-        width: 1600,
+        width: 1920,
         quality: "auto",
         format: "auto",
         crop: "limit",
@@ -25,111 +26,106 @@ export function CTABanner() {
     return normalized
   }
 
-  const ctaImage = ""
+  const whatsappRaw = (settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "") || "918628839955"
+  const phone = settings.contact_phone || "+918628839955"
+
   return (
-    <section className="relative overflow-hidden py-6 md:py-8 lg:py-10">
-      {/* Background image layer */}
+    <section className="relative overflow-hidden py-16 md:py-24 lg:py-28">
+      {/* Background panoramic landscape */}
       <Image
-        src={getImageUrl(
-          "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795901/y1plr2wekvbv7g7yjyk0.webp",
-        )}
-        alt="panoramic landcape view"
+        src={getImageUrl("https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795901/y1plr2wekvbv7g7yjyk0.webp")}
+        alt="Panoramic Himalayan mountain landscape"
         fill
         className="object-cover"
         sizes="100vw"
-      />
-      {/* Background overlay gradient (semi-transparent so image shows) */}
-      <div className="from-saffron/20 via-saffron/10 to-saffron/20 absolute inset-0 bg-linear-to-br" />
-
-      {/* Decorative patterns */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 h-40 w-40 rounded-full border-4 border-white" />
-        <div className="absolute top-20 right-20 h-60 w-60 rounded-full border-4 border-white" />
-        <div className="absolute bottom-10 left-1/3 h-32 w-32 rounded-full border-4 border-white" />
-      </div>
-
-      {/* Floating shapes */}
-      <motion.div
-        animate={{ y: [-10, 10, -10] }}
-        transition={{ repeat: Number.POSITIVE_INFINITY, duration: 4 }}
-        className="bg-golden-yellow/30 absolute top-20 right-1/4 h-16 w-16 rotate-12 rounded-2xl"
-      />
-      <motion.div
-        animate={{ y: [10, -10, 10] }}
-        transition={{ repeat: Number.POSITIVE_INFINITY, duration: 5 }}
-        className="bg-saffron/30 absolute bottom-20 left-1/4 h-20 w-20 rounded-full"
+        priority={false}
       />
 
-      <div className="relative z-10 container mx-auto px-4 text-center">
+      {/* Cinematic dark mountain gradient overlay (crystal clear contrast, no washed-out orange tint) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-slate-950/90" />
+      <div className="absolute inset-0 bg-radial-at-c from-transparent via-slate-950/40 to-slate-950/80" />
+
+      <div className="relative z-10 container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="mx-auto max-w-4xl text-center"
         >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-5 py-2 backdrop-blur-sm"
-          >
-            <Sparkles className="text-golden-yellow h-4 w-4" />
-            <span className="font-medium text-white">Start Your Journey Today</span>
-          </motion.div>
+          {/* Trust Badge */}
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-4 py-1.5 backdrop-blur-md">
+            <Sparkles className="h-4 w-4 text-amber-400" />
+            <span className="text-xs font-semibold tracking-wider text-amber-300 uppercase md:text-sm">
+              Start Your Journey Today • 100% Free Consultation
+            </span>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mb-5 font-serif text-3xl font-bold text-balance text-white sm:text-5xl md:text-6xl lg:text-7xl"
-          >
-            Plan Your Dream <span className="text-golden-yellow">Himachal Trip</span>
-          </motion.h2>
+          {/* Heading */}
+          <h2 className="font-serif text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+            Ready to Experience the Himalayas?{" "}
+            <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">
+              Let&apos;s Plan Your Custom Trip
+            </span>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-white/90 md:text-xl"
-          >
-            Get personalized travel packages and instant taxi booking. Connect with us on WhatsApp for quick
-            assistance.
-          </motion.p>
+          {/* Description */}
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl">
+            Connect directly with our local travel architects in Chintpurni. We&apos;ll craft a personalized day-by-day
+            itinerary with transparent taxi fares tailored to your family, honeymoon, or temple pilgrimage.
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-col justify-center gap-4 sm:flex-row"
-          >
-            <Button size="xl" variant="gradient" className="group px-10 text-base font-semibold shadow-2xl" asChild>
+          {/* Key Guarantees Strip */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs sm:gap-6 sm:text-sm">
+            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-slate-200 backdrop-blur-xs">
+              <Clock className="h-4 w-4 text-amber-400" />
+              <span>15-Minute Custom Quote</span>
+            </div>
+            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-slate-200 backdrop-blur-xs">
+              <CalendarCheck className="h-4 w-4 text-emerald-400" />
+              <span>Only 20% Token to Reserve</span>
+            </div>
+            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-slate-200 backdrop-blur-xs">
+              <ShieldCheck className="h-4 w-4 text-blue-400" />
+              <span>Free Weather Rescheduling</span>
+            </div>
+          </div>
+
+          {/* CTA Action Buttons */}
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:items-center">
+            <Button
+              size="xl"
+              className="group h-13 gap-2.5 rounded-xl bg-emerald-600 px-8 text-base font-semibold text-white shadow-xl transition-all hover:bg-emerald-500 hover:shadow-2xl"
+              asChild
+            >
               <a
-                href={`https://wa.me/${(settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "") || "918628839955"}?text=Hi, I want to plan my Himachal trip`}
+                href={`https://wa.me/${whatsappRaw}?text=${encodeURIComponent("Hi TourToHimachal! I want to plan my dream trip. Please share options and cab rates.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <WhatsAppIcon className="mr-2 h-6 w-6" />
-                Chat on WhatsApp
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <WhatsAppIcon className="h-5 w-5" />
+                <span>Chat on WhatsApp</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
 
             <Button
               size="xl"
               variant="outline"
-              className="hover:text-saffron border-2 border-white bg-transparent px-10 text-base font-semibold text-white hover:bg-white"
+              className="h-13 gap-2.5 rounded-xl border border-white/30 bg-white/10 px-8 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white hover:text-slate-950"
               asChild
             >
-              <a href={`tel:${settings.contact_phone || "+918628839955"}`}>
-                <Phone className="mr-2 h-5 w-5" />
-                Call Us Now
+              <a href={`tel:${phone}`}>
+                <Phone className="h-5 w-5" />
+                <span>Call {phone}</span>
               </a>
             </Button>
-          </motion.div>
+          </div>
+
+          {/* Reassurance text */}
+          <p className="mt-6 text-xs text-slate-400">
+            No spam, no aggressive sales calls. Just friendly, local mountain advice from people who live here.
+          </p>
         </motion.div>
       </div>
     </section>
