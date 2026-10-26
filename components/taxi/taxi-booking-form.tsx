@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Calendar, Clock, Users, MapPin, User, Phone, MessageSquare, Send, Loader2, AlertCircle, CheckCircle2, Tag } from "lucide-react"
+import { Calendar, Clock, Users, MapPin, User, Phone, MessageSquare, Send, Loader2, AlertCircle, CheckCircle2, Tag, ArrowRight, Shield, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -20,7 +20,6 @@ import {
 import { useSettings } from "@/lib/settings-context"
 import { vehicles } from "@/data/taxis"
 import { fadeInUp } from "@/lib/animation-variants"
-import { TrustPaymentBadge } from "@/components/common/trust-payment-badge"
 
 const HOW_FOUND_OPTIONS = [
   "Google Search",
@@ -233,7 +232,6 @@ export function TaxiBookingForm({ selectedVehicle, onVehicleChange, availableVeh
     if (formData.email && !/^.+@.+\..+$/.test(formData.email)) {
       newErrors.email = "Valid email is required"
     }
-    if (!formData.howFound) newErrors.howFound = "Please tell us how you found us"
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -367,10 +365,18 @@ export function TaxiBookingForm({ selectedVehicle, onVehicleChange, availableVeh
       initial="hidden"
       animate="visible"
       onSubmit={handleSubmit}
-      className="bg-card border-border rounded-xl border p-6 md:p-8"
+      className="bg-card border-border rounded-2xl border p-6 sm:p-8 shadow-xs"
     >
-      <h3 className="text-foreground mb-4 text-xl font-semibold">Book Your Ride</h3>
-      <TrustPaymentBadge type="taxi" className="mb-5" />
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <h3 className="font-serif text-2xl font-bold text-slate-900">Book Your Mountain Cab</h3>
+          <p className="text-xs text-slate-500 mt-0.5">Direct dispatch enquiry with verified Himachal hill drivers</p>
+        </div>
+        <div className="inline-flex items-center gap-1.5 self-start sm:self-auto rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800 border border-emerald-200/60">
+          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
+          <span>Fixed Rates • No Hidden Tolls</span>
+        </div>
+      </div>
 
       <div className="mb-4 grid grid-cols-2 gap-3 sm:gap-4">
         {/* Service Type */}
@@ -632,15 +638,15 @@ export function TaxiBookingForm({ selectedVehicle, onVehicleChange, availableVeh
         </div>
       </div>
 
-      {/* How Found & Referral Code */}
+      {/* How Found & Referral Code (Optional) */}
       <div className="mb-4 grid grid-cols-2 gap-3 sm:gap-4">
         <div className="space-y-2">
-          <Label htmlFor="howFound">How did you find us? *</Label>
+          <Label htmlFor="howFound">How did you find us? <span className="text-muted-foreground text-xs">(Optional)</span></Label>
           <Select
             value={formData.howFound}
             onValueChange={(value) => setFormData({ ...formData, howFound: value })}
           >
-            <SelectTrigger id="howFound" aria-invalid={!!errors.howFound}>
+            <SelectTrigger id="howFound">
               <SelectValue placeholder="Select an option" />
             </SelectTrigger>
             <SelectContent>
@@ -649,12 +655,6 @@ export function TaxiBookingForm({ selectedVehicle, onVehicleChange, availableVeh
               ))}
             </SelectContent>
           </Select>
-          {errors.howFound && (
-            <p className="text-destructive flex items-center gap-1 text-sm">
-              <AlertCircle className="h-3 w-3" />
-              {errors.howFound}
-            </p>
-          )}
         </div>
 
         <div className="space-y-2">
@@ -706,25 +706,34 @@ export function TaxiBookingForm({ selectedVehicle, onVehicleChange, availableVeh
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="bg-saffron hover:bg-saffron/90 w-full gap-2 text-white"
-        size="lg"
+        className="w-full h-12 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm sm:text-base shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
       >
         {isSubmitting ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" />
-            Submitting...
+            <span>Checking Fleet Availability...</span>
           </>
         ) : (
           <>
-            Get Your Quote
-            <Send className="h-4 w-4" />
+            <span>Get Instant Quote & Confirmation</span>
+            <ArrowRight className="h-4 w-4 text-slate-300" />
           </>
         )}
       </Button>
 
-      <p className="text-muted-foreground mt-3 text-center text-xs">
-        Your booking will be saved and we will redirect you to WhatsApp
-      </p>
+      <div className="mt-3.5 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
+        <span className="flex items-center gap-1 font-medium">
+          <Shield className="h-3.5 w-3.5 text-emerald-600" />
+          Verified Hill Drivers
+        </span>
+        <span className="text-slate-300">•</span>
+        <span className="flex items-center gap-1 font-medium">
+          <Check className="h-3.5 w-3.5 text-mountain-blue" />
+          20% Advance to Confirm
+        </span>
+        <span className="text-slate-300">•</span>
+        <span className="font-medium text-slate-600">Quick Response on WhatsApp</span>
+      </div>
     </motion.form>
   )
 }

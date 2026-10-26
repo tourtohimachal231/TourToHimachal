@@ -236,38 +236,64 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="flex flex-col gap-6 lg:gap-8"
+              className="flex flex-col gap-6"
             >
-              <div className="relative h-56 w-full overflow-hidden rounded-2xl shadow-xl sm:h-64 md:h-72">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-slate-200/80 shadow-md">
                 <Image
-                  src="https://res.cloudinary.com/dabqqymqe/image/upload/v1768495300/sciyr6mjjjj2uwb7p5bw.jpg"
-                  alt="Mountain taxi ride"
+                  src="/Images/mountain-drive.jpg"
+                  alt="Himachal mountain cab journey with scenic Himalayan peaks"
                   fill
-                  className=" object-center"
+                  className="object-cover"
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   priority
                 />
-                <div className="from-saffron/25 to-saffron/20 absolute inset-0 bg-linear-to-tr via-transparent" />
               </div>
 
-              <div className="lg:mt-auto">
-                <h2 className="mb-3 text-3xl font-bold tracking-tight text-black sm:text-4xl lg:mb-4">Get Your Quote</h2>
-                <p className="text-muted-foreground mb-5 lg:mb-6">
-                  Transparent, Win-Win Mountain Travel. Only 20% token (min ₹1,000) to confirm your vehicle & hill driver. Pay 50% on pickup, balance 30% only on safe drop. 100% weather & landslide protection.
+              <div>
+                <span className="inline-flex items-center rounded-md bg-sky-50 px-2.5 py-1 text-xs font-semibold text-mountain-blue border border-sky-200/80 mb-3">
+                  Verified Local Fleet & Native Drivers
+                </span>
+                <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 mb-3">
+                  Direct Cab Booking with Native Hill Drivers
+                </h2>
+                <p className="text-slate-600 leading-relaxed text-sm sm:text-base mb-6">
+                  From airport pickups to multi-day hill journeys, our local dispatch team in Chintpurni pairs you with vetted, commercial mountain drivers who know every ghat road, weather condition, and scenic bypass.
                 </p>
-                <div className="space-y-3 lg:space-y-4">
+
+                <div className="space-y-3">
                   {[
-                    { icon: <Car className="h-5 w-5" />, text: "Native Himachali mountain drivers with hill driving experience" },
-                    { icon: <Calendar className="h-5 w-5" />, text: "Only 20% token to lock • 100% weather reschedule" },
-                    { icon: <Shield className="h-5 w-5" />, text: "Clear quote covering standard toll taxes, state permits & driver allowance" },
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className="bg-primary/10 text-primary flex h-10 w-10 items-center justify-center rounded-full">
-                        {item.icon}
+                    {
+                      title: "Native Hill Road Specialists",
+                      description: "Courteous drivers native to Himachal mountain routes with commercial hill permits.",
+                      icon: Shield,
+                    },
+                    {
+                      title: "Fixed Upfront Pricing",
+                      description: "Toll taxes, state entry permits, fuel, and driver night allowances all pre-calculated.",
+                      icon: Car,
+                    },
+                    {
+                      title: "100% Weather Rescheduling",
+                      description: "Zero cancellation fees if mountain passes or highways are closed by local authorities.",
+                      icon: Calendar,
+                    },
+                  ].map((item, index) => {
+                    const IconComponent = item.icon
+                    return (
+                      <div
+                        key={index}
+                        className="flex items-start gap-3.5 rounded-xl border border-slate-200/80 bg-white p-3.5 shadow-2xs transition-colors hover:border-slate-300"
+                      >
+                        <div className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-mountain-blue">
+                          <IconComponent className="h-4.5 w-4.5" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-900 mb-0.5">{item.title}</p>
+                          <p className="text-xs text-slate-500 leading-normal">{item.description}</p>
+                        </div>
                       </div>
-                      <span className="text-foreground">{item.text}</span>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             </motion.div>
