@@ -19,6 +19,25 @@ export default async function EditPackagePage({ params }: EditPackagePageProps) 
   const { data: pkg, error } = await supabase.from("packages").select("*").eq("id", id).single()
 
   if (error || !pkg) {
+    const { packages: fallbackPackages } = await import("@/data/packages")
+    const fallback = fallbackPackages.find((p) => p.id === id || p.slug === id)
+    if (fallback) {
+      return (
+        <div>
+          <AdminHeader title="Edit Package" description={fallback.title} />
+          <div className="p-6">
+            <PackageForm
+              initialData={{
+                ...fallback,
+                short_description: fallback.excerpt,
+                is_active: true,
+                is_featured: fallback.badge === "Popular",
+              }}
+            />
+          </div>
+        </div>
+      )
+    }
     notFound()
   }
 

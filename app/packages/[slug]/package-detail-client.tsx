@@ -287,19 +287,29 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                         Tour Price
                       </p>
                       <div className="mb-1 flex items-baseline gap-2">
-                        <span className="from-saffron to-sunset-orange bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent">
-                          ₹{pkg.price?.toLocaleString()}
-                        </span>
-                        {pkg.original_price && pkg.original_price > pkg.price && (
-                          <span className="text-muted-foreground text-sm line-through">
-                            ₹{pkg.original_price.toLocaleString()}
+                        {pkg.price && pkg.price > 0 ? (
+                          <>
+                            <span className="from-saffron to-sunset-orange bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent">
+                              ₹{pkg.price.toLocaleString()}
+                            </span>
+                            {pkg.original_price && pkg.original_price > pkg.price && (
+                              <span className="text-muted-foreground text-sm line-through">
+                                ₹{pkg.original_price.toLocaleString()}
+                              </span>
+                            )}
+                          </>
+                        ) : (
+                          <span className="text-2xl font-bold text-slate-900">
+                            Price on Request
                           </span>
                         )}
                       </div>
-                      <p className="text-muted-foreground text-xs">for whole journey</p>
-                      {pkg.original_price && pkg.original_price > pkg.price && (
+                      <p className="text-muted-foreground text-xs">
+                        {pkg.price && pkg.price > 0 ? "for whole journey" : "customized quote based on hotel choice & dates"}
+                      </p>
+                      {Boolean(pkg.price && pkg.price > 0 && pkg.original_price && pkg.original_price > pkg.price) && (
                         <Badge className="from-forest-green to-mountain-blue mt-2 border-0 bg-linear-to-r px-2 py-0.5 text-xs text-white shadow-md">
-                          Save ₹{(pkg.original_price - pkg.price).toLocaleString()}
+                          Save ₹{((pkg.original_price || 0) - (pkg.price || 0)).toLocaleString()}
                         </Badge>
                       )}
                     </div>
@@ -343,14 +353,14 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                         <DialogTrigger asChild>
                           <Button className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 h-10 w-full gap-2 bg-linear-to-r text-sm text-white shadow-lg transition-all hover:shadow-xl">
                             <Calendar className="h-4 w-4" />
-                            Book This Tour
+                            {pkg.price && pkg.price > 0 ? "Book This Tour" : "Request a Quote"}
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="w-[95vw] max-w-lg rounded-2xl p-4 !top-4 !translate-y-0 max-h-[calc(100dvh-1.5rem)] overflow-y-auto sm:!top-[50%] sm:!-translate-y-1/2 sm:max-h-[90dvh] sm:max-w-xl sm:p-6 md:max-w-2xl">
                           <DialogHeader>
-                            <DialogTitle className="text-lg sm:text-xl">Book {pkg.title}</DialogTitle>
+                            <DialogTitle className="text-lg sm:text-xl">{pkg.price && pkg.price > 0 ? `Book ${pkg.title}` : `Enquire about ${pkg.title}`}</DialogTitle>
                             <DialogDescription className="text-sm">
-                              Fill in your details and we'll get back to you within 12 hours.
+                              Fill in your details and our team will get back to you with custom hotel & vehicle pricing.
                             </DialogDescription>
                           </DialogHeader>
                           <PackageBookingForm

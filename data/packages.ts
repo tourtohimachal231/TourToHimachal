@@ -28,6 +28,8 @@ export interface Package {
     answer: string
   }[]
   pdfUrl: string
+  seo_title?: string
+  seo_description?: string
 }
 
 export const packages: Package[] = [

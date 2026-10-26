@@ -82,11 +82,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .select("slug,created_at,updated_at")
       .eq("is_active", true)
 
+    const dbSlugs = new Set((packages ?? []).map((p) => p.slug))
     for (const pkg of packages ?? []) {
       if (!pkg?.slug) continue
       entries.push({
         url: `${siteUrl}/packages/${pkg.slug}`,
         lastModified: new Date(pkg.updated_at || pkg.created_at || now),
+        changeFrequency: "monthly",
+        priority: 0.8,
+      })
+    }
+
+    const { packages: fallbackPackages } = await import("@/data/packages")
+    for (const pkg of fallbackPackages) {
+      if (!pkg?.slug || dbSlugs.has(pkg.slug)) continue
+      entries.push({
+        url: `${siteUrl}/packages/${pkg.slug}`,
+        lastModified: now,
         changeFrequency: "monthly",
         priority: 0.8,
       })

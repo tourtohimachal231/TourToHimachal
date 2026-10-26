@@ -148,8 +148,8 @@ export function PackagesTable({ packages }: PackagesTableProps) {
                 <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
                   <div className="border-border rounded-lg border p-2">
                     <p className="text-muted-foreground text-[11px]">Price</p>
-                    <p className="font-medium">₹{pkg.price.toLocaleString()}</p>
-                    {pkg.original_price && (
+                    <p className="font-medium">{pkg.price > 0 ? `₹${pkg.price.toLocaleString()}` : "On Request"}</p>
+                    {pkg.price > 0 && pkg.original_price && (
                       <p className="text-muted-foreground text-[11px] line-through">
                         ₹{pkg.original_price.toLocaleString()}
                       </p>
@@ -221,8 +221,8 @@ export function PackagesTable({ packages }: PackagesTableProps) {
                 </TableCell>
                 <TableCell className="text-sm md:text-base">
                   <div>
-                    <p className="font-medium">₹{pkg.price.toLocaleString()}</p>
-                    {pkg.original_price && (
+                    <p className="font-medium">{pkg.price > 0 ? `₹${pkg.price.toLocaleString()}` : "On Request"}</p>
+                    {pkg.price > 0 && pkg.original_price && (
                       <p className="text-muted-foreground text-xs line-through md:text-sm">
                         ₹{pkg.original_price.toLocaleString()}
                       </p>

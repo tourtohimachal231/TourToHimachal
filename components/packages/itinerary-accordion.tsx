@@ -2,21 +2,21 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDown, MapPin, AlertTriangle } from "lucide-react"
+import { ChevronDown, MapPin, AlertTriangle, Compass } from "lucide-react"
 import { MarkdownRenderer } from "@/lib/markdown-renderer"
 import { accordionContent } from "@/lib/animation-variants"
 
 interface ItineraryDay {
   day: number
   title: string
-  description: string
-  activities: string[]
+  description?: string
+  activities?: string[]
   subtitles?: Array<{
-    title: string;
-    highlight?: string;
-    description: string;
-    activities: string[];
-    image?: string;
+    title: string
+    highlight?: string
+    description: string
+    activities?: string[]
+    image?: string
   }>
 }
 
@@ -31,91 +31,134 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
     setOpenDay(openDay === day ? null : day)
   }
 
+  if (!itinerary || !Array.isArray(itinerary) || itinerary.length === 0) {
+    return null
+  }
+
   return (
     <div className="space-y-3 sm:space-y-4">
-      {itinerary.map((item) => (
-        <div
-          key={item.day}
-          className="border-saffron/20 to-saffron/5 hover:border-saffron/40 overflow-hidden rounded-2xl border-2 bg-linear-to-br from-white shadow-sm transition-all duration-300 hover:shadow-lg"
-        >
-          <button
-            onClick={() => toggleDay(item.day)}
-            className="hover:bg-saffron/5 flex w-full items-center justify-between py-2.5 px-3 text-left transition-colors sm:py-3 sm:px-4 md:py-3.5 md:px-5"
-            aria-expanded={openDay === item.day}
-          >
-            <div className="flex items-center gap-4">
-              <div className="from-saffron to-sunset-orange flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br shadow-md sm:h-14 sm:w-14">
-                <span className="text-base font-bold text-white">D{item.day}</span>
-              </div>
-              <div>
-                <p className="text-foreground text-base font-bold md:text-lg">{item.title}</p>
-                <p className="text-muted-foreground text-sm font-medium md:text-base">Day {item.day} of your journey</p>
-              </div>
-            </div>
-            <ChevronDown
-              className={`text-saffron h-5 w-5 transition-transform duration-300 sm:h-6 sm:w-6 ${openDay === item.day ? "rotate-180" : ""
-                }`}
-            />
-          </button>
+      {itinerary.map((item) => {
+        const isOpen = openDay === item.day
+        const hasSubtitles = item.subtitles && item.subtitles.length > 0
+        const hasDescription = !!item.description?.trim()
+        const hasActivities = item.activities && item.activities.length > 0
 
-          <AnimatePresence>
-            {openDay === item.day && (
-              <motion.div
-                variants={accordionContent}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                className="overflow-hidden"
-              >
-                <div className="px-3 pt-1 pb-5 sm:px-5 md:px-6">
-                  {/* Subtitles Section */}
-                  {item.subtitles && item.subtitles.length > 0 ? (
-                    <div className="space-y-6">
-                      {item.subtitles.map((subtitle, subtitleIndex) => {
-                        const isEvenIndex = subtitleIndex % 2 === 0
-                        return (
+        // Extract overnight info if present in description
+        const overnightMatch = item.description?.match(/Overnight(?:\s+stay)?:\s*([^\n\.]+)/i)
+        const overnightText = overnightMatch ? overnightMatch[1].trim() : null
+
+        return (
+          <div
+            key={item.day}
+            className={`overflow-hidden rounded-2xl border-2 transition-all duration-300 ${
+              isOpen
+                ? "border-saffron/40 bg-linear-to-br from-white via-white to-amber-50/20 shadow-md ring-1 ring-saffron/20"
+                : "border-saffron/15 bg-white hover:border-saffron/30 hover:shadow-sm"
+            }`}
+          >
+            <button
+              onClick={() => toggleDay(item.day)}
+              className="flex w-full items-center justify-between py-3 px-3.5 text-left transition-colors sm:py-3.5 sm:px-5 hover:bg-saffron/5"
+              aria-expanded={isOpen}
+            >
+              <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                <div
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl font-bold text-white shadow-sm transition-transform sm:h-12 sm:w-12 ${
+                    isOpen
+                      ? "bg-linear-to-br from-saffron to-sunset-orange scale-105"
+                      : "bg-slate-800 text-slate-100"
+                  }`}
+                >
+                  <span className="text-sm sm:text-base">D{item.day}</span>
+                </div>
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="text-foreground text-base font-bold md:text-lg tracking-tight">
+                      {item.title}
+                    </p>
+                    {overnightText && (
+                      <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-slate-100 border border-slate-200/80 px-2.5 py-0.5 text-[11px] font-medium text-slate-700">
+                        Stay: {overnightText}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-muted-foreground text-xs sm:text-sm font-medium">
+                    Day {item.day} of your journey
+                  </p>
+                </div>
+              </div>
+              <ChevronDown
+                className={`text-saffron h-5 w-5 shrink-0 transition-transform duration-300 sm:h-6 sm:w-6 ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  variants={accordionContent}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  className="overflow-hidden border-t border-saffron/15"
+                >
+                  <div className="px-4 pt-4 pb-5 sm:px-6 space-y-4">
+                    {/* Primary Day Description */}
+                    {hasDescription && (
+                      <div className="prose prose-slate max-w-none text-sm sm:text-base text-slate-700 leading-relaxed">
+                        <MarkdownRenderer
+                          content={item.description!}
+                          className="[&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:text-slate-900"
+                        />
+                      </div>
+                    )}
+
+                    {/* Subtitles / Rich Itinerary Blocks */}
+                    {hasSubtitles && (
+                      <div className="space-y-4 pt-2">
+                        {item.subtitles!.map((subtitle, subIndex) => (
                           <div
-                            key={subtitleIndex}
-                            className={`py-3 px-4 md:py-4 md:px-5`}
+                            key={subIndex}
+                            className="rounded-xl border border-slate-200/80 bg-white/80 p-3.5 sm:p-4 shadow-2xs hover:border-saffron/30 transition-colors"
                           >
-                            <div className={`flex flex-col gap-4 ${isEvenIndex ? 'md:flex-row' : 'md:flex-row-reverse'
-                              }`}
-                            >
-                              {/* Image Section - Only show if image exists */}
+                            <div className="flex flex-col gap-3 md:flex-row md:items-start">
                               {subtitle.image && (
-                                <div className="md:w-[25%] flex-shrink-0">
+                                <div className="md:w-36 shrink-0 overflow-hidden rounded-lg border border-slate-100">
                                   <img
                                     src={subtitle.image}
-                                    alt={subtitle.title || `Sub-section ${subtitleIndex + 1}`}
-                                    className="h-auto w-full object-contain transition-transform duration-300 hover:scale-105"
+                                    alt={subtitle.title || `Day ${item.day} sightseeing`}
+                                    className="h-28 w-full object-cover transition-transform duration-300 hover:scale-105"
+                                    loading="lazy"
                                   />
                                 </div>
                               )}
-
-                              {/* Content Section */}
-                              <div className={`flex-1 ${subtitle.image ? 'md:w-[75%]' : 'md:w-full'}`}>
-                                <h5 className="text-foreground mb-2.5 flex items-center gap-2 text-sm font-bold md:text-base">
-                                  <div className="from-saffron to-sunset-orange h-2 w-2 rounded-full bg-linear-to-br" />
-                                  {subtitle.title}
-                                </h5>
-                                {subtitle.highlight && (
-                                  <div className="mb-3 inline-flex max-w-full items-start rounded-xl border-2 border-yellow-400/50 bg-linear-to-r from-yellow-50 to-yellow-100 px-3 py-2 shadow-lg shadow-yellow-200/60">
-                                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-yellow-900 whitespace-normal">
-                                      <AlertTriangle className="h-4 w-4 shrink-0 text-amber-700" />
-                                      <span>{subtitle.highlight}</span>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                                  <h5 className="text-slate-900 text-sm sm:text-base font-semibold flex items-center gap-2">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-saffron shrink-0" />
+                                    {subtitle.title}
+                                  </h5>
+                                  {subtitle.highlight && (
+                                    <span className="inline-flex items-center gap-1 rounded-md bg-amber-50 border border-amber-200/80 px-2 py-0.5 text-[11px] font-medium text-amber-800">
+                                      <AlertTriangle className="h-3 w-3 text-amber-600 shrink-0" />
+                                      {subtitle.highlight}
                                     </span>
-                                  </div>
-                                )}
-                                <MarkdownRenderer content={subtitle.description} className="mb-3 text-sm md:text-base" />
+                                  )}
+                                </div>
+                                <MarkdownRenderer
+                                  content={subtitle.description}
+                                  className="text-xs sm:text-sm text-slate-600 [&_p]:mb-1.5 [&_p:last-child]:mb-0"
+                                />
                                 {subtitle.activities && subtitle.activities.length > 0 && (
-                                  <div className="flex flex-wrap gap-2">
-                                    {subtitle.activities.map((activity, actIndex) => (
+                                  <div className="mt-2.5 flex flex-wrap gap-1.5">
+                                    {subtitle.activities.map((act, actIdx) => (
                                       <span
-                                        key={actIndex}
-                                        className="border-saffron/30 text-saffron hover:bg-saffron/5 hover:border-saffron/50 inline-flex items-center gap-1 rounded-full border bg-white px-2.5 py-1 text-[10px] font-medium transition-all sm:text-[11px]"
+                                        key={actIdx}
+                                        className="inline-flex items-center gap-1 rounded-full bg-slate-50 border border-slate-200/60 px-2.5 py-0.5 text-[11px] font-medium text-slate-600"
                                       >
-                                        <MapPin className="h-3 w-3" />
-                                        {activity}
+                                        <MapPin className="h-2.5 w-2.5 text-saffron shrink-0" />
+                                        {act}
                                       </span>
                                     ))}
                                   </div>
@@ -123,20 +166,44 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
                               </div>
                             </div>
                           </div>
-                        )
-                      })}
-                    </div>
-                  ) : (
-                    <div className="text-muted-foreground py-3 text-sm italic md:text-base">
-                      No sub-sections added.
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      ))}
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Day Activities / Sightseeing Chips */}
+                    {hasActivities && (
+                      <div className="pt-2 border-t border-slate-100">
+                        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                          <Compass className="h-3.5 w-3.5 text-saffron" />
+                          Key Day Highlights & Transfers
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {item.activities!.map((activity, actIndex) => (
+                            <span
+                              key={actIndex}
+                              className="inline-flex items-center gap-1.5 rounded-full border border-saffron/25 bg-amber-50/50 px-3 py-1 text-xs font-medium text-slate-800 transition-colors hover:bg-saffron/10 hover:border-saffron/40"
+                            >
+                              <MapPin className="h-3 w-3 text-saffron shrink-0" />
+                              {activity}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Graceful fallback if completely empty */}
+                    {!hasDescription && !hasSubtitles && !hasActivities && (
+                      <p className="text-xs text-muted-foreground italic py-2">
+                        Sightseeing and private transfer details available upon booking customization.
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )
+      })}
     </div>
   )
 }

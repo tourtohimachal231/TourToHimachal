@@ -39,11 +39,17 @@ async function getAllPackages() {
     .eq("is_active", true)
     .order("created_at", { ascending: false })
 
-  if (!packages || !Array.isArray(packages) || packages.length === 0) {
-    return fallbackPackages
-  }
+  const dbSlugs = new Set((packages || []).map((p) => p.slug))
+  const formattedFallback = fallbackPackages
+    .filter((p) => !dbSlugs.has(p.slug))
+    .map((p) => ({
+      ...p,
+      short_description: p.excerpt,
+      is_active: true,
+      is_featured: p.badge === "Popular",
+    }))
 
-  return packages
+  return [...(packages || []), ...formattedFallback]
 }
 
 function sanitizePackageMetaDescription(rawText: string | null | undefined, maxLength: number = 158): string {
@@ -86,21 +92,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Package Not Found" }
   }
 
-  const rawDescription = pkg.short_description || pkg.description
+  const rawDescription = pkg.seo_description || pkg.short_description || pkg.description
   const sanitized = sanitizePackageMetaDescription(rawDescription, 158)
   const description =
     sanitized.length >= 25
       ? sanitized
       : `Explore ${pkg.title} with TourToHimachal. Handcrafted travel itinerary across Himachal Pradesh.`
 
+  const title = pkg.seo_title || `${pkg.title} | TourToHimachal`
+
   return {
-    title: `${pkg.title} | TourToHimachal`,
+    title,
     description,
     alternates: {
       canonical: `${SITE_URL}/packages/${slug}`,
     },
     openGraph: {
-      title: pkg.title,
+      title,
       description,
       images: pkg.images?.[0] ? [pkg.images[0]] : [],
       type: "website",

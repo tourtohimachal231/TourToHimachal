@@ -370,6 +370,7 @@ export function PackageForm({ initialData }: PackageFormProps) {
                 className="text-base sm:text-sm"
                 required
               />
+              <p className="text-[11px] text-muted-foreground">Enter 0 for "Price on Request" / Enquiry-only pricing.</p>
             </div>
             <div className="space-y-2">
               <Label htmlFor="original_price" className="text-xs sm:text-sm">

@@ -172,12 +172,20 @@ export function PackageCard({ pkg }: PackageCardProps) {
                   Package Price
                 </span>
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-                    ₹{pkg.price ? pkg.price.toLocaleString("en-IN") : "0"}
-                  </span>
-                  {pkg.original_price && pkg.original_price > pkg.price && (
-                    <span className="text-xs text-slate-400 line-through">
-                      ₹{pkg.original_price.toLocaleString("en-IN")}
+                  {pkg.price && pkg.price > 0 ? (
+                    <>
+                      <span className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                        ₹{pkg.price.toLocaleString("en-IN")}
+                      </span>
+                      {pkg.original_price && pkg.original_price > pkg.price && (
+                        <span className="text-xs text-slate-400 line-through">
+                          ₹{pkg.original_price.toLocaleString("en-IN")}
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    <span className="text-sm sm:text-base font-bold text-amber-900 tracking-tight">
+                      Price on Request
                     </span>
                   )}
                 </div>

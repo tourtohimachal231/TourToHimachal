@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { createPublicClient } from "@/lib/supabase/public"
+import { packages as fallbackPackages } from "@/data/packages"
 import { PackagesPageClient } from "@/components/packages/packages-page-client"
 
 const SITE_URL = "https://www.tourtohimachal.in"
@@ -40,5 +41,18 @@ export default async function PackagesPage() {
     console.error("Error fetching packages:", error)
   }
 
-  return <PackagesPageClient packages={packages || []} />
+  // Merge packages from database with any catalog packages not present in DB
+  const dbSlugs = new Set((packages || []).map((p) => p.slug))
+  const formattedFallback = fallbackPackages
+    .filter((p) => !dbSlugs.has(p.slug))
+    .map((p) => ({
+      ...p,
+      short_description: p.excerpt,
+      is_active: true,
+      is_featured: p.badge === "Popular",
+    }))
+
+  const allPackages = [...(packages || []), ...formattedFallback]
+
+  return <PackagesPageClient packages={allPackages} />
 }

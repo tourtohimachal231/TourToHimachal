@@ -17,6 +17,25 @@ export default async function PackagesPage() {
     console.error("Error fetching packages:", error)
   }
 
+  const { packages: fallbackPackages } = await import("@/data/packages")
+  const dbSlugs = new Set((packages || []).map((p) => p.slug))
+  const formattedFallback = fallbackPackages
+    .filter((p) => !dbSlugs.has(p.slug))
+    .map((p) => ({
+      id: p.id,
+      title: p.title,
+      slug: p.slug,
+      price: p.price,
+      original_price: p.originalPrice,
+      duration: p.duration,
+      category: p.theme?.[0]?.toLowerCase() || "custom",
+      is_active: true,
+      is_featured: p.badge === "Popular",
+      created_at: new Date().toISOString(),
+    }))
+
+  const allPackages = [...(packages || []), ...formattedFallback]
+
   return (
     <div>
       <AdminHeader title="Packages Management" description="Create and manage tour packages" />
@@ -31,7 +50,7 @@ export default async function PackagesPage() {
           </Button>
         </div>
 
-        <PackagesTable packages={packages || []} />
+        <PackagesTable packages={allPackages} />
       </div>
     </div>
   )
