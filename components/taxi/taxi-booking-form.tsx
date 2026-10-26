@@ -384,10 +384,16 @@ export function TaxiBookingForm({ selectedVehicle, onVehicleChange, availableVeh
               <SelectValue placeholder="Select service" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="one-way">One Way</SelectItem>
-              <SelectItem value="round-trip">Round Trip</SelectItem>
+              <SelectItem value="one-way">One Way (Point-to-Point)</SelectItem>
+              <SelectItem value="round-trip">Round Trip (Return Journey)</SelectItem>
             </SelectContent>
           </Select>
+          {formData.serviceType === "round-trip" && (
+            <p className="text-[11px] text-slate-500 font-medium">Custom quotation for return journey & hill driver stay</p>
+          )}
+          {formData.serviceType === "one-way" && (
+            <p className="text-[11px] text-slate-500 font-medium">Point-to-point one-way drop with toll taxes included</p>
+          )}
           {errors.serviceType && <p className="text-destructive text-sm">{errors.serviceType}</p>}
         </div>
 

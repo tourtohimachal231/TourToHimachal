@@ -27,6 +27,24 @@ export const metadata: Metadata = {
 
 export const revalidate = 0 // Always fetch fresh data
 
+const FORCE_URBANIA_VEHICLE = {
+  id: "force-urbania-luxury",
+  name: "Force Urbania",
+  type: "Luxury Van",
+  capacity: 12,
+  luggage_capacity: 8,
+  base_fare: 0,
+  per_km_rate: 0,
+  features: [
+    "Luxury Recliner Seats",
+    "Individual AC Vents",
+    "Air Suspension",
+    "Panoramic Windows",
+  ],
+  image_url: "/Images/force-urbania-luxury.jpg",
+  is_available: true,
+}
+
 export default async function TaxiPage() {
   const supabase = createPublicClient()
 
@@ -41,6 +59,10 @@ export default async function TaxiPage() {
   if (routesResult.error) {
     console.error("Error fetching routes:", routesResult.error)
   }
+
+  const dbVehicles = vehiclesResult.data || []
+  const hasUrbania = dbVehicles.some((v) => v.name.toLowerCase().includes("urbania"))
+  const allVehicles = hasUrbania ? dbVehicles : [...dbVehicles, FORCE_URBANIA_VEHICLE]
 
   const taxiServiceSchema = {
     "@context": "https://schema.org",
@@ -75,7 +97,7 @@ export default async function TaxiPage() {
           __html: JSON.stringify(taxiServiceSchema),
         }}
       />
-      <TaxiPageClient vehicles={vehiclesResult.data || []} routes={routesResult.data || []} />
+      <TaxiPageClient vehicles={allVehicles} routes={routesResult.data || []} />
     </>
   )
 }

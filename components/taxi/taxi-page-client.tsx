@@ -118,7 +118,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
                 value: "Clean",
                 label: "Well-Maintained Fleet",
                 icon: Car,
-                description: "Sedans, MPVs, SUVs & Tempo Travellers ready for hills",
+                description: "Sedans, MPVs, SUVs, Tempo Travellers & Luxury Urbania ready for hills",
               },
             ].map((stat, index) => {
               const IconComponent = stat.icon
@@ -170,7 +170,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
             >
               {vehicles.map((vehicle) => (
                 <VehicleCard
@@ -196,10 +196,13 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
               viewport={{ once: true }}
               className="mb-12 text-center"
             >
-              <h2 className="text-foreground mb-4 font-serif text-3xl font-bold sm:text-4xl md:text-5xl">Popular Routes & Fares</h2>
-              <p className="text-muted-foreground mx-auto max-w-2xl">
-                Check out our most booked routes with transparent pricing
+              <h2 className="text-foreground mb-3 font-serif text-3xl font-bold sm:text-4xl md:text-5xl">Popular Routes & Fares</h2>
+              <p className="text-muted-foreground mx-auto max-w-2xl text-base sm:text-lg">
+                Transparent one-way cab fares for top Himachal sectors. Prices shown are for one-way drops — round-trip & return rates differ.
               </p>
+              <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-amber-200/80 bg-amber-50/90 px-4 py-1 text-xs sm:text-sm font-medium text-amber-900 shadow-2xs">
+                <span>All listed fares are for <strong>one-way drop</strong> only. Round trip and local sightseeing fares differ based on itinerary.</span>
+              </div>
             </motion.div>
 
             <motion.div

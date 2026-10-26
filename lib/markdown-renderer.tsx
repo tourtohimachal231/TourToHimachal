@@ -122,10 +122,12 @@ export function MarkdownRenderer({ content, className, textColor = "text-muted-f
     hr: () => <hr className="border-border my-12" />,
   }
 
+  const sanitizedContent = content ? content.replace(/[\p{Extended_Pictographic}\uFE0E\uFE0F\u200D]/gu, "") : ""
+
   return (
     <div className={cn("prose prose-lg max-w-none", className)}>
       <ReactMarkdown components={components} remarkPlugins={[remarkGfm]}>
-        {content}
+        {sanitizedContent}
       </ReactMarkdown>
     </div>
   )

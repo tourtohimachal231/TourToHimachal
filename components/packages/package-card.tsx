@@ -26,6 +26,14 @@ interface Package {
   region?: string
 }
 
+function stripEmojis(text?: string | null): string {
+  if (!text) return ""
+  return text
+    .replace(/[\p{Extended_Pictographic}\uFE0E\uFE0F\u200D]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim()
+}
+
 function cleanPackageCardDescription(text?: string | null): string {
   if (!text) return ""
   return text
@@ -51,6 +59,8 @@ function cleanPackageCardDescription(text?: string | null): string {
     .replace(/^\s*>\s*/gm, "")
     // Remove code fences or inline backticks
     .replace(/`([^`]+)`/g, "$1")
+    // Remove emojis (Extended_Pictographic, variation selectors, zero-width joiners)
+    .replace(/[\p{Extended_Pictographic}\uFE0E\uFE0F\u200D]/gu, "")
     // Remove any leftover standalone formatting characters
     .replace(/[*_~`#]/g, "")
     // Normalize whitespace (replace newlines and multiple spaces with a single space)
@@ -141,13 +151,13 @@ export function PackageCard({ pkg }: PackageCardProps) {
             {pkg.region && (
               <div className="mb-1 flex items-center gap-1 text-xs font-medium text-slate-600">
                 <MapPin className="h-3 w-3 text-mountain-blue shrink-0" />
-                <span>{pkg.region}</span>
+                <span>{stripEmojis(pkg.region)}</span>
               </div>
             )}
 
             {/* Package Title */}
             <h3 className="font-serif text-lg sm:text-xl font-bold text-slate-900 leading-snug group-hover:text-mountain-blue transition-colors line-clamp-2 min-h-[3rem] sm:min-h-[3.5rem] break-words">
-              {pkg.title}
+              {stripEmojis(pkg.title)}
             </h3>
 
             {/* Clean Short Description */}

@@ -60,6 +60,16 @@ export const vehicles: Vehicle[] = [
     pricePerKm: 22,
     features: ["Premium AC", "Leather Seats", "Entertainment System", "WiFi", "Refreshments"],
   },
+  {
+    id: "urbania",
+    name: "Force Urbania",
+    type: "Luxury Van",
+    capacity: 12,
+    luggage: "8 large bags",
+    image: "/Images/force-urbania-luxury.jpg",
+    pricePerKm: 30,
+    features: ["Luxury Recliner Seats", "Individual AC Vents", "Air Suspension", "Panoramic Windows"],
+  },
 ]
 
 export const routes: Route[] = [

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { Clock, MapPin, Users, Check, X, Phone } from "lucide-react"
+import { Clock, MapPin, Users, Check, X, Phone, Star, Calendar } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp"
 import { Header } from "@/components/home/header"
 import { Footer } from "@/components/home/footer"
@@ -103,8 +103,9 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                 >
                   <div className="mb-3 flex flex-wrap items-center gap-1.5 sm:mb-4 sm:gap-2">
                     {pkg.is_featured && (
-                      <Badge className="from-saffron to-sunset-orange border-0 bg-linear-to-r px-2 py-0.5 text-xs text-white shadow-md sm:px-3 sm:py-1 sm:text-sm">
-                        ⭐ Featured
+                      <Badge className="from-saffron to-sunset-orange border-0 bg-linear-to-r px-2 py-0.5 text-xs text-white shadow-md sm:px-3 sm:py-1 sm:text-sm inline-flex items-center gap-1">
+                        <Star className="h-3.5 w-3.5 fill-white text-white" />
+                        Featured
                       </Badge>
                     )}
                     {pkg.category && (
@@ -298,7 +299,7 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                       <p className="text-muted-foreground text-xs">for whole journey</p>
                       {pkg.original_price && pkg.original_price > pkg.price && (
                         <Badge className="from-forest-green to-mountain-blue mt-2 border-0 bg-linear-to-r px-2 py-0.5 text-xs text-white shadow-md">
-                          🎉 Save ₹{(pkg.original_price - pkg.price).toLocaleString()}
+                          Save ₹{(pkg.original_price - pkg.price).toLocaleString()}
                         </Badge>
                       )}
                     </div>
@@ -341,7 +342,8 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
                       <Dialog open={isBookingOpen} onOpenChange={setIsBookingOpen}>
                         <DialogTrigger asChild>
                           <Button className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 h-10 w-full gap-2 bg-linear-to-r text-sm text-white shadow-lg transition-all hover:shadow-xl">
-                            📅 Book This Tour
+                            <Calendar className="h-4 w-4" />
+                            Book This Tour
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="w-[95vw] max-w-lg rounded-2xl p-4 !top-4 !translate-y-0 max-h-[calc(100dvh-1.5rem)] overflow-y-auto sm:!top-[50%] sm:!-translate-y-1/2 sm:max-h-[90dvh] sm:max-w-xl sm:p-6 md:max-w-2xl">
@@ -411,7 +413,8 @@ export function PackageDetailClient({ pkg, allPackages }: PackageDetailClientPro
               onClick={() => setIsBookingOpen(true)}
               className="from-saffron to-sunset-orange hover:from-saffron/90 hover:to-sunset-orange/90 max-w-50 flex-1 gap-2 bg-linear-to-r text-white shadow-lg"
             >
-              📅 Book Now
+              <Calendar className="h-4 w-4" />
+              Book Now
             </Button>
           </div>
         </div>

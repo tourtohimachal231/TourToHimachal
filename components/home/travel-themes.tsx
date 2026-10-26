@@ -33,7 +33,7 @@ const themes = [
   },
   {
     title: "Leisure & Relaxation",
-    image: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795753/fyb0h48pexsudvki5cp6.webp",
+    image: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795334/cp0egvkhziyen6h57ffg.webp",
     description: "Take a step back and relax",
     icon: Heart,
     color: "from-saffron to-sunset-orange",
@@ -44,10 +44,6 @@ const themes = [
 export function TravelThemes() {
   return (
     <section className="from-muted/50 to-background relative overflow-hidden bg-linear-to-b py-6 md:py-8 lg:py-10">
-      {/* Decorative elements */}
-      <div className="border-saffron/20 absolute top-20 left-10 h-20 w-20 rounded-full border-4" />
-      <div className="border-saffron/20 absolute right-10 bottom-20 h-32 w-32 rounded-full border-4" />
-
       <div className="relative container mx-auto px-4">
         <motion.div
           initial="hidden"

@@ -25,6 +25,10 @@ interface VehicleCardProps {
 }
 
 export function VehicleCard({ vehicle, isSelected, onSelect }: VehicleCardProps) {
+  const isLuxury =
+    vehicle.name.toLowerCase().includes("urbania") ||
+    vehicle.type?.toLowerCase().includes("luxury")
+
   return (
     <motion.div
       variants={fadeInUp}
@@ -44,7 +48,9 @@ export function VehicleCard({ vehicle, isSelected, onSelect }: VehicleCardProps)
       className={`group relative flex flex-col overflow-hidden rounded-2xl border-2 bg-white text-left transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-mountain-blue focus-visible:ring-offset-2 ${
         isSelected
           ? "border-mountain-blue shadow-md ring-2 ring-mountain-blue/20"
-          : "border-slate-200/90 shadow-xs hover:border-slate-300 hover:shadow-md"
+          : isLuxury
+            ? "border-amber-200/90 shadow-xs hover:border-amber-300 hover:shadow-md"
+            : "border-slate-200/90 shadow-xs hover:border-slate-300 hover:shadow-md"
       }`}
     >
       <motion.div variants={cardHover} className="flex h-full flex-col">
@@ -69,7 +75,13 @@ export function VehicleCard({ vehicle, isSelected, onSelect }: VehicleCardProps)
           {/* Vehicle Type Pill */}
           {vehicle.type && (
             <div className="absolute top-3 left-3 z-10">
-              <span className="inline-flex items-center rounded-full border border-white/60 bg-white/95 px-2.5 py-0.5 text-xs font-medium uppercase tracking-wider text-slate-800 shadow-xs backdrop-blur-md">
+              <span
+                className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium uppercase tracking-wider shadow-xs backdrop-blur-md ${
+                  isLuxury
+                    ? "border border-amber-300 bg-amber-50/95 font-semibold text-amber-900"
+                    : "border border-white/60 bg-white/95 text-slate-800"
+                }`}
+              >
                 {vehicle.type}
               </span>
             </div>
@@ -78,9 +90,22 @@ export function VehicleCard({ vehicle, isSelected, onSelect }: VehicleCardProps)
 
         {/* Card Body */}
         <div className="flex flex-1 flex-col p-4 sm:p-5">
-          <h3 className="font-serif text-lg sm:text-xl font-bold text-slate-900 group-hover:text-mountain-blue transition-colors">
-            {vehicle.name}
-          </h3>
+          <div className="flex items-center justify-between gap-1.5">
+            <h3 className="font-serif text-lg sm:text-xl font-bold text-slate-900 group-hover:text-mountain-blue transition-colors">
+              {vehicle.name}
+            </h3>
+            {isLuxury && (
+              <span className="inline-flex items-center rounded-md bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-900 shrink-0">
+                Luxury Side
+              </span>
+            )}
+          </div>
+
+          {isLuxury && (
+            <p className="mt-1 text-xs font-medium text-amber-800">
+              Premium luxury travel with superior reclining comfort
+            </p>
+          )}
 
           <div className="mt-2 mb-3 flex items-center gap-4 text-xs sm:text-sm text-slate-600">
             <div className="flex items-center gap-1.5 font-medium">
@@ -100,7 +125,11 @@ export function VehicleCard({ vehicle, isSelected, onSelect }: VehicleCardProps)
               {vehicle.features.slice(0, 3).map((feature, index) => (
                 <span
                   key={index}
-                  className="rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-700"
+                  className={`rounded-md px-2 py-0.5 text-[11px] font-medium ${
+                    isLuxury
+                      ? "bg-amber-50 text-amber-900 border border-amber-200/50"
+                      : "bg-slate-100 text-slate-700"
+                  }`}
                 >
                   {feature}
                 </span>
@@ -116,7 +145,9 @@ export function VehicleCard({ vehicle, isSelected, onSelect }: VehicleCardProps)
               className={`w-full rounded-xl font-semibold text-xs sm:text-sm h-10 transition-all ${
                 isSelected
                   ? "bg-slate-900 hover:bg-slate-800 text-white shadow-xs"
-                  : "border-slate-300 text-slate-800 hover:bg-slate-50 hover:border-slate-400"
+                  : isLuxury
+                    ? "border-amber-300 text-amber-900 hover:bg-amber-50 hover:border-amber-400"
+                    : "border-slate-300 text-slate-800 hover:bg-slate-50 hover:border-slate-400"
               }`}
               onClick={(e) => {
                 e.stopPropagation()

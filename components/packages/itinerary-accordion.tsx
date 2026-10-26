@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDown, MapPin } from "lucide-react"
+import { ChevronDown, MapPin, AlertTriangle } from "lucide-react"
 import { MarkdownRenderer } from "@/lib/markdown-renderer"
 import { accordionContent } from "@/lib/animation-variants"
 
@@ -100,8 +100,8 @@ export function ItineraryAccordion({ itinerary }: ItineraryAccordionProps) {
                                 </h5>
                                 {subtitle.highlight && (
                                   <div className="mb-3 inline-flex max-w-full items-start rounded-xl border-2 border-yellow-400/50 bg-linear-to-r from-yellow-50 to-yellow-100 px-3 py-2 shadow-lg shadow-yellow-200/60">
-                                    <span className="inline-flex items-start gap-2 text-xs font-semibold text-yellow-900 whitespace-normal">
-                                      <span className="text-base leading-none">⚠️</span>
+                                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-yellow-900 whitespace-normal">
+                                      <AlertTriangle className="h-4 w-4 shrink-0 text-amber-700" />
                                       <span>{subtitle.highlight}</span>
                                     </span>
                                   </div>
