@@ -72,18 +72,22 @@ export async function POST(request: NextRequest) {
       enquiry: "contact@tourtohimachal.in",
     }
     const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || departmentEmails[serviceType] || "admin@tourtohimachal.in"
-    await sendLeadNotification({
-      to: adminEmail,
-      leadData: {
-        name,
-        email: email || "noemail@tourtohimachal.in",
-        phone,
-        subject: subject || `${serviceType} inquiry`,
-        message,
-        serviceType,
-        referenceNumber: data.reference_number,
-      },
-    })
+    try {
+      await sendLeadNotification({
+        to: adminEmail,
+        leadData: {
+          name,
+          email: email || "noemail@tourtohimachal.in",
+          phone,
+          subject: subject || `${serviceType} inquiry`,
+          message,
+          serviceType,
+          referenceNumber: data.reference_number,
+        },
+      })
+    } catch (notificationError) {
+      console.error("⚠️ Non-fatal: Lead notification email failed to dispatch:", notificationError)
+    }
 
     return NextResponse.json({
       success: true,

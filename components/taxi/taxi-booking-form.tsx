@@ -55,6 +55,7 @@ export function TaxiBookingForm() {
     message: "",
     howFound: "",
     referralCode: "",
+    honeypot: "",
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
@@ -217,7 +218,7 @@ export function TaxiBookingForm() {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/taxi-booking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -225,11 +226,13 @@ export function TaxiBookingForm() {
         body: JSON.stringify({
           name: formData.name,
           phone: formData.phone,
-          email: formData.email || "booking@tourtohimachal.in",
+          email: formData.email,
           subject: `Taxi Booking: ${formData.pickup} to ${formData.drop}`,
           message: `Service Type: ${formData.serviceType}\nVehicle: ${formData.vehicleType}\nPickup: ${formData.pickup}\nDrop: ${formData.drop}\nDate: ${formData.date}\nPassengers: ${formData.passengers || "Not specified"}\nHow Found: ${formData.howFound}${formData.referralCode ? `\nReferral Code: ${formData.referralCode}` : ""}\n\nAdditional Notes: ${formData.message || "None"}`,
           serviceType: "taxi",
-          honeypot: "",
+          howFound: formData.howFound,
+          referralCode: formData.referralCode,
+          honeypot: formData.honeypot,
         }),
       })
 
@@ -320,6 +323,7 @@ export function TaxiBookingForm() {
               message: "",
               howFound: "",
               referralCode: "",
+              honeypot: "",
             })
           }}
           variant="outline"
@@ -630,6 +634,20 @@ export function TaxiBookingForm() {
             className="min-h-20 pl-10"
           />
         </div>
+      </div>
+
+      {/* Honeypot field for bot protection */}
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="taxi-booking-hp">Website</label>
+        <input
+          id="taxi-booking-hp"
+          type="text"
+          name="honeypot"
+          value={formData.honeypot}
+          onChange={handleInputChange}
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
 
       {errors.submit && <p className="text-destructive mb-4 text-center text-sm">{errors.submit}</p>}

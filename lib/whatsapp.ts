@@ -13,8 +13,8 @@ interface BookingDetails {
 }
 
 export function generateWhatsAppLink(details: BookingDetails, whatsappPhone?: string): string {
-  // Remove all non-numeric characters from phone number
-  const phoneNumber = (whatsappPhone || "").replace(/[^0-9]/g, "")
+  // Remove all non-numeric characters from phone number; fall back to verified business number
+  const phoneNumber = (whatsappPhone || "918628839955").replace(/[^0-9]/g, "")
 
   const messageLines: string[] = []
 
