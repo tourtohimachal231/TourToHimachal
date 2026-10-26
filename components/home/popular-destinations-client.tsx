@@ -96,18 +96,17 @@ export function PopularDestinationsClient({ packages }: PopularDestinationsClien
           >
             <MapPin className="text-saffron h-4 w-4" />
             <span className="text-saffron text-sm font-semibold tracking-wider uppercase">
-              Explore Himachal
+              Curated Itineraries
             </span>
           </motion.div>
           <motion.h2
             variants={fadeInUp}
             className="text-foreground mt-2 mb-2 font-serif text-3xl font-bold sm:text-4xl md:mt-3 md:mb-3 md:text-5xl"
           >
-            Popular <span className="text-saffron">Destinations</span>
+            Explore Himachal <span className="text-saffron">Tour Packages</span>
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-muted-foreground mx-auto mb-2 max-w-2xl text-base md:text-lg">
-            Discover the most sought-after destinations in Himachal Pradesh, from snow-capped mountains to
-            serene valleys.
+            Handcrafted temple circuits, scenic valleys, and mountain getaways across Himachal Pradesh with dedicated hill drivers and personal guidance.
           </motion.p>
         </motion.div>
 
@@ -138,7 +137,7 @@ export function PopularDestinationsClient({ packages }: PopularDestinationsClien
             className="border-saffron text-saffron hover:bg-saffron border-2 bg-transparent hover:text-white"
           >
             <Link href="/packages">
-              View All Packages
+              View All Tour Packages
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>

@@ -61,12 +61,12 @@ const taxiFaqs = [
   {
     question: "Are toll taxes, state border permits, and driver allowance included?",
     answer:
-      "Yes, 100%! All our quoted taxi fares are fully all-inclusive. Himachal state entry permits, toll taxes, parking fees, and driver night bhatta are covered with zero hidden surprises on the road.",
+      "Yes! Our quoted taxi fares clearly cover standard Himachal state entry permits, toll taxes, and driver night allowance with no hidden surprises on the road.",
   },
   {
     question: "Are your drivers trained for Himalayan mountain roads?",
     answer:
-      "Yes, absolutely. All our drivers are Himachal-native mountain specialists with over 8 years of ghat driving and snow navigation experience, clean commercial driving licenses, and verified police backgrounds.",
+      "Yes, absolutely. All our drivers are Himachal-native mountain specialists with extensive ghat driving and hill navigation experience, holding valid commercial driving licenses.",
   },
   {
     question: "Can I modify or cancel my booking?",
@@ -80,6 +80,9 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
   const { settings } = useSettings()
   const chooseVehicleRef = useRef<HTMLElement>(null)
 
+  const handleVehicleSelect = (vehicle: Vehicle) => {
+    setSelectedVehicle(vehicle.name)
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -88,75 +91,54 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
 
       <TaxiHero />
 
-      {/* Stats Section - Enhanced Design */}
-      <section className="from-saffron/5 via-saffron/5 to-saffron/5 relative overflow-hidden bg-linear-to-br py-6 md:py-8 lg:py-10">
-        {/* Decorative background elements */}
-        <div className="from-saffron/10 absolute top-0 right-0 h-96 w-96 rounded-full bg-linear-to-bl to-transparent blur-3xl" />
-        <div className="from-saffron/10 absolute bottom-0 left-0 h-96 w-96 rounded-full bg-linear-to-tr to-transparent blur-3xl" />
-
+      {/* Operational Highlights - Batch 3A Tokens & Verified Grounding */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-slate-50/60 via-white to-slate-50/30 py-8 md:py-10 border-b border-slate-100">
         <div className="relative container mx-auto px-4">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-3 md:gap-5 lg:gap-6"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6"
           >
             {[
               {
-                value: "12+",
-                label: "Years of Service",
-                icon: Calendar,
-                gradient: "from-saffron to-sunset-orange",
-                bgGradient: "from-saffron/10 to-sunset-orange/10",
+                value: "Native",
+                label: "Himachal Route Specialists",
+                icon: Shield,
+                description: "Deep route familiarity on mountain ghats and bypasses",
               },
               {
-                value: "50+",
-                label: "Expert Drivers",
+                value: "Local",
+                label: "Experienced Hill Drivers",
                 icon: Users,
-                gradient: "from-saffron to-sunset-orange",
-                bgGradient: "from-saffron/10 to-sunset-orange/10",
+                description: "Courteous drivers holding valid commercial licenses",
               },
               {
-                value: "10K+",
-                label: "Trips Completed",
-                icon: Gauge,
-                gradient: "from-saffron to-sunset-orange",
-                bgGradient: "from-saffron/10 to-sunset-orange/10",
+                value: "Clean",
+                label: "Well-Maintained Fleet",
+                icon: Car,
+                description: "Sedans, MPVs, SUVs & Tempo Travellers ready for hills",
               },
             ].map((stat, index) => {
               const IconComponent = stat.icon
               return (
                 <motion.div key={index} variants={fadeInUp} className="group relative">
-                  <div
-                    className={`absolute inset-0 bg-linear-to-br ${stat.bgGradient} rounded-2xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100`}
-                  />
-
-                  <div
-                    className={`relative bg-linear-to-br ${stat.bgGradient} mx-auto max-w-xs rounded-2xl border border-white/20 p-2 text-center backdrop-blur-xl transition-all duration-300 group-hover:scale-105 hover:shadow-2xl sm:p-3 md:p-4`}
-                  >
-                    {/* Top accent line */}
-                    <div
-                      className={`absolute top-0 left-1/2 h-0.5 w-8 -translate-x-1/2 bg-linear-to-r sm:h-0.5 sm:w-12 md:h-1 md:w-16 ${stat.gradient} rounded-full`}
-                    />
-
-                    {/* Icon */}
-                    <div
-                      className={`inline-flex h-8 w-8 items-center justify-center bg-linear-to-br sm:h-10 sm:w-10 md:h-12 md:w-12 ${stat.gradient} mb-2 transform rounded-2xl shadow-lg transition-transform duration-300 group-hover:-translate-y-2 sm:mb-3`}
-                    >
-                      <IconComponent className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4 md:h-5 md:w-5" />
+                  <div className="relative mx-auto max-w-sm rounded-2xl border border-slate-200/80 bg-white p-5 text-center shadow-xs transition-all duration-300 hover:border-slate-300 hover:shadow-md">
+                    <div className="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-mountain-blue shadow-xs">
+                      <IconComponent className="h-6 w-6" />
                     </div>
 
-                    {/* Value */}
-                    <p
-                      className={`bg-linear-to-r text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl ${stat.gradient} mb-1 bg-clip-text text-transparent`}
-                    >
+                    <p className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-1">
                       {stat.value}
                     </p>
 
-                    {/* Label */}
-                    <p className="text-foreground mb-1 text-[10px] font-semibold sm:text-xs md:text-sm">
+                    <p className="text-sm font-semibold text-slate-800 mb-1">
                       {stat.label}
+                    </p>
+
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      {stat.description}
                     </p>
                   </div>
                 </motion.div>
@@ -168,7 +150,7 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
 
       {/* Vehicle Types */}
       {vehicles.length > 0 && (
-        <section id="choose-vehicle" ref={chooseVehicleRef} className="bg-muted/30 py-8">
+        <section id="choose-vehicle" ref={chooseVehicleRef} className="bg-slate-50/50 py-10 sm:py-12 border-b border-slate-100">
           <div className="container mx-auto px-4">
             <motion.div
               variants={slideInLeft}
@@ -177,9 +159,9 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
               viewport={{ once: true }}
               className="mb-8 text-center md:mb-10"
             >
-              <h2 className="text-foreground mb-4 font-serif text-3xl font-bold sm:text-4xl md:text-5xl">Choose Your Vehicle</h2>
-              <p className="text-muted-foreground mx-auto max-w-2xl">
-                Select from our fleet of well-maintained vehicles suited for every group size and budget
+              <h2 className="text-foreground mb-3 font-serif text-3xl font-bold sm:text-4xl md:text-5xl">Choose Your Vehicle</h2>
+              <p className="text-muted-foreground mx-auto max-w-2xl text-base sm:text-lg">
+                Select your preferred cab model to automatically populate your booking enquiry
               </p>
             </motion.div>
 
@@ -188,14 +170,14 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
             >
               {vehicles.map((vehicle) => (
                 <VehicleCard
                   key={vehicle.id}
                   vehicle={vehicle}
-                  isSelected={selectedVehicle === vehicle.id}
-                  onSelect={() => setSelectedVehicle(vehicle.id)}
+                  isSelected={selectedVehicle === vehicle.name || selectedVehicle === vehicle.id}
+                  onSelect={() => handleVehicleSelect(vehicle)}
                 />
               ))}
             </motion.div>
@@ -272,9 +254,9 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
                 </p>
                 <div className="space-y-3 lg:space-y-4">
                   {[
-                    { icon: <Car className="h-5 w-5" />, text: "Native Himachali mountain drivers (8+ yrs experience)" },
+                    { icon: <Car className="h-5 w-5" />, text: "Native Himachali mountain drivers with hill driving experience" },
                     { icon: <Calendar className="h-5 w-5" />, text: "Only 20% token to lock • 100% weather reschedule" },
-                    { icon: <Shield className="h-5 w-5" />, text: "All-inclusive quote (tolls, state permit, driver bhatta)" },
+                    { icon: <Shield className="h-5 w-5" />, text: "Clear quote covering standard toll taxes, state permits & driver allowance" },
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <div className="bg-primary/10 text-primary flex h-10 w-10 items-center justify-center rounded-full">
@@ -287,7 +269,11 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
               </div>
             </motion.div>
 
-            <TaxiBookingForm />
+            <TaxiBookingForm
+              selectedVehicle={selectedVehicle}
+              onVehicleChange={(name) => setSelectedVehicle(name)}
+              availableVehicles={vehicles.map((v) => ({ id: v.id, name: v.name, capacity: v.capacity }))}
+            />
           </div>
         </div>
       </section>
@@ -335,15 +321,15 @@ export function TaxiPageClient({ vehicles, routes }: TaxiPageClientProps) {
       {/* Sticky Mobile CTA */}
       <div className="bg-background border-border fixed right-0 bottom-0 left-0 z-40 border-t p-4 lg:hidden safe-area-bottom">
         <div className="flex gap-3">
-          <Button asChild className="bg-saffron hover:bg-saffron/90 flex-1 gap-2 text-white">
+          <Button asChild className="bg-slate-900 hover:bg-slate-800 flex-1 gap-2 text-white">
             <a href="#book">
               <Car className="h-5 w-5" />
               Book a Ride
             </a>
           </Button>
-          <Button asChild variant="outline" size="icon">
+          <Button asChild variant="outline" size="icon" className="border-slate-300">
             <a
-              href={`https://wa.me/${(settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "")}`}
+              href={`https://wa.me/${(settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "")}?text=Hi,%20I%20want%20to%20enquire%20about%20taxi%20services`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"

@@ -130,7 +130,7 @@ export function HeroClient({ images }: HeroClientProps) {
               transition={{ duration: 0.5, delay: 0.22 }}
               className="mx-auto mt-4 sm:mt-5 max-w-2xl text-lg sm:text-xl md:text-2xl font-semibold sm:font-medium text-white/95 leading-snug tracking-tight text-pretty drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]"
             >
-              Your time. Your pace. Your choices. We build the journey around you.
+              Curated Himachal holidays, sacred pilgrimages, and private taxi services tailored to your schedule.
             </motion.p>
 
             {/* Concise Supporting Description */}
@@ -140,7 +140,7 @@ export function HeroClient({ images }: HeroClientProps) {
               transition={{ duration: 0.5, delay: 0.34 }}
               className="mx-auto mt-3 sm:mt-3.5 max-w-xl text-sm sm:text-base md:text-[15px] font-normal text-zinc-200/90 leading-relaxed text-pretty drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)]"
             >
-              From pilgrimages and honeymoons to family holidays and mountain adventures, travel with private taxis, local guides and support whenever you need it.
+              From temple darshan circuits to scenic hill stations, explore handpicked packages or customize your complete journey with local hill drivers.
             </motion.p>
 
             {/* Call to Actions */}
@@ -156,7 +156,7 @@ export function HeroClient({ images }: HeroClientProps) {
                 className="h-11 sm:h-12 w-full sm:w-auto px-8 text-sm sm:text-base font-semibold text-white bg-gradient-to-r from-[#ea580c] to-[#f59e0b] hover:from-[#c2410c] hover:to-[#d97706] shadow-md shadow-black/25 rounded-xl transition-all"
               >
                 <Link href="/packages">
-                  Plan My Trip
+                  Explore Packages
                 </Link>
               </Button>
               <Button
@@ -165,7 +165,7 @@ export function HeroClient({ images }: HeroClientProps) {
                 className="h-11 sm:h-12 w-full sm:w-auto px-7 text-sm sm:text-base font-medium text-white border border-white/35 bg-black/25 hover:bg-white/20 backdrop-blur-md rounded-xl transition-all shadow-sm"
               >
                 <Link href="/contact">
-                  Talk to Us
+                  Customise Your Trip
                 </Link>
               </Button>
             </motion.div>

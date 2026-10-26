@@ -108,7 +108,7 @@ export function CTABanner() {
           >
             <Button size="xl" variant="gradient" className="group px-10 text-base font-semibold shadow-2xl" asChild>
               <a
-                href={`https://wa.me/${(settings.whatsapp_number || "").replace(/[^0-9]/g, "")}?text=Hi, I want to plan my Himachal trip`}
+                href={`https://wa.me/${(settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "") || "918628839955"}?text=Hi, I want to plan my Himachal trip`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -124,7 +124,7 @@ export function CTABanner() {
               className="hover:text-saffron border-2 border-white bg-transparent px-10 text-base font-semibold text-white hover:bg-white"
               asChild
             >
-              <a href={`tel:${settings.contact_phone || ""}`}>
+              <a href={`tel:${settings.contact_phone || "+918628839955"}`}>
                 <Phone className="mr-2 h-5 w-5" />
                 Call Us Now
               </a>

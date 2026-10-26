@@ -27,8 +27,8 @@ export function Header() {
   const scrollYRef = useRef(0)
   const pathname = usePathname()
 
-  const whatsappNumber = settings.whatsapp_number || ""
-  const contactPhone = settings.contact_phone || ""
+  const whatsappNumber = settings.whatsapp_number || "+918628839955"
+  const contactPhone = settings.contact_phone || "+91 8628839955"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -135,11 +135,11 @@ export function Header() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="bg-muted hover:bg-saffron/10 rounded-full p-2 transition-all md:p-2.5 lg:hidden"
+            className="bg-muted hover:bg-saffron/10 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full p-2 transition-all md:p-2.5 lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            <Menu className="text-foreground h-4.5 w-4.5 md:h-5 md:w-5" />
+            <Menu className="text-foreground h-5 w-5" />
           </button>
         </div>
       </div>
@@ -179,7 +179,7 @@ export function Header() {
                 {/* Close button */}
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="bg-muted hover:bg-destructive/10 rounded-full p-2 transition-colors"
+                  className="bg-muted hover:bg-destructive/10 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full p-2 transition-colors"
                   aria-label="Close menu"
                 >
                   <X className="text-foreground h-5 w-5" />
@@ -204,7 +204,7 @@ export function Header() {
                       >
                         <Link
                           href={link.href}
-                          className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition-all sm:px-4 sm:py-3 sm:text-base ${isActive
+                          className={`flex min-h-[44px] items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition-all sm:px-4 sm:py-3 sm:text-base ${isActive
                             ? "bg-saffron text-white"
                             : "text-foreground hover:bg-saffron hover:text-white"
                             }`}

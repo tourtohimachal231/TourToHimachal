@@ -25,7 +25,7 @@ export function TaxiHero() {
   const { settings } = useSettings()
 
   const whatsappHref = `https://wa.me/${(settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "")}`
-  const phoneHref = `tel:${settings.contact_phone || ""}`
+  const phoneHref = `tel:${(settings.contact_phone || "+91 8628839955").replace(/\s/g, "")}`
 
   return (
     <section className="relative flex min-h-[72vh] sm:min-h-[78vh] md:min-h-[82vh] items-center justify-center overflow-hidden safe-area-top">

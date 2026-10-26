@@ -13,7 +13,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 // Static backup if needed, or initial state
 // const testimonials = [...]
 
-interface Review {
+export interface Review {
   id: string
   name: string
   city?: string
@@ -23,12 +23,16 @@ interface Review {
   created_at: string
 }
 
-export function Testimonials() {
+export interface TestimonialsProps {
+  initialReviews?: Review[]
+}
+
+export function Testimonials({ initialReviews }: TestimonialsProps = {}) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
-  const [reviews, setReviews] = useState<Review[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [reviews, setReviews] = useState<Review[]>(initialReviews || [])
+  const [isLoading, setIsLoading] = useState(!initialReviews || initialReviews.length === 0)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   const fetchReviews = async () => {
@@ -60,8 +64,10 @@ export function Testimonials() {
   }
 
   useEffect(() => {
-    fetchReviews()
-  }, [])
+    if (!initialReviews || initialReviews.length === 0) {
+      fetchReviews()
+    }
+  }, [initialReviews])
 
   const checkScroll = () => {
     if (scrollRef.current) {
@@ -143,7 +149,12 @@ export function Testimonials() {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="max-h-[90vh] max-w-[95vw] overflow-y-auto rounded-2xl p-4 sm:p-6 md:max-w-md">
-                  <ReviewForm onSuccess={() => setIsDialogOpen(false)} />
+                  <ReviewForm
+                    onSuccess={() => {
+                      setIsDialogOpen(false)
+                      fetchReviews()
+                    }}
+                  />
                 </DialogContent>
               </Dialog>
             </div>

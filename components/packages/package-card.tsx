@@ -4,12 +4,8 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Clock, MapPin, Star, Image as ImageIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Clock, MapPin, ArrowRight, Image as ImageIcon } from "lucide-react"
 import { cardHover, fadeInUp } from "@/lib/animation-variants"
-import { useSettings } from "@/lib/settings-context"
-import { generateWhatsAppLink } from "@/lib/whatsapp"
 
 interface Package {
   id: string
@@ -33,18 +29,31 @@ interface Package {
 function cleanPackageCardDescription(text?: string | null): string {
   if (!text) return ""
   return text
+    // Remove image markdown: ![alt](url)
     .replace(/!\[([^\]]*)\]\([^)]+\)/g, "")
+    // Preserve link text: [text](url) -> text
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    // Remove horizontal rules (---, ***, ___)
     .replace(/^(\s*[-*_]\s*){3,}$/gm, "")
-    .replace(/^\s*#{1,6}\s*/gm, "")
-    .replace(/\*\*(.*?)\*\*/g, "$1")
-    .replace(/__(.*?)__/g, "$1")
-    .replace(/\*(.*?)\*/g, "$1")
-    .replace(/_(.*?)_/g, "$1")
+    // Remove heading markers (### text -> text)
+    .replace(/^\s*#{1,6}\s+/gm, "")
+    // Remove bold and italics while strictly preserving text content
+    .replace(/\*\*\*([^*]+)\*\*\*/g, "$1")
+    .replace(/___([^_]+)___/g, "$1")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/_([^_]+)_/g, "$1")
+    // Remove bullet lists and numbered lists at line starts
     .replace(/^\s*[-*+]\s+/gm, "")
     .replace(/^\s*\d+\.\s+/gm, "")
-    .replace(/[`~>]/g, "")
-    .replace(/[*_]/g, "")
+    // Remove blockquote markers
+    .replace(/^\s*>\s*/gm, "")
+    // Remove code fences or inline backticks
+    .replace(/`([^`]+)`/g, "$1")
+    // Remove any leftover standalone formatting characters
+    .replace(/[*_~`#]/g, "")
+    // Normalize whitespace (replace newlines and multiple spaces with a single space)
     .replace(/\s+/g, " ")
     .trim()
 }
@@ -54,115 +63,119 @@ interface PackageCardProps {
 }
 
 export function PackageCard({ pkg }: PackageCardProps) {
-  const { settings } = useSettings()
-  const whatsappLink = generateWhatsAppLink({ packageName: pkg.title }, settings.whatsapp_number)
   const [imageError, setImageError] = useState(false)
-
-  // Calculate discount percentage
-  const discountPercent =
-    pkg.original_price && pkg.original_price > pkg.price
-      ? Math.round(((pkg.original_price - pkg.price) / pkg.original_price) * 100)
-      : 0
 
   // Get image source with fallback
   const imageSrc = imageError || !pkg.images?.[0]
     ? `/placeholder.svg?height=400&width=600&query=${encodeURIComponent(pkg.title)}`
     : pkg.images[0]
 
+  // Priority 1: Category (or Featured fallback)
+  const categoryBadge = pkg.category
+    ? pkg.category.charAt(0).toUpperCase() + pkg.category.slice(1)
+    : pkg.is_featured
+      ? "Featured"
+      : null
+
+  // Priority 2: Duration
+  const durationBadge = pkg.duration ? pkg.duration.trim() : null
+
   return (
     <motion.div
       variants={fadeInUp}
       initial="rest"
       whileHover="hover"
-      className="group border-saffron/10 hover:border-saffron/30 overflow-hidden rounded-2xl border-2 bg-gradient-to-br from-[oklch(0.99_0.015_85)] to-[oklch(0.97_0.025_70)] shadow-md transition-all duration-300 hover:shadow-xl md:rounded-3xl"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xs transition-all duration-300 hover:border-slate-300 hover:shadow-lg"
     >
       <Link
         href={`/packages/${pkg.slug}`}
-        className="focus-visible:ring-saffron focus-visible:ring-offset-background block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+        className="focus-visible:ring-mountain-blue focus-visible:ring-offset-background flex h-full flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
       >
         <motion.div variants={cardHover} className="flex h-full flex-col">
-          {/* Image */}
-          <div className="bg-muted/30 relative aspect-[4/3] overflow-hidden">
+          {/* Destination Photography with max 2 corner badges */}
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
             {imageError || !pkg.images?.[0] ? (
-              <div className="flex h-full w-full items-center justify-center bg-muted">
-                <ImageIcon className="text-muted-foreground h-16 w-16" />
+              <div className="flex h-full w-full items-center justify-center bg-slate-100 text-slate-400">
+                <ImageIcon className="h-12 w-12" />
               </div>
             ) : (
               <Image
                 src={imageSrc}
                 alt={pkg.title}
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 onError={() => setImageError(true)}
                 unoptimized={imageSrc.includes("cloudinary.com") ? false : undefined}
               />
             )}
 
-            
+            {/* Subtle top scrim to guarantee badge legibility without darkening scenery */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-black/25 to-transparent"
+            />
 
-            {/* Featured Badge */}
-            {pkg.is_featured && (
-              <div className="absolute top-3 left-3">
-                <Badge className="from-saffron to-sunset-orange border-0 bg-gradient-to-r text-xs text-white shadow-lg">
-                  <Star className="mr-1 h-3 w-3 fill-white" />
-                  Featured
-                </Badge>
-              </div>
-            )}
-
-            {/* Region Badge - Bottom Right */}
-            {pkg.region && (
-              <Badge className="text-saffron absolute right-3 bottom-3 flex items-center gap-1 border-0 bg-white/90 text-xs shadow-md">
-                <MapPin className="h-3 w-3" />
-                {pkg.region}
-              </Badge>
-            )}
-
-            {pkg.category && (
-              <Badge className="text-saffron absolute top-3 right-3 border-0 bg-white/90 text-xs shadow-md">
-                {pkg.category}
-              </Badge>
-            )}
-
-            {/* Price and Discount Section at bottom */}
-            <div className="absolute bottom-3 left-3 flex flex-col gap-2">
-              {discountPercent > 0 && (
-                <Badge className="from-saffron to-sunset-orange w-fit border-0 bg-gradient-to-r text-xs text-white shadow-lg">
-                  {discountPercent}% OFF
-                </Badge>
-              )}
-              <div className="rounded-full bg-white/95 px-3 py-1.5 shadow-lg backdrop-blur-sm">
-                <span className="text-saffron text-base font-bold md:text-lg">
-                  ₹{pkg.price?.toLocaleString()}
+            {/* Max Two Badges: Prioritising Category and Duration */}
+            <div className="pointer-events-none absolute inset-x-3 top-3 z-10 flex items-center justify-between gap-2">
+              {categoryBadge ? (
+                <span className="inline-flex items-center rounded-full border border-white/60 bg-white/95 px-2.5 py-1 text-xs font-semibold tracking-wide text-slate-800 shadow-xs backdrop-blur-md">
+                  {categoryBadge}
                 </span>
-                {pkg.original_price && pkg.original_price > pkg.price && (
-                  <span className="text-muted-foreground ml-1.5 text-xs line-through">
-                    ₹{pkg.original_price.toLocaleString()}
-                  </span>
-                )}
-              </div>
+              ) : (
+                <span />
+              )}
+
+              {durationBadge && (
+                <span className="inline-flex items-center rounded-full border border-white/60 bg-white/95 px-2.5 py-1 text-xs font-medium text-slate-700 shadow-xs backdrop-blur-md ml-auto">
+                  <Clock className="mr-1 h-3 w-3 text-mountain-blue shrink-0" />
+                  {durationBadge}
+                </span>
+              )}
             </div>
           </div>
 
-          {/* Content */}
-          <div className="p-4 md:p-5">
-            <h3 className="text-foreground group-hover:text-saffron mb-2 line-clamp-1 font-serif text-xl font-semibold transition-colors md:text-2xl">
+          {/* Card Content & Hierarchy */}
+          <div className="flex flex-1 flex-col p-4 sm:p-5">
+            {/* Region Location Indicator (if present) */}
+            {pkg.region && (
+              <div className="mb-1 flex items-center gap-1 text-xs font-medium text-slate-600">
+                <MapPin className="h-3 w-3 text-mountain-blue shrink-0" />
+                <span>{pkg.region}</span>
+              </div>
+            )}
+
+            {/* Package Title */}
+            <h3 className="font-serif text-lg sm:text-xl font-bold text-slate-900 leading-snug group-hover:text-mountain-blue transition-colors line-clamp-2 min-h-[3rem] sm:min-h-[3.5rem] break-words">
               {pkg.title}
             </h3>
 
-            <p className="text-muted-foreground mb-4 line-clamp-2 text-sm leading-relaxed md:text-base">
+            {/* Clean Short Description */}
+            <p className="mt-2 text-sm text-slate-600 line-clamp-2 leading-relaxed min-h-[2.5rem] break-words">
               {cleanPackageCardDescription(pkg.short_description || pkg.description)}
             </p>
 
-            <div className="text-muted-foreground mt-auto flex items-center justify-between gap-3 text-xs md:text-sm">
-              <div className="flex items-center gap-3">
-                <span className="bg-saffron/10 flex items-center gap-1 rounded-full px-2 py-1">
-                  <Clock className="text-saffron h-3 w-3 md:h-4 md:w-4" />
-                  {pkg.duration}
+            {/* Price & Action Footer */}
+            <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+              <div className="flex flex-col">
+                <span className="text-[11px] font-medium tracking-wide uppercase text-slate-600">
+                  Package Price
                 </span>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                    ₹{pkg.price ? pkg.price.toLocaleString("en-IN") : "0"}
+                  </span>
+                  {pkg.original_price && pkg.original_price > pkg.price && (
+                    <span className="text-xs text-slate-400 line-through">
+                      ₹{pkg.original_price.toLocaleString("en-IN")}
+                    </span>
+                  )}
+                </div>
               </div>
-              <span className="from-saffron to-sunset-orange inline-flex h-9 items-center gap-1 rounded-full border-0 bg-gradient-to-r px-3 text-xs text-white shadow-md md:h-10 md:px-4 md:text-sm">
+
+              <span className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white shadow-xs transition-all duration-200 group-hover:bg-mountain-blue group-hover:shadow-sm shrink-0">
                 View Details
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
               </span>
             </div>
           </div>

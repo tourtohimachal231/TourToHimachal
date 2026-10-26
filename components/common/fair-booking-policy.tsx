@@ -363,7 +363,7 @@ export function FairBookingPolicy({
                 <td className="py-3 px-3 sm:px-4 font-semibold text-foreground bg-saffron/5">
                   <div className="flex items-center gap-1.5 text-forest-green">
                     <CheckCircle2 className="h-4 w-4 shrink-0" />
-                    <span>Native Himachali mountain drivers (8+ yrs hill experience).</span>
+                    <span>Native Himachali mountain drivers with experienced hill driving navigation.</span>
                   </div>
                 </td>
               </tr>

@@ -80,8 +80,8 @@ export function TaxiService() {
                   <Shield className="h-5 w-5 text-white sm:h-6 sm:w-6 md:h-8 md:w-8" />
                 </div>
                 <div>
-                  <p className="text-foreground text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl">20+</p>
-                  <p className="text-muted-foreground text-[10px] sm:text-xs md:text-sm">Verified Drivers</p>
+                  <p className="text-foreground text-base font-bold sm:text-lg md:text-xl lg:text-2xl leading-tight">Local Drivers</p>
+                  <p className="text-muted-foreground text-[10px] sm:text-xs md:text-sm">Mountain Route Experience</p>
                 </div>
               </div>
             </motion.div>
@@ -175,7 +175,7 @@ export function TaxiService() {
                     asChild
                   >
                     <a
-                      href="https://wa.me/?text=Hi, I want to book a taxi"
+                      href="https://wa.me/918628839955?text=Hi,%20I%20want%20to%20book%20a%20taxi"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -192,7 +192,7 @@ export function TaxiService() {
                   asChild
                 >
                   <a
-                    href={`https://wa.me/${(settings.whatsapp_number || "").replace(/[^0-9]/g, "")}?text=Hi, I want to book a taxi`}
+                    href={`https://wa.me/${(settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "") || "918628839955"}?text=Hi, I want to book a taxi`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

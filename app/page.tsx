@@ -1,6 +1,4 @@
 import type { Metadata } from "next"
-import { Suspense } from "react"
-import dynamic from "next/dynamic"
 import { Hero } from "@/components/home/hero"
 
 export const revalidate = 0 // Always fetch fresh data
@@ -42,46 +40,16 @@ export const metadata: Metadata = {
   },
 }
 
-// Dynamic imports for non-critical components
-const Header = dynamic(
-  () => import("@/components/home/header").then((mod) => ({ default: mod.Header })),
-  { loading: () => null }
-)
-
-const RecognitionTrust = dynamic(
-  () => import("@/components/home/recognition-trust").then((mod) => ({ default: mod.RecognitionTrust })),
-  { loading: () => null }
-)
-
-const PopularDestinations = dynamic(
-  () => import("@/components/home/popular-destinations").then((mod) => ({ default: mod.PopularDestinations })),
-  { loading: () => null }
-)
-
-const TaxiService = dynamic(
-  () => import("@/components/home/taxi-service").then((mod) => ({ default: mod.TaxiService })),
-  { loading: () => null }
-)
-
-const DeferredHomeSections = dynamic(
-  () => import("@/components/home/deferred-home-sections").then((mod) => ({ default: mod.DeferredHomeSections })),
-  { loading: () => null }
-)
-
-const TravelDiaries = dynamic(
-  () => import("@/components/home/travel-diaries").then((mod) => ({ default: mod.TravelDiaries })),
-  { loading: () => null }
-)
-
-const DeferredCTABanner = dynamic(
-  () => import("@/components/home/deferred-cta-banner").then((mod) => ({ default: mod.DeferredCTABanner })),
-  { loading: () => null }
-)
-
-const Footer = dynamic(
-  () => import("@/components/home/footer").then((mod) => ({ default: mod.Footer })),
-  { loading: () => null }
-)
+import { Header } from "@/components/home/header"
+import { RecognitionTrust } from "@/components/home/recognition-trust"
+import { PopularDestinations } from "@/components/home/popular-destinations"
+import { TravelThemes } from "@/components/home/travel-themes"
+import { TaxiService } from "@/components/home/taxi-service"
+import { WhyChooseUs } from "@/components/home/why-choose-us"
+import { HomeTestimonials } from "@/components/home/home-testimonials"
+import { TravelDiaries } from "@/components/home/travel-diaries"
+import { CTABanner } from "@/components/home/cta-banner"
+import { Footer } from "@/components/home/footer"
 
 export default function HomePage() {
   const organizationSchema = {
@@ -151,21 +119,37 @@ export default function HomePage() {
             __html: JSON.stringify(websiteSchema),
           }}
         />
+        {/* 1. Header and navigation */}
         <Header />
+
+        {/* 2. Hero with clear description and actions: explore packages and customise trip */}
         <Hero />
+
+        {/* 3. Genuine Justdial recognition and verified local-business information */}
         <RecognitionTrust />
+
+        {/* 4. Featured tour packages loaded from Supabase */}
+        <PopularDestinations />
+
+        {/* 5. Travel themes */}
+        <TravelThemes />
+
+        {/* 6. Taxi and transfer services */}
         <TaxiService />
-        <Suspense fallback={null}>
-          <PopularDestinations />
-        </Suspense>
 
-        <DeferredHomeSections />
+        {/* 7. Why choose TourToHimachal */}
+        <WhyChooseUs />
 
-        <Suspense fallback={null}>
-          <TravelDiaries />
-        </Suspense>
+        {/* 8. Genuine customer reviews (Supabase approved reviews) */}
+        <HomeTestimonials />
 
-        <DeferredCTABanner />
+        {/* 9. Travel guides and diaries */}
+        <TravelDiaries />
+
+        {/* 10. Final enquiry CTA */}
+        <CTABanner />
+
+        {/* 11. Footer */}
         <Footer />
       </main>
     </div>

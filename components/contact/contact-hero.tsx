@@ -8,8 +8,8 @@ import { useSettings } from "@/lib/settings-context"
 export function ContactHero() {
   const { settings } = useSettings()
 
-  const contactPhone = settings.contact_phone || ""
-  const whatsappNumber = settings.whatsapp_number || ""
+  const contactPhone = settings.contact_phone || "+91 8628839955"
+  const whatsappNumber = settings.whatsapp_number || "918628839955"
 
   return (
     <StaticHero
@@ -21,7 +21,7 @@ export function ContactHero() {
       <div className="flex flex-col justify-center gap-4 sm:flex-row">
         <a
           href={`tel:${contactPhone.replace(/\s/g, "")}`}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-black transition-colors hover:bg-white/90"
+          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-black transition-colors hover:bg-white/90"
         >
           <Phone className="h-5 w-5" />
           {contactPhone}
@@ -30,7 +30,7 @@ export function ContactHero() {
           href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}?text=Hi!%20I%20want%20to%20plan%20a%20trip%20to%20Himachal.`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-saffron px-6 py-3 font-medium text-white transition-colors hover:bg-saffron/90"
+          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-saffron px-6 py-3 font-medium text-white transition-colors hover:bg-saffron/90"
         >
           <WhatsAppIcon className="h-5 w-5" />
           WhatsApp Us

@@ -40,11 +40,25 @@ const getTodayDate = () => {
   return `${year}-${month}-${day}`
 }
 
-export function TaxiBookingForm() {
+export interface VehicleOption {
+  id: string
+  name: string
+  capacity?: number
+}
+
+export interface TaxiBookingFormProps {
+  selectedVehicle?: string
+  onVehicleChange?: (vehicleName: string) => void
+  availableVehicles?: VehicleOption[]
+}
+
+export function TaxiBookingForm({ selectedVehicle, onVehicleChange, availableVehicles }: TaxiBookingFormProps = {}) {
   const { settings } = useSettings()
+  const vehicleOptions = availableVehicles && availableVehicles.length > 0 ? availableVehicles : vehicles
+
   const [formData, setFormData] = useState({
     serviceType: "",
-    vehicleType: "",
+    vehicleType: selectedVehicle || "",
     pickup: "",
     drop: "",
     date: "",
@@ -68,6 +82,19 @@ export function TaxiBookingForm() {
   useEffect(() => {
     setIsMounted(true)
   }, [])
+
+  // Sync selectedVehicle prop to internal formData
+  useEffect(() => {
+    if (selectedVehicle) {
+      setFormData(prev => ({ ...prev, vehicleType: selectedVehicle }))
+      setErrors(prev => {
+        if (!prev.vehicleType) return prev
+        const newErrors = { ...prev }
+        delete newErrors.vehicleType
+        return newErrors
+      })
+    }
+  }, [selectedVehicle])
 
   const validateName = sharedValidateName
   const validatePhone = sharedValidatePhone
@@ -369,19 +396,37 @@ export function TaxiBookingForm() {
           <Label htmlFor="vehicleType">Vehicle Type *</Label>
           <Select
             value={formData.vehicleType}
-            onValueChange={(value) => setFormData({ ...formData, vehicleType: value })}
+            onValueChange={(value) => {
+              setFormData((prev) => ({ ...prev, vehicleType: value }))
+              if (errors.vehicleType) {
+                setErrors((prev) => {
+                  const newErrors = { ...prev }
+                  delete newErrors.vehicleType
+                  return newErrors
+                })
+              }
+              if (onVehicleChange) {
+                onVehicleChange(value)
+              }
+            }}
           >
             <SelectTrigger id="vehicleType" aria-invalid={!!errors.vehicleType}>
               <SelectValue placeholder="Select vehicle" />
             </SelectTrigger>
             <SelectContent>
-              {vehicles.map((v) => (
+              {vehicleOptions.map((v) => (
                 <SelectItem key={v.id} value={v.name}>
-                  {v.name} ({v.capacity} pax)
+                  {v.name} {v.capacity ? `(${v.capacity} pax)` : ""}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
+          {formData.vehicleType && (
+            <p className="text-xs text-mountain-blue font-medium flex items-center gap-1 mt-1">
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
+              Selected: {formData.vehicleType}
+            </p>
+          )}
           {errors.vehicleType && <p className="text-destructive text-sm">{errors.vehicleType}</p>}
         </div>
       </div>
