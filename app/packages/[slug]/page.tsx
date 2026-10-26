@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { createPublicClient } from "@/lib/supabase/public"
-import { packages as fallbackPackages } from "@/data/packages"
 import { PackageDetailClient } from "./package-detail-client"
 
 const SITE_URL = "https://www.tourtohimachal.in"
@@ -23,8 +22,7 @@ async function getPackage(slug: string) {
     .single()
 
   if (error || !pkg || Array.isArray(pkg) || !pkg.title) {
-    const fallback = fallbackPackages.find((p) => p.slug === slug)
-    return fallback || null
+    return null
   }
 
   return pkg
@@ -39,17 +37,7 @@ async function getAllPackages() {
     .eq("is_active", true)
     .order("created_at", { ascending: false })
 
-  const dbSlugs = new Set((packages || []).map((p) => p.slug))
-  const formattedFallback = fallbackPackages
-    .filter((p) => !dbSlugs.has(p.slug))
-    .map((p) => ({
-      ...p,
-      short_description: p.excerpt,
-      is_active: true,
-      is_featured: p.badge === "Popular",
-    }))
-
-  return [...(packages || []), ...formattedFallback]
+  return packages || []
 }
 
 function sanitizePackageMetaDescription(rawText: string | null | undefined, maxLength: number = 158): string {
