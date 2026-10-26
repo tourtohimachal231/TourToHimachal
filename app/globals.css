@@ -237,71 +237,71 @@ input[type="radio"] {
 /* Fallback colors for browsers that don't support OKLCH */
 @supports not (color: oklch(1 0 0)) {
   :root {
-    /* Base colors - white background */
+    /* Base colors - white background with slate text */
     --background: #ffffff;
-    --foreground: #2d2d2d;
+    --foreground: #0f172a;
 
-    /* Card with warm cream tint */
-    --card: #faf8f5;
-    --card-foreground: #2d2d2d;
+    /* Card */
+    --card: #ffffff;
+    --card-foreground: #0f172a;
 
     --popover: #ffffff;
-    --popover-foreground: #2d2d2d;
+    --popover-foreground: #0f172a;
 
-    /* Primary - Vibrant Saffron */
-    --primary: #e67e22;
+    /* Primary - Cedar Amber */
+    --primary: #d97706;
     --primary-foreground: #ffffff;
 
-    /* Secondary - Soft cream/off-white */
-    --secondary: #f5f0e8;
-    --secondary-foreground: #3d3d3d;
+    /* Secondary - Slate 100 */
+    --secondary: #f1f5f9;
+    --secondary-foreground: #0f172a;
 
-    /* Muted - Warm gray */
-    --muted: #e8e4de;
-    --muted-foreground: #7a7a7a;
+    /* Muted - Cloud background & Slate 500 */
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
 
-    /* Accent - Light saffron tint */
-    --accent: #f0e6d8;
-    --accent-foreground: #3d3d3d;
+    /* Accent */
+    --accent: #f1f5f9;
+    --accent-foreground: #0f172a;
 
     --destructive: #dc2626;
     --destructive-foreground: #ffffff;
 
-    /* Borders */
-    --border: #d4d0c8;
-    --input: #e8e4de;
-    --ring: #e67e22;
+    /* Borders & Inputs */
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #0284c7;
 
     /* Charts */
-    --chart-1: #f59e0b;
-    --chart-2: #e67e22;
-    --chart-3: #e67e22;
-    --chart-4: #10b981;
-    --chart-5: #f97316;
+    --chart-1: #0284c7;
+    --chart-2: #d97706;
+    --chart-3: #15803d;
+    --chart-4: #f59e0b;
+    --chart-5: #ea580c;
 
     /* Sidebar */
-    --sidebar: #f9f7f4;
-    --sidebar-foreground: #2d2d2d;
-    --sidebar-primary: #e67e22;
+    --sidebar: #f8fafc;
+    --sidebar-foreground: #0f172a;
+    --sidebar-primary: #d97706;
     --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: #f5f0e8;
-    --sidebar-accent-foreground: #3d3d3d;
-    --sidebar-border: #e0dcd4;
-    --sidebar-ring: #e67e22;
+    --sidebar-accent: #f1f5f9;
+    --sidebar-accent-foreground: #0f172a;
+    --sidebar-border: #e2e8f0;
+    --sidebar-ring: #0284c7;
 
-    /* Custom Himachal Tourism Colors */
-    --mountain-blue: #e67e22;
-    --forest-green: #e67e22;
-    --saffron: #e67e22;
-    --golden-yellow: #fbbf24;
-    --sunset-orange: #f97316;
+    /* Distinct Himachal Tourism Colors */
+    --mountain-blue: #0284c7;
+    --forest-green: #15803d;
+    --saffron: #d97706;
+    --golden-yellow: #f59e0b;
+    --sunset-orange: #ea580c;
     --temple-red: #dc2626;
 
     /* Section background colors */
-    --section-warm: #fdf8f0;
-    --section-cool: #f8f4f0;
-    --section-green: #f4f8f0;
-    --section-golden: #fef8f0;
+    --section-warm: #fffbeb;
+    --section-cool: #f0f9ff;
+    --section-green: #f0fdf4;
+    --section-golden: #fefce8;
 
     /* Typography Scale */
     --font-xs: 0.75rem;    /* 12px */
@@ -331,163 +331,171 @@ input[type="radio"] {
   }
 
   .dark {
-    --background: #1a1a2e;
+    --background: #0f172a;
     --foreground: #f8f9fa;
-    --card: #252540;
+    --card: #1e293b;
     --card-foreground: #f8f9fa;
-    --popover: #252540;
+    --popover: #1e293b;
     --popover-foreground: #f8f9fa;
-    --primary: #f39c12;
-    --primary-foreground: #1a1a2e;
-    --secondary: #3d3d5c;
+    --primary: #f59e0b;
+    --primary-foreground: #0f172a;
+    --secondary: #334155;
     --secondary-foreground: #f8f9fa;
-    --muted: #3d3d5c;
-    --muted-foreground: #a0a0b0;
-    --accent: #4a4a6a;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --accent: #334155;
     --accent-foreground: #f8f9fa;
     --destructive: #ef4444;
     --destructive-foreground: #ffffff;
-    --border: #4a4a6a;
-    --input: #4a4a6a;
-    --ring: #f39c12;
-    --chart-1: #fbbf24;
-    --chart-2: #f39c12;
-    --chart-3: #f39c12;
-    --chart-4: #34d399;
+    --border: #334155;
+    --input: #334155;
+    --ring: #38bdf8;
+    --chart-1: #38bdf8;
+    --chart-2: #f59e0b;
+    --chart-3: #22c55e;
+    --chart-4: #fbbf24;
     --chart-5: #fb923c;
-    --sidebar: #202035;
+    --sidebar: #0b1120;
     --sidebar-foreground: #f8f9fa;
-    --sidebar-primary: #f39c12;
+    --sidebar-primary: #f59e0b;
     --sidebar-primary-foreground: #f8f9fa;
-    --sidebar-accent: #3d3d5c;
+    --sidebar-accent: #1e293b;
     --sidebar-accent-foreground: #f8f9fa;
-    --sidebar-border: #4a4a6a;
-    --sidebar-ring: #f39c12;
-    --mountain-blue: #f39c12;
-    --forest-green: #f39c12;
-    --saffron: #f39c12;
-    --golden-yellow: #fcd34d;
-    --sunset-orange: #f97316;
+    --sidebar-border: #334155;
+    --sidebar-ring: #38bdf8;
+    --mountain-blue: #38bdf8;
+    --forest-green: #22c55e;
+    --saffron: #f59e0b;
+    --golden-yellow: #fbbf24;
+    --sunset-orange: #fb923c;
     --temple-red: #ef4444;
+    --section-warm: #1e293b;
+    --section-cool: #132337;
+    --section-green: #14281f;
+    --section-golden: #242217;
   }
 }
 
-/* Enhanced color system with more vibrant backgrounds */
+/* Enhanced color system with distinct semantic colors */
 :root {
-  /* Base colors - white background */
+  /* Base colors - white background with slate text */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.18 0.02 260);
+  --foreground: oklch(0.208 0.042 265.755);
 
-  /* Card with warm cream tint */
-  --card: oklch(0.995 0.008 80);
-  --card-foreground: oklch(0.18 0.02 260);
+  /* Card */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.208 0.042 265.755);
 
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 260);
+  --popover-foreground: oklch(0.208 0.042 265.755);
 
-  /* Primary - Vibrant Saffron */
-  --primary: oklch(0.72 0.19 55);
-  --primary-foreground: oklch(0.99 0 0);
+  /* Primary - Cedar Amber */
+  --primary: oklch(0.665 0.179 58.3);
+  --primary-foreground: oklch(1 0 0);
 
-  /* Secondary - Soft cream/off-white with more warmth */
-  --secondary: oklch(0.94 0.025 75);
-  --secondary-foreground: oklch(0.25 0.02 260);
+  /* Secondary - Soft slate */
+  --secondary: oklch(0.96 0.01 240);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
 
-  /* Muted - Warm gray with slight color */
-  --muted: oklch(0.92 0.02 80);
-  --muted-foreground: oklch(0.45 0.02 260);
+  /* Muted - Cloud background & Slate 500 */
+  --muted: oklch(0.985 0.005 240);
+  --muted-foreground: oklch(0.55 0.03 255);
 
-  /* Accent - Light saffron tint - more visible */
-  --accent: oklch(0.92 0.06 65);
-  --accent-foreground: oklch(0.25 0.02 260);
+  /* Accent - Soft slate tint */
+  --accent: oklch(0.96 0.01 240);
+  --accent-foreground: oklch(0.208 0.042 265.755);
 
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0 0);
 
-  /* Borders - warm subtle */
-  --border: oklch(0.86 0.025 80);
-  --input: oklch(0.92 0.015 85);
-  --ring: oklch(0.72 0.19 55);
+  /* Borders & Inputs */
+  --border: oklch(0.928 0.006 264.5);
+  --input: oklch(0.928 0.006 264.5);
+  --ring: oklch(0.615 0.154 237.5);
 
-  /* Charts - vibrant colors */
-  --chart-1: oklch(0.65 0.2 45);
-  --chart-2: oklch(0.72 0.19 55);
-  --chart-3: oklch(0.72 0.19 55);
-  --chart-4: oklch(0.78 0.18 95);
-  --chart-5: oklch(0.6 0.22 30);
+  /* Charts */
+  --chart-1: oklch(0.615 0.154 237.5);
+  --chart-2: oklch(0.665 0.179 58.3);
+  --chart-3: oklch(0.537 0.147 142.5);
+  --chart-4: oklch(0.79 0.16 75);
+  --chart-5: oklch(0.62 0.21 42);
 
   --radius: 1rem;
 
   /* Sidebar */
-  --sidebar: oklch(0.985 0.01 85);
-  --sidebar-foreground: oklch(0.18 0 0);
-  --sidebar-primary: oklch(0.72 0.19 55);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.94 0.02 85);
-  --sidebar-accent-foreground: oklch(0.25 0 0);
-  --sidebar-border: oklch(0.88 0.02 85);
-  --sidebar-ring: oklch(0.72 0.19 55);
+  --sidebar: oklch(0.985 0.005 240);
+  --sidebar-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-primary: oklch(0.665 0.179 58.3);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.96 0.01 240);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.928 0.006 264.5);
+  --sidebar-ring: oklch(0.615 0.154 237.5);
 
-  /* Custom Himachal Tourism Colors - More Vibrant */
-  --mountain-blue: oklch(0.72 0.19 55);
-  --forest-green: oklch(0.72 0.19 55);
-  --saffron: oklch(0.72 0.19 55);
-  --golden-yellow: oklch(0.85 0.17 90);
-  --sunset-orange: oklch(0.68 0.2 40);
-  --temple-red: oklch(0.55 0.22 25);
+  /* Distinct Himachal Tourism Colors */
+  --mountain-blue: oklch(0.615 0.154 237.5);
+  --forest-green: oklch(0.537 0.147 142.5);
+  --saffron: oklch(0.665 0.179 58.3);
+  --golden-yellow: oklch(0.79 0.16 75);
+  --sunset-orange: oklch(0.62 0.21 42);
+  --temple-red: oklch(0.577 0.245 27.325);
 
-  /* New section background colors */
-  --section-warm: oklch(0.96 0.03 70);
-  --section-cool: oklch(0.96 0.03 55);
-  --section-green: oklch(0.96 0.03 55);
-  --section-golden: oklch(0.96 0.035 85);
+  /* Clean section background colors */
+  --section-warm: oklch(0.985 0.02 85);
+  --section-cool: oklch(0.978 0.02 230);
+  --section-green: oklch(0.985 0.02 145);
+  --section-golden: oklch(0.988 0.02 95);
 }
 
 .dark {
-  --background: oklch(0.13 0.02 260);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.16 0.02 260);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.16 0.02 260);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.78 0.19 55);
-  --primary-foreground: oklch(0.13 0 0);
-  --secondary: oklch(0.25 0.02 260);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.25 0.02 260);
-  --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.3 0.04 55);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.5 0.2 25);
+  --background: oklch(0.208 0.042 265.755);
+  --foreground: oklch(0.985 0.005 240);
+  --card: oklch(0.279 0.041 260);
+  --card-foreground: oklch(0.985 0.005 240);
+  --popover: oklch(0.279 0.041 260);
+  --popover-foreground: oklch(0.985 0.005 240);
+  --primary: oklch(0.79 0.16 75);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.37 0.035 255);
+  --secondary-foreground: oklch(0.985 0.005 240);
+  --muted: oklch(0.279 0.041 260);
+  --muted-foreground: oklch(0.71 0.025 250);
+  --accent: oklch(0.37 0.035 255);
+  --accent-foreground: oklch(0.985 0.005 240);
+  --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.28 0.02 260);
-  --input: oklch(0.28 0.02 260);
-  --ring: oklch(0.78 0.19 55);
-  --chart-1: oklch(0.7 0.2 45);
-  --chart-2: oklch(0.78 0.19 55);
-  --chart-3: oklch(0.78 0.19 55);
-  --chart-4: oklch(0.8 0.16 95);
-  --chart-5: oklch(0.65 0.22 30);
-  --sidebar: oklch(0.18 0.02 260);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.78 0.19 55);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.28 0.02 260);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.28 0.02 260);
-  --sidebar-ring: oklch(0.78 0.19 55);
+  --border: oklch(0.37 0.035 255);
+  --input: oklch(0.37 0.035 255);
+  --ring: oklch(0.75 0.15 220);
+  --chart-1: oklch(0.75 0.15 220);
+  --chart-2: oklch(0.79 0.16 75);
+  --chart-3: oklch(0.72 0.18 142);
+  --chart-4: oklch(0.85 0.15 85);
+  --chart-5: oklch(0.74 0.18 45);
+  --sidebar: oklch(0.18 0.04 265);
+  --sidebar-foreground: oklch(0.985 0.005 240);
+  --sidebar-primary: oklch(0.79 0.16 75);
+  --sidebar-primary-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-accent: oklch(0.279 0.041 260);
+  --sidebar-accent-foreground: oklch(0.985 0.005 240);
+  --sidebar-border: oklch(0.37 0.035 255);
+  --sidebar-ring: oklch(0.75 0.15 220);
 
-  --mountain-blue: oklch(0.78 0.19 55);
-  --forest-green: oklch(0.78 0.19 55);
-  --saffron: oklch(0.78 0.19 55);
-  --golden-yellow: oklch(0.88 0.16 90);
-  --sunset-orange: oklch(0.72 0.2 40);
-  --temple-red: oklch(0.6 0.22 25);
+  --mountain-blue: oklch(0.75 0.15 220);
+  --forest-green: oklch(0.72 0.18 142);
+  --saffron: oklch(0.79 0.16 75);
+  --golden-yellow: oklch(0.85 0.15 85);
+  --sunset-orange: oklch(0.74 0.18 45);
+  --temple-red: oklch(0.62 0.22 25);
+  --section-warm: oklch(0.279 0.041 260);
+  --section-cool: oklch(0.23 0.04 240);
+  --section-green: oklch(0.23 0.04 150);
+  --section-golden: oklch(0.24 0.04 85);
 }
 
 @theme inline {
-  --font-sans: "Poppins", "Inter", "Geist", sans-serif;
-  --font-serif: "Playfair Display", "Georgia", serif;
+  --font-sans: var(--font-montserrat), "Inter", "Geist", sans-serif;
+  --font-serif: var(--font-montserrat), "Playfair Display", "Georgia", serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -531,10 +539,13 @@ input[type="radio"] {
   /* Custom Theme Colors */
   --color-mountain-blue: var(--mountain-blue);
   --color-forest-green: var(--forest-green);
+  --color-pine-green: var(--forest-green);
   --color-saffron: var(--saffron);
+  --color-cedar-amber: var(--saffron);
   --color-golden-yellow: var(--golden-yellow);
   --color-sunset-orange: var(--sunset-orange);
   --color-temple-red: var(--temple-red);
+  --color-cloud: var(--muted);
 
   /* Section background colors */
   --color-section-warm: var(--section-warm);
@@ -589,7 +600,7 @@ body.menu-open {
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, var(--saffron) 0%, var(--sunset-orange) 100%);
+  background: linear-gradient(135deg, var(--mountain-blue) 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
