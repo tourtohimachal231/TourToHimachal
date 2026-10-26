@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Sparkles, Phone } from "lucide-react"
+import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/ui/logo"
 import { useSettings } from "@/lib/settings-context"
@@ -119,15 +119,16 @@ export function Header() {
             )}
 
             {whatsappNumber && (
-              <Button asChild variant="gradient" size="lg" className="hidden min-[1140px]:inline-flex gap-1 px-3 py-2 text-xs font-medium md:gap-2 md:px-4 md:py-2 md:text-sm">
+              <Button
+                asChild
+                className="hidden min-[1140px]:inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
+              >
                 <a
                   href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Sparkles className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                  <span className="hidden sm:inline">Book Now</span>
-                  <span className="sm:hidden">Book</span>
+                  Plan Your Trip
                 </a>
               </Button>
             )}
@@ -221,15 +222,16 @@ export function Header() {
                 </nav>
 
                 <div className="mt-auto space-y-3 sm:space-y-4">
-                  <Button asChild variant="gradient" size="lg" className="w-full text-sm font-medium sm:text-base">
+                  <Button
+                    asChild
+                    className="w-full min-h-[44px] items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 sm:text-base"
+                  >
                     <a
                       href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Sparkles className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                      <span className="xs:inline hidden">Book Now on WhatsApp</span>
-                      <span className="xs:hidden">Book on WhatsApp</span>
+                      Plan Your Trip
                     </a>
                   </Button>
 
