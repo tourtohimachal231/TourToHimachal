@@ -217,7 +217,7 @@ export function TaxiService() {
                 <div>
                   <h4 className="text-sm font-bold text-white">Mountain-Vetted Local Drivers</h4>
                   <p className="text-xs leading-relaxed text-slate-300">
-                    Himachali born chauffeurs with 10+ years mastering hairpin turns, fog, snow chains, and safe mountain driving.
+                    Himachali local drivers with 10+ years of experience on hairpin curves, fog, snow chains, and safe mountain roads.
                   </p>
                 </div>
               </div>

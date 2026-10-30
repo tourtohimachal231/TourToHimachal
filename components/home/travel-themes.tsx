@@ -36,7 +36,7 @@ const themes: TravelTheme[] = [
     image: "https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795732/qyc7j6ckdxwsx2taf1d9.webp",
     icon: Compass,
     href: "/packages?theme=spiritual",
-    highlights: ["VIP Aarti Assistance", "Pilgrim Homestays", "Local Chauffeur-Guides"],
+    highlights: ["Temple Darshan Help", "Pilgrim Homestays", "Local Driver & Guide"],
   },
   {
     id: "honeymoon",

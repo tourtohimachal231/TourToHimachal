@@ -182,11 +182,11 @@ export function FairBookingPolicy({
                   </div>
 
                   <h3 className="mt-3 text-base font-semibold text-slate-900">
-                    Room & Vehicle Reservation
+                    Hotel & Car Booking
                   </h3>
 
                   <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
-                    Locks your hotel room reservations across hill stations during peak demand and allocates your dedicated vehicle and commercial hill chauffeur.
+                    Locks your hotel room bookings across hill stations and assigns your dedicated car and experienced local driver.
                   </p>
                 </div>
 
@@ -224,7 +224,7 @@ export function FairBookingPolicy({
                   </div>
 
                   <h3 className="mt-3 text-base font-semibold text-slate-900">
-                    Inspect, Board & Depart
+                    Meet Driver & Board Cab
                   </h3>
 
                   <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
@@ -266,7 +266,7 @@ export function FairBookingPolicy({
                   </div>
 
                   <h3 className="mt-3 text-base font-semibold text-slate-900">
-                    Cleared on Destination Arrival
+                    Payment Cleared at Hotel Arrival
                   </h3>
 
                   <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
@@ -296,7 +296,7 @@ export function FairBookingPolicy({
                     Why 100% Payment is Cleared Upon Reaching the Destination Hotel:
                   </h4>
                   <p className="mt-1 leading-relaxed text-slate-600">
-                    Our operations team coordinates travel across multiple mountain valleys, where local chauffeurs and partner hotel staff are dedicated strictly to passenger safety and hospitality. Our on-ground drivers and hotel reception teams are not authorized to manage payment collections or resolve billing disputes during the tour or upon final checkout. Clearing the remaining balance upon reaching your destination hotel on Day 1 guarantees zero roadside friction, prevents misunderstandings, and ensures that the rest of your vacation proceeds with uninterrupted comfort.
+                    Our local drivers and hotel staff are there to give you a safe and comfortable trip. They are not allowed to collect payments or deal with billing issues during the tour or at checkout. Paying the remaining balance when you reach your destination hotel on Day 1 means everything is settled upfront, so you will not face any payment confusion or awkward talks on the road and can enjoy your holiday peacefully.
                   </p>
                 </div>
               </div>
@@ -468,11 +468,11 @@ export function FairBookingPolicy({
                   </div>
 
                   <h3 className="mt-3 text-base font-semibold text-slate-900">
-                    Vehicle & Chauffeur Reservation
+                    Cab & Driver Booking
                   </h3>
 
                   <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
-                    Guarantees your selected vehicle category (Innova Crysta, Dzire, Ertiga, or Force Urbania) and allocates an experienced mountain chauffeur.
+                    Guarantees your selected cab (Innova Crysta, Dzire, Ertiga, or Force Urbania) and assigns an experienced local mountain driver.
                   </p>
                 </div>
 
@@ -510,11 +510,11 @@ export function FairBookingPolicy({
                   </div>
 
                   <h3 className="mt-3 text-base font-semibold text-slate-900">
-                    Board, Verify, Then Depart
+                    Meet Driver & Start Trip
                   </h3>
 
                   <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
-                    Payable only after you meet your chauffeur at Chandigarh, Delhi, Kalka, or your pickup station, inspect vehicle cleanliness, and start your journey.
+                    Payable only after you meet your driver at Chandigarh, Delhi, Kalka, or your pickup point, check the car cleanliness, and start your trip.
                   </p>
                 </div>
 
@@ -552,11 +552,11 @@ export function FairBookingPolicy({
                   </div>
 
                   <h3 className="mt-3 text-base font-semibold text-slate-900">
-                    Cleared on Destination Arrival
+                    Payment Cleared at Destination Drop
                   </h3>
 
                   <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
-                    Payable upon reaching your destination hotel or final drop on Day 1, clearing 100% of the cab fare so chauffeur and traveler have zero payment disputes.
+                    Payable upon reaching your destination hotel or drop point on Day 1, clearing 100% of the cab fare so you have no payment confusion for the rest of your trip.
                   </p>
                 </div>
 

@@ -285,7 +285,7 @@ export default function TermsPage() {
                       When booking an all-inclusive holiday package with hotel stays (Shimla, Manali, Dharamshala, Dalhousie, Spiti, etc.), payments are phased across three clear milestones:
                     </p>
                     <ul className="text-muted-foreground text-sm space-y-2.5 list-disc list-inside bg-muted/20 p-4 rounded-xl">
-                      <li><strong>Confirmation Token (25%):</strong> Paid at the time of booking to confirm your package and issue official stamped vouchers. Locks hotel room inventory across hill stations and reserves your dedicated commercial vehicle and mountain chauffeur.</li>
+                      <li><strong>Confirmation Token (25%):</strong> Paid at the time of booking to confirm your package and issue official stamped vouchers. Locks your hotel room bookings across hill stations and assigns your dedicated car and experienced mountain driver.</li>
                       <li><strong>On Boarding Vehicle (50%):</strong> Payable upon boarding your vehicle on Day 1 at your pickup hub (Chandigarh, Kalka, Delhi, or airport/railway station) after you inspect the cab's cleanliness, luggage space, and AC comfort.</li>
                       <li><strong>Destination Hotel Arrival (Remaining 25%):</strong> Payable immediately upon reaching your destination hotel on Day 1 before room check-in. <strong>100% of the tour package payment is cleared upon destination hotel arrival on Day 1</strong> before onward local sightseeing transfers begin.</li>
                     </ul>
@@ -296,10 +296,10 @@ export default function TermsPage() {
                         <Info className="mt-0.5 h-4 w-4 text-amber-700 shrink-0" />
                         <div>
                           <strong className="text-amber-950 font-semibold">
-                            Operational Notice: Why 100% Payment is Cleared on Destination Hotel Arrival:
+                            Why full payment is cleared on hotel arrival:
                           </strong>
                           <p className="mt-1 text-slate-700 leading-relaxed">
-                            TourToHimachal operates across diverse Himalayan valleys where our local drivers and partner hotel staff are dedicated strictly to passenger driving safety and hospitality. Our on-ground chauffeurs and hotel front-desk teams are not authorized to handle billing collections, payment disputes, or collection follow-ups midway through the tour or at checkout. Settling the remaining balance upon arrival at your destination hotel on Day 1 eliminates payment friction, ensures seamless room check-ins, and guarantees an undisturbed vacation for the remainder of your trip.
+                            Our local drivers and hotel staff focus entirely on driving you safely and taking care of your stay. They are not permitted to collect money or settle payment disputes during the trip or at checkout. Clearing the remaining balance when you reach your destination hotel on Day 1 means your trip is completely paid for, so there is no awkward money talk on the road and you can enjoy your vacation peacefully.
                           </p>
                         </div>
                       </div>
@@ -313,9 +313,9 @@ export default function TermsPage() {
                       For travelers who have already booked accommodations or require transfers, one-way drops, or private sightseeing cabs:
                     </p>
                     <ul className="text-muted-foreground text-sm space-y-2 list-disc list-inside bg-muted/20 p-4 rounded-xl">
-                      <li><strong>Advance Token (25% or ₹1,000 min):</strong> Confirms your vehicle category (Innova Crysta, Dzire, Ertiga, Force Urbania) and allocates a licensed mountain chauffeur. Driver details and vehicle number are shared 12 hours prior to pickup.</li>
-                      <li><strong>Trip Start & Boarding (50%):</strong> Payable after you meet your chauffeur at pickup point, inspect the cab, and start your journey on Day 1.</li>
-                      <li><strong>Destination Arrival / Drop (Remaining 25%):</strong> Payable upon reaching your destination hotel or final drop on Day 1, clearing 100% of the cab fare so chauffeur and traveler have zero roadside payment disputes.</li>
+                      <li><strong>Advance Token (25% or ₹1,000 min):</strong> Confirms your cab (Innova Crysta, Dzire, Ertiga, Force Urbania) and assigns an experienced mountain driver. Driver details and car number are shared 12 hours before pickup.</li>
+                      <li><strong>Trip Start & Boarding (50%):</strong> Payable after you meet your driver at the pickup point, check the cab, and board to start your journey on Day 1.</li>
+                      <li><strong>Destination Arrival / Drop (Remaining 25%):</strong> Payable upon reaching your destination hotel or drop point on Day 1, clearing 100% of the cab fare so there is no payment confusion on the road.</li>
                     </ul>
                   </div>
 
@@ -498,7 +498,7 @@ export default function TermsPage() {
                   <div className="bg-card border-border rounded-2xl border p-5">
                     <h3 className="text-foreground font-semibold mb-2">Pickup & Waiting Time</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Please provide precise pickup location and flight/train details. Our chauffeur waits up to 30 minutes free of charge beyond scheduled pickup. For airport pickups, delays due to rescheduled flights are accommodated without penalty when informed in advance.
+                      Please share your exact pickup location and train or flight details. Our driver will wait up to 30 minutes free of charge. If your flight or train is delayed, just let us know in advance and we will adjust your pickup time without extra charge.
                     </p>
                   </div>
 
@@ -510,9 +510,9 @@ export default function TermsPage() {
                   </div>
 
                   <div className="bg-card border-border rounded-2xl border p-5">
-                    <h3 className="text-foreground font-semibold mb-2">Mountain-Certified Chauffeurs</h3>
+                    <h3 className="text-foreground font-semibold mb-2">Experienced Mountain Drivers</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      All vehicles are driven by verified, licensed commercial hill drivers with years of experience navigating hairpins, snow, and steep mountain passes. Drivers follow safety speed limits and road discipline strictly.
+                      All our cabs are driven by polite, licensed local drivers who know Himachal mountain roads, hairpin bends, and snow conditions very well. They drive at safe speeds and follow traffic rules strictly.
                     </p>
                   </div>
 

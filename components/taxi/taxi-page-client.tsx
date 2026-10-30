@@ -51,7 +51,7 @@ const taxiFaqs = [
   {
     question: "How much advance payment is required for taxi booking?",
     answer:
-      "We require a 25% token advance (minimum ₹1,000) to confirm your cab category and assign a verified mountain chauffeur. 50% is payable when you inspect and board the car on Day 1, and the remaining 25% balance is cleared upon reaching your destination hotel on Day 1.",
+      "We require a 25% token advance (minimum ₹1,000) to confirm your cab category and assign an experienced local driver. 50% is payable when you check and board the car on Day 1, and the remaining 25% balance is cleared upon reaching your destination hotel on Day 1.",
   },
   {
     question: "Are Rohtang Pass and Atal Tunnel permits included in taxi fares?",
