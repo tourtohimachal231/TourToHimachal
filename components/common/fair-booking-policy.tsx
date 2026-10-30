@@ -1,22 +1,22 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import {
   ShieldCheck,
   CheckCircle2,
   Clock,
   Car,
   Hotel,
-  CloudSnow,
-  BadgePercent,
-  FileCheck2,
+  FileText,
   Sparkles,
-  ArrowRight,
-  MapPin,
-  Calendar,
+  CalendarCheck,
+  Receipt,
+  UserCheck,
+  Mountain,
+  Compass,
+  Info,
 } from "lucide-react"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
 interface FairBookingPolicyProps {
   defaultTab?: "packages" | "taxi"
@@ -29,391 +29,729 @@ export function FairBookingPolicy({
   compact = false,
   className = "",
 }: FairBookingPolicyProps) {
-  const [activeTab, setActiveTab] = useState<string>(defaultTab)
+  const [activeTab, setActiveTab] = useState<"packages" | "taxi">(defaultTab)
 
   return (
     <section
-      className={`relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-xl sm:p-8 md:p-10 ${className}`}
+      aria-label="Transparent Booking, Milestone Payments & High-Pass Permit Terms"
+      className={`relative overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] ${className}`}
     >
-      {/* Background accents */}
-      <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-amber-500/5 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
-
-      {/* Header */}
-      <div className="relative mx-auto mb-8 max-w-3xl text-center sm:mb-10">
-        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-1.5 text-xs font-semibold tracking-wider text-slate-800 uppercase sm:text-sm">
-          <ShieldCheck className="h-4 w-4 text-emerald-600" />
-          Transparent Booking & Payment Terms
+      {/* Refined Header */}
+      <div className="relative mx-auto mb-8 max-w-2xl text-center sm:mb-10">
+        <div className="mb-3.5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1 text-xs font-medium text-slate-700 shadow-2xs">
+          <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+          <span>Transparent Milestone Terms</span>
         </div>
+
         <h2 className="font-serif text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl md:text-4xl">
-          Clear Milestone Payments, Zero Hidden Charges
+          Zero 100% Upfront Stress. Pay as Your Trip Unfolds.
         </h2>
+
         <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-          Whether you need a complete holiday package with hotel reservations or simply dedicated cabs and fleets for
-          your journey, our milestone-based schedules keep your funds secure every step of the way.
+          We believe genuine mountain hospitality begins with mutual trust. Your funds stay safe with phased milestone payments tied directly to your travel progress, with full clearance upon reaching your destination hotel.
         </p>
       </div>
 
-      {/* Service Mode Selector */}
-      <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="mx-auto w-full">
-        <div className="mb-8 flex justify-center">
-          <TabsList className="grid h-auto w-full max-w-xl grid-cols-1 gap-2 rounded-2xl border border-slate-200 bg-slate-100/80 p-1.5 sm:grid-cols-2">
-            <TabsTrigger
-              value="packages"
-              className="flex items-center justify-center gap-2 rounded-xl py-3 text-xs font-semibold transition-all data-[state=active]:bg-white data-[state=active]:text-slate-950 data-[state=active]:shadow-sm sm:text-sm"
+      {/* Modern Segmented Tab Switcher */}
+      <div className="mb-8 flex justify-center sm:mb-10">
+        <div className="inline-flex max-w-full items-center rounded-2xl border border-slate-200 bg-slate-100/80 p-1.5 shadow-2xs">
+          <button
+            type="button"
+            onClick={() => setActiveTab("packages")}
+            className={`relative flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold transition-all duration-200 sm:px-5 sm:text-sm ${
+              activeTab === "packages"
+                ? "bg-white text-slate-900 shadow-sm"
+                : "text-slate-600 hover:text-slate-900"
+            }`}
+          >
+            <Hotel className="h-4 w-4 text-amber-600 shrink-0" />
+            <span>Complete Holiday Packages</span>
+            <span
+              className={`hidden rounded-md px-1.5 py-0.5 text-[10px] font-medium tracking-wide sm:inline-block ${
+                activeTab === "packages"
+                  ? "bg-amber-50 text-amber-800 border border-amber-200/60"
+                  : "bg-slate-200/60 text-slate-600"
+              }`}
             >
-              <Hotel className="h-4 w-4 text-amber-600" />
-              <div className="text-left">
-                <p className="leading-tight">Holiday Packages</p>
-                <p className="text-[10px] font-normal text-slate-500">Hotels + Dedicated Cab</p>
-              </div>
-            </TabsTrigger>
-            <TabsTrigger
-              value="taxi"
-              className="flex items-center justify-center gap-2 rounded-xl py-3 text-xs font-semibold transition-all data-[state=active]:bg-white data-[state=active]:text-slate-950 data-[state=active]:shadow-sm sm:text-sm"
+              Hotels + Cab
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab("taxi")}
+            className={`relative flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold transition-all duration-200 sm:px-5 sm:text-sm ${
+              activeTab === "taxi"
+                ? "bg-white text-slate-900 shadow-sm"
+                : "text-slate-600 hover:text-slate-900"
+            }`}
+          >
+            <Car className="h-4 w-4 text-emerald-600 shrink-0" />
+            <span>Cab & Fleet Rental Only</span>
+            <span
+              className={`hidden rounded-md px-1.5 py-0.5 text-[10px] font-medium tracking-wide sm:inline-block ${
+                activeTab === "taxi"
+                  ? "bg-emerald-50 text-emerald-800 border border-emerald-200/60"
+                  : "bg-slate-200/60 text-slate-600"
+              }`}
             >
-              <Car className="h-4 w-4 text-emerald-600" />
-              <div className="text-left">
-                <p className="leading-tight">Cab & Fleet Rental Only</p>
-                <p className="text-[10px] font-normal text-slate-500">Transfers & Sightseeing (No Hotels)</p>
+              Transfers Only
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {activeTab === "packages" ? (
+          <motion.div
+            key="packages-content"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-8 sm:space-y-10"
+          >
+            {/* Visual Milestone Progress Track */}
+            <div className="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-4 sm:p-5">
+              <div className="mb-3 flex flex-col justify-between gap-1 text-xs sm:flex-row sm:items-center">
+                <span className="font-semibold text-slate-800">
+                  Holiday Package Milestone Schedule
+                </span>
+                <span className="text-slate-600">
+                  <strong className="text-slate-900 font-semibold">100%</strong> of tour payment is cleared upon destination hotel arrival on Day 1
+                </span>
               </div>
-            </TabsTrigger>
-          </TabsList>
+
+              {/* Progress Bar Track */}
+              <div className="flex h-3 w-full overflow-hidden rounded-full bg-slate-200/80 p-0.5">
+                <div
+                  className="h-full rounded-l-full bg-amber-500 transition-all duration-500"
+                  style={{ width: "25%" }}
+                  title="25% Confirmation Token"
+                />
+                <div
+                  className="h-full bg-sky-600 transition-all duration-500"
+                  style={{ width: "50%" }}
+                  title="50% On Boarding Vehicle"
+                />
+                <div
+                  className="h-full rounded-r-full bg-emerald-600 transition-all duration-500"
+                  style={{ width: "25%" }}
+                  title="25% Upon Destination Hotel Arrival"
+                />
+              </div>
+
+              {/* Step Keyline Summary */}
+              <div className="mt-2.5 grid grid-cols-3 text-center text-[11px] font-medium text-slate-600">
+                <div className="flex items-center justify-start gap-1">
+                  <span className="h-2 w-2 rounded-full bg-amber-500 shrink-0" />
+                  <span>25% at Booking</span>
+                </div>
+                <div className="flex items-center justify-center gap-1">
+                  <span className="h-2 w-2 rounded-full bg-sky-600 shrink-0" />
+                  <span>50% on Boarding (Day 1)</span>
+                </div>
+                <div className="flex items-center justify-end gap-1">
+                  <span className="h-2 w-2 rounded-full bg-emerald-600 shrink-0" />
+                  <span>25% at Destination Hotel</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 3 Connected Milestone Cards */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-5">
+              {/* Milestone 1 */}
+              <div className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-md sm:p-6">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                      Milestone 01
+                    </span>
+                    <span className="rounded-full border border-amber-200/80 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-900">
+                      Booking Day
+                    </span>
+                  </div>
+
+                  <div className="mt-4 flex items-baseline gap-2">
+                    <span className="font-serif text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                      25%
+                    </span>
+                    <span className="text-xs font-semibold tracking-wide uppercase text-amber-700">
+                      Confirmation Token
+                    </span>
+                  </div>
+
+                  <h3 className="mt-3 text-base font-semibold text-slate-900">
+                    Room & Vehicle Reservation
+                  </h3>
+
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+                    Locks your hotel room reservations across hill stations during peak demand and allocates your dedicated vehicle and commercial hill chauffeur.
+                  </p>
+                </div>
+
+                <div className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs text-slate-700">
+                  <div className="flex items-start gap-2">
+                    <FileText className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-600" />
+                    <span>Official stamped booking voucher issued within 24 hours</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CalendarCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-600" />
+                    <span>Direct hotel confirmation voucher numbers provided for verification</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Milestone 2 */}
+              <div className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-md sm:p-6">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                      Milestone 02
+                    </span>
+                    <span className="rounded-full border border-sky-200/80 bg-sky-50 px-2.5 py-0.5 text-xs font-semibold text-sky-900">
+                      Day 1 Pickup
+                    </span>
+                  </div>
+
+                  <div className="mt-4 flex items-baseline gap-2">
+                    <span className="font-serif text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                      50%
+                    </span>
+                    <span className="text-xs font-semibold tracking-wide uppercase text-sky-700">
+                      On Boarding Vehicle
+                    </span>
+                  </div>
+
+                  <h3 className="mt-3 text-base font-semibold text-slate-900">
+                    Inspect, Board & Depart
+                  </h3>
+
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+                    Payable when your assigned driver arrives at your pickup hub (Chandigarh, Kalka, Delhi, or airport/station) and you inspect and board your vehicle on Day 1.
+                  </p>
+                </div>
+
+                <div className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs text-slate-700">
+                  <div className="flex items-start gap-2">
+                    <Car className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sky-600" />
+                    <span>Verify vehicle cleanliness, luggage space, and AC firsthand</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Hotel className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sky-600" />
+                    <span>Clears onward route fuel, expressway FASTag tolls, and driver transit</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Milestone 3 */}
+              <div className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-md sm:p-6">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                      Milestone 03
+                    </span>
+                    <span className="rounded-full border border-emerald-200/80 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-900">
+                      Destination Hotel
+                    </span>
+                  </div>
+
+                  <div className="mt-4 flex items-baseline gap-2">
+                    <span className="font-serif text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                      25%
+                    </span>
+                    <span className="text-xs font-semibold tracking-wide uppercase text-emerald-700">
+                      Full Tour Clearance
+                    </span>
+                  </div>
+
+                  <h3 className="mt-3 text-base font-semibold text-slate-900">
+                    Cleared on Destination Arrival
+                  </h3>
+
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+                    Payable immediately upon reaching your destination hotel on Day 1 to complete room check-in and clear 100% of tour payment before onward sightseeing transfers begin.
+                  </p>
+                </div>
+
+                <div className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs text-slate-700">
+                  <div className="flex items-start gap-2">
+                    <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />
+                    <span>100% tour payment is cleared upon destination hotel arrival on Day 1</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Receipt className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />
+                    <span>Enables smooth room check-ins and undisturbed onward sightseeing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Operational Transparency Note */}
+            <div className="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-4 sm:p-5 text-xs sm:text-sm text-slate-700">
+              <div className="flex items-start gap-3">
+                <Info className="mt-0.5 h-5 w-5 text-amber-600 shrink-0" />
+                <div>
+                  <h4 className="font-semibold text-slate-900">
+                    Why 100% Payment is Cleared Upon Reaching the Destination Hotel:
+                  </h4>
+                  <p className="mt-1 leading-relaxed text-slate-600">
+                    Our operations team coordinates travel across multiple mountain valleys, where local chauffeurs and partner hotel staff are dedicated strictly to passenger safety and hospitality. Our on-ground drivers and hotel reception teams are not authorized to manage payment collections or resolve billing disputes during the tour or upon final checkout. Clearing the remaining balance upon reaching your destination hotel on Day 1 guarantees zero roadside friction, prevents misunderstandings, and ensures that the rest of your vacation proceeds with uninterrupted comfort.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Cancellation & Flexibility Tiers */}
+            <div className="rounded-2xl border border-slate-200/90 bg-slate-50/50 p-5 sm:p-6 md:p-7">
+              <div className="mb-5 flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
+                <div>
+                  <h3 className="flex items-center gap-2 font-serif text-base font-bold text-slate-900 sm:text-lg">
+                    <Clock className="h-4 w-4 text-amber-600 shrink-0" />
+                    Fair Cancellation & Rescheduling Terms
+                  </h3>
+                  <p className="mt-0.5 text-xs text-slate-500">
+                    Clear notice windows designed to pass on maximum flexibility while respecting hotel block reservations.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-3 sm:gap-4">
+                {/* 15+ Days */}
+                <div className="flex flex-col justify-between rounded-xl border border-emerald-200/80 bg-white p-4 shadow-2xs">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900">15+ Days Prior</span>
+                      <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 border border-emerald-200/60">
+                        Max Flexibility
+                      </span>
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-lg font-bold text-emerald-700">
+                        90% Refund
+                      </p>
+                      <p className="text-[11px] font-medium text-slate-500">
+                        or 100% 1-Year Credit Voucher
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-3 border-t border-slate-100 pt-2.5 text-[11px] leading-relaxed text-slate-500">
+                    Nominal 10% (max ₹1,000) retained for payment gateway and hotel reservation admin costs.
+                  </p>
+                </div>
+
+                {/* 7 to 14 Days */}
+                <div className="flex flex-col justify-between rounded-xl border border-amber-200/80 bg-white p-4 shadow-2xs">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900">7 to 14 Days Prior</span>
+                      <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800 border border-amber-200/60">
+                        Partial Retention
+                      </span>
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-lg font-bold text-amber-800">
+                        50% Refund
+                      </p>
+                      <p className="text-[11px] font-medium text-slate-500">
+                        Immediate balance return
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-3 border-t border-slate-100 pt-2.5 text-[11px] leading-relaxed text-slate-500">
+                    Hotels in Himachal hill stations enforce partial retention for rooms released 2 weeks before arrival.
+                  </p>
+                </div>
+
+                {/* Under 7 Days */}
+                <div className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900">Under 7 Days</span>
+                      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-700 border border-slate-200">
+                        Standard Terms
+                      </span>
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-lg font-bold text-slate-800">
+                        Advance Retained
+                      </p>
+                      <p className="text-[11px] font-medium text-slate-500">
+                        100% room commitment
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-3 border-t border-slate-100 pt-2.5 text-[11px] leading-relaxed text-slate-500">
+                    Hill destination properties enforce 100% room retention on last-minute releases.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="taxi-content"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-8 sm:space-y-10"
+          >
+            {/* Visual Milestone Progress Track for Fleet */}
+            <div className="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-4 sm:p-5">
+              <div className="mb-3 flex flex-col justify-between gap-1 text-xs sm:flex-row sm:items-center">
+                <span className="font-semibold text-slate-800">
+                  Cab & Fleet Rental Milestone Schedule
+                </span>
+                <span className="text-slate-600">
+                  <strong className="text-slate-900 font-semibold">100%</strong> of cab fare is cleared upon destination hotel arrival / station drop
+                </span>
+              </div>
+
+              {/* Progress Bar Track */}
+              <div className="flex h-3 w-full overflow-hidden rounded-full bg-slate-200/80 p-0.5">
+                <div
+                  className="h-full rounded-l-full bg-amber-500 transition-all duration-500"
+                  style={{ width: "25%" }}
+                  title="25% Advance Token"
+                />
+                <div
+                  className="h-full bg-sky-600 transition-all duration-500"
+                  style={{ width: "50%" }}
+                  title="50% On Boarding Cab"
+                />
+                <div
+                  className="h-full rounded-r-full bg-emerald-600 transition-all duration-500"
+                  style={{ width: "25%" }}
+                  title="25% Upon Destination Hotel Arrival"
+                />
+              </div>
+
+              {/* Step Keyline Summary */}
+              <div className="mt-2.5 grid grid-cols-3 text-center text-[11px] font-medium text-slate-600">
+                <div className="flex items-center justify-start gap-1">
+                  <span className="h-2 w-2 rounded-full bg-amber-500 shrink-0" />
+                  <span>25% at Booking</span>
+                </div>
+                <div className="flex items-center justify-center gap-1">
+                  <span className="h-2 w-2 rounded-full bg-sky-600 shrink-0" />
+                  <span>50% when Boarding (Day 1)</span>
+                </div>
+                <div className="flex items-center justify-end gap-1">
+                  <span className="h-2 w-2 rounded-full bg-emerald-600 shrink-0" />
+                  <span>25% at Destination Hotel</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 3 Connected Milestone Cards for Fleet */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-5">
+              {/* Step 1 */}
+              <div className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-md sm:p-6">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                      Milestone 01
+                    </span>
+                    <span className="rounded-full border border-amber-200/80 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-900">
+                      Booking Day
+                    </span>
+                  </div>
+
+                  <div className="mt-4 flex items-baseline gap-2">
+                    <span className="font-serif text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                      25%
+                    </span>
+                    <span className="text-xs font-semibold tracking-wide uppercase text-amber-700">
+                      Advance Token (or ₹1,000)
+                    </span>
+                  </div>
+
+                  <h3 className="mt-3 text-base font-semibold text-slate-900">
+                    Vehicle & Chauffeur Reservation
+                  </h3>
+
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+                    Guarantees your selected vehicle category (Innova Crysta, Dzire, Ertiga, or Force Urbania) and allocates an experienced mountain chauffeur.
+                  </p>
+                </div>
+
+                <div className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs text-slate-700">
+                  <div className="flex items-start gap-2">
+                    <Car className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />
+                    <span>Guaranteed vehicle model with clean commercial registration</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <UserCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />
+                    <span>Driver details & direct phone shared 12 hrs before pickup</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-md sm:p-6">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                      Milestone 02
+                    </span>
+                    <span className="rounded-full border border-sky-200/80 bg-sky-50 px-2.5 py-0.5 text-xs font-semibold text-sky-900">
+                      Pickup Hub
+                    </span>
+                  </div>
+
+                  <div className="mt-4 flex items-baseline gap-2">
+                    <span className="font-serif text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                      50%
+                    </span>
+                    <span className="text-xs font-semibold tracking-wide uppercase text-sky-700">
+                      On Boarding Cab
+                    </span>
+                  </div>
+
+                  <h3 className="mt-3 text-base font-semibold text-slate-900">
+                    Board, Verify, Then Depart
+                  </h3>
+
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+                    Payable only after you meet your chauffeur at Chandigarh, Delhi, Kalka, or your pickup station, inspect vehicle cleanliness, and start your journey.
+                  </p>
+                </div>
+
+                <div className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs text-slate-700">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sky-600" />
+                    <span>Inspect vehicle AC, boot capacity, and cleanliness firsthand</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Receipt className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sky-600" />
+                    <span>Covers expressway highway tolls and hill route fuel</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-md sm:p-6">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                      Milestone 03
+                    </span>
+                    <span className="rounded-full border border-emerald-200/80 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-900">
+                      Destination Arrival
+                    </span>
+                  </div>
+
+                  <div className="mt-4 flex items-baseline gap-2">
+                    <span className="font-serif text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                      25%
+                    </span>
+                    <span className="text-xs font-semibold tracking-wide uppercase text-emerald-700">
+                      Full Fare Clearance
+                    </span>
+                  </div>
+
+                  <h3 className="mt-3 text-base font-semibold text-slate-900">
+                    Cleared on Destination Arrival
+                  </h3>
+
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+                    Payable upon reaching your destination hotel or final drop on Day 1, clearing 100% of the cab fare so chauffeur and traveler have zero payment disputes.
+                  </p>
+                </div>
+
+                <div className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs text-slate-700">
+                  <div className="flex items-start gap-2">
+                    <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />
+                    <span>100% cab fare cleared upon reaching destination hotel / drop point</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />
+                    <span>Zero roadside payment friction for remaining days or transfers</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Fleet Cancellation Rules */}
+            <div className="rounded-2xl border border-slate-200/90 bg-slate-50/50 p-5 sm:p-6 md:p-7">
+              <div className="mb-5 flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
+                <div>
+                  <h3 className="flex items-center gap-2 font-serif text-base font-bold text-slate-900 sm:text-lg">
+                    <Clock className="h-4 w-4 text-emerald-600 shrink-0" />
+                    Fleet-Only Cancellation & Rescheduling Terms
+                  </h3>
+                  <p className="mt-0.5 text-xs text-slate-500">
+                    Because no hotel rooms are locked, taxi bookings enjoy maximum date flexibility and straightforward cancellation rules.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-3 sm:gap-4">
+                <div className="flex flex-col justify-between rounded-xl border border-emerald-200/80 bg-white p-4 shadow-2xs">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900">24+ Hours Prior</span>
+                      <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 border border-emerald-200/60">
+                        100% Protected
+                      </span>
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-lg font-bold text-emerald-700">
+                        100% Full Refund
+                      </p>
+                      <p className="text-[11px] font-medium text-slate-500">
+                        or Free Date Reschedule
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-3 border-t border-slate-100 pt-2.5 text-[11px] leading-relaxed text-slate-500">
+                    Cancel or change your travel date without any cancellation fee or deduction.
+                  </p>
+                </div>
+
+                <div className="flex flex-col justify-between rounded-xl border border-amber-200/80 bg-white p-4 shadow-2xs">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900">12 to 24 Hours</span>
+                      <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800 border border-amber-200/60">
+                        Partial Notice
+                      </span>
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-lg font-bold text-amber-800">
+                        50% Refund
+                      </p>
+                      <p className="text-[11px] font-medium text-slate-500">
+                        Driver slot protection
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-3 border-t border-slate-100 pt-2.5 text-[11px] leading-relaxed text-slate-500">
+                    Nominal ₹500 retained to compensate driver for their allocated mountain slot.
+                  </p>
+                </div>
+
+                <div className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900">Under 12 Hours</span>
+                      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-700 border border-slate-200">
+                        Dispatched
+                      </span>
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-lg font-bold text-slate-800">
+                        Token Retained
+                      </p>
+                      <p className="text-[11px] font-medium text-slate-500">
+                        Empty km fuel cost
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-3 border-t border-slate-100 pt-2.5 text-[11px] leading-relaxed text-slate-500">
+                    Advance token covers empty vehicle dead-mileage fuel once vehicle is en route.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Special Permits & Road Closures Advisory Section */}
+      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 sm:mt-10">
+        {/* Special Permits Card (Rohtang Pass & Atal Tunnel Beyond-Routes) */}
+        <div className="overflow-hidden rounded-2xl border border-amber-200 bg-amber-50/70 p-5 text-slate-900 shadow-2xs sm:p-6">
+          <div className="flex items-start gap-4">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 text-amber-800 ring-1 ring-amber-500/30">
+              <Compass className="h-5 w-5" />
+            </div>
+
+            <div className="flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="font-serif text-base font-bold text-slate-900 sm:text-lg">
+                  Special High-Pass Permits
+                </h3>
+                <span className="rounded-full bg-amber-200/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-900">
+                  Rohtang & Atal Tunnel
+                </span>
+              </div>
+
+              <p className="mt-2 text-xs leading-relaxed text-slate-700 sm:text-sm">
+                Certain high-altitude mountain locations — specifically <strong>Rohtang Pass</strong> (which requires an NGT Green Permit issued by the District Administration) and special transit routes beyond <strong>Atal Tunnel</strong> (towards Sissu, Koksar, or Keylong) — are strictly regulated by the Himachal Pradesh Government and Border Roads Organisation (BRO).
+              </p>
+
+              <div className="mt-3 space-y-1.5 border-t border-amber-200/60 pt-3 text-xs text-slate-700">
+                <div className="flex items-start gap-2">
+                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-amber-600 shrink-0" />
+                  <span><strong>Excluded from Standard Quotes:</strong> High-pass permit fees are excluded from base package and taxi rates due to dynamic government quotas and seasonal weather.</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-amber-600 shrink-0" />
+                  <span><strong>Subject to Route Status:</strong> These passes open or close dynamically based on snowfall and official clearance. If open, we detail the permit in your itinerary and charge strictly as per actuals.</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* ----------------- TAB 1: COMPLETE TOUR PACKAGES (WITH HOTELS) ----------------- */}
-        <TabsContent value="packages" className="space-y-8 focus-visible:outline-none">
-          {/* Service Clarification Notice */}
-          <div className="rounded-xl border border-amber-200/80 bg-amber-50/70 p-4 text-xs text-amber-950 sm:text-sm">
-            <p className="font-semibold text-amber-900">
-              Applies to Complete Holiday Packages (Hotel Stays + Dedicated Cab + Sightseeing)
-            </p>
-            <p className="mt-1 text-xs text-amber-800">
-              When booking a complete tour, hotel rooms in Shimla, Manali, Dharamshala, or Dalhousie are held in your name.
-              Payment is divided across three milestones so you never pay 100% upfront.
-            </p>
-          </div>
+        {/* Road Closures & Adverse Weather Route Adjustments */}
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-900 p-5 text-white shadow-2xs sm:p-6">
+          <div className="flex items-start gap-4">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-emerald-400 ring-1 ring-white/20">
+              <Mountain className="h-5 w-5" />
+            </div>
 
-          {/* 3 Milestone Cards */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6">
-            {/* Step 1 */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/40 p-5 shadow-xs transition-all hover:border-slate-300 hover:shadow-md">
-              <div>
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
-                    1
-                  </span>
-                  <span className="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-900">
-                    Booking Day
-                  </span>
-                </div>
-                <h3 className="font-serif text-lg font-bold text-slate-900">
-                  25% Confirmation Token
+            <div className="flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="font-serif text-base font-bold text-white sm:text-lg">
+                  Road Closures & Safety
                 </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                  Secures your hotel room reservations during peak hill seasons and allocates your dedicated vehicle and chauffeur.
-                </p>
+                <span className="rounded-full bg-emerald-500/20 px-2.5 py-0.5 text-[10px] font-semibold text-emerald-300 ring-1 ring-emerald-500/30">
+                  Safety First Policy
+                </span>
               </div>
-              <ul className="mt-4 space-y-1.5 border-t border-slate-200/80 pt-3 text-xs text-slate-700">
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Official stamped booking voucher issued within 24 hrs</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Direct hotel confirmation voucher numbers provided</span>
-                </li>
-              </ul>
-            </div>
 
-            {/* Step 2 */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/40 p-5 shadow-xs transition-all hover:border-slate-300 hover:shadow-md">
-              <div>
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
-                    2
-                  </span>
-                  <span className="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-900">
-                    Day 1 Arrival
-                  </span>
+              <p className="mt-2 text-xs leading-relaxed text-slate-300 sm:text-sm">
+                High-altitude mountain highways (such as Rohtang Pass, Atal Tunnel, Kunzum Pass, or Spiti Valley routes) can occasionally face temporary closure due to heavy snowfall, landslides, or official administrative travel advisories.
+              </p>
+
+              <div className="mt-3 space-y-1.5 border-t border-slate-800 pt-3 text-xs text-slate-300">
+                <div className="flex items-start gap-2">
+                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                  <span><strong>Safe Alternate Routing:</strong> Our operations team promptly coordinates safe alternate itineraries with zero rescheduling penalties.</span>
                 </div>
-                <h3 className="font-serif text-lg font-bold text-slate-900">
-                  50% On Hotel Check-In
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                  Payable only after you reach Himachal, meet your assigned driver, inspect your vehicle, and check into your first destination hotel.
-                </p>
-              </div>
-              <ul className="mt-4 space-y-1.5 border-t border-slate-200/80 pt-3 text-xs text-slate-700">
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Inspect vehicle cleanliness and comfort firsthand</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Clears initial hotel check-in and route fuel funds</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Step 3 */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/40 p-5 shadow-xs transition-all hover:border-slate-300 hover:shadow-md">
-              <div>
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
-                    3
-                  </span>
-                  <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-900">
-                    Mid-Tour (Day 3/4)
-                  </span>
+                <div className="flex items-start gap-2">
+                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                  <span><strong>Travel Credit Protection:</strong> Any unutilized package components are preserved as a 12-month travel credit voucher.</span>
                 </div>
-                <h3 className="font-serif text-lg font-bold text-slate-900">
-                  25% Remaining Balance
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                  Payable midway through your itinerary once you are comfortably settled and experiencing your vacation.
-                </p>
-              </div>
-              <ul className="mt-4 space-y-1.5 border-t border-slate-200/80 pt-3 text-xs text-slate-700">
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Complete peace of mind throughout the initial days</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Official digital GST receipt issued upon settlement</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Cancellation Schedule for Packages */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs sm:p-6">
-            <h4 className="flex items-center gap-2 font-serif text-base font-bold text-slate-900 sm:text-lg">
-              <Clock className="h-4 w-4 text-amber-600" />
-              Package Cancellation & Room Retention Schedule
-            </h4>
-            <p className="mt-1 text-xs text-slate-500">
-              Hotels in Himachal enforce strict retention windows during busy seasons. We pass on maximum flexibility.
-            </p>
-
-            <div className="mt-4 overflow-x-auto">
-              <table className="w-full text-left text-xs sm:text-sm">
-                <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50 text-slate-700">
-                    <th className="py-2.5 px-3 font-semibold">Notice Period</th>
-                    <th className="py-2.5 px-3 font-semibold">Refund Policy</th>
-                    <th className="py-2.5 px-3 font-semibold">Operational Terms</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 text-slate-700">
-                  <tr>
-                    <td className="py-3 px-3 font-medium text-slate-900">15+ Days before trip</td>
-                    <td className="py-3 px-3 font-bold text-emerald-700">
-                      90% Refund <span className="text-xs font-normal text-slate-500">or 100% Credit Voucher</span>
-                    </td>
-                    <td className="py-3 px-3 text-xs text-slate-500">
-                      Nominal 10% (or ₹1,000 max) retained for payment gateway & hotel reservation overhead.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-medium text-slate-900">7 to 14 Days before trip</td>
-                    <td className="py-3 px-3 font-bold text-amber-700">50% Refund</td>
-                    <td className="py-3 px-3 text-xs text-slate-500">
-                      Hotels charge partial retention for rooms released 2 weeks prior to arrival.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-medium text-slate-900">Less than 7 Days / No-show</td>
-                    <td className="py-3 px-3 font-bold text-red-600">Advance Non-Refundable</td>
-                    <td className="py-3 px-3 text-xs text-slate-500">
-                      Hotels in hill stations enforce 100% retention on last-minute cancellations.
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </TabsContent>
-
-        {/* ----------------- TAB 2: CAB & FLEET RENTAL ONLY (NO HOTELS) ----------------- */}
-        <TabsContent value="taxi" className="space-y-8 focus-visible:outline-none">
-          {/* Service Clarification Notice */}
-          <div className="rounded-xl border border-emerald-200/80 bg-emerald-50/70 p-4 text-xs text-emerald-950 sm:text-sm">
-            <p className="font-semibold text-emerald-900">
-              For Travelers Requiring Only Taxis, Airport Pickups, or Fleet Hire (No Hotel Bookings)
-            </p>
-            <p className="mt-1 text-xs text-emerald-800">
-              Already booked your own stays or only need a one-way transfer, airport pickup, or private cab for local
-              sightseeing? Fleet-only rentals have NO hotel retention penalties and offer maximum flexibility.
-            </p>
-          </div>
-
-          {/* 3 Milestone Cards for Fleet */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6">
-            {/* Fleet Step 1 */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/40 p-5 shadow-xs transition-all hover:border-slate-300 hover:shadow-md">
-              <div>
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
-                    1
-                  </span>
-                  <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-900">
-                    Booking Confirmation
-                  </span>
-                </div>
-                <h3 className="font-serif text-lg font-bold text-slate-900">
-                  20% Advance Token
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                  Flat ₹1,000 or 20% to lock your exact vehicle category (Innova Crysta, Dzire, or Force Urbania) and assign a licensed mountain driver.
-                </p>
-              </div>
-              <ul className="mt-4 space-y-1.5 border-t border-slate-200/80 pt-3 text-xs text-slate-700">
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Guaranteed vehicle model with driver assigned</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Driver details and phone shared 12 hrs before pickup</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Fleet Step 2 */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/40 p-5 shadow-xs transition-all hover:border-slate-300 hover:shadow-md">
-              <div>
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
-                    2
-                  </span>
-                  <span className="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-900">
-                    Boarding & Trip Start
-                  </span>
-                </div>
-                <h3 className="font-serif text-lg font-bold text-slate-900">
-                  50% On Boarding Cab
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                  Payable only after you board the cab at Chandigarh, Delhi, Kalka, or your pickup station, ensuring vehicle cleanliness meets your standards.
-                </p>
-              </div>
-              <ul className="mt-4 space-y-1.5 border-t border-slate-200/80 pt-3 text-xs text-slate-700">
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Inspect vehicle AC, cleanliness, and boot space first</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Covers highway tolls and onward hill route fuel</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Fleet Step 3 */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/40 p-5 shadow-xs transition-all hover:border-slate-300 hover:shadow-md">
-              <div>
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
-                    3
-                  </span>
-                  <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-900">
-                    Final Destination Drop
-                  </span>
-                </div>
-                <h3 className="font-serif text-lg font-bold text-slate-900">
-                  30% Balance at Drop-off
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                  Pay the remaining 30% balance directly to the driver only when you reach your final hotel, airport, or railway station safely.
-                </p>
-              </div>
-              <ul className="mt-4 space-y-1.5 border-t border-slate-200/80 pt-3 text-xs text-slate-700">
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>No upfront payment anxiety on long mountain routes</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
-                  <span>Luggage assistance and courteous service until drop</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Cancellation Schedule for Fleet Only */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs sm:p-6">
-            <h4 className="flex items-center gap-2 font-serif text-base font-bold text-slate-900 sm:text-lg">
-              <Clock className="h-4 w-4 text-emerald-600" />
-              Fleet-Only Cancellation & Rescheduling Rules
-            </h4>
-            <p className="mt-1 text-xs text-slate-500">
-              Because no hotel rooms are locked, taxi cancellations are straightforward and free of third-party penalties.
-            </p>
-
-            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
-              <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4">
-                <p className="font-bold text-emerald-900">24+ Hours Before Pickup</p>
-                <p className="mt-1 text-xs leading-relaxed text-emerald-800">
-                  <strong>100% Token Refund</strong> or free date rescheduling with zero cancellation penalty.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-amber-200 bg-amber-50/60 p-4">
-                <p className="font-bold text-amber-900">12 to 24 Hours Notice</p>
-                <p className="mt-1 text-xs leading-relaxed text-amber-800">
-                  <strong>50% Token Refund</strong> (nominal ₹500 retained to compensate driver for the blocked shift).
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-red-200 bg-red-50/60 p-4">
-                <p className="font-bold text-red-900">Less than 12 Hours / Dispatched</p>
-                <p className="mt-1 text-xs leading-relaxed text-red-800">
-                  Token retained to cover empty kilometer fuel of the dispatched mountain vehicle.
-                </p>
               </div>
             </div>
-          </div>
-        </TabsContent>
-      </Tabs>
-
-      {/* Himalayan Weather & Road Safety Guarantee */}
-      <div className="mt-8 rounded-2xl border border-amber-300/80 bg-gradient-to-r from-amber-50/90 via-orange-50/50 to-amber-50/90 p-5 sm:p-6">
-        <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-600 text-white shadow-md">
-            <CloudSnow className="h-6 w-6" />
-          </div>
-          <div>
-            <h4 className="font-serif text-base font-bold text-amber-950 sm:text-lg">
-              Himachal Weather & Road Pass Protection
-            </h4>
-            <p className="mt-1 text-xs leading-relaxed text-amber-900/90 sm:text-sm">
-              If high-altitude passes (Atal Tunnel, Rohtang Pass, Spiti route) or national highways close due to heavy
-              snowfall, landslides, or official administration weather advisories, <strong>your unutilized funds remain 100% protected</strong>.
-              We provide an immediate safe scenic alternate route or a <strong>1-year credit voucher</strong> with zero rescheduling fees.
-            </p>
           </div>
         </div>
       </div>
 
-      {/* Transparent Pricing Inclusions Strip */}
-      <div className="mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3 text-center">
-        <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-3">
-          <p className="text-xs font-semibold text-slate-900">State Border Taxes</p>
-          <p className="mt-0.5 text-[11px] text-slate-500">HP entry permit included</p>
+      {/* Zero Hidden Charges Trust Strip */}
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 text-center">
+        <div className="flex flex-col justify-center rounded-xl border border-slate-200/90 bg-slate-50/60 p-3.5 transition-colors hover:bg-slate-50">
+          <p className="text-xs font-bold text-slate-900">HP State Border Taxes</p>
+          <p className="mt-1 text-[11px] text-slate-600">State entry permits fully included</p>
         </div>
-        <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-3">
-          <p className="text-xs font-semibold text-slate-900">Highway Tolls & FASTag</p>
-          <p className="mt-0.5 text-[11px] text-slate-500">All expressway tolls covered</p>
+
+        <div className="flex flex-col justify-center rounded-xl border border-slate-200/90 bg-slate-50/60 p-3.5 transition-colors hover:bg-slate-50">
+          <p className="text-xs font-bold text-slate-900">Highway Tolls & FASTag</p>
+          <p className="mt-1 text-[11px] text-slate-600">All expressway tolls covered</p>
         </div>
-        <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-3">
-          <p className="text-xs font-semibold text-slate-900">Driver Night Allowance</p>
-          <p className="mt-0.5 text-[11px] text-slate-500">Zero extra roadside demands</p>
+
+        <div className="flex flex-col justify-center rounded-xl border border-slate-200/90 bg-slate-50/60 p-3.5 transition-colors hover:bg-slate-50">
+          <p className="text-xs font-bold text-slate-900">Driver Allowance & Stays</p>
+          <p className="mt-1 text-[11px] text-slate-600">Night bhatta included in quote</p>
         </div>
-        <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-3">
-          <p className="text-xs font-semibold text-slate-900">Clean Hill Fleet</p>
-          <p className="mt-0.5 text-[11px] text-slate-500">High ground clearance & inspected</p>
+
+        <div className="flex flex-col justify-center rounded-xl border border-amber-200/80 bg-amber-50/50 p-3.5 transition-colors hover:bg-amber-50">
+          <p className="text-xs font-bold text-amber-950">Rohtang NGT Permits</p>
+          <p className="mt-1 text-[11px] text-amber-800">Excluded; payable at actuals if open</p>
         </div>
       </div>
     </section>

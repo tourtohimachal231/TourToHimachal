@@ -30,10 +30,11 @@ export default function PrivacyPage() {
       <main className="flex-grow pb-8 overflow-x-hidden safe-area-bottom">
         {/* Hero Section */}
         <StaticHero
-          image="Images/diary.png"
+          image="/Images/about-hero.jpg"
           badge="Your Privacy Matters"
           title="Privacy Policy"
           subtitle="At TourToHimachal, we value your trust and are committed to protecting your personal information. This policy explains how we collect, use, and safeguard your data when you use our travel services."
+          heightClassName="min-h-[480px] sm:min-h-[520px] md:min-h-[560px]"
         />
 
 

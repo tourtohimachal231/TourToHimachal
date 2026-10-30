@@ -51,7 +51,12 @@ const taxiFaqs = [
   {
     question: "How much advance payment is required for taxi booking?",
     answer:
-      "We only take a small 20% token advance (minimum ₹1,000 for local rides) to lock your cab model and assign a verified mountain driver. 50% is payable when you board the car on Day 1, and the remaining 30% only when you reach your final drop safely.",
+      "We require a 25% token advance (minimum ₹1,000) to confirm your cab category and assign a verified mountain chauffeur. 50% is payable when you inspect and board the car on Day 1, and the remaining 25% balance is cleared upon reaching your destination hotel on Day 1.",
+  },
+  {
+    question: "Are Rohtang Pass and Atal Tunnel permits included in taxi fares?",
+    answer:
+      "No. High-altitude passes such as Rohtang Pass (NGT Green Permit) and special beyond-tunnel transit passes are strictly excluded from base taxi rates because they depend on daily government vehicle quotas and seasonal weather openings. If open during your travel dates and requested, permit fees are payable as per actuals.",
   },
   {
     question: "What if roads are blocked by landslides or heavy snowfall?",
@@ -61,7 +66,7 @@ const taxiFaqs = [
   {
     question: "Are toll taxes, state border permits, and driver allowance included?",
     answer:
-      "Yes! Our quoted taxi fares clearly cover standard Himachal state entry permits, toll taxes, and driver night allowance with no hidden surprises on the road.",
+      "Yes! Our quoted taxi fares clearly cover standard Himachal state entry permits, FASTag toll taxes, and driver night allowance (bhatta) with zero hidden roadside surcharges.",
   },
   {
     question: "Are your drivers trained for Himalayan mountain roads?",
