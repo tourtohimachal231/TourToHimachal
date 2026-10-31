@@ -50,6 +50,8 @@ import { HomeTestimonials } from "@/components/home/home-testimonials"
 import { TravelDiaries } from "@/components/home/travel-diaries"
 import { CTABanner } from "@/components/home/cta-banner"
 import { Footer } from "@/components/home/footer"
+import { HomeFAQs } from "@/components/home/home-faqs"
+import { homeFaqs, generateFaqSchema } from "@/data/home-faqs"
 
 export default function HomePage() {
   const organizationSchema = {
@@ -82,6 +84,8 @@ export default function HomePage() {
     ],
     priceRange: "₹₹",
   }
+
+  const faqSchema = generateFaqSchema(homeFaqs)
 
   const websiteSchema = {
     "@context": "https://schema.org",
@@ -119,6 +123,13 @@ export default function HomePage() {
             __html: JSON.stringify(websiteSchema),
           }}
         />
+        {/* FAQPage structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema),
+          }}
+        />
         {/* 1. Header and navigation */}
         <Header />
 
@@ -146,7 +157,10 @@ export default function HomePage() {
         {/* 9. Travel guides and diaries */}
         <TravelDiaries />
 
-        {/* 10. Final enquiry CTA */}
+        {/* 10. Frequently Asked Questions */}
+        <HomeFAQs />
+
+        {/* 11. Final enquiry CTA */}
         <CTABanner />
 
         {/* 11. Footer */}
