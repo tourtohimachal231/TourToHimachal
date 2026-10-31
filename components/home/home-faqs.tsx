@@ -2,246 +2,236 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import {
-  HelpCircle,
-  Phone,
-  MessageCircle,
-  ShieldCheck,
-  CheckCircle2,
-  CalendarCheck,
-  Sparkles,
-} from "lucide-react"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
+import { ArrowUpRight, Phone, MessageSquare, Compass, ShieldCheck } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp"
 import { useSettings } from "@/lib/settings-context"
 import { homeFaqs, homeFaqCategories, type HomeFAQ } from "@/data/home-faqs"
-import { fadeInUp, staggerContainer } from "@/lib/animation-variants"
 
 export function HomeFAQs() {
   const { settings } = useSettings()
   const [activeCategory, setActiveCategory] = useState<string>("all")
+  const [openId, setOpenId] = useState<string | null>("booking-process")
 
   const whatsappRaw = (settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "") || "918628839955"
-  const phone = settings.contact_phone || "+918628839955"
+  const phone = settings.contact_phone || "+91 8628839955"
 
   const filteredFaqs =
     activeCategory === "all"
       ? homeFaqs
       : homeFaqs.filter((faq) => faq.category === activeCategory)
 
-  // Split into 2 columns for a balanced layout on large screens
-  const midPoint = Math.ceil(filteredFaqs.length / 2)
-  const leftColumnFaqs = filteredFaqs.slice(0, midPoint)
-  const rightColumnFaqs = filteredFaqs.slice(midPoint)
+  const toggleItem = (id: string) => {
+    setOpenId((prev) => (prev === id ? null : id))
+  }
 
   return (
     <section
       id="faqs"
-      className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/60 to-white py-14 sm:py-18 md:py-24 border-t border-slate-100"
+      aria-label="Frequently Asked Questions"
+      className="relative bg-[#faf9f6] text-slate-900 py-16 sm:py-24 lg:py-28 border-t border-stone-200/80 overflow-hidden"
     >
-      {/* Decorative background glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-r from-emerald-100/30 via-sky-100/20 to-amber-100/30 blur-3xl pointer-events-none rounded-full" />
+      {/* Subtle organic light wash */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-b from-amber-100/25 via-emerald-100/15 to-transparent blur-3xl pointer-events-none rounded-full -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-t from-stone-200/30 to-transparent blur-3xl pointer-events-none rounded-full translate-y-1/3 -translate-x-1/3" />
 
-      <div className="container relative mx-auto px-4 sm:px-6">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="mx-auto max-w-6xl"
-        >
-          {/* Section Header */}
-          <motion.div variants={fadeInUp} className="mx-auto max-w-3xl text-center mb-10 sm:mb-12">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-emerald-50/70 px-4 py-1.5 text-xs font-semibold tracking-wider text-emerald-900 uppercase mb-4 shadow-2xs">
-              <HelpCircle className="h-3.5 w-3.5 text-emerald-600" />
-              <span>Got Questions? We Have Answers</span>
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* ========================================================= */}
+          {/* LEFT COLUMN: Sticky Dossier Header & Index               */}
+          {/* ========================================================= */}
+          <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-8">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 rounded-full border border-stone-300/80 bg-white/80 px-3.5 py-1 text-[11px] font-mono uppercase tracking-[0.2em] text-stone-700 backdrop-blur-xs shadow-2xs">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                <span>Field Guide & FAQs</span>
+              </div>
+
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-slate-900 leading-[1.12]">
+                Everything you need to know before climbing into the hills.
+              </h2>
+
+              <p className="text-stone-600 text-base sm:text-lg leading-relaxed font-light">
+                Mountain journeys involve weather shifts, pass permits, high altitudes, and sacred temple customs. Here are straightforward, unvarnished answers from our local Himachal team.
+              </p>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
-              Frequently Asked Questions
-            </h2>
-            <p className="mt-3.5 text-base sm:text-lg text-slate-600 leading-relaxed">
-              Everything you need to know about planning your Himachal tour, hiring local taxis, temple darshan, and safe mountain travel.
-            </p>
-          </motion.div>
 
-          {/* Category Filter Pills */}
-          <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
-            {homeFaqCategories.map((category) => {
-              const count =
-                category.id === "all"
-                  ? homeFaqs.length
-                  : homeFaqs.filter((f) => f.category === category.id).length
-              const isActive = activeCategory === category.id
+            {/* Category Filter Rail */}
+            <div className="space-y-2 pt-2">
+              <p className="text-[11px] font-mono uppercase tracking-wider text-stone-400">
+                Filter by Subject
+              </p>
+              <div className="flex flex-wrap lg:flex-col gap-1.5 sm:gap-2">
+                {homeFaqCategories.map((category) => {
+                  const isActive = activeCategory === category.id
+                  const count =
+                    category.id === "all"
+                      ? homeFaqs.length
+                      : homeFaqs.filter((f) => f.category === category.id).length
 
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  type="button"
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
-                    isActive
-                      ? "bg-slate-900 text-white shadow-md shadow-slate-900/15 ring-2 ring-slate-900"
-                      : "bg-white text-slate-700 border border-slate-200/90 hover:bg-slate-50 hover:border-slate-300"
-                  }`}
-                >
-                  <span>{category.label}</span>
-                  <span
-                    className={`text-[11px] px-2 py-0.5 rounded-full font-semibold ${
-                      isActive
-                        ? "bg-white/20 text-white"
-                        : "bg-slate-100 text-slate-600"
-                    }`}
-                  >
-                    {count}
-                  </span>
-                </button>
-              )
-            })}
-          </motion.div>
-
-          {/* Accordion Columns */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-start"
-            >
-              {/* Left Column */}
-              <div className="space-y-3.5 sm:space-y-4">
-                <Accordion type="single" collapsible className="space-y-3.5 sm:space-y-4">
-                  {leftColumnFaqs.map((faq) => (
-                    <AccordionItem
-                      key={faq.id}
-                      value={faq.id}
-                      className="rounded-2xl border border-slate-200/90 bg-white/95 px-5 sm:px-6 py-1 transition-all duration-200 shadow-xs hover:border-slate-300 hover:shadow-md data-[state=open]:border-emerald-300 data-[state=open]:ring-2 data-[state=open]:ring-emerald-500/10 data-[state=open]:shadow-md"
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => {
+                        setActiveCategory(category.id)
+                        // Auto open first item of category if current is hidden
+                        const firstMatch =
+                          category.id === "all"
+                            ? homeFaqs[0]?.id
+                            : homeFaqs.find((f) => f.category === category.id)?.id
+                        if (firstMatch) setOpenId(firstMatch)
+                      }}
+                      type="button"
+                      className={`group relative flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-sm font-medium transition-all duration-200 cursor-pointer ${
+                        isActive
+                          ? "bg-white text-slate-900 shadow-xs border border-stone-300/80"
+                          : "text-stone-600 hover:text-slate-900 hover:bg-white/50"
+                      }`}
                     >
-                      <AccordionTrigger className="text-left font-semibold text-slate-900 text-base sm:text-lg hover:no-underline py-4 group">
-                        <div className="flex flex-col gap-1.5 pr-2">
-                          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 uppercase tracking-wider">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                            {faq.categoryLabel}
-                          </span>
-                          <span className="text-slate-900 group-hover:text-emerald-700 transition-colors">
-                            {faq.question}
-                          </span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="text-slate-600 text-sm sm:text-base leading-relaxed pb-5 pt-1 border-t border-slate-100">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-
-              {/* Right Column */}
-              <div className="space-y-3.5 sm:space-y-4">
-                <Accordion type="single" collapsible className="space-y-3.5 sm:space-y-4">
-                  {rightColumnFaqs.map((faq) => (
-                    <AccordionItem
-                      key={faq.id}
-                      value={faq.id}
-                      className="rounded-2xl border border-slate-200/90 bg-white/95 px-5 sm:px-6 py-1 transition-all duration-200 shadow-xs hover:border-slate-300 hover:shadow-md data-[state=open]:border-emerald-300 data-[state=open]:ring-2 data-[state=open]:ring-emerald-500/10 data-[state=open]:shadow-md"
-                    >
-                      <AccordionTrigger className="text-left font-semibold text-slate-900 text-base sm:text-lg hover:no-underline py-4 group">
-                        <div className="flex flex-col gap-1.5 pr-2">
-                          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 uppercase tracking-wider">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                            {faq.categoryLabel}
-                          </span>
-                          <span className="text-slate-900 group-hover:text-emerald-700 transition-colors">
-                            {faq.question}
-                          </span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="text-slate-600 text-sm sm:text-base leading-relaxed pb-5 pt-1 border-t border-slate-100">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Support / Quick Help Card */}
-          <motion.div
-            variants={fadeInUp}
-            className="mt-12 sm:mt-16 rounded-3xl border border-slate-200/90 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 sm:p-8 md:p-10 shadow-xl shadow-slate-900/10"
-          >
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8">
-              <div className="space-y-3 max-w-2xl">
-                <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-300">
-                  <Sparkles className="h-3.5 w-3.5 text-amber-400" />
-                  <span>24/7 Local Hill Travel Desk</span>
-                </div>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-white">
-                  Still have questions about your Himachal trip?
-                </h3>
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                  Our local tour coordinators and drivers are born and rooted in Himachal. Call or message us anytime for live road conditions, custom stops, hotel options, or temple accessibility advice.
-                </p>
-                <div className="flex flex-wrap items-center gap-4 pt-1 text-xs text-slate-300">
-                  <span className="inline-flex items-center gap-1.5">
-                    <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                    100% Free Consultation
-                  </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    Instant WhatsApp Quotes
-                  </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <CalendarCheck className="h-4 w-4 text-emerald-400" />
-                    Zero Obligation
-                  </span>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-[#25D366] hover:bg-[#1EBE5D] text-white shadow-lg shadow-emerald-950/20 rounded-full font-semibold h-12 px-6"
-                >
-                  <a
-                    href={`https://wa.me/${whatsappRaw}?text=${encodeURIComponent(
-                      "Hi TourToHimachal! I have a question about planning my Himachal trip / booking a taxi.",
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <WhatsAppIcon className="h-5 w-5 mr-2" />
-                    Chat on WhatsApp
-                  </a>
-                </Button>
-
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-white/30 bg-white/10 hover:bg-white/20 text-white rounded-full font-semibold h-12 px-6"
-                >
-                  <a href={`tel:${phone.replace(/[^0-9+]/g, "")}`}>
-                    <Phone className="h-4 w-4 mr-2" />
-                    Call Us: {phone}
-                  </a>
-                </Button>
+                      <span className="flex items-center gap-2.5">
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                            isActive ? "bg-emerald-600" : "bg-stone-300 group-hover:bg-stone-400"
+                          }`}
+                        />
+                        <span>{category.label}</span>
+                      </span>
+                      <span
+                        className={`text-xs font-mono transition-colors ${
+                          isActive ? "text-stone-900 font-semibold" : "text-stone-400"
+                        }`}
+                      >
+                        {count.toString().padStart(2, "0")}
+                      </span>
+                    </button>
+                  )
+                })}
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+
+            {/* Quiet Concierge Note */}
+            <div className="rounded-2xl border border-stone-200 bg-white/70 p-5 shadow-2xs backdrop-blur-xs space-y-3">
+              <div className="flex items-center justify-between text-xs text-stone-500 font-mono">
+                <span className="inline-flex items-center gap-1.5 text-emerald-700 font-medium">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  Direct Local Helpdesk
+                </span>
+                <span>Chintpurni, HP</span>
+              </div>
+              <p className="text-xs sm:text-sm text-stone-600 leading-normal">
+                Traveling with elderly pilgrims or planning a custom multi-valley circuit? Ask our mountain coordinators directly.
+              </p>
+              <div className="flex items-center gap-4 pt-1 text-xs font-medium">
+                <a
+                  href={`https://wa.me/${whatsappRaw}?text=${encodeURIComponent(
+                    "Hi TourToHimachal! I have a specific question about road conditions, custom route, or elderly darshan.",
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-emerald-800 hover:text-emerald-950 font-semibold transition-colors"
+                >
+                  <WhatsAppIcon className="h-4 w-4" />
+                  <span>WhatsApp road team</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+                <span className="text-stone-300">•</span>
+                <a
+                  href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
+                  className="inline-flex items-center gap-1 text-stone-700 hover:text-slate-900 transition-colors"
+                >
+                  <Phone className="h-3.5 w-3.5 text-stone-500" />
+                  <span>{phone}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* ========================================================= */}
+          {/* RIGHT COLUMN: The Editorial Q&A Dossier                   */}
+          {/* ========================================================= */}
+          <div className="lg:col-span-7">
+            <div className="divide-y divide-stone-200/90 border-y border-stone-200/90">
+              <AnimatePresence initial={false}>
+                {filteredFaqs.map((faq) => {
+                  const isOpen = openId === faq.id
+
+                  return (
+                    <div
+                      key={faq.id}
+                      className={`transition-colors duration-200 ${
+                        isOpen ? "bg-white/80" : "hover:bg-white/40"
+                      }`}
+                    >
+                      <button
+                        onClick={() => toggleItem(faq.id)}
+                        type="button"
+                        aria-expanded={isOpen}
+                        className="w-full py-5 sm:py-6 px-3 sm:px-4 text-left flex items-start justify-between gap-4 cursor-pointer group"
+                      >
+                        <div className="flex items-start gap-4 sm:gap-6 pr-2">
+                          <span className="font-mono text-xs sm:text-sm text-stone-400 pt-1 shrink-0 select-none">
+                            {faq.number}
+                          </span>
+                          <div className="space-y-1">
+                            <h3 className="font-serif text-lg sm:text-xl font-normal text-slate-900 group-hover:text-emerald-900 transition-colors leading-snug">
+                              {faq.question}
+                            </h3>
+                            <span className="inline-block text-[10px] font-mono uppercase tracking-wider text-stone-400">
+                              {faq.categoryLabel}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Architectural Plus / Minus Toggle */}
+                        <div
+                          className={`shrink-0 mt-1 h-7 w-7 rounded-full border flex items-center justify-center transition-all duration-300 ${
+                            isOpen
+                              ? "border-slate-900 bg-slate-900 text-white rotate-45"
+                              : "border-stone-300 bg-white text-stone-600 group-hover:border-stone-400 group-hover:text-slate-900"
+                          }`}
+                        >
+                          <svg
+                            className="h-3.5 w-3.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="2"
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                          </svg>
+                        </div>
+                      </button>
+
+                      {/* Expandable Answer */}
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <div className="px-3 sm:px-4 pb-6 sm:pb-7 pt-1 pl-12 sm:pl-16 pr-4 space-y-4 text-stone-600 text-sm sm:text-base leading-relaxed font-light">
+                              <p>{faq.answer}</p>
+
+                              {faq.highlight && (
+                                <div className="inline-flex items-center gap-2 rounded-lg border border-emerald-200/80 bg-emerald-50/70 px-3 py-1.5 text-xs text-emerald-900 font-medium">
+                                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 shrink-0" />
+                                  <span>{faq.highlight}</span>
+                                </div>
+                              )}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                })}
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
 }
-

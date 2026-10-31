@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useSettings } from "@/lib/settings-context"
-import { Phone, ArrowRight, Sparkles, ShieldCheck, Clock, CalendarCheck } from "lucide-react"
+import { Phone, ArrowUpRight, ShieldCheck, Clock, CalendarCheck } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp"
 import Image from "next/image"
 import { optimizeCloudinaryDeliveryUrl } from "@/lib/cloudinary"
@@ -27,104 +27,105 @@ export function CTABanner() {
   }
 
   const whatsappRaw = (settings.whatsapp_number || "918628839955").replace(/[^0-9]/g, "") || "918628839955"
-  const phone = settings.contact_phone || "+918628839955"
+  const phone = settings.contact_phone || "+91 8628839955"
 
   return (
-    <section className="relative overflow-hidden py-16 md:py-24 lg:py-28">
+    <section className="relative overflow-hidden py-20 sm:py-28 lg:py-32 bg-slate-950 text-white">
       {/* Background panoramic landscape */}
       <Image
         src={getImageUrl("https://res.cloudinary.com/daqp8c5fa/image/upload/v1767795901/y1plr2wekvbv7g7yjyk0.webp")}
         alt="Panoramic Himalayan mountain landscape"
         fill
-        className="object-cover"
+        className="object-cover opacity-35"
         sizes="100vw"
         priority={false}
       />
 
-      {/* Cinematic dark mountain gradient overlay (crystal clear contrast, no washed-out orange tint) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-slate-950/90" />
-      <div className="absolute inset-0 bg-radial-at-c from-transparent via-slate-950/40 to-slate-950/80" />
+      {/* Cinematic dark mountain gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950" />
+      <div className="absolute inset-0 bg-radial-at-c from-transparent via-slate-950/40 to-slate-950/90" />
 
-      <div className="relative z-10 container mx-auto px-4">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-4xl text-center"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-6 sm:space-y-8"
         >
-          {/* Trust Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-4 py-1.5 backdrop-blur-md">
-            <Sparkles className="h-4 w-4 text-amber-400" />
-            <span className="text-xs font-semibold tracking-wider text-amber-300 uppercase md:text-sm">
-              Start Your Journey Today • 100% Free Consultation
-            </span>
+          {/* Restrained Editorial Eyebrow */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-mono uppercase tracking-[0.22em] text-emerald-300 backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span>Direct Local Team • Based in Himachal</span>
           </div>
 
           {/* Heading */}
-          <h2 className="font-serif text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Ready to Experience the Himalayas?{" "}
-            <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">
-              Let&apos;s Plan Your Custom Trip
+          <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.1] max-w-4xl mx-auto">
+            Ready to journey into the Himalayas?{" "}
+            <span className="italic font-normal text-amber-200/90 font-serif">
+              Plan your route with locals.
             </span>
           </h2>
 
-          {/* Description */}
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl">
-            Connect directly with our local travel architects in Chintpurni. We&apos;ll craft a personalized day-by-day
-            itinerary with transparent taxi fares tailored to your family, honeymoon, or temple pilgrimage.
+          {/* Authentic Description */}
+          <p className="mx-auto max-w-2xl text-base sm:text-lg text-slate-300/90 font-light leading-relaxed">
+            No brokers, no metro sub-agents reselling packages. We design your day-wise itinerary, assign our own vetted native hill drivers, and coordinate your stays directly from Himachal Pradesh.
           </p>
 
-          {/* Key Guarantees Strip */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs sm:gap-6 sm:text-sm">
-            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-slate-200 backdrop-blur-xs">
-              <Clock className="h-4 w-4 text-amber-400" />
-              <span>15-Minute Custom Quote</span>
+          {/* Cohesive Trust Bar */}
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-y-3 gap-x-6 sm:gap-x-8 text-xs font-mono tracking-wider text-slate-300/80">
+            <div className="flex items-center gap-2">
+              <CalendarCheck className="h-3.5 w-3.5 text-emerald-400" />
+              <span>20% Token to Reserve</span>
             </div>
-            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-slate-200 backdrop-blur-xs">
-              <CalendarCheck className="h-4 w-4 text-emerald-400" />
-              <span>Only 20% Token to Reserve</span>
+            <span className="hidden sm:inline text-white/20">•</span>
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+              <span>100% Free Weather Rescheduling</span>
             </div>
-            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-slate-200 backdrop-blur-xs">
-              <ShieldCheck className="h-4 w-4 text-blue-400" />
-              <span>Free Weather Rescheduling</span>
+            <span className="hidden sm:inline text-white/20">•</span>
+            <div className="flex items-center gap-2">
+              <Clock className="h-3.5 w-3.5 text-amber-300" />
+              <span>Direct Hillside Dispatch</span>
             </div>
           </div>
 
-          {/* CTA Action Buttons */}
-          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:items-center">
+          {/* Action Buttons */}
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Button
-              size="xl"
-              className="group h-13 gap-2.5 rounded-xl bg-emerald-600 px-8 text-base font-semibold text-white shadow-xl transition-all hover:bg-emerald-500 hover:shadow-2xl"
+              size="lg"
+              className="w-full sm:w-auto h-13 px-8 rounded-full bg-[#25D366] hover:bg-[#1EBE5D] text-slate-950 font-semibold text-sm sm:text-base shadow-xl shadow-emerald-950/30 transition-all hover:scale-[1.02] cursor-pointer"
               asChild
             >
               <a
-                href={`https://wa.me/${whatsappRaw}?text=${encodeURIComponent("Hi TourToHimachal! I want to plan my dream trip. Please share options and cab rates.")}`}
+                href={`https://wa.me/${whatsappRaw}?text=${encodeURIComponent(
+                  "Hi TourToHimachal! I want to plan my Himachal trip. Please share options and taxi rates.",
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <WhatsAppIcon className="h-5 w-5" />
-                <span>Chat on WhatsApp</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <WhatsAppIcon className="h-4.5 w-4.5 mr-2" />
+                <span>Plan on WhatsApp</span>
+                <ArrowUpRight className="h-4 w-4 ml-1" />
               </a>
             </Button>
 
             <Button
-              size="xl"
+              size="lg"
               variant="outline"
-              className="h-13 gap-2.5 rounded-xl border border-white/30 bg-white/10 px-8 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white hover:text-slate-950"
+              className="w-full sm:w-auto h-13 px-8 rounded-full border-white/25 bg-white/5 hover:bg-white/15 text-white font-medium text-sm sm:text-base backdrop-blur-md transition-all cursor-pointer"
               asChild
             >
-              <a href={`tel:${phone}`}>
-                <Phone className="h-5 w-5" />
+              <a href={`tel:${phone.replace(/[^0-9+]/g, "")}`}>
+                <Phone className="h-4 w-4 mr-2 text-slate-300" />
                 <span>Call {phone}</span>
               </a>
             </Button>
           </div>
 
           {/* Reassurance text */}
-          <p className="mt-6 text-xs text-slate-400">
-            No spam, no aggressive sales calls. Just friendly, local mountain advice from people who live here.
+          <p className="text-[11px] font-mono tracking-wider text-slate-400 pt-2">
+            Direct mountain coordination • Transparent quotes • Zero hidden check-post surcharges
           </p>
         </motion.div>
       </div>
